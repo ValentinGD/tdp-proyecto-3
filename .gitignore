@@ -1,0 +1,8 @@
+#binarios
+/bin/
+
+#archivos de eclipse
+.classpath
+.project
+
+/.metadata/
