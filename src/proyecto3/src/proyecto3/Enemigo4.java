@@ -32,10 +32,4 @@ public class Enemigo4 extends Enemigo {
 		
 	}
 
-	@Override
-	public void mover() {
-		// TODO Auto-generated method stub
-		
-	}
-
 }
