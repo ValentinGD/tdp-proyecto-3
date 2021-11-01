@@ -1,9 +1,10 @@
 package logica.niveles;
 
-import java.io.FileReader;
+import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
 
+import logica.Escenario;
 import logica.Posicion;
 import logica.entidades.PickUp;
 import logica.fabricas.PickUpFactory;
@@ -31,19 +32,17 @@ public class Nivel {
 	}
 	
 	public void cargarGrilla() throws IOException {
-		FileReader fileReader = new FileReader("c:\\data\\text.txt");
-	    int caracterLeido = fileReader.read();
-	    char caracter;
+		File mapa=new File(pathMapa);
+		Scanner linea=new Scanner(mapa);
+	    char[] lineaChar=new char[20];
 		for(int f=0;f<grilla[0].length;f++) {
-			for(int c=0;c<grilla.length;c++) {
-				if (caracterLeido!=-1) {
-	                caracter=(char) caracterLeido;
-	                grilla[f][c]=traducirCaracter(caracter,f,c);
-	                caracterLeido = fileReader.read();
-	            }
+				if (linea.hasNext()) {
+	                lineaChar=linea.nextLine().toCharArray();
+	                for(int c=0;c<lineaChar.length;c++)
+	                grilla[f][c]=traducirCaracter(lineaChar[c],f,c);
 			}
 		}
-		fileReader.close();
+		linea.close();
 	}
 	/**
 	 * Punto chico  -> '*'
@@ -74,6 +73,21 @@ public class Nivel {
 			
 			case 'X':
 				pos=new Posicion(fila,colum,false,null);
+			break;
+			
+			case 'O':
+				pu=PickUpFactory.createPoder();
+				pos=new Posicion(fila,colum,true,pu);
+			break;
+			
+			case 'V':
+				pu=PickUpFactory.createPocion();
+				pos=new Posicion(fila,colum,true,pu);
+			break;
+			
+			case 'P':
+				pos=new Posicion(fila,colum,true,null);
+				Escenario.posPersonaje(pos);
 			break;
 		}
 		return null;

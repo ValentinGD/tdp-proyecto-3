@@ -14,14 +14,14 @@ public class Posicion {
 		this.setFila(fila);
 		this.setColum(colum);
 		this.setHabitable(habitable);
-		this.setHayPickUp(pickUp);
+		this.setHayPickUp(pu);
 		this.setCodeZona(cz);
 	}
 	public Posicion(int fila, int colum, boolean habitable, PickUp pu) {
 		this.setFila(fila);
 		this.setColum(colum);
 		this.setHabitable(habitable);
-		this.setHayPickUp(pickUp);}
+		this.setHayPickUp(pu);}
 
 	public int getFila() {
 		return fila;
