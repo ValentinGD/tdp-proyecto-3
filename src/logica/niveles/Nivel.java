@@ -2,6 +2,7 @@ package logica.niveles;
 
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Scanner;
 
 import logica.Posicion;
 import logica.entidades.PickUp;
@@ -51,6 +52,9 @@ public class Nivel {
 	 * Poder -> 'P'
 	 * Pocion -> 'V'
 	 * Pared -> 'X'
+	 * Pared que atraviesan los enemigos
+	 * Enemigo -> 'E'
+	 * Personaje -> 'P'
 	 * @param c
 	 * @return
 	 */
