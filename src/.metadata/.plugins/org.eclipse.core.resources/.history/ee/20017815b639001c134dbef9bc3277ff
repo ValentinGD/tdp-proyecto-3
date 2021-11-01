@@ -1,0 +1,33 @@
+package proyecto3;
+
+public abstract class Movible extends Entidad {
+
+	public  void mover(int direccion) {
+		Posicion aux=pos.clone();
+		switch(direccion){
+			case 0:
+				if(pos.getFila()-1)
+				pos.setFila(pos.getFila()-1);
+				
+			break;
+			
+			case 1:
+				
+				pos.setColum(pos.getColum()-1);
+				
+			break;
+			
+			case 2:
+				
+				pos.setFila(pos.getFila()+1);
+
+			break;
+			
+			case 3:
+				
+				pos.setColum(pos.getColum()+1);
+				
+			break;
+		}
+	}
+}

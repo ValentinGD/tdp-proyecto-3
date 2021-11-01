@@ -1,0 +1,21 @@
+package proyecto3;
+
+import java.io.IOException;
+
+public class Test {
+	public static void main(String[] args) {
+		Nivel n=new Nivel1();
+		try {
+			n.cargarGrilla();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		Posicion[][] g=new Posicion[13][20];
+		for(int f=0;f<g.length;f++) {
+			for(int c=0;c<g[0].length;c++) {
+				System.out.print(g[f][c].getPickUp().getTipoPickUp());
+			}
+			System.out.println("");
+		}
+	}
+}

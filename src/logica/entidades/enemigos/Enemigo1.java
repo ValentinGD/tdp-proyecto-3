@@ -8,10 +8,8 @@ public class Enemigo1 extends Enemigo {
 
 	@Override
 	public Enemigo getInstancia() {
-		if(instancia==null)
-			instancia=new Enemigo1();
-		
-		return instancia;
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
