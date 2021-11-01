@@ -1,5 +1,10 @@
+<<<<<<< HEAD:src/logica/niveles/Nivel.java
 package logica.niveles;
 
+=======
+package proyecto3;
+import java.io.FileNotFoundException;
+>>>>>>> parent of 8b3d08b (Algunos avences mas):src/proyecto3/src/proyecto3/Nivel.java
 import java.io.FileReader;
 import java.io.IOException;
 
@@ -9,9 +14,8 @@ import logica.fabricas.PickUpFactory;
 
 
 public class Nivel {
-	protected Posicion grilla[][];
-	protected int nivel;
-	protected String pathMapa;
+	private Posicion grilla[][];
+	private int nivel;
 	
 	public Posicion[][] getGrilla() {
 		return grilla;
@@ -30,7 +34,7 @@ public class Nivel {
 	}
 	
 	public void cargarGrilla() throws IOException {
-		FileReader fileReader = new FileReader(pathMapa);
+		FileReader fileReader = new FileReader("c:\\data\\text.txt");
 	    int caracterLeido = fileReader.read();
 	    char caracter;
 		for(int f=0;f<grilla[0].length;f++) {
@@ -54,7 +58,7 @@ public class Nivel {
 	 * @return
 	 */
 	private Posicion traducirCaracter(char c, int fila, int colum) {
-		Posicion pos = null;
+		Posicion pos;
 		PickUp pu;
 		switch(c) {
 		
@@ -71,16 +75,7 @@ public class Nivel {
 			case 'X':
 				pos=new Posicion(fila,colum,false,null);
 			break;
-			
-			case 'V':
-				pu=PickUpFactory.createPocion();
-				pos=new Posicion(fila,colum,true,pu);
-			break;
-			case 'P':
-				pu=PickUpFactory.createPoder();
-				pos=new Posicion(fila,colum,true,pu);
-			break;
 		}
-		return pos;
+		return null;
 	}
 }

@@ -1,0 +1,8 @@
+package proyecto3;
+
+public class PickUpFactory {
+
+	public PickUp createPuntosChicos() {
+		return new puntosChicos;
+	}
+}

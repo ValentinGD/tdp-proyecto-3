@@ -1,0 +1,13 @@
+package proyecto3;
+
+public class Entidad {
+	private Posicion pos;
+
+	public Posicion getPosicion() {
+		return pos;
+	}
+	public void setPosicion(int celda, int columna) {
+		pos.setCelda(celda);
+		pos.setColum(columna);
+	}
+}
