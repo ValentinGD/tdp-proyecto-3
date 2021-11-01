@@ -32,6 +32,7 @@ public class Nivel {
 	public void cargarGrilla() throws IOException {
 		FileReader fileReader = new FileReader(pathMapa);
 	    int caracterLeido = fileReader.read();
+	    
 	    char caracter;
 		for(int f=0;f<grilla[0].length;f++) {
 			for(int c=0;c<grilla.length;c++) {
