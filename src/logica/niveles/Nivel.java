@@ -51,7 +51,7 @@ public class Nivel {
 	 * Poder -> 'P'
 	 * Pocion -> 'V'
 	 * Pared -> 'X'
-	 * Pared que atraviesan los enemigos
+	 * Pared que atraviesan los enemigos -> '-'
 	 * Enemigo -> 'E'
 	 * Personaje -> 'P'
 	 * @param c
