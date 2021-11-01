@@ -8,4 +8,10 @@ public class PickUpFactory {
 	public static PickUp createPuntosGrandes() {
 		return new  PuntosGrandes();
 	}
+	public static PickUp createPocion() {
+		return new  Pocion();
+	}
+	public static PickUp createPoder() {
+		return new  Poder();
+	}
 }

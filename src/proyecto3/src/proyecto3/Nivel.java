@@ -1,12 +1,12 @@
 package proyecto3;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
 
 public class Nivel {
-	private Posicion grilla[][];
-	private int nivel;
+	protected Posicion grilla[][];
+	protected int nivel;
+	protected String pathMapa;
 	
 	public Posicion[][] getGrilla() {
 		return grilla;
@@ -25,7 +25,7 @@ public class Nivel {
 	}
 	
 	public void cargarGrilla() throws IOException {
-		FileReader fileReader = new FileReader("c:\\data\\text.txt");
+		FileReader fileReader = new FileReader(pathMapa);
 	    int caracterLeido = fileReader.read();
 	    char caracter;
 		for(int f=0;f<grilla[0].length;f++) {
@@ -49,7 +49,7 @@ public class Nivel {
 	 * @return
 	 */
 	private Posicion traducirCaracter(char c, int fila, int colum) {
-		Posicion pos;
+		Posicion pos = null;
 		PickUp pu;
 		switch(c) {
 		
@@ -66,7 +66,16 @@ public class Nivel {
 			case 'X':
 				pos=new Posicion(fila,colum,false,null);
 			break;
+			
+			case 'V':
+				pu=PickUpFactory.createPocion();
+				pos=new Posicion(fila,colum,true,pu);
+			break;
+			case 'P':
+				pu=PickUpFactory.createPoder();
+				pos=new Posicion(fila,colum,true,pu);
+			break;
 		}
-		return null;
+		return pos;
 	}
 }

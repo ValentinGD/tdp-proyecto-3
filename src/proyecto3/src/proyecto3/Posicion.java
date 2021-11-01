@@ -12,14 +12,14 @@ public class Posicion {
 		this.setFila(fila);
 		this.setColum(colum);
 		this.setHabitable(habitable);
-		this.setHayPickUp(pickUp);
+		this.setPickUp(pickUp);
 		this.setCodeZona(cz);
 	}
 	public Posicion(int fila, int colum, boolean habitable, PickUp pu) {
 		this.setFila(fila);
 		this.setColum(colum);
 		this.setHabitable(habitable);
-		this.setHayPickUp(pickUp);}
+		this.setPickUp(pickUp);}
 
 	public int getFila() {
 		return fila;
@@ -49,7 +49,7 @@ public class Posicion {
 		return pickUp!=null;
 	}
 
-	public void setHayPickUp(PickUp pu) {
+	public void setPickUp(PickUp pu) {
 		this.pickUp = pu;
 	}
 	
