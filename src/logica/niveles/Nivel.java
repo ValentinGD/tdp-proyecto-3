@@ -1,10 +1,5 @@
-<<<<<<< HEAD:src/logica/niveles/Nivel.java
 package logica.niveles;
 
-=======
-package proyecto3;
-import java.io.FileNotFoundException;
->>>>>>> parent of 8b3d08b (Algunos avences mas):src/proyecto3/src/proyecto3/Nivel.java
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Scanner;
@@ -15,8 +10,9 @@ import logica.fabricas.PickUpFactory;
 
 
 public class Nivel {
-	private Posicion grilla[][];
-	private int nivel;
+	protected Posicion grilla[][];
+	protected int nivel;
+	String pathMapa;
 	
 	public Posicion[][] getGrilla() {
 		return grilla;
