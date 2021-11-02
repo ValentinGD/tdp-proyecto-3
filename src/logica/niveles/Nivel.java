@@ -39,7 +39,7 @@ public class Nivel {
 				if (linea.hasNext()) {
 	                lineaChar=linea.nextLine().toCharArray();
 	                for(int c=0;c<lineaChar.length;c++)
-	                grilla[f][c]=traducirCaracter(lineaChar[c],f,c);
+	               traducirCaracter(lineaChar[c],f,c);
 			}
 		}
 		linea.close();
@@ -51,45 +51,69 @@ public class Nivel {
 	 * Pocion -> 'V'
 	 * Pared -> 'X'
 	 * Pared que atraviesan los enemigos -> '-'
-	 * Enemigo -> 'E'
+	 * Enemigo -> '1, 2, 3, 4'
 	 * Personaje -> 'P'
 	 * @param c
 	 * @return
 	 */
-	private Posicion traducirCaracter(char c, int fila, int colum) {
+	private void traducirCaracter(char c, int fila, int colum) {
 		Posicion pos;
 		PickUp pu;
 		switch(c) {
 		
 			case '*':
 				pu=PickUpFactory.createPuntosChicos();
-				pos=new Posicion(fila,colum,true,pu);
+				pos=new Posicion(fila,colum,true,true,pu);
 			break;
 			
 			case '#':
 				pu=PickUpFactory.createPuntosGrandes();
-				pos=new Posicion(fila,colum,true,pu);
+				pos=new Posicion(fila,colum,true,true,pu);
 			break;
 			
 			case 'X':
-				pos=new Posicion(fila,colum,false,null);
+				pos=new Posicion(fila,colum,false,false,null);
 			break;
 			
 			case 'O':
 				pu=PickUpFactory.createPoder();
-				pos=new Posicion(fila,colum,true,pu);
+				pos=new Posicion(fila,colum,true,true,pu);
 			break;
 			
 			case 'V':
 				pu=PickUpFactory.createPocion();
-				pos=new Posicion(fila,colum,true,pu);
+				pos=new Posicion(fila,colum,true,true,pu);
 			break;
 			
 			case 'P':
-				pos=new Posicion(fila,colum,true,null);
+				pos=new Posicion(fila,colum,true,true,null);
 				Escenario.posPersonaje(pos);
 			break;
+			
+			case '-':
+				pos=new Posicion(fila,colum,false,true,null);
+				Escenario.posPersonaje(pos);
+			break;
+			
+			case '1':
+				pos=new Posicion(fila,colum,false,true,null);
+				Escenario.posEnemigo1(pos);
+			break;
+			
+			case '2':
+				pos=new Posicion(fila,colum,false,true,null);
+				Escenario.posEnemigo2(pos);
+			break;
+			
+			case '3':
+				pos=new Posicion(fila,colum,false,true,null);
+				Escenario.posEnemigo3(pos);
+			break;
+			
+			case '4':
+				pos=new Posicion(fila,colum,false,true,null);
+				Escenario.posEnemigo4(pos);
+			break;
 		}
-		return null;
 	}
 }

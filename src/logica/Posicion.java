@@ -9,6 +9,7 @@ public class Posicion {
 	private boolean habitable;
 	private PickUp pickUp;
 	private int codeZona;
+	private boolean habitableEnemigo;
 	
 	public Posicion(int fila, int colum, boolean habitable, PickUp pu, int cz) {
 		this.setFila(fila);
@@ -17,11 +18,12 @@ public class Posicion {
 		this.setHayPickUp(pu);
 		this.setCodeZona(cz);
 	}
-	public Posicion(int fila, int colum, boolean habitable, PickUp pu) {
+	public Posicion(int fila, int colum, boolean habitable,boolean habitableEnemigo, PickUp pu) {
 		this.setFila(fila);
 		this.setColum(colum);
 		this.setHabitable(habitable);
-		this.setHayPickUp(pu);}
+		this.setHayPickUp(pu);
+		this.setHabitableEnemigo(habitableEnemigo);}
 
 	public int getFila() {
 		return fila;
@@ -69,6 +71,12 @@ public class Posicion {
 	
 	public Posicion clone() {
 		return new Posicion(fila,colum,habitable,pickUp,codeZona);
+	}
+	public boolean isHabitableEnemigo() {
+		return habitableEnemigo;
+	}
+	public void setHabitableEnemigo(boolean habitableEnemigo) {
+		this.habitableEnemigo = habitableEnemigo;
 	}
 	
 }
