@@ -1,6 +1,9 @@
 package vista;
 
 import javax.swing.JPanel;
+
+import logica.Posicion;
+
 import java.awt.BorderLayout;
 import java.awt.GridBagLayout;
 import javax.swing.JLabel;
@@ -8,14 +11,20 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.Font;
 
+@SuppressWarnings("serial")
 public class JuegoPanel extends JPanel {
 	
 	private JLabel [][] labels;
 	
+	private int alto, ancho;
+	
 	/**
 	 * Create the panel.
 	 */
-	public JuegoPanel(int alto, int ancho) {
+	public JuegoPanel(Posicion[][] posiciones) {
+		alto = posiciones.length;
+		ancho = posiciones[0].length;
+		
 		labels = new JLabel[alto][ancho];
 		setLayout(new BorderLayout(0, 0));
 		
@@ -26,7 +35,8 @@ public class JuegoPanel extends JPanel {
 		
 		for (int y = 0; y < alto; ++y) {
 			for (int x = 0; x < ancho; ++x) {
-				JLabel lblNewLabel = new JLabel(x + ", " + y);
+				System.out.println("x: " + x + " - y: " + y + " -> " + posiciones[y][x]);
+				JLabel lblNewLabel = new JLabel(posiciones[y][x].getRepresentacionGrafica());
 				GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
 				gbc_lblNewLabel.gridx = x;
 				gbc_lblNewLabel.gridy = y;

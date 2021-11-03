@@ -13,12 +13,16 @@ public class Escenario {
 	private static Enemigo e1,e2,e3,e4;
 	private static Personaje pj;
 	
+	public Escenario() {
+		
+	}
+	
 	public Escenario(Zona z[], int cpu, Nivel n) {
 		zona=new Zona[cantZona];
 		for(int i=0;i<z.length;i++) {
 			zona[i]=z[i];
 			pj.getInstancia();
-			e1.getInstancia();
+			//e1.getInstancia();
 		}
 		nivel=n;
 		setCantPickUps(cpu);

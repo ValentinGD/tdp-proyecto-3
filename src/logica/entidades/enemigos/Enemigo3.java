@@ -2,10 +2,17 @@ package logica.entidades.enemigos;
 
 public class Enemigo3 extends Enemigo {
 
-	@Override
-	public Enemigo getInstancia() {
-		// TODO Auto-generated method stub
-		return null;
+	private static Enemigo3 instancia = null;
+	
+	private Enemigo3() {
+		velocidad=1;
+	}
+
+	public static Enemigo3 getInstancia() {
+		if (instancia == null) {
+			instancia = new Enemigo3();
+		}
+		return instancia;
 	}
 
 	@Override

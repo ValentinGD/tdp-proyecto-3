@@ -39,7 +39,7 @@ public class Nivel {
 				if (linea.hasNext()) {
 	                lineaChar=linea.nextLine().toCharArray();
 	                for(int c=0;c<lineaChar.length;c++)
-	               traducirCaracter(lineaChar[c],f,c);
+	                	traducirCaracter(lineaChar[c],f,c);
 			}
 		}
 		linea.close();
@@ -52,7 +52,7 @@ public class Nivel {
 	 * Pared -> 'X'
 	 * Pared que atraviesan los enemigos -> '-'
 	 * Enemigo -> '1, 2, 3, 4'
-	 * Personaje -> 'P'
+	 * Personaje -> 'A'
 	 * @param c
 	 * @return
 	 */
@@ -75,7 +75,7 @@ public class Nivel {
 				pos=new Posicion(fila,colum,false,false,null);
 			break;
 			
-			case 'O':
+			case 'P':
 				pu=PickUpFactory.createPoder();
 				pos=new Posicion(fila,colum,true,true,pu);
 			break;
@@ -85,35 +85,41 @@ public class Nivel {
 				pos=new Posicion(fila,colum,true,true,pu);
 			break;
 			
-			case 'P':
+			case 'A':
 				pos=new Posicion(fila,colum,true,true,null);
-				Escenario.posPersonaje(pos);
+				//Escenario.posPersonaje(pos);
 			break;
 			
 			case '-':
 				pos=new Posicion(fila,colum,false,true,null);
-				Escenario.posPersonaje(pos);
+				//Escenario.posPersonaje(pos);
 			break;
 			
 			case '1':
 				pos=new Posicion(fila,colum,false,true,null);
-				Escenario.posEnemigo1(pos);
+				//Escenario.posEnemigo1(pos);
 			break;
 			
 			case '2':
 				pos=new Posicion(fila,colum,false,true,null);
-				Escenario.posEnemigo2(pos);
+				//Escenario.posEnemigo2(pos);
 			break;
 			
 			case '3':
 				pos=new Posicion(fila,colum,false,true,null);
-				Escenario.posEnemigo3(pos);
+				//Escenario.posEnemigo3(pos);
 			break;
 			
 			case '4':
 				pos=new Posicion(fila,colum,false,true,null);
-				Escenario.posEnemigo4(pos);
+				//Escenario.posEnemigo4(pos);
 			break;
+			
+			case ' ':
+				pos=new Posicion(fila,colum,true,true,null);
+				break;
+			default:
+				break;
 		}
 	}
 }

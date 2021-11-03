@@ -8,13 +8,15 @@ import java.awt.GridBagConstraints;
 import javax.swing.JButton;
 import java.awt.Insets;
 import java.awt.Font;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class MenuPanel extends JPanel {
-
+	
 	/**
 	 * Create the panel.
 	 */
-	public MenuPanel() {
+	public MenuPanel(ActionListener gui) {
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0, 0};
 		gridBagLayout.rowHeights = new int[]{0, 0, 0};
@@ -32,6 +34,8 @@ public class MenuPanel extends JPanel {
 		add(lblTitulo, gbc_lblTitulo);
 		
 		JButton btnComenzar = new JButton("Comenzar");
+		btnComenzar.setActionCommand("comenzar");
+		btnComenzar.addActionListener(gui);
 		GridBagConstraints gbc_btnComenzar = new GridBagConstraints();
 		gbc_btnComenzar.fill = GridBagConstraints.BOTH;
 		gbc_btnComenzar.gridx = 0;

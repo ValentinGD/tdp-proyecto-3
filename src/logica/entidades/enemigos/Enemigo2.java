@@ -1,35 +1,42 @@
 package logica.entidades.enemigos;
 
 public class Enemigo2 extends Enemigo {
+	
+	private static Enemigo2 instancia = null;
 
-	@Override
-	public Enemigo getInstancia() {
-		// TODO Auto-generated method stub
-		return null;
+	private Enemigo2() {
+		velocidad=1;
+	}
+
+	public static Enemigo2 getInstancia() {
+		if (instancia == null) {
+			instancia = new Enemigo2();
+		}
+		return instancia;
 	}
 
 	@Override
 	public void perseguir() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void descansar() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void morir() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void asustarse() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }
