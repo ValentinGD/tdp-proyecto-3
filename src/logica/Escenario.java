@@ -38,7 +38,7 @@ public class Escenario {
 	
 	public static void eliminarPickUp(Posicion p) {
 		if(p.HayPickUp())
-			p.setHayPickUp(null);
+			p.setPickUp(null);
 	}
 	
 	public static void moverPersonaje(int direccion) {
@@ -46,26 +46,26 @@ public class Escenario {
 	}
 	
 	public static boolean puedeMover(Posicion p) {
-		return nivel.getPosicionGrilla(p.getFila(), p.getColum()).isHabitable();
+		return nivel.getPosicionGrilla(p.getY(), p.getX()).esHabitable();
 	}
 	
 	public static boolean puedeMoverEnemigo(Posicion p) {
-		return nivel.getPosicionGrilla(p.getFila(), p.getColum()).isHabitableEnemigo();
+		return nivel.getPosicionGrilla(p.getY(), p.getX()).isHabitableEnemigo();
 	}
 	
 	public static void posEnemigo1(Posicion p) {
-		e1.setPosicion(p.getFila(), p.getColum());
+		e1.setPosicion(p.getY(), p.getX());
 	}
 	public static void posEnemigo2(Posicion p) {
-		e2.setPosicion(p.getFila(), p.getColum());
+		e2.setPosicion(p.getY(), p.getX());
 	}
 	public static void posEnemigo3(Posicion p) {
-		e3.setPosicion(p.getFila(), p.getColum());
+		e3.setPosicion(p.getY(), p.getX());
 	}
 	public static void posEnemigo4(Posicion p) {
-		e4.setPosicion(p.getFila(), p.getColum());
+		e4.setPosicion(p.getY(), p.getX());
 	}
 	public static void posPersonaje(Posicion p) {
-		pj.setPosicion(p.getFila(), p.getColum());
+		pj.setPosicion(p.getY(), p.getX());
 	}
 }

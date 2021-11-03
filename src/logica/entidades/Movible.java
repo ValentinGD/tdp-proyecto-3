@@ -11,9 +11,9 @@ public abstract class Movible extends Entidad {
 		switch(direccion){
 			case 0:
 				
-				aux.setFila(pos.getFila()-1);
+				aux.setFila(pos.getY()-1);
 				if(Escenario.puedeMover(aux)) {
-					pos.setFila(pos.getFila()-1);
+					pos.setFila(pos.getY()-1);
 					Escenario.eliminarPickUp(pos);}
 				
 			break;
@@ -29,9 +29,9 @@ public abstract class Movible extends Entidad {
 			
 			case 2:
 				
-				aux.setFila(pos.getFila()+1);
+				aux.setFila(pos.getY()+1);
 				if(Escenario.puedeMover(aux)) {
-					pos.setFila(pos.getFila()+1);
+					pos.setFila(pos.getY()+1);
 					Escenario.eliminarPickUp(pos);}
 
 			break;

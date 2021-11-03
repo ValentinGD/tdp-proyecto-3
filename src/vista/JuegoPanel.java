@@ -21,7 +21,7 @@ public class JuegoPanel extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public JuegoPanel(Posicion[][] posiciones) {
+	public JuegoPanel(PosicionGrafica[][] posiciones) {
 		alto = posiciones.length;
 		ancho = posiciones[0].length;
 		
@@ -35,7 +35,7 @@ public class JuegoPanel extends JPanel {
 		
 		for (int y = 0; y < alto; ++y) {
 			for (int x = 0; x < ancho; ++x) {
-				System.out.println("x: " + x + " - y: " + y + " -> " + posiciones[y][x]);
+				System.out.println(posiciones[y][x]);
 				JLabel lblNewLabel = new JLabel(posiciones[y][x].getRepresentacionGrafica());
 				GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
 				gbc_lblNewLabel.gridx = x;

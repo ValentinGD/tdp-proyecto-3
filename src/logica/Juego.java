@@ -9,12 +9,17 @@ import vista.GUI;
 
 public class Juego implements Runnable {
 	
+	private static final int TICS_POR_SEGUNDO = 10;
+	
 	private GUI gui;
 	private Escenario escenario;
+	
+	private Reloj reloj;
 	
 	public Juego() {
 		gui = new GUI(this);
 		//escenario = new Escenario();
+		reloj = new Reloj(1000/TICS_POR_SEGUNDO);
 	}
 
 	@Override

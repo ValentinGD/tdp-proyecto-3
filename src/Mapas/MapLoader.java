@@ -32,13 +32,13 @@ public class MapLoader {
 
 			posiciones = new Posicion[linea.length()][linea.length()];
 
-			System.out.println("cargando linea: " + linea);
+			//System.out.println("cargando linea: " + linea);
 			cargarLinea(posiciones[fila], linea, fila);
 			fila++;
 
 			while (scanner.hasNextLine()) {
 				linea = scanner.nextLine();
-				System.out.println("cargando linea: " + linea);
+				//System.out.println("cargando linea: " + linea);
 				cargarLinea(posiciones[fila], linea, fila);
 				fila++;
 			}
@@ -46,8 +46,8 @@ public class MapLoader {
 		}
 		scanner.close();
 
-		System.out.println("Se cargo el mapa: " + numeroMapa);
-		System.out.println("Cantidad de filas: " + fila);
+		//System.out.println("Se cargo el mapa: " + numeroMapa);
+		//System.out.println("Cantidad de filas: " + fila);
 		return posiciones;
 	}
 
@@ -59,8 +59,13 @@ public class MapLoader {
 	}
 
 	/**
-	 * Punto chico -> '*' Punto grande -> '#' Poder -> 'P' Pocion -> 'V' Pared ->
-	 * 'X' Pared que atraviesan los enemigos -> '-' Enemigo -> '1, 2, 3, 4'
+	 * Punto chico -> '*'
+	 * Punto grande -> '#'
+	 * Poder -> 'P'
+	 * Pocion -> 'V'
+	 * Pared -> 'X'
+	 * Pared que atraviesan los enemigos -> '-'
+	 * Enemigo -> '1', '2', '3', '4'
 	 * Personaje -> 'A'
 	 * 
 	 * @param c

@@ -1,19 +1,21 @@
 package logica;
 
 import java.awt.EventQueue;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Reloj implements Notificadora {
 	
 	private int tiempoEntreTics;
 	private boolean running = false;
-	private Suscriptor suscriptores[];
+	private List<Suscriptor> suscriptores;
 	private int cantSuscriptores;
 	
 	//private long tiempoDeInicio;
 	
 	public Reloj(int tiempo) {
 		tiempoEntreTics = tiempo;
-		suscriptores=new Suscriptor[10];
+		suscriptores=new ArrayList<Suscriptor>();
 		cantSuscriptores=0;
 	}
 	
@@ -33,6 +35,26 @@ public class Reloj implements Notificadora {
 	
 	public void stop() {
 		running = false;
+	}
+	
+	@Override
+	public void suscribirse(Suscriptor s) {
+		if (suscriptores.contains(s)) { 
+			suscriptores.add(s);
+		}
+	}
+
+	@Override
+	public void desuscribirse(Suscriptor s) {
+		suscriptores.remove(s);
+		
+	}
+
+	@Override
+	public void notificar() {
+		for (Suscriptor s : suscriptores) {
+			s.actualizar();
+		}
 	}
 	
 	private class HiloDormilon extends Thread {
@@ -56,27 +78,5 @@ public class Reloj implements Notificadora {
 		}
 	}
 
-	@Override
-	public void suscribirse(Suscriptor s) {
-		suscriptores[cantSuscriptores]=s;
-		cantSuscriptores++;
-	}
-
-	@Override
-	public void desuscribirse(Suscriptor s) {
-		for(int i=0;i<cantSuscriptores;i++) {
-			if(suscriptores[i]==s) {
-				suscriptores[i]=null;
-				cantSuscriptores--;
-			}
-		}
-		
-	}
-
-	@Override
-	public void notificar() {
-		for(int i=0;i<cantSuscriptores;i++) {
-			suscriptores[i].actualizar();
-		}	
-	}
+	
 }

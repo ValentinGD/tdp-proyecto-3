@@ -5,12 +5,13 @@ import javax.swing.ImageIcon;
 import logica.entidades.Personaje;
 import logica.entidades.PickUp;
 import logica.entidades.enemigos.Enemigo;
+import vista.PosicionGrafica;
 import vista.RepositorioGrafico;
 
-public class Posicion {
+public class Posicion implements PosicionGrafica {
 	
-	private int fila;
-	private int columna;
+	private int y;
+	private int x;
 	private boolean esHabitable;
 	private PickUp pickUp;
 	private int codeZona;
@@ -34,8 +35,8 @@ public class Posicion {
 	}
 	
 	public Posicion(int fila, int columna, boolean esHabitable, boolean esHabitableEnemigo, PickUp pickUp, int codeZona, Personaje personaje, Enemigo enemigo) {
-		this.fila = fila;
-		this.columna = columna;
+		this.y = fila;
+		this.x = columna;
 		this.esHabitable = esHabitable;
 		this.esHabitableEnemigo = esHabitableEnemigo;
 		this.pickUp = pickUp;
@@ -44,23 +45,23 @@ public class Posicion {
 		this.enemigo = enemigo;
 	}
 
-	public int getFila() {
-		return fila;
+	public int getY() {
+		return y;
 	}
 
-	public void setFila(int celda) {
-		this.fila = celda;
+	public void setY(int y) {
+		this.y = y;
 	}
 
-	public int getColum() {
-		return columna;
+	public int getX() {
+		return x;
 	}
 
-	public void setColum(int colum) {
-		this.columna = colum;
+	public void setX(int x) {
+		this.x = x;
 	}
 
-	public boolean isHabitable() {
+	public boolean esHabitable() {
 		return esHabitable;
 	}
 
@@ -72,7 +73,7 @@ public class Posicion {
 		return pickUp!=null;
 	}
 
-	public void setHayPickUp(PickUp pu) {
+	public void setPickUp(PickUp pu) {
 		this.pickUp = pu;
 	}
 	
@@ -89,7 +90,7 @@ public class Posicion {
 	}
 	
 	public Posicion clone() {
-		return new Posicion(fila,columna,esHabitable,pickUp,codeZona);
+		return new Posicion(y,x,esHabitable,pickUp,codeZona);
 	}
 	public boolean isHabitableEnemigo() {
 		return esHabitableEnemigo;
@@ -114,5 +115,9 @@ public class Posicion {
 		}
 		
 		return representacion;
+	}
+	
+	public String toString() {
+		return "<x: " + x + ", y: " + y + ", Personaje: " + personaje + ", enemigo: " + enemigo + ", pickup: " + pickUp + ", habitable: " + esHabitable + ", habitableEnemigo: " + esHabitableEnemigo + ", codigoZona: " + codeZona + ">";
 	}
 }
