@@ -6,6 +6,6 @@ import logica.Juego;
 
 public class App {
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Juego());
+		EventQueue.invokeLater(Juego.getInstancia());
 	}
 }

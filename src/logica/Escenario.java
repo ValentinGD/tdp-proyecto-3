@@ -1,20 +1,49 @@
 package logica;
 
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
+
+import Mapas.MapLoader;
+import Mapas.Mapa;
+import logica.entidades.Movible;
 import logica.entidades.Personaje;
-import logica.entidades.enemigos.Enemigo;
-import logica.niveles.Nivel;
+import logica.entidades.enemigos.*;
+import logica.niveles.*;
+import vista.PosicionGrafica;
 
-public class Escenario {
-
+public class Escenario implements Suscriptor {
+	
+	private static Escenario instancia;
+	
 	private Zona zona[];
-	private int cantPickUps;
+	
 	private static final int cantZona=0;
 	private static Nivel nivel;
-	private static Enemigo e1,e2,e3,e4;
+	
 	private static Personaje pj;
 	
-	public Escenario() {
+	//-------------------------------
+	private Posicion[][] posiciones;
+	private Juego juego;
+	private Mapa mapa;
+	private Personaje personaje;
+	private Enemigo e1,e2,e3,e4;
+	
+	private int cantPickUps;
+	
+	private List<Movible> movibles;
+	
+	private Escenario() {
+		movibles = new ArrayList<Movible>();
+	}
+	
+	public static Escenario getInstancia() {
+		if (instancia == null) {
+			instancia = new Escenario();
+		}
 		
+		return instancia;
 	}
 	
 	public Escenario(Zona z[], int cpu, Nivel n) {
@@ -27,45 +56,64 @@ public class Escenario {
 		nivel=n;
 		setCantPickUps(cpu);
 	}
-
-	public int getCantPickUps() {
-		return cantPickUps;
+	
+	public boolean start() {
+		this.juego = Juego.getInstancia();
+		
+		mapa = MapLoader.getMapa(1);
+		posiciones = mapa.getPosiciones();
+		if (posiciones.length == 0) {
+			System.out.println("No hay posiciones.");
+		}
+		if (mapa != Mapa.MAPA_VACIO) {
+			
+			cantPickUps = mapa.getcantPickup();
+			nivel = new Nivel1();
+			
+			movibles.addAll(mapa.getMovibles());
+			
+		}
+		
+		return true;
 	}
+	
+	@Override
+	public void actualizar() {
+		//System.out.println("actualizando escenario");
+		ArrayList<PosicionGrafica> posicionesModificadas = new ArrayList<PosicionGrafica>();
+		for (Movible m : movibles) {
+			posicionesModificadas.addAll(m.mover());
+		}
+		System.out.println("posicionesModificadas: " + posicionesModificadas);
+		if (!posicionesModificadas.isEmpty()) {
+			juego.actualizarGraficos(posicionesModificadas);
+		}
+	}
+	
+	public void setDireccionPersonaje(int direccion) {
+		personaje.setDireccion(direccion);
+	}
+	
 
 	public void setCantPickUps(int cantPickUps) {
 		this.cantPickUps = cantPickUps;
 	}
 	
-	public static void eliminarPickUp(Posicion p) {
-		if(p.HayPickUp())
+	public void eliminarPickUp(Posicion p) {
+		if(p.hayPickUp()) {
 			p.setPickUp(null);
+			--cantPickUps;
+		}
 	}
 	
-	public static void moverPersonaje(int direccion) {
-		pj.mover(direccion);
+	public Posicion getPosicion(Posicion p) {
+		if (0 <= p.getX() && p.getX() < mapa.getAncho() && 0 <= p.getY() && p.getY() < mapa.getAlto()) {
+			return  posiciones[p.getY()][p.getX()];
+		}
+		return new Posicion(p.getX(), p.getY());
 	}
 	
-	public static boolean puedeMover(Posicion p) {
-		return nivel.getPosicionGrilla(p.getY(), p.getX()).esHabitable();
-	}
-	
-	public static boolean puedeMoverEnemigo(Posicion p) {
-		return nivel.getPosicionGrilla(p.getY(), p.getX()).isHabitableEnemigo();
-	}
-	
-	public static void posEnemigo1(Posicion p) {
-		e1.setPosicion(p.getY(), p.getX());
-	}
-	public static void posEnemigo2(Posicion p) {
-		e2.setPosicion(p.getY(), p.getX());
-	}
-	public static void posEnemigo3(Posicion p) {
-		e3.setPosicion(p.getY(), p.getX());
-	}
-	public static void posEnemigo4(Posicion p) {
-		e4.setPosicion(p.getY(), p.getX());
-	}
-	public static void posPersonaje(Posicion p) {
-		pj.setPosicion(p.getY(), p.getX());
+	public PosicionGrafica[][] getPosicionesGraficas() {
+		return posiciones;
 	}
 }

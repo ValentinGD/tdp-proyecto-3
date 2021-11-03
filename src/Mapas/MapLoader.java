@@ -20,41 +20,60 @@ public class MapLoader {
 	private static final String rutaMapas = "/Mapas/Mapa";
 	private static final String extensionArchivos = ".txt";
 
-	public static Posicion[][] getMapa(int numeroMapa) throws FileNotFoundException, URISyntaxException {
+	public static Mapa getMapa(int numeroMapa) {
+		Mapa mapa;
 		Posicion[][] posiciones = new Posicion[][] {};
 		String ruta = rutaMapas + numeroMapa + extensionArchivos;
 		String linea;
-		Scanner scanner = new Scanner(new File(MapLoader.class.getResource(ruta).toURI()));
 		int fila = 0;
-
-		if (scanner.hasNextLine()) {
-			linea = scanner.nextLine();
-
-			posiciones = new Posicion[linea.length()][linea.length()];
-
-			//System.out.println("cargando linea: " + linea);
-			cargarLinea(posiciones[fila], linea, fila);
-			fila++;
-
-			while (scanner.hasNextLine()) {
+		
+		try (Scanner scanner = new Scanner(new File(MapLoader.class.getResource(ruta).toURI()))) {
+			if (scanner.hasNextLine()) {
 				linea = scanner.nextLine();
-				//System.out.println("cargando linea: " + linea);
-				cargarLinea(posiciones[fila], linea, fila);
-				fila++;
-			}
 
+				posiciones = new Posicion[linea.length()][linea.length()];
+				
+				mapa = new Mapa(linea.length(), linea.length());
+				
+				
+				
+				//System.out.println("cargando linea: " + linea);
+				cargarLinea(mapa, linea, fila);
+				fila++;
+
+				while (scanner.hasNextLine()) {
+					linea = scanner.nextLine();
+					//System.out.println("cargando linea: " + linea);
+					cargarLinea(mapa, linea, fila);
+					fila++;
+				}
+				
+				if (mapa.getCantEnemigos() < 4) {
+					mapa = Mapa.MAPA_VACIO;
+				}
+
+			} else {
+				mapa = Mapa.MAPA_VACIO;
+			}
+			
+		} catch (FileNotFoundException | URISyntaxException e) {
+			mapa = Mapa.MAPA_VACIO;
 		}
-		scanner.close();
+		
+
+		
 
 		//System.out.println("Se cargo el mapa: " + numeroMapa);
 		//System.out.println("Cantidad de filas: " + fila);
-		return posiciones;
+		//System.out.println("mapa creado: " + mapa);
+		return mapa;
 	}
 
-	private static void cargarLinea(Posicion[] posiciones, String linea, int fila) {
+	private static void cargarLinea(Mapa mapa, String linea, int fila) {
 		char[] caracteres = linea.toCharArray();
-		for (int i = 0; i < caracteres.length && i < posiciones.length; ++i) {
-			posiciones[i] = caracterAPosicion(caracteres[i], fila, i);
+		for (int i = 0; i < caracteres.length && i < mapa.getAncho(); ++i) {
+			Posicion p = caracterAPosicion(caracteres[i], fila, i);
+			mapa.addPosicion(p);
 		}
 	}
 
@@ -102,32 +121,31 @@ public class MapLoader {
 
 		case 'A':
 			pos = new Posicion(fila, colum, Personaje.getInstancia());
-			// Escenario.posPersonaje(pos);
+			Personaje.getInstancia().setPosicion(pos);
 			break;
 
 		case '-':
 			pos = new Posicion(fila, colum, false, true, null);
-			// Escenario.posPersonaje(pos);
 			break;
 
 		case '1':
 			pos = new Posicion(fila, colum, Enemigo1.getInstancia());
-			// Escenario.posEnemigo1(pos);
+			Enemigo1.getInstancia().setPosicion(pos);
 			break;
 
 		case '2':
 			pos = new Posicion(fila, colum, Enemigo2.getInstancia());
-			// Escenario.posEnemigo2(pos);
+			Enemigo2.getInstancia().setPosicion(pos);
 			break;
 
 		case '3':
 			pos = new Posicion(fila, colum, Enemigo3.getInstancia());
-			// Escenario.posEnemigo3(pos);
+			Enemigo3.getInstancia().setPosicion(pos);
 			break;
 
 		case '4':
 			pos = new Posicion(fila, colum, Enemigo4.getInstancia());
-			// Escenario.posEnemigo4(pos);
+			Enemigo4.getInstancia().setPosicion(pos);
 			break;
 
 		case ' ':

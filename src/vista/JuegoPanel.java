@@ -9,6 +9,7 @@ import java.awt.GridBagLayout;
 import javax.swing.JLabel;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import java.util.ArrayList;
 import java.awt.Font;
 
 @SuppressWarnings("serial")
@@ -35,7 +36,7 @@ public class JuegoPanel extends JPanel {
 		
 		for (int y = 0; y < alto; ++y) {
 			for (int x = 0; x < ancho; ++x) {
-				System.out.println(posiciones[y][x]);
+				//System.out.println(posiciones[y][x]);
 				JLabel lblNewLabel = new JLabel(posiciones[y][x].getRepresentacionGrafica());
 				GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
 				gbc_lblNewLabel.gridx = x;
@@ -65,6 +66,14 @@ public class JuegoPanel extends JPanel {
 		gbc_lblPuntaje.gridy = 0;
 		panel_1.add(lblPuntaje, gbc_lblPuntaje);
 
+	}
+	
+	public void actualizarGraficos(ArrayList<PosicionGrafica> posiciones) {
+		for (PosicionGrafica p : posiciones) {
+			JLabel label = labels[p.getY()][p.getX()];
+			label.setIcon(p.getRepresentacionGrafica());
+			label.repaint();
+		}
 	}
 
 }

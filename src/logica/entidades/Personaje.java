@@ -1,15 +1,30 @@
 package logica.entidades;
 
+import java.util.ArrayList;
+
 import javax.swing.ImageIcon;
 
+import logica.Escenario;
+import logica.Posicion;
+import logica.estados.personaje.EstadoPersonaje;
+import logica.estados.personaje.EstadoPersonajeNormal;
 import vista.RepositorioGrafico;
 
 public class Personaje extends Movible {
-	private int vidas;
+	
 	private static Personaje instancia;
-
+	
+	private EstadoPersonaje estado;
+	
+	private int vidas;
+	private int direccionActual;
+	private int direccionSiguiente;
+	
 	private Personaje() {
 		vidas = 3;
+		direccionActual = Movible.DIRECCION_DERECHA;
+		direccionSiguiente = direccionActual;
+		estado = new EstadoPersonajeNormal();
 	}
 
 	public int getVidas() {
@@ -19,6 +34,13 @@ public class Personaje extends Movible {
 	public void setVidas(int vidas) {
 		this.vidas = vidas;
 	}
+	
+	public void setDireccion(int direccion) {
+		if (Movible.esDireccionValida(direccion)) {
+			direccionSiguiente = direccion;
+			System.out.println("Personaje::Se cambio la direccion.");
+		}
+	}
 
 	public static Personaje getInstancia() {
 		if (instancia == null) {
@@ -27,12 +49,14 @@ public class Personaje extends Movible {
 		
 		return instancia;
 	}
-
-	public void mover() {
-
+	
+	public ArrayList<Posicion> mover() {
+		System.out.println("moviendo personaje");
+		return estado.mover(this, direccionActual);
 	}
 	
 	public ImageIcon getRepresentacionGrafica() {
 		return RepositorioGrafico.getPersonaje();
 	}
+
 }

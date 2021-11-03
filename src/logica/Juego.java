@@ -3,11 +3,15 @@ package logica;
 import java.awt.EventQueue;
 import java.io.FileNotFoundException;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 
 import Mapas.MapLoader;
 import vista.GUI;
+import vista.PosicionGrafica;
 
 public class Juego implements Runnable {
+	
+	private static Juego instancia;
 	
 	private static final int TICS_POR_SEGUNDO = 10;
 	
@@ -16,10 +20,18 @@ public class Juego implements Runnable {
 	
 	private Reloj reloj;
 	
-	public Juego() {
+	private Juego() {
 		gui = new GUI(this);
-		//escenario = new Escenario();
+		escenario = Escenario.getInstancia();
 		reloj = new Reloj(1000/TICS_POR_SEGUNDO);
+		reloj.suscribirse(escenario);
+	}
+	
+	public static Juego getInstancia() {
+		if (instancia == null) {
+			instancia = new Juego();
+		}
+		return instancia;
 	}
 
 	@Override
@@ -28,12 +40,15 @@ public class Juego implements Runnable {
 	}
 	
 	public void start() {
-		try {
-			gui.showJuego(MapLoader.getMapa(1));
-		} catch (FileNotFoundException | URISyntaxException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		escenario.start();
+		
+		gui.showJuego(escenario.getPosicionesGraficas());
+		
+		reloj.start();
+	}
+	
+	public void actualizarGraficos(ArrayList<PosicionGrafica> posiciones) {
+		gui.actualizarJuego(posiciones);
 	}
 	
 	/**
@@ -48,7 +63,7 @@ public class Juego implements Runnable {
 		EventQueue.invokeLater(new Runnable() {
 			@Override
 			public void run() {
-				Escenario.moverPersonaje(tecla);
+				escenario.setDireccionPersonaje(tecla);
 			}
 		});
 	}

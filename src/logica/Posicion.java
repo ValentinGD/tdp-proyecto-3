@@ -19,6 +19,10 @@ public class Posicion implements PosicionGrafica {
 	private Enemigo enemigo;
 	private Personaje personaje;
 	
+	public Posicion(int fila, int columna) {
+		this(fila, columna, false, false, null, 0, null, null);
+	}
+	
 	public Posicion(int fila, int columna, Enemigo enemigo) {
 		this(fila, columna, true, true, null, 0, null, enemigo);
 	}
@@ -69,7 +73,7 @@ public class Posicion implements PosicionGrafica {
 		this.esHabitable = habitable;
 	}
 
-	public boolean HayPickUp() {
+	public boolean hayPickUp() {
 		return pickUp!=null;
 	}
 
@@ -89,6 +93,22 @@ public class Posicion implements PosicionGrafica {
 		this.codeZona = codeZona;
 	}
 	
+	public Enemigo getEnemigo() {
+		return enemigo;
+	}
+
+	public void setEnemigo(Enemigo enemigo) {
+		this.enemigo = enemigo;
+	}
+
+	public Personaje getPersonaje() {
+		return personaje;
+	}
+
+	public void setPersonaje(Personaje personaje) {
+		this.personaje = personaje;
+	}
+
 	public Posicion clone() {
 		return new Posicion(y,x,esHabitable,pickUp,codeZona);
 	}

@@ -1,5 +1,9 @@
 package logica.entidades.enemigos;
 
+import java.util.ArrayList;
+
+import logica.Posicion;
+
 public class Enemigo3 extends Enemigo {
 
 	private static Enemigo3 instancia = null;
@@ -37,6 +41,12 @@ public class Enemigo3 extends Enemigo {
 	public void asustarse() {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public ArrayList<Posicion> mover() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

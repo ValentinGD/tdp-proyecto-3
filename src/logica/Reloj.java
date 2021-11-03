@@ -22,6 +22,7 @@ public class Reloj implements Notificadora {
 	public void start() {
 		running = true;
 		Thread t = new HiloDormilon(tiempoEntreTics, this);
+		//System.out.println("tick");
 		t.start();
 	}
 	
@@ -39,7 +40,7 @@ public class Reloj implements Notificadora {
 	
 	@Override
 	public void suscribirse(Suscriptor s) {
-		if (suscriptores.contains(s)) { 
+		if (!suscriptores.contains(s)) { 
 			suscriptores.add(s);
 		}
 	}
@@ -55,6 +56,7 @@ public class Reloj implements Notificadora {
 		for (Suscriptor s : suscriptores) {
 			s.actualizar();
 		}
+		start();
 	}
 	
 	private class HiloDormilon extends Thread {

@@ -5,7 +5,7 @@ import javax.swing.ImageIcon;
 import logica.Notificadora;
 import logica.Suscriptor;
 import logica.entidades.Movible;
-import logica.estados.EstadoEnemigo;
+import logica.estados.enemigos.EstadoEnemigo;
 import vista.RepositorioGrafico;
 
 public abstract class Enemigo extends Movible {
