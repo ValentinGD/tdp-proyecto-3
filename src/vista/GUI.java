@@ -11,17 +11,11 @@ import javax.swing.JButton;
 import java.awt.GridBagConstraints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 
 public class GUI extends JFrame implements ActionListener {
 	
 	private MenuPanel menuPanel;
 	private JuegoPanel juegoPanel;
-	private static final int UP = KeyEvent.VK_UP;
-	private static final int LEFT = KeyEvent.VK_LEFT;
-	private static final int RIGHT = KeyEvent.VK_RIGHT;
-	private static final int DOWN = KeyEvent.VK_DOWN;
 	
 	private Juego juego;
 	
@@ -64,26 +58,5 @@ public class GUI extends JFrame implements ActionListener {
 		}
 		
 	}
-	private class OyenteTecla extends KeyAdapter {
-		@Override
-		public void keyPressed(KeyEvent e) {
-//			System.out.println("OyenteTecla::keyPressed");
-			switch(e.getKeyCode()) {
-			case UP:
-				juego.teclaPresionada(0);
-				break;
-			case LEFT:
-				juego.teclaPresionada(1);
-				break;
-			case RIGHT:
-				juego.teclaPresionada(3);
-				break;
-			case DOWN:
-				juego.teclaPresionada(2);
-				break;
-			default:
-				break;
-			};
-		}
-	}
+	
 }
