@@ -9,8 +9,8 @@ public abstract class Entidad {
 		return pos;
 	}
 	public void setPosicion(int fila, int columna) {
-		pos.setFila(fila);
-		pos.setColum(columna);
+		pos.setY(fila);
+		pos.setX(columna);
 	}
 	
 	public abstract ImageIcon getRepresentacionGrafica();
