@@ -1,12 +1,18 @@
 package logica.niveles;
 
+import Mapas.MapLoader;
+import Mapas.Mapa;
 import logica.Posicion;
 
 public class Nivel2 extends Nivel {
 
 	public Nivel2() {
-		grilla=new Posicion[0][0];
-		nivel=2;
-		pathMapa="C:\\Users\\valen\\Desktop\\Uni\\TDP\\Proyecto3\\tdp-proyecto-3\\tdp-proyecto-3\\Mapas\\Mapa2x.txt";
+		pathMapa="\\Mapas\\Mapa2.txt";
+	}
+	public Nivel getSiguienteNivel() {
+		return new Nivel3();
+	}
+	public Mapa getMapa() {
+		return MapLoader.getMapa(2);
 	}
 }

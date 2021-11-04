@@ -109,11 +109,17 @@ public class Escenario implements Suscriptor {
 			p.setPickUp(null);
 			--cantPickUps;
 			if(cantPickUps==0) {
-				juego.gameOver();
+				terminarNivel();
 			}
 		}
 	}
-	
+	private void terminarNivel() {
+		if(nivel.getSiguienteNivel()!=null) {
+			nivel=nivel.getSiguienteNivel();
+		}else {
+			juego.gameOver();
+		}
+	}
 	
 	public Posicion getPosicion(Posicion p) {
 		if (0 <= p.getX() && p.getX() < mapa.getAncho() && 0 <= p.getY() && p.getY() < mapa.getAlto()) {
