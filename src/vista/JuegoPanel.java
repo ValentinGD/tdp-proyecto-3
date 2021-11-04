@@ -14,6 +14,10 @@ import java.util.ArrayList;
 import java.awt.Font;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import com.jgoodies.forms.layout.FormLayout;
+import com.jgoodies.forms.layout.ColumnSpec;
+import com.jgoodies.forms.layout.RowSpec;
+import com.jgoodies.forms.layout.FormSpecs;
 
 @SuppressWarnings("serial")
 public class JuegoPanel extends JPanel {
@@ -22,6 +26,12 @@ public class JuegoPanel extends JPanel {
 	
 	private JLabel lblPuntos;
 	private JPanel panelGrilla;
+	private JLabel lblCorazon_1;
+	private JLabel lblCorazon_2;
+	private JLabel lblCorazon_3;
+	private JLabel lblCorazon_4;
+	private JLabel lblCorazon_5;
+	private JLabel lblCorazon_6;
 	
 	/**
 	 * Create the panel.
@@ -44,9 +54,9 @@ public class JuegoPanel extends JPanel {
 		add(panel_1, BorderLayout.EAST);
 		GridBagLayout gbl_panel_1 = new GridBagLayout();
 		gbl_panel_1.columnWidths = new int[]{0, 0};
-		gbl_panel_1.rowHeights = new int[]{0, 0, 0};
-		gbl_panel_1.columnWeights = new double[]{0.0, Double.MIN_VALUE};
-		gbl_panel_1.rowWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
+		gbl_panel_1.rowHeights = new int[]{0, 0, 0, 0};
+		gbl_panel_1.columnWeights = new double[]{1.0, Double.MIN_VALUE};
+		gbl_panel_1.rowWeights = new double[]{0.0, 0.0, 1.0, Double.MIN_VALUE};
 		panel_1.setLayout(gbl_panel_1);
 		
 		JLabel lblPuntaje = new JLabel("Puntaje:");
@@ -59,10 +69,87 @@ public class JuegoPanel extends JPanel {
 		
 		lblPuntos = new JLabel("0");
 		GridBagConstraints gbc_lblPuntos = new GridBagConstraints();
+		lblPuntaje.setFont(new Font("Tahoma", Font.BOLD, 17));
+		gbc_lblPuntos.insets = new Insets(0, 0, 5, 0);
 		gbc_lblPuntos.gridx = 0;
 		gbc_lblPuntos.gridy = 1;
 		panel_1.add(lblPuntos, gbc_lblPuntos);
+		
+		JPanel panelVidas = new JPanel();
+		GridBagConstraints gbc_panelVidas = new GridBagConstraints();
+		gbc_panelVidas.fill = GridBagConstraints.BOTH;
+		gbc_panelVidas.gridx = 0;
+		gbc_panelVidas.gridy = 2;
+		panel_1.add(panelVidas, gbc_panelVidas);
+		
+		lblCorazon_6 = new JLabel(RepositorioGrafico.getPocion());
+		panelVidas.add(lblCorazon_6, "2, 4");
+		lblCorazon_6.setVisible(false);
+		
+		lblCorazon_5 = new JLabel(RepositorioGrafico.getPocion());
+		panelVidas.add(lblCorazon_5, "6, 4");
+		lblCorazon_5.setVisible(false);
+		
+		JLabel lblCorazon_4 = new JLabel(RepositorioGrafico.getPocion());
+		panelVidas.add(lblCorazon_4, "6, 2");
+		lblCorazon_4.setVisible(false);
+		
+		JLabel lblCorazon_3 = new JLabel(RepositorioGrafico.getPocion());
+		panelVidas.add(lblCorazon_3, "2, 6");
+		lblCorazon_3.setVisible(true);
+		
+		JLabel lblCorazon_2 = new JLabel(RepositorioGrafico.getPocion());
+		panelVidas.add(lblCorazon_2, "2, 2");
+		lblCorazon_2.setVisible(true);
+		
+		JLabel lblCorazon_1 = new JLabel(RepositorioGrafico.getPocion());
+		panelVidas.add(lblCorazon_1, "6, 6");
+		lblCorazon_1.setVisible(true);
+		
+	}
 
+	public void actualizarVidas(int cantVidas) {
+		switch(cantVidas){
+		case 1:
+			System.out.println("entro en vidas");
+			lblCorazon_1.setVisible(true);
+		break;
+		case 2:
+			System.out.println("entro en vidas");
+			lblCorazon_1.setVisible(true);
+			lblCorazon_2.setVisible(true);
+		break;
+		case 3:
+			System.out.println("entro en vidas");
+			lblCorazon_1.setVisible(true);
+			lblCorazon_2.setVisible(true);
+			lblCorazon_3.setVisible(true);
+		break;
+		case 4:
+			System.out.println("entro en vidas");
+			lblCorazon_1.setVisible(true);
+			lblCorazon_2.setVisible(true);
+			lblCorazon_3.setVisible(true);
+			lblCorazon_4.setVisible(true);
+		break;
+		case 5:
+			System.out.println("entro en vidas");
+			lblCorazon_1.setVisible(true);
+			lblCorazon_2.setVisible(true);
+			lblCorazon_3.setVisible(true);
+			lblCorazon_4.setVisible(true);
+			lblCorazon_5.setVisible(true);
+		break;
+		case 6:
+			System.out.println("entro en vidas");
+			lblCorazon_1.setVisible(true);
+			lblCorazon_2.setVisible(true);
+			lblCorazon_3.setVisible(true);
+			lblCorazon_4.setVisible(true);
+			lblCorazon_5.setVisible(true);
+			lblCorazon_6.setVisible(true);
+		break;
+		}
 	}
 	
 	public void actualizarGraficos(ArrayList<PosicionGrafica> posiciones) {
@@ -75,6 +162,7 @@ public class JuegoPanel extends JPanel {
 		}
 	}
 
+	
 	public JLabel getLblPuntos() {
 		return lblPuntos;
 	}

@@ -90,6 +90,10 @@ public class Juego implements Runnable {
 		
 	}
 	
+	public void actualizarVidas(int cantVidas) {
+		gui.actualizarVidas(cantVidas);
+	}
+	
 	public void actualizarMapa(PosicionGrafica[][] posiciones) {
 		reloj.stop();
 		EventQueue.invokeLater(new Runnable() {

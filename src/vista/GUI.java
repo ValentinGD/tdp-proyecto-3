@@ -68,8 +68,12 @@ public class GUI extends JFrame implements ActionListener {
 	public void actualizarMapa(PosicionGrafica[][] posiciones) {
 		showJuego(posiciones);
 	}
+	
+	public void actualizarVidas(int cantVidas) {
+		if(juegoPanel!=null)
+			juegoPanel.actualizarVidas(cantVidas);
+	}
 
-	@Override
 	public void actionPerformed(ActionEvent e) {
 		String command = e.getActionCommand();
 		

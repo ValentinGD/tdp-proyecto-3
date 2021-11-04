@@ -83,6 +83,7 @@ public class Escenario implements Suscriptor {
 			
 			personaje = Personaje.getInstancia();
 			
+			juego.actualizarVidas(personaje.getVidas());
 		}
 		
 		System.out.println("escenario cargado");
