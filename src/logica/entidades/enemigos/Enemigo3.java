@@ -45,8 +45,7 @@ public class Enemigo3 extends Enemigo {
 
 	@Override
 	public ArrayList<Posicion> mover() {
-		// TODO Auto-generated method stub
-		return null;
+		return new ArrayList<Posicion>();
 	}
 
 }

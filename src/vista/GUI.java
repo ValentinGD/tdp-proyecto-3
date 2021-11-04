@@ -63,6 +63,10 @@ public class GUI extends JFrame implements ActionListener {
 			
 		}
 	}
+	
+	public void actualizarMapa(PosicionGrafica[][] posiciones) {
+		juegoPanel.actualizarMapa(posiciones);
+	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -116,5 +120,7 @@ public class GUI extends JFrame implements ActionListener {
 			}
 		}
 	}
+
+	
 	
 }

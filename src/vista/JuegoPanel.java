@@ -20,39 +20,25 @@ public class JuegoPanel extends JPanel {
 	
 	private JLabel [][] labels;
 	
-	private int alto, ancho;
 	private JLabel lblPuntos;
+	private JPanel panelGrilla;
 	
 	/**
 	 * Create the panel.
 	 */
 	public JuegoPanel(PosicionGrafica[][] posiciones) {
 		System.out.println("creando panel de juego");
-		alto = posiciones.length;
-		ancho = posiciones[0].length;
 		
-		labels = new JLabel[alto][ancho];
+		
+		
 		setLayout(new BorderLayout(0, 0));
 		
-		JPanel panel = new JPanel();
-		add(panel, BorderLayout.CENTER);
-		GridBagLayout gbl_panel = new GridBagLayout();
-		panel.setLayout(gbl_panel);
+		panelGrilla = new JPanel();
+		add(panelGrilla, BorderLayout.CENTER);
+		GridBagLayout gbl_panelGrilla = new GridBagLayout();
+		panelGrilla.setLayout(gbl_panelGrilla);
 		
-		for (int y = 0; y < alto; ++y) {
-			for (int x = 0; x < ancho; ++x) {
-				//System.out.println(posiciones[y][x]);
-				JLabel lblNewLabel = new JLabel(posiciones[y][x].getRepresentacionGrafica());
-				GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
-				gbc_lblNewLabel.gridx = x;
-				gbc_lblNewLabel.gridy = y;
-				panel.add(lblNewLabel, gbc_lblNewLabel);
-
-				labels[y][x] = lblNewLabel;
-			}
-		}
-		
-		
+		cargarPosiciones(posiciones);
 		
 		JPanel panel_1 = new JPanel();
 		add(panel_1, BorderLayout.EAST);
@@ -91,5 +77,31 @@ public class JuegoPanel extends JPanel {
 
 	public JLabel getLblPuntos() {
 		return lblPuntos;
+	}
+
+	public void actualizarMapa(PosicionGrafica[][] posiciones) {
+		removeAll();
+		cargarPosiciones(posiciones);
+		panelGrilla.repaint();
+	}
+	
+	private void cargarPosiciones(PosicionGrafica[][] posiciones) {
+		int alto = posiciones.length;
+		int ancho = posiciones[0].length;
+		labels = new JLabel[alto][ancho];
+		
+		for (int y = 0; y < alto; ++y) {
+			for (int x = 0; x < ancho; ++x) {
+				//System.out.println(posiciones[y][x]);
+				JLabel lblNewLabel = new JLabel(posiciones[y][x].getRepresentacionGrafica());
+				GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
+				gbc_lblNewLabel.gridx = x;
+				gbc_lblNewLabel.gridy = y;
+				panelGrilla.add(lblNewLabel, gbc_lblNewLabel);
+
+				labels[y][x] = lblNewLabel;
+				labels[y][x].repaint();
+			}
+		}
 	}
 }

@@ -12,7 +12,9 @@ import logica.fabricas.PickUpFactory;
 
 
 public abstract class Nivel {
-	String pathMapa;
+	
+	protected String pathMapa;
+	protected Mapa mapa;
 	
 	public abstract Nivel getSiguienteNivel();
 	public abstract Mapa getMapa();
