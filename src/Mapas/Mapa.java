@@ -35,7 +35,7 @@ public class Mapa {
 		}
 		if (p.getEnemigo() != null) {
 			cantEnemigos++;
-			//movibles.add(p.getEnemigo());
+			movibles.add(p.getEnemigo());
 		}
 		if (p.getPersonaje() != null) {
 			movibles.add(p.getPersonaje());

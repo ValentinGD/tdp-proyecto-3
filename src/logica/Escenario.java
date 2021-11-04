@@ -34,8 +34,6 @@ public class Escenario implements Suscriptor {
 	private List<Movible> movibles;
 	
 	private Escenario() {
-		movibles = new ArrayList<Movible>();
-		nivel= new Nivel1();
 	}
 	
 	public static Escenario getInstancia() {
@@ -58,18 +56,28 @@ public class Escenario implements Suscriptor {
 	}
 	
 	public boolean start() {
-		System.out.println("cargando escenario");
+		System.out.println("cargando escenario inicial");
 		this.juego = Juego.getInstancia();
+
+		nivel = new Nivel1();
 		
-		mapa = MapLoader.getMapa(1);
+		cargarEscenario();
+		
+		System.out.println("escenario inicial cargado");
+		return true;
+	}
+	
+	public void cargarEscenario() {
+		System.out.println("cargando escenario");
+		movibles = new ArrayList<Movible>();
+		
+		Mapa mapa = nivel.getMapa();
 		posiciones = mapa.getPosiciones();
-		if (posiciones.length == 0) {
-			System.out.println("No hay posiciones.");
-		}
-		if (mapa != Mapa.MAPA_VACIO) {
-			
+		
+		if (mapa == Mapa.MAPA_VACIO) {
+			System.out.println("MAPA INVALIDO.");
+		} else {
 			cantPickUps = mapa.getcantPickup();
-			nivel = new Nivel1();
 			
 			movibles.addAll(mapa.getMovibles());
 			
@@ -78,7 +86,6 @@ public class Escenario implements Suscriptor {
 		}
 		
 		System.out.println("escenario cargado");
-		return true;
 	}
 	
 	@Override
@@ -116,14 +123,15 @@ public class Escenario implements Suscriptor {
 	private void terminarNivel() {
 		if(nivel.getSiguienteNivel()!=null) {
 			nivel=nivel.getSiguienteNivel();
-			juego.actualizarMapa();
+			cargarEscenario();
+			juego.actualizarMapa(nivel.getMapa().getPosiciones());
 		}else {
 			juego.gameOver();
 		}
 	}
 	
 	public Posicion getPosicion(Posicion p) {
-		if (0 <= p.getX() && p.getX() < mapa.getAncho() && 0 <= p.getY() && p.getY() < mapa.getAlto()) {
+		if (0 <= p.getX() && p.getX() < nivel.getMapa().getAncho() && 0 <= p.getY() && p.getY() < nivel.getMapa().getAlto()) {
 			return  posiciones[p.getY()][p.getX()];
 		}
 		return new Posicion(p.getX(), p.getY());

@@ -5,9 +5,12 @@ import Mapas.Mapa;
 import logica.Posicion;
 
 public class Nivel1 extends Nivel {
+	
+	private Mapa mapa;
 
 	public Nivel1() {
 		pathMapa="Mapas/Mapa1.txt";
+		mapa = MapLoader.getMapa(1);
 	}
 
 	public Nivel getSiguienteNivel() {
@@ -16,6 +19,6 @@ public class Nivel1 extends Nivel {
 
 	@Override
 	public Mapa getMapa() {
-		return MapLoader.getMapa(1);
+		return mapa;
 	}
 }

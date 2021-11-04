@@ -90,8 +90,8 @@ public class Juego implements Runnable {
 		
 	}
 	
-	public actualizarMapa() {
-		gui.actualizarMapa();
+	public void actualizarMapa(PosicionGrafica[][] posiciones) {
+		gui.actualizarMapa(posiciones);
 	}
 	
 	public void actualizarGraficos(ArrayList<PosicionGrafica> posiciones) {
