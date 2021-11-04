@@ -8,6 +8,7 @@ public abstract class Entidad {
 	public Posicion getPosicion() {
 		return pos;
 	}
+	
 	public void setPosicion(Posicion p) {
 		pos = p;
 	}
