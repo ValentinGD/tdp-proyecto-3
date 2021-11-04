@@ -12,7 +12,7 @@ public class RepositorioGrafico {
 	
 	private static int indexRepositorio = 0;
 
-	private static final int DEFAULT_ICON_SIZE = 35;
+	private static final int DEFAULT_ICON_SIZE = 30;
 	
 	private static final String [] opcionesRepositorios = new String[] {
 		"/img/prueba/"

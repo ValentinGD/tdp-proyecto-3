@@ -46,18 +46,19 @@ public class GUI extends JFrame implements ActionListener {
 		setPanel(new GameOverPanel(Juego.getPuntajeString()));
 	}
 	public void showJuego(PosicionGrafica[][] posiciones) {
-		if (juegoPanel == null) {
-			juegoPanel = new JuegoPanel(posiciones);
-			juegoPanel.setFocusable(true);
-			juegoPanel.addKeyListener(new GUIKeyListener());
-			System.out.println("se creo el panel de juego");
-		}
+		
+		juegoPanel = new JuegoPanel(posiciones);
+		juegoPanel.setFocusable(true);
+		juegoPanel.addKeyListener(new GUIKeyListener());
+		System.out.println("se creo el panel de juego");
+		
 		setPanel(juegoPanel);
 		juegoPanel.setFocusable(true);
 		juegoPanel.requestFocus();
 	}
 	
 	public void actualizarJuego(ArrayList<PosicionGrafica> posiciones) {
+		
 		if (juegoPanel != null) {
 			juegoPanel.actualizarGraficos(posiciones);
 			
@@ -65,7 +66,7 @@ public class GUI extends JFrame implements ActionListener {
 	}
 	
 	public void actualizarMapa(PosicionGrafica[][] posiciones) {
-		juegoPanel.actualizarMapa(posiciones);
+		showJuego(posiciones);
 	}
 
 	@Override

@@ -91,7 +91,15 @@ public class Juego implements Runnable {
 	}
 	
 	public void actualizarMapa(PosicionGrafica[][] posiciones) {
-		gui.actualizarMapa(posiciones);
+		reloj.stop();
+		EventQueue.invokeLater(new Runnable() {
+			@Override
+			public void run() {
+				gui.actualizarMapa(posiciones);
+				reloj.start();
+			}
+		});
+		
 	}
 	
 	public void actualizarGraficos(ArrayList<PosicionGrafica> posiciones) {

@@ -121,6 +121,8 @@ public class Escenario implements Suscriptor {
 		}
 	}
 	private void terminarNivel() {
+		System.out.println("se termino el nivel. puntaje: " + Juego.getPuntajeString());
+		System.out.println("Personaje: " + personaje.getPosicion());
 		if(nivel.getSiguienteNivel()!=null) {
 			nivel=nivel.getSiguienteNivel();
 			cargarEscenario();
@@ -128,6 +130,7 @@ public class Escenario implements Suscriptor {
 		}else {
 			juego.gameOver();
 		}
+		System.out.println("Personaje: " + personaje.getPosicion());
 	}
 	
 	public Posicion getPosicion(Posicion p) {
