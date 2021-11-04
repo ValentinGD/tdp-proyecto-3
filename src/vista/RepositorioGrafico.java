@@ -27,9 +27,11 @@ public class RepositorioGrafico {
 	private static final int INDEX_PUNTO_CHICO = 6;
 	private static final int INDEX_PUNTO_GRANDE = 7;
 	private static final int INDEX_PARED_ENEMIGO = 8;
+	private static final int INDEX_POCION = 9;
+	private static final int INDEX_PODER = 10;
 	
 	
-	private static final ImageIcon [] iconos = new ImageIcon[9];
+	private static final ImageIcon [] iconos = new ImageIcon[11];
 	
 	private static void cargarRepositorio() {
 		String path = opcionesRepositorios[indexRepositorio];
@@ -42,6 +44,8 @@ public class RepositorioGrafico {
 		iconos[INDEX_PUNTO_CHICO] = resize(new ImageIcon(RepositorioGrafico.class.getResource(path + "punto_chico_con_fondo.png")));
 		iconos[INDEX_PUNTO_GRANDE] = resize(new ImageIcon(RepositorioGrafico.class.getResource(path + "punto_grande_con_fondo.png")));
 		iconos[INDEX_PARED_ENEMIGO] = resize(new ImageIcon(RepositorioGrafico.class.getResource(path + "pared_enemigos.png")));
+		iconos[INDEX_POCION] = resize(new ImageIcon(RepositorioGrafico.class.getResource(path + "corazon_con_fondo.png")));
+		iconos[INDEX_PODER] = resize(new ImageIcon(RepositorioGrafico.class.getResource(path + "rayo_con_fondo.png")));
 	}
 	
 	private static ImageIcon resize(ImageIcon icono) {
@@ -82,6 +86,14 @@ public class RepositorioGrafico {
 	
 	public static ImageIcon getParedEnemigo() {
 		return iconos[INDEX_PARED_ENEMIGO];
+	}
+	
+	public static ImageIcon getPocion() {
+		return iconos[INDEX_POCION];
+	}
+	
+	public static ImageIcon getPoder() {
+		return iconos[INDEX_PODER];
 	}
 	
 	static {
