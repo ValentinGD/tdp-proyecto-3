@@ -1,3 +1,20 @@
-***
-***
-***
+*********XX*********
+#XX*XXXX*XX*XXXX*XX#
+********************
+*XX*X*XXXXXXXX*X*XX*
+****X****XX****X****
+XXX*XXXX XX XXXX*XXX
+XXX*X          X*XXX
+XXX*X XX----XX X*XXX
+XXX*  X 1234 X  *XXX
+XXX*X XXXXXXXX X*XXX
+XXX*X XXXXXXXX X*XXX
+XXX*X          X*XXX
+XXX*X XXXXXXXX X*XXX
+*********XX*********
+#XX*XXXX*XX*XXXX*XX#
+**X*******A******X**
+X*X*X*XXXXXXXX*X*X*X
+****X****XX****X****
+*XXXXXXX*XX*XXXXXXX*
+********************
