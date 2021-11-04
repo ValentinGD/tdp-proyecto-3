@@ -55,6 +55,7 @@ public class GUI extends JFrame implements ActionListener {
 	public void actualizarJuego(ArrayList<PosicionGrafica> posiciones) {
 		if (juegoPanel != null) {
 			juegoPanel.actualizarGraficos(posiciones);
+			
 		}
 	}
 

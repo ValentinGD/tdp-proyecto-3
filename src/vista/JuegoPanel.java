@@ -2,6 +2,7 @@ package vista;
 
 import javax.swing.JPanel;
 
+import logica.Juego;
 import logica.Posicion;
 
 import java.awt.BorderLayout;
@@ -20,6 +21,7 @@ public class JuegoPanel extends JPanel {
 	private JLabel [][] labels;
 	
 	private int alto, ancho;
+	private JLabel lblPuntos;
 	
 	/**
 	 * Create the panel.
@@ -56,9 +58,9 @@ public class JuegoPanel extends JPanel {
 		add(panel_1, BorderLayout.EAST);
 		GridBagLayout gbl_panel_1 = new GridBagLayout();
 		gbl_panel_1.columnWidths = new int[]{0, 0};
-		gbl_panel_1.rowHeights = new int[]{0, 0};
+		gbl_panel_1.rowHeights = new int[]{0, 0, 0};
 		gbl_panel_1.columnWeights = new double[]{0.0, Double.MIN_VALUE};
-		gbl_panel_1.rowWeights = new double[]{0.0, Double.MIN_VALUE};
+		gbl_panel_1.rowWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
 		panel_1.setLayout(gbl_panel_1);
 		
 		JLabel lblPuntaje = new JLabel("Puntaje:");
@@ -68,6 +70,12 @@ public class JuegoPanel extends JPanel {
 		gbc_lblPuntaje.gridx = 0;
 		gbc_lblPuntaje.gridy = 0;
 		panel_1.add(lblPuntaje, gbc_lblPuntaje);
+		
+		lblPuntos = new JLabel("0");
+		GridBagConstraints gbc_lblPuntos = new GridBagConstraints();
+		gbc_lblPuntos.gridx = 0;
+		gbc_lblPuntos.gridy = 1;
+		panel_1.add(lblPuntos, gbc_lblPuntos);
 
 	}
 	
@@ -76,7 +84,12 @@ public class JuegoPanel extends JPanel {
 			JLabel label = labels[p.getY()][p.getX()];
 			label.setIcon(p.getRepresentacionGrafica());
 			label.repaint();
+			lblPuntos.setText(Juego.getPuntajeString());
+			lblPuntos.repaint();
 		}
 	}
 
+	public JLabel getLblPuntos() {
+		return lblPuntos;
+	}
 }

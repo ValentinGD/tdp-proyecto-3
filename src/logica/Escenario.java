@@ -36,6 +36,7 @@ public class Escenario implements Suscriptor {
 	
 	private Escenario() {
 		movibles = new ArrayList<Movible>();
+		
 	}
 	
 	public static Escenario getInstancia() {
@@ -105,6 +106,7 @@ public class Escenario implements Suscriptor {
 	
 	public void eliminarPickUp(Posicion p) {
 		if(p.hayPickUp()) {
+			Juego.actualizarPuntaje(p.getPickUp().getPuntos());
 			p.setPickUp(null);
 			--cantPickUps;
 		}
