@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import Mapas.MapLoader;
 import vista.GUI;
+import vista.GameOverPanel;
 import vista.PosicionGrafica;
 
 public class Juego implements Runnable {
@@ -17,7 +18,7 @@ public class Juego implements Runnable {
 	
 	private GUI gui;
 	private Escenario escenario;
-	
+	private static int puntaje;
 	private Reloj reloj;
 	
 	private Juego() {
@@ -25,7 +26,29 @@ public class Juego implements Runnable {
 		escenario = Escenario.getInstancia();
 		reloj = new Reloj(1000/TICS_POR_SEGUNDO);
 		reloj.suscribirse(escenario);
+		puntaje=0;
 	}
+	
+	public static void actualizarPuntaje(int p) {
+		puntaje=puntaje+p;
+		System.out.println(getPuntajeString());
+	}
+	
+	public static String getPuntajeString() {
+		return ""+puntaje;
+	}
+	
+	public void gameOver() {
+		reloj.stop();
+		EventQueue.invokeLater(new Runnable() {
+			@Override
+			public void run() {
+				gui.showGameOver();
+			}
+		});
+    }
+	
+
 	
 	public static Juego getInstancia() {
 		if (instancia == null) {
@@ -67,6 +90,10 @@ public class Juego implements Runnable {
 		
 	}
 	
+	public actualizarMapa() {
+		gui.actualizarMapa();
+	}
+	
 	public void actualizarGraficos(ArrayList<PosicionGrafica> posiciones) {
 		EventQueue.invokeLater(new Runnable() {
 			@Override
@@ -85,7 +112,6 @@ public class Juego implements Runnable {
 	 * @param tecla
 	 */
 	public synchronized void teclaPresionada(int tecla) {
-		System.out.println("tecla en juego");
 		EventQueue.invokeLater(new Runnable() {
 			@Override
 			public void run() {
@@ -93,5 +119,4 @@ public class Juego implements Runnable {
 			}
 		});
 	}
-
 }

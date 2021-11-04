@@ -1,12 +1,21 @@
 package logica.niveles;
 
+import Mapas.MapLoader;
+import Mapas.Mapa;
 import logica.Posicion;
 
 public class Nivel1 extends Nivel {
 
 	public Nivel1() {
-		grilla=new Posicion[0][0];
-		nivel=1;
 		pathMapa="Mapas/Mapa1.txt";
+	}
+
+	public Nivel getSiguienteNivel() {
+		return new Nivel2();
+	}
+
+	@Override
+	public Mapa getMapa() {
+		return MapLoader.getMapa(1);
 	}
 }

@@ -29,13 +29,13 @@ public class Escenario implements Suscriptor {
 	private Mapa mapa;
 	private Personaje personaje;
 	private Enemigo e1,e2,e3,e4;
-	
 	private int cantPickUps;
 	
 	private List<Movible> movibles;
 	
 	private Escenario() {
 		movibles = new ArrayList<Movible>();
+		nivel= new Nivel1();
 	}
 	
 	public static Escenario getInstancia() {
@@ -105,8 +105,20 @@ public class Escenario implements Suscriptor {
 	
 	public void eliminarPickUp(Posicion p) {
 		if(p.hayPickUp()) {
+			Juego.actualizarPuntaje(p.getPickUp().getPuntos());
 			p.setPickUp(null);
 			--cantPickUps;
+			if(cantPickUps==0) {
+				terminarNivel();
+			}
+		}
+	}
+	private void terminarNivel() {
+		if(nivel.getSiguienteNivel()!=null) {
+			nivel=nivel.getSiguienteNivel();
+			juego.actualizarMapa();
+		}else {
+			juego.gameOver();
 		}
 	}
 	
