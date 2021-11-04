@@ -29,7 +29,6 @@ public class Escenario implements Suscriptor {
 	private Mapa mapa;
 	private Personaje personaje;
 	private Enemigo e1,e2,e3,e4;
-	
 	private int cantPickUps;
 	
 	private List<Movible> movibles;
@@ -109,8 +108,12 @@ public class Escenario implements Suscriptor {
 			Juego.actualizarPuntaje(p.getPickUp().getPuntos());
 			p.setPickUp(null);
 			--cantPickUps;
+			if(cantPickUps==0) {
+				juego.gameOver();
+			}
 		}
 	}
+	
 	
 	public Posicion getPosicion(Posicion p) {
 		if (0 <= p.getX() && p.getX() < mapa.getAncho() && 0 <= p.getY() && p.getY() < mapa.getAlto()) {

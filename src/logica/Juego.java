@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import Mapas.MapLoader;
 import vista.GUI;
+import vista.GameOverPanel;
 import vista.PosicionGrafica;
 
 public class Juego implements Runnable {
@@ -36,6 +37,18 @@ public class Juego implements Runnable {
 	public static String getPuntajeString() {
 		return ""+puntaje;
 	}
+	
+	public void gameOver() {
+		reloj.stop();
+		EventQueue.invokeLater(new Runnable() {
+			@Override
+			public void run() {
+				gui.showGameOver();
+			}
+		});
+    }
+	
+
 	
 	public static Juego getInstancia() {
 		if (instancia == null) {

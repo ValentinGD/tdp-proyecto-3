@@ -6,6 +6,7 @@ import javax.swing.JPanel;
 import logica.Juego;
 import logica.entidades.Movible;
 
+import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
@@ -40,6 +41,9 @@ public class GUI extends JFrame implements ActionListener {
 		setPanel(menuPanel);
 	}
 	
+	public void showGameOver() {
+		setPanel(new GameOverPanel(Juego.getPuntajeString()));
+	}
 	public void showJuego(PosicionGrafica[][] posiciones) {
 		if (juegoPanel == null) {
 			juegoPanel = new JuegoPanel(posiciones);
