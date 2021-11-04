@@ -29,27 +29,8 @@ public class EstadoPersonajeNormal extends EstadoPersonaje {
 		return posicionesModificadas;
 	}
 	
-	private boolean puedeMover(Posicion nuevaPosicion) {
-		return nuevaPosicion.esHabitable();
-	}
 	
-	public Posicion calcularSiguientePosicion(Personaje personaje, int direccionActual) {
-		Posicion pos = personaje.getPosicion();
-		int nextX = pos.getX();
-		int nextY = pos.getY();
-		if (direccionActual == Movible.DIRECCION_IZQUIERDA) {
-			nextX--;
-		}
-		if (direccionActual == Movible.DIRECCION_DERECHA) {
-			nextX++;
-		}
-		if (direccionActual == Movible.DIRECCION_ARRIBA) {
-			nextY--;
-		}
-		if (direccionActual == Movible.DIRECCION_ABAJO) {
-			nextY++;
-		}
-		return new Posicion(nextY, nextX);
-	}
+	
+	
 
 }

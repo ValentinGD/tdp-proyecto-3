@@ -38,7 +38,7 @@ public class Personaje extends Movible {
 	public void setDireccion(int direccion) {
 		if (Movible.esDireccionValida(direccion)) {
 			direccionSiguiente = direccion;
-			System.out.println("Personaje::Se cambio la direccion.");
+			System.out.println("Personaje::Se cambio la direccion: " + direccionSiguiente);
 		}
 	}
 
@@ -51,7 +51,11 @@ public class Personaje extends Movible {
 	}
 	
 	public ArrayList<Posicion> mover() {
-		System.out.println("moviendo personaje");
+		//System.out.println("moviendo personaje");
+		Posicion posiblePosicionEnNuevaDireccion = Escenario.getInstancia().getPosicion(EstadoPersonaje.calcularSiguientePosicion(getInstancia(), direccionSiguiente));
+		if (posiblePosicionEnNuevaDireccion.esHabitable()) {
+			direccionActual = direccionSiguiente;
+		}
 		return estado.mover(this, direccionActual);
 	}
 	

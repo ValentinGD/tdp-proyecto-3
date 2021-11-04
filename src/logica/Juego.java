@@ -40,15 +40,40 @@ public class Juego implements Runnable {
 	}
 	
 	public void start() {
-		escenario.start();
 		
-		gui.showJuego(escenario.getPosicionesGraficas());
 		
-		reloj.start();
+		
+		EventQueue.invokeLater(new Runnable() {
+			@Override
+			public void run() {
+				escenario.start();
+			}
+		});
+		
+		EventQueue.invokeLater(new Runnable() {
+			@Override
+			public void run() {
+				gui.showJuego(escenario.getPosicionesGraficas());
+			}
+		});
+		
+		EventQueue.invokeLater(new Runnable() {
+			@Override
+			public void run() {
+				reloj.start();
+			}
+		});
+		
+		
 	}
 	
 	public void actualizarGraficos(ArrayList<PosicionGrafica> posiciones) {
-		gui.actualizarJuego(posiciones);
+		EventQueue.invokeLater(new Runnable() {
+			@Override
+			public void run() {
+				gui.actualizarJuego(posiciones);
+			}
+		});
 	}
 	
 	/**
@@ -60,6 +85,7 @@ public class Juego implements Runnable {
 	 * @param tecla
 	 */
 	public synchronized void teclaPresionada(int tecla) {
+		System.out.println("tecla en juego");
 		EventQueue.invokeLater(new Runnable() {
 			@Override
 			public void run() {

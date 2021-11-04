@@ -58,6 +58,7 @@ public class Escenario implements Suscriptor {
 	}
 	
 	public boolean start() {
+		System.out.println("cargando escenario");
 		this.juego = Juego.getInstancia();
 		
 		mapa = MapLoader.getMapa(1);
@@ -72,8 +73,11 @@ public class Escenario implements Suscriptor {
 			
 			movibles.addAll(mapa.getMovibles());
 			
+			personaje = Personaje.getInstancia();
+			
 		}
 		
+		System.out.println("escenario cargado");
 		return true;
 	}
 	
@@ -84,7 +88,7 @@ public class Escenario implements Suscriptor {
 		for (Movible m : movibles) {
 			posicionesModificadas.addAll(m.mover());
 		}
-		System.out.println("posicionesModificadas: " + posicionesModificadas);
+		//System.out.println("posicionesModificadas: " + posicionesModificadas);
 		if (!posicionesModificadas.isEmpty()) {
 			juego.actualizarGraficos(posicionesModificadas);
 		}

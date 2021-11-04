@@ -11,6 +11,8 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.util.ArrayList;
 import java.awt.Font;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 @SuppressWarnings("serial")
 public class JuegoPanel extends JPanel {
@@ -23,6 +25,7 @@ public class JuegoPanel extends JPanel {
 	 * Create the panel.
 	 */
 	public JuegoPanel(PosicionGrafica[][] posiciones) {
+		System.out.println("creando panel de juego");
 		alto = posiciones.length;
 		ancho = posiciones[0].length;
 		

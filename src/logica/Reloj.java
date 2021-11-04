@@ -54,7 +54,12 @@ public class Reloj implements Notificadora {
 	@Override
 	public void notificar() {
 		for (Suscriptor s : suscriptores) {
-			s.actualizar();
+			EventQueue.invokeLater(new Runnable() {
+				@Override
+				public void run() {
+					s.actualizar();
+				}
+			});
 		}
 		start();
 	}
