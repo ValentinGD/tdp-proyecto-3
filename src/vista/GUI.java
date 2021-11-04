@@ -22,6 +22,7 @@ public class GUI extends JFrame implements ActionListener {
 	
 	public GUI(Juego juego) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setTitle("TdP-man");
 		this.juego = juego;
 		
 		menuPanel = new MenuPanel(this);
