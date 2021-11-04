@@ -90,6 +90,10 @@ public class Juego implements Runnable {
 		
 	}
 	
+	public actualizarMapa() {
+		gui.actualizarMapa();
+	}
+	
 	public void actualizarGraficos(ArrayList<PosicionGrafica> posiciones) {
 		EventQueue.invokeLater(new Runnable() {
 			@Override

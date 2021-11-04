@@ -35,7 +35,7 @@ public class Escenario implements Suscriptor {
 	
 	private Escenario() {
 		movibles = new ArrayList<Movible>();
-		
+		nivel= new Nivel1();
 	}
 	
 	public static Escenario getInstancia() {
@@ -116,6 +116,7 @@ public class Escenario implements Suscriptor {
 	private void terminarNivel() {
 		if(nivel.getSiguienteNivel()!=null) {
 			nivel=nivel.getSiguienteNivel();
+			juego.actualizarMapa();
 		}else {
 			juego.gameOver();
 		}
