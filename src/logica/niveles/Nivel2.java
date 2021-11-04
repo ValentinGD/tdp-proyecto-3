@@ -8,7 +8,7 @@ public class Nivel2 extends Nivel {
 
 	public Nivel2() {
 		pathMapa="\\Mapas\\Mapa2.txt";
-		mapa = MapLoader.getMapa(3);
+		mapa = MapLoader.getMapa(2);
 	}
 	public Nivel getSiguienteNivel() {
 		return new Nivel3();
