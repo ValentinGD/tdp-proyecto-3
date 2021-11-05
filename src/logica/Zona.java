@@ -1,25 +1,39 @@
 package logica;
 
+import java.util.List;
+
 public class Zona {
 	
-	private Posicion zona[];
-	private static final int tamZona = 0;
+	private int alto;
+	private int ancho;
+	private List<Entidad> entidades;
 	
-	public Zona(Posicion z[]) {
-		zona=new Posicion[tamZona];
-		for(int i=0;i<z.length;i++) {
-			zona[i]=z[i];
-		}
-	}
-	
-	public Posicion[] getZona() {
-		return zona;
+	public Zona() {
+		
 	}
 
-	public void setZona(Posicion z[]) {
-		for(int i=0;i<z.length;i++) {
-			zona[i]=z[i];
-		}
+	public int getAlto() {
+		return alto;
+	}
+
+	public void setAlto(int alto) {
+		this.alto = alto;
+	}
+
+	public int getAncho() {
+		return ancho;
+	}
+
+	public void setAncho(int ancho) {
+		this.ancho = ancho;
+	}
+
+	public List<Entidad> getEntidades() {
+		return entidades;
+	}
+
+	public void setEntidades(List<Entidad> entidades) {
+		this.entidades = entidades;
 	}
 	
 }

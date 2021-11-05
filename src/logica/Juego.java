@@ -31,7 +31,6 @@ public class Juego implements Runnable {
 	
 	public static void actualizarPuntaje(int p) {
 		puntaje=puntaje+p;
-		System.out.println(getPuntajeString());
 	}
 	
 	public static String getPuntajeString() {
@@ -92,6 +91,7 @@ public class Juego implements Runnable {
 	
 	public void actualizarVidas(int cantVidas) {
 		gui.actualizarVidas(cantVidas);
+		System.out.println("Entro en actualizarVidas");
 	}
 	
 	public void actualizarMapa(PosicionGrafica[][] posiciones) {

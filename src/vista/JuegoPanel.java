@@ -90,19 +90,19 @@ public class JuegoPanel extends JPanel {
 		panelVidas.add(lblCorazon_5, "6, 4");
 		lblCorazon_5.setVisible(false);
 		
-		JLabel lblCorazon_4 = new JLabel(RepositorioGrafico.getPocion());
+		lblCorazon_4 = new JLabel(RepositorioGrafico.getPocion());
 		panelVidas.add(lblCorazon_4, "6, 2");
 		lblCorazon_4.setVisible(false);
 		
-		JLabel lblCorazon_3 = new JLabel(RepositorioGrafico.getPocion());
+		lblCorazon_3 = new JLabel(RepositorioGrafico.getPocion());
 		panelVidas.add(lblCorazon_3, "2, 6");
 		lblCorazon_3.setVisible(true);
 		
-		JLabel lblCorazon_2 = new JLabel(RepositorioGrafico.getPocion());
+		lblCorazon_2 = new JLabel(RepositorioGrafico.getPocion());
 		panelVidas.add(lblCorazon_2, "2, 2");
 		lblCorazon_2.setVisible(true);
 		
-		JLabel lblCorazon_1 = new JLabel(RepositorioGrafico.getPocion());
+		lblCorazon_1 = new JLabel(RepositorioGrafico.getPocion());
 		panelVidas.add(lblCorazon_1, "6, 6");
 		lblCorazon_1.setVisible(true);
 		
@@ -111,43 +111,64 @@ public class JuegoPanel extends JPanel {
 	public void actualizarVidas(int cantVidas) {
 		switch(cantVidas){
 		case 1:
-			System.out.println("entro en vidas");
+			System.out.println("entro en vidas1");
 			lblCorazon_1.setVisible(true);
+			lblCorazon_1.repaint();
 		break;
 		case 2:
-			System.out.println("entro en vidas");
+			System.out.println("entro en vidas2");
 			lblCorazon_1.setVisible(true);
-			lblCorazon_2.setVisible(true);
+			lblCorazon_2.setVisible(true-);
+			lblCorazon_1.repaint();
+			lblCorazon_2.repaint();
 		break;
 		case 3:
-			System.out.println("entro en vidas");
+			System.out.println("entro en vidas3");
 			lblCorazon_1.setVisible(true);
 			lblCorazon_2.setVisible(true);
 			lblCorazon_3.setVisible(true);
+			lblCorazon_1.repaint();
+			lblCorazon_2.repaint();
+			lblCorazon_3.repaint();
 		break;
 		case 4:
-			System.out.println("entro en vidas");
+			System.out.println("entro en vidas4");
 			lblCorazon_1.setVisible(true);
 			lblCorazon_2.setVisible(true);
 			lblCorazon_3.setVisible(true);
 			lblCorazon_4.setVisible(true);
+			lblCorazon_1.repaint();
+			lblCorazon_2.repaint();
+			lblCorazon_3.repaint();
+			lblCorazon_4.repaint();
 		break;
 		case 5:
-			System.out.println("entro en vidas");
+			System.out.println("entro en vidas5");
 			lblCorazon_1.setVisible(true);
 			lblCorazon_2.setVisible(true);
 			lblCorazon_3.setVisible(true);
 			lblCorazon_4.setVisible(true);
 			lblCorazon_5.setVisible(true);
+			lblCorazon_1.repaint();
+			lblCorazon_2.repaint();
+			lblCorazon_3.repaint();
+			lblCorazon_4.repaint();
+			lblCorazon_5.repaint();
 		break;
 		case 6:
-			System.out.println("entro en vidas");
+			System.out.println("entro en vidas6");
 			lblCorazon_1.setVisible(true);
 			lblCorazon_2.setVisible(true);
 			lblCorazon_3.setVisible(true);
 			lblCorazon_4.setVisible(true);
 			lblCorazon_5.setVisible(true);
 			lblCorazon_6.setVisible(true);
+			lblCorazon_1.repaint();
+			lblCorazon_2.repaint();
+			lblCorazon_3.repaint();
+			lblCorazon_4.repaint();
+			lblCorazon_5.repaint();
+			lblCorazon_6.repaint();	
 		break;
 		}
 	}

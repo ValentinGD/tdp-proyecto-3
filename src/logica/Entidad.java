@@ -3,15 +3,32 @@ package logica;
 import javax.swing.ImageIcon;
 
 public abstract class Entidad {
-	protected Posicion pos;
+	protected int x;
+	protected int y;
+	protected Zona zona;
 
-	public Posicion getPosicion() {
-		return pos;
+	public int getX() {
+		return x;
 	}
 	
-	public void setPosicion(Posicion p) {
-		pos = p;
+	public int getY() {
+		return y;
 	}
 	
+	public Zona getZona() {
+		return zona;
+	}
+	
+	public void setX(int x) {
+		this.x=x;
+	}
+	
+	public void setY(int y) {
+		this.y=y;
+	}
+	
+	public void setZona(Zona z) {
+		zona=z;
+	}
 	public abstract ImageIcon getRepresentacionGrafica();
 }

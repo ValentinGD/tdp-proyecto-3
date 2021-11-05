@@ -95,6 +95,7 @@ public class Escenario implements Suscriptor {
 		ArrayList<PosicionGrafica> posicionesModificadas = new ArrayList<PosicionGrafica>();
 		for (Movible m : movibles) {
 			posicionesModificadas.addAll(m.mover());
+			juego.actualizarVidas(personaje.getVidas());
 		}
 		//System.out.println("posicionesModificadas: " + posicionesModificadas);
 		if (!posicionesModificadas.isEmpty()) {
