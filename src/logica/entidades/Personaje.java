@@ -62,5 +62,9 @@ public class Personaje extends Movible {
 	public ImageIcon getRepresentacionGrafica() {
 		return RepositorioGrafico.getPersonaje();
 	}
+	
+	public String toString() {
+		return "x: " + x + ", y: " + y + ", direccion: " + direccionActual + ", estado: " + estado; 
+	}
 
 }
