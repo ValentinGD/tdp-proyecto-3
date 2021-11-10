@@ -2,6 +2,8 @@ package logica;
 
 import java.util.List;
 
+import logica.entidades.Entidad;
+
 public class Zona {
 	
 	private int alto;

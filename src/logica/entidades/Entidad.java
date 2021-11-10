@@ -1,6 +1,8 @@
-package logica;
+package logica.entidades;
 
 import javax.swing.ImageIcon;
+
+import logica.Zona;
 
 public abstract class Entidad {
 	protected int x;

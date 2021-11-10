@@ -2,7 +2,6 @@ package logica.entidades;
 
 import java.util.ArrayList;
 
-import logica.Entidad;
 import logica.Escenario;
 import logica.Posicion;
 

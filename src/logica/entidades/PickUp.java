@@ -1,7 +1,5 @@
 package logica.entidades;
 
-import logica.Entidad;
-
 public abstract class PickUp extends Entidad {
 protected int puntos;
 protected static final int puntosC = 100;
