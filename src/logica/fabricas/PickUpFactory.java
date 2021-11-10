@@ -1,10 +1,10 @@
 package logica.fabricas;
 
 import logica.entidades.PickUp;
-import logica.entidades.pickups.Pocion;
-import logica.entidades.pickups.Poder;
+import logica.entidades.pickups.PoderEspecial;
+import logica.entidades.pickups.PoderNormal;
 import logica.entidades.pickups.PuntosChicos;
-import logica.entidades.pickups.PuntosGrandes;
+import logica.entidades.pickups.PuntosEspecial;
 
 public class PickUpFactory {
 
@@ -12,12 +12,12 @@ public class PickUpFactory {
 		return new PuntosChicos();
 	}
 	public static PickUp createPuntosGrandes() {
-		return new PuntosGrandes();
+		return new PuntosEspecial();
 	}
 	public static PickUp createPocion() {
-		return new Pocion();
+		return new PoderEspecial();
 	}
 	public static PickUp createPoder() {
-		return new Poder();
+		return new PoderNormal();
 	}
 }

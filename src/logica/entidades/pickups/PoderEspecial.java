@@ -4,10 +4,11 @@ import javax.swing.ImageIcon;
 
 import vista.RepositorioGrafico;
 
-public class Poder extends PickUpEspecial {
+public class PoderEspecial extends PickUpEspecial {
 	
-	@Override
+
 	public ImageIcon getRepresentacionGrafica() {
-		return RepositorioGrafico.getPoder();
+		return RepositorioGrafico.getPocion();
 	}
+
 }

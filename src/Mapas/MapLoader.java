@@ -5,35 +5,44 @@ import java.io.FileNotFoundException;
 import java.net.URISyntaxException;
 import java.util.Scanner;
 
+import logica.Entidad;
 import logica.Escenario;
 import logica.Posicion;
+import logica.entidades.Movible;
+import logica.entidades.Pared;
 import logica.entidades.Personaje;
 import logica.entidades.PickUp;
 import logica.entidades.enemigos.Enemigo1;
 import logica.entidades.enemigos.Enemigo2;
 import logica.entidades.enemigos.Enemigo3;
 import logica.entidades.enemigos.Enemigo4;
+import logica.entidades.pickups.PickUpEspecial;
+import logica.entidades.pickups.PoderEspecial;
+import logica.entidades.pickups.PoderNormal;
+import logica.entidades.pickups.PuntosEspecial;
+import logica.entidades.pickups.PuntosNormal;
 import logica.fabricas.PickUpFactory;
 
 public class MapLoader {
 
 	private static final String rutaMapas = "/Mapas/Mapa";
 	private static final String extensionArchivos = ".txt";
+	
+	public static Mapa getMapa(int nroMapa) {
+		String ruta = rutaMapas + nroMapa + extensionArchivos;
+		return getMapa(ruta);
+	}
 
-	public static Mapa getMapa(int numeroMapa) {
+	private static Mapa getMapa(String path) {
 		Mapa mapa;
-		Posicion[][] posiciones = new Posicion[][] {};
-		String ruta = rutaMapas + numeroMapa + extensionArchivos;
 		String linea;
 		int fila = 0;
 		
-		try (Scanner scanner = new Scanner(new File(MapLoader.class.getResource(ruta).toURI()))) {
+		try (Scanner scanner = new Scanner(new File(MapLoader.class.getResource(path).toURI()))) {
 			if (scanner.hasNextLine()) {
 				linea = scanner.nextLine();
-
-				posiciones = new Posicion[linea.length()][linea.length()];
 				
-				mapa = new Mapa(linea.length(), linea.length());
+				mapa = new Mapa();
 				
 				
 				
@@ -48,13 +57,6 @@ public class MapLoader {
 					fila++;
 				}
 				
-				if (mapa.getCantEnemigos() < 4) {
-					mapa = Mapa.MAPA_VACIO;
-				}
-
-			} else {
-				mapa = Mapa.MAPA_VACIO;
-			}
 			
 		} catch (FileNotFoundException | URISyntaxException e) {
 			mapa = Mapa.MAPA_VACIO;
@@ -71,9 +73,8 @@ public class MapLoader {
 
 	private static void cargarLinea(Mapa mapa, String linea, int fila) {
 		char[] caracteres = linea.toCharArray();
-		for (int i = 0; i < caracteres.length && i < mapa.getAncho(); ++i) {
-			Posicion p = caracterAPosicion(caracteres[i], fila, i);
-			mapa.addPosicion(p);
+		for (int i = 0; i < caracteres.length && i < caracteres.length; ++i) {
+			caracterAEntidad(caracteres[i], mapa);
 		}
 	}
 
@@ -90,72 +91,71 @@ public class MapLoader {
 	 * @param c
 	 * @return
 	 */
-	private static Posicion caracterAPosicion(char c, int fila, int colum) {
-		Posicion pos = new Posicion(fila, colum, true, true, null);
-		PickUp pu;
+	private static void caracterAEntidad(char c, Mapa m) {
+		Entidad entidad;
 		switch (c) {
 
 		case '*':
-			pu = PickUpFactory.createPuntosChicos();
-			pos = new Posicion(fila, colum, true, true, pu);
+			entidad = new PuntosNormal();
+			m.addPuntosNormales((PuntosNormal) entidad);
 			break;
 
 		case '#':
-			pu = PickUpFactory.createPuntosGrandes();
-			pos = new Posicion(fila, colum, true, true, pu);
+			entidad = new PuntosEspecial();
+			m.addPuntosEspeciales((PuntosEspecial) entidad);
 			break;
 
 		case 'X':
-			pos = new Posicion(fila, colum, false, false, null);
+			entidad= new Pared();
+			m.addParedes((Pared) entidad);
 			break;
 
 		case 'P':
-			pu = PickUpFactory.createPoder();
-			pos = new Posicion(fila, colum, true, true, pu);
+			entidad = new PoderNormal();
+			m.addPoderes((PickUpEspecial) entidad);
 			break;
 
 		case 'V':
-			pu = PickUpFactory.createPocion();
-			pos = new Posicion(fila, colum, true, true, pu);
+			entidad = new PoderEspecial();
+			m.addPoderes((PickUpEspecial) entidad);
 			break;
 
 		case 'A':
-			pos = new Posicion(fila, colum, Personaje.getInstancia());
-			Personaje.getInstancia().setPosicion(pos);
+			entidad= Personaje.getInstancia();
+			m.addMovibles((Movible) entidad);
 			break;
 
 		case '-':
-			pos = new Posicion(fila, colum, false, true, null);
+			entidad= new Pared();
+			m.addParedes((Pared) entidad);
 			break;
 
 		case '1':
-			pos = new Posicion(fila, colum, Enemigo1.getInstancia());
-			Enemigo1.getInstancia().setPosicion(pos);
+			entidad= Enemigo1.getInstancia();
+			m.addMovibles((Movible) entidad);
 			break;
 
 		case '2':
-			pos = new Posicion(fila, colum, Enemigo2.getInstancia());
-			Enemigo2.getInstancia().setPosicion(pos);
+			entidad= Enemigo2.getInstancia();
+			m.addMovibles((Movible) entidad);
 			break;
 
 		case '3':
-			pos = new Posicion(fila, colum, Enemigo3.getInstancia());
-			Enemigo3.getInstancia().setPosicion(pos);
+			entidad= Enemigo3.getInstancia();
+			m.addMovibles((Movible) entidad);
 			break;
 
 		case '4':
-			pos = new Posicion(fila, colum, Enemigo4.getInstancia());
-			Enemigo4.getInstancia().setPosicion(pos);
+			entidad= Enemigo4.getInstancia();
+			m.addMovibles((Movible) entidad);
 			break;
 
 		case ' ':
-			pos = new Posicion(fila, colum, true, true, null);
+			
 			break;
 
 		default:
 			break;
 		}
-
-		return pos;
 	}
 }

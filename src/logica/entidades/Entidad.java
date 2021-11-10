@@ -7,7 +7,9 @@ import logica.Zona;
 public abstract class Entidad {
 	protected int x;
 	protected int y;
-	protected Zona zona;
+	protected Zona miZona;
+	protected int ancho;
+	protected int alto;
 
 	public int getX() {
 		return x;
@@ -18,7 +20,15 @@ public abstract class Entidad {
 	}
 	
 	public Zona getZona() {
-		return zona;
+		return miZona;
+	}
+	
+	public int getAncho() {
+		return ancho;
+	}
+	
+	public int getAlto() {
+		return ancho;
 	}
 	
 	public void setX(int x) {
@@ -30,7 +40,17 @@ public abstract class Entidad {
 	}
 	
 	public void setZona(Zona z) {
-		zona=z;
+		miZona=z;
 	}
+	
+	public void setAncho(int a) {
+		ancho=a;
+	}
+	
+	public void setAlto(int a) {
+		alto=a;
+	}
+	
+	
 	public abstract ImageIcon getRepresentacionGrafica();
 }

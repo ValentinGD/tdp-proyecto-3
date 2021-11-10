@@ -7,14 +7,24 @@ import java.util.List;
 import logica.Posicion;
 import logica.entidades.Entidad;
 import logica.entidades.Movible;
+import logica.entidades.Pared;
+import logica.entidades.PickUp;
+import logica.entidades.pickups.PickUpEspecial;
+import logica.entidades.pickups.PickUpPuntos;
+import logica.entidades.pickups.PuntosEspecial;
+import logica.entidades.pickups.PuntosNormal;
 
 public class Mapa {
 	
 	
-	private List<Entidad> entidades;
+	private List<Movible> movibles;
+	private List<PickUpPuntos> puntosNormales;
+	private List<PickUpPuntos> puntosEspeciales;
+	private List<PickUpEspecial> poderes;
+	private List<Pared> paredes;
 	private int cantPickup;
 	
-	public Mapa(String path) {
+	public Mapa() {
 		
 	}
 	
@@ -22,10 +32,43 @@ public class Mapa {
 		return cantPickup;
 	}
 	
+	public List<Movible> getMovibles(){
+		return movibles;
+	}
 	
+	public List<PickUpPuntos> getPuntosNormales(){
+		return puntosNormales;
+	}
 	
+	public List<PickUpPuntos> getPuntosEspeciales(){
+		return puntosEspeciales;
+	}
 	
-	public List<Entidad> getEntidades(){
-		return entidades;
+	public List<PickUpEspecial> getPoderes(){
+		return poderes;
+	}
+	
+	public List<Pared> getParedes(){
+		return paredes;
+	}
+	
+	public void addMovibles(Movible m){
+		movibles.add(m);
+	}
+	
+	public void addPuntosNormales(PuntosNormal pN){
+		puntosNormales.add(pN);
+	}
+	
+	public void addPuntosEspeciales(PuntosEspecial pE){
+		puntosEspeciales.add(pE);
+	}
+	
+	public void addPoderes(PickUpEspecial p){
+		poderes.add(p);
+	}
+	
+	public void addParedes(Pared p){
+		paredes.add(p);
 	}
 }

@@ -4,14 +4,11 @@ import javax.swing.ImageIcon;
 
 import vista.RepositorioGrafico;
 
-public class PuntosChicos extends PickUpPuntos {
-
-	public PuntosChicos() {
-		puntos=puntosC;
-	}
+public class PoderNormal extends PickUpEspecial {
 	
 	@Override
 	public ImageIcon getRepresentacionGrafica() {
-		return RepositorioGrafico.getPuntoChico();
+		return RepositorioGrafico.getPoder();
 	}
+
 }
