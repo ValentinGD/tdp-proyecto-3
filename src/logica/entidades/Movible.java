@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import logica.Escenario;
 import logica.Posicion;
 
+
 public abstract class Movible extends Entidad {
 	
 	public static final int DIRECCION_DERECHA = 1;

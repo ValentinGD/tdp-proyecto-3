@@ -2,16 +2,15 @@ package logica.entidades;
 
 import javax.swing.ImageIcon;
 
-import logica.entidades.Entidad;
+public class ParedFantasma extends Entidad {
 
-public class Pared extends Entidad{
-
-	public Pared() {
+	public ParedFantasma() {
 		
 	}
 
-	@Override
 	public ImageIcon getRepresentacionGrafica() {
+		// TODO Auto-generated method stub
 		return null;
 	}
+
 }

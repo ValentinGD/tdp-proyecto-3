@@ -7,7 +7,6 @@ import logica.Posicion;
 public class Nivel3 extends Nivel {
 
 	public Nivel3() {
-		pathMapa="Mapas\\Mapa3.txt";
 		mapa = MapLoader.getMapa(3);
 	}
 	
