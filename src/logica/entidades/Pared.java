@@ -6,7 +6,9 @@ import logica.entidades.Entidad;
 
 public class Pared extends Entidad{
 
-	public Pared() {
+	public Pared(int x, int y) {
+		this.x=x;
+		this.y=y;
 		
 	}
 

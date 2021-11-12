@@ -18,14 +18,17 @@ public class Mapa {
 	
 	
 	private List<Movible> movibles;
-	private List<PickUpPuntos> puntosNormales;
-	private List<PickUpPuntos> puntosEspeciales;
+	private List<PuntosNormal> puntosNormales;
+	private List<PuntosEspecial> puntosEspeciales;
 	private List<PickUpEspecial> poderes;
 	private List<Pared> paredes;
 	private int cantPickup;
+	private int ancho;
+	private int alto;
 	
-	public Mapa() {
-		
+	public Mapa(int ancho, int alto) {
+		this.alto=alto;
+		this.ancho=ancho;
 	}
 	
 	public int getcantPickup() {
@@ -36,11 +39,11 @@ public class Mapa {
 		return movibles;
 	}
 	
-	public List<PickUpPuntos> getPuntosNormales(){
+	public List<PuntosNormal> getPuntosNormales(){
 		return puntosNormales;
 	}
 	
-	public List<PickUpPuntos> getPuntosEspeciales(){
+	public List<PuntosEspecial> getPuntosEspeciales(){
 		return puntosEspeciales;
 	}
 	
@@ -71,4 +74,13 @@ public class Mapa {
 	public void addParedes(Pared p){
 		paredes.add(p);
 	}
+	
+	public int getAncho() {
+		return ancho;
+	}
+	
+	public int getAlto() {
+		return alto;
+	}
+	
 }

@@ -6,8 +6,10 @@ import vista.RepositorioGrafico;
 
 public class PuntosNormal extends PickUpPuntos {
 
-	public PuntosNormal() {
+	public PuntosNormal(int x, int y) {
 		puntos=puntosC;
+		this.x=x;
+		this.y=y;
 	}
 	
 	public ImageIcon getRepresentacionGrafica() {
