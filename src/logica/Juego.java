@@ -6,6 +6,7 @@ import java.net.URISyntaxException;
 import java.util.ArrayList;
 
 import Mapas.MapLoader;
+import app.App;
 import vista.GUI;
 import vista.GameOverPanel;
 import vista.PosicionGrafica;
@@ -14,7 +15,7 @@ public class Juego implements Runnable {
 	
 	private static Juego instancia;
 	
-	private static final int TICS_POR_SEGUNDO = 10;
+	private static final int TICS_POR_SEGUNDO = Integer.parseInt(App.configuration.getProperty("TicsJuego"));
 	
 	private GUI gui;
 	private Escenario escenario;

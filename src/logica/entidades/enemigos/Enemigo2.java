@@ -2,6 +2,7 @@ package logica.entidades.enemigos;
 
 import java.util.ArrayList;
 
+import app.App;
 import logica.Posicion;
 
 public class Enemigo2 extends Enemigo {
@@ -9,7 +10,7 @@ public class Enemigo2 extends Enemigo {
 	private static Enemigo2 instancia = null;
 
 	private Enemigo2() {
-		velocidad=1;
+		velocidad = Integer.parseInt(App.configuration.getProperty("VelocidadEnemigo2"));;
 	}
 
 	public static Enemigo2 getInstancia() {

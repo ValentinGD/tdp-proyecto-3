@@ -3,6 +3,8 @@ package vista;
 import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
 
+import app.App;
+
 import java.awt.BorderLayout;
 import java.awt.GridBagLayout;
 import javax.swing.JLabel;
@@ -29,7 +31,7 @@ public class MenuPanel extends JPanel {
 		gridBagLayout.rowWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
 		setLayout(gridBagLayout);
 		
-		JLabel lblTitulo = new JLabel("<html>Bienvenido<br>a otra copia<br>del Pacman!</html>");
+		JLabel lblTitulo = new JLabel(App.configuration.getProperty("Bienvenida"));
 		lblTitulo.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		GridBagConstraints gbc_lblTitulo = new GridBagConstraints();
 		gbc_lblTitulo.insets = new Insets(50, 0, 5, 0);
@@ -38,7 +40,7 @@ public class MenuPanel extends JPanel {
 		gbc_lblTitulo.gridy = 0;
 		add(lblTitulo, gbc_lblTitulo);
 		
-		JLabel lblLogo = new JLabel(new ImageIcon(MenuPanel.class.getResource("/img/logo/logo-chico.png")));
+		JLabel lblLogo = new JLabel(new ImageIcon(MenuPanel.class.getResource(App.configuration.getProperty("Logo"))));
 		add(lblLogo);
 		
 		JButton btnComenzar = new JButton("Comenzar");

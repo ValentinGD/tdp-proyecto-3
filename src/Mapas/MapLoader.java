@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.net.URISyntaxException;
 import java.util.Scanner;
 
+import app.App;
 import logica.Entidad;
 import logica.Escenario;
 import logica.Posicion;
@@ -25,8 +26,8 @@ import logica.fabricas.PickUpFactory;
 
 public class MapLoader {
 
-	private static final String rutaMapas = "/Mapas/Mapa";
-	private static final String extensionArchivos = ".txt";
+	private static final String rutaMapas = App.configuration.getProperty("RutaMapas");
+	private static final String extensionArchivos = App.configuration.getProperty("ExtensionMapas");
 	
 	public static Mapa getMapa(int nroMapa) {
 		String ruta = rutaMapas + nroMapa + extensionArchivos;
