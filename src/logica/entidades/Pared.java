@@ -2,9 +2,13 @@ package logica.entidades;
 
 import javax.swing.ImageIcon;
 
-public class Pared extends Entidad {
+import logica.entidades.Entidad;
 
-	public Pared() {
+public class Pared extends Entidad{
+
+	public Pared(int x, int y) {
+		this.x=x;
+		this.y=y;
 		
 	}
 

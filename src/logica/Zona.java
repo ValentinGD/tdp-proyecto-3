@@ -12,8 +12,9 @@ public class Zona {
 	private int ancho;
 	private List<Entidad> entidades;
 	
-	public Zona() {
-		
+	public Zona(int x, int y, int alto, int ancho) {
+		this.x=x;
+		this.y=y;
 	}
 
 	public int getAlto() {
@@ -38,6 +39,10 @@ public class Zona {
 
 	public void setEntidades(List<Entidad> entidades) {
 		this.entidades = entidades;
+	}
+	
+	public void setEntidad(Entidad entidad) {
+		entidades.add(entidad);
 	}
 
 	public int getX() {

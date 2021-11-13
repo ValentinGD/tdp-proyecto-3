@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.net.URISyntaxException;
 import java.util.Scanner;
 
+import app.App;
 import logica.Entidad;
 import logica.Escenario;
 import logica.Posicion;
@@ -25,8 +26,8 @@ import logica.fabricas.PickUpFactory;
 
 public class MapLoader {
 
-	private static final String rutaMapas = "/Mapas/Mapa";
-	private static final String extensionArchivos = ".txt";
+	private static final String rutaMapas = App.configuration.getProperty("RutaMapas");
+	private static final String extensionArchivos = App.configuration.getProperty("ExtensionMapas");
 	
 	public static Mapa getMapa(int nroMapa) {
 		String ruta = rutaMapas + nroMapa + extensionArchivos;
@@ -37,12 +38,19 @@ public class MapLoader {
 		Mapa mapa;
 		String linea;
 		int fila = 0;
+		int alto;
+		int ancho;
 		
 		try (Scanner scanner = new Scanner(new File(MapLoader.class.getResource(path).toURI()))) {
 			if (scanner.hasNextLine()) {
 				linea = scanner.nextLine();
 				
-				mapa = new Mapa();
+				ancho=linea.length();
+				while (scanner.hasNextLine()) {
+					linea = scanner.nextLine();
+					alto++;
+				}
+				mapa = new Mapa(ancho, alto);
 				
 				
 				
@@ -74,7 +82,7 @@ public class MapLoader {
 	private static void cargarLinea(Mapa mapa, String linea, int fila) {
 		char[] caracteres = linea.toCharArray();
 		for (int i = 0; i < caracteres.length && i < caracteres.length; ++i) {
-			caracterAEntidad(caracteres[i], mapa);
+			caracterAEntidad(caracteres[i], mapa,i,fila);
 		}
 	}
 
@@ -91,62 +99,72 @@ public class MapLoader {
 	 * @param c
 	 * @return
 	 */
-	private static void caracterAEntidad(char c, Mapa m) {
-		Entidad entidad;
+	private static void caracterAEntidad(char c, Mapa m, int x, int y) {
+		logica.entidades.Entidad entidad;
 		switch (c) {
 
 		case '*':
-			entidad = new PuntosNormal();
+			entidad = new PuntosNormal(x,y);
 			m.addPuntosNormales((PuntosNormal) entidad);
 			break;
 
 		case '#':
-			entidad = new PuntosEspecial();
+			entidad = new PuntosEspecial(x,y);
 			m.addPuntosEspeciales((PuntosEspecial) entidad);
 			break;
 
 		case 'X':
-			entidad= new Pared();
+			entidad= new Pared(x,y);
 			m.addParedes((Pared) entidad);
 			break;
 
 		case 'P':
-			entidad = new PoderNormal();
+			entidad = new PoderNormal(x,y);
 			m.addPoderes((PickUpEspecial) entidad);
 			break;
 
 		case 'V':
-			entidad = new PoderEspecial();
+			entidad = new PoderEspecial(x,y);
 			m.addPoderes((PickUpEspecial) entidad);
 			break;
 
 		case 'A':
 			entidad= Personaje.getInstancia();
+			entidad.setX(x);
+			entidad.setY(y);
 			m.addMovibles((Movible) entidad);
 			break;
 
 		case '-':
-			entidad= new Pared();
+			entidad= new Pared(x,y);
 			m.addParedes((Pared) entidad);
 			break;
 
 		case '1':
 			entidad= Enemigo1.getInstancia();
+			entidad.setX(x);
+			entidad.setY(y);
 			m.addMovibles((Movible) entidad);
 			break;
 
 		case '2':
 			entidad= Enemigo2.getInstancia();
+			entidad.setX(x);
+			entidad.setY(y);
 			m.addMovibles((Movible) entidad);
 			break;
 
 		case '3':
 			entidad= Enemigo3.getInstancia();
+			entidad.setX(x);
+			entidad.setY(y);
 			m.addMovibles((Movible) entidad);
 			break;
 
 		case '4':
 			entidad= Enemigo4.getInstancia();
+			entidad.setX(x);
+			entidad.setY(y);
 			m.addMovibles((Movible) entidad);
 			break;
 

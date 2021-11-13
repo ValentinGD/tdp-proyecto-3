@@ -6,6 +6,7 @@ import java.awt.Toolkit;
 
 import javax.swing.ImageIcon;
 
+import app.App;
 import logica.Juego;
 
 public class RepositorioGrafico {
@@ -35,17 +36,17 @@ public class RepositorioGrafico {
 	
 	private static void cargarRepositorio() {
 		String path = opcionesRepositorios[indexRepositorio];
-		iconos[INDEX_FONDO] = resize(new ImageIcon(RepositorioGrafico.class.getResource(path + "fondo.png")));
-		iconos[INDEX_PARED] = resize(new ImageIcon(RepositorioGrafico.class.getResource(path + "pared.png")));
-		iconos[INDEX_PERSONAJE] = resize(new ImageIcon(RepositorioGrafico.class.getResource(path + "personaje_con_fondo.png")));
-		iconos[INDEX_ENEMIGO_VIVO] = resize(new ImageIcon(RepositorioGrafico.class.getResource(path + "enemigo_vivo_con_fondo.png")));
-		iconos[INDEX_ENEMIGO_MUERTO] = resize(new ImageIcon(RepositorioGrafico.class.getResource(path + "enemigo_muerto_con_fondo.png")));
-		iconos[INDEX_ENEMIGO_ASUSTADO] = resize(new ImageIcon(RepositorioGrafico.class.getResource(path + "enemigo_asustado_con_fondo.png")));
-		iconos[INDEX_PUNTO_CHICO] = resize(new ImageIcon(RepositorioGrafico.class.getResource(path + "punto_chico_con_fondo.png")));
-		iconos[INDEX_PUNTO_GRANDE] = resize(new ImageIcon(RepositorioGrafico.class.getResource(path + "punto_grande_con_fondo.png")));
-		iconos[INDEX_PARED_ENEMIGO] = resize(new ImageIcon(RepositorioGrafico.class.getResource(path + "pared_enemigos.png")));
-		iconos[INDEX_POCION] = resize(new ImageIcon(RepositorioGrafico.class.getResource(path + "corazon_con_fondo.png")));
-		iconos[INDEX_PODER] = resize(new ImageIcon(RepositorioGrafico.class.getResource(path + "rayo_con_fondo.png")));
+		iconos[INDEX_FONDO] = resize(new ImageIcon(RepositorioGrafico.class.getResource(path + App.configuration.getProperty("ImagenFondo"))));
+		iconos[INDEX_PARED] = resize(new ImageIcon(RepositorioGrafico.class.getResource(path + App.configuration.getProperty("ImagenPared"))));
+		iconos[INDEX_PERSONAJE] = resize(new ImageIcon(RepositorioGrafico.class.getResource(path + App.configuration.getProperty("ImagenPersonaje_con_fondo"))));
+		iconos[INDEX_ENEMIGO_VIVO] = resize(new ImageIcon(RepositorioGrafico.class.getResource(path + App.configuration.getProperty("ImagenEnemigo_vivo_con_fondo"))));
+		iconos[INDEX_ENEMIGO_MUERTO] = resize(new ImageIcon(RepositorioGrafico.class.getResource(path + App.configuration.getProperty("ImagenEnemigo_muerto_con_Fondo"))));
+		iconos[INDEX_ENEMIGO_ASUSTADO] = resize(new ImageIcon(RepositorioGrafico.class.getResource(path + App.configuration.getProperty("ImagenEnemigo_asustado_con_fondo"))));
+		iconos[INDEX_PUNTO_CHICO] = resize(new ImageIcon(RepositorioGrafico.class.getResource(path + App.configuration.getProperty("ImagenPunto_chico_con_fondo"))));
+		iconos[INDEX_PUNTO_GRANDE] = resize(new ImageIcon(RepositorioGrafico.class.getResource(path + App.configuration.getProperty("ImagenPunto_grande_con_fondo"))));
+		iconos[INDEX_PARED_ENEMIGO] = resize(new ImageIcon(RepositorioGrafico.class.getResource(path + App.configuration.getProperty("ImagenPared_enemigos"))));
+		iconos[INDEX_POCION] = resize(new ImageIcon(RepositorioGrafico.class.getResource(path + App.configuration.getProperty("ImagenCorazon_con_fondo"))));
+		iconos[INDEX_PODER] = resize(new ImageIcon(RepositorioGrafico.class.getResource(path + App.configuration.getProperty("ImagenRayo_con_fondo"))));
 	}
 	
 	private static ImageIcon resize(ImageIcon icono) {

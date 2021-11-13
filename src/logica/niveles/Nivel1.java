@@ -9,7 +9,6 @@ public class Nivel1 extends Nivel {
 	private Mapa mapa;
 
 	public Nivel1() {
-		pathMapa="Mapas/Mapa1.txt";
 		mapa = MapLoader.getMapa(1);
 	}
 

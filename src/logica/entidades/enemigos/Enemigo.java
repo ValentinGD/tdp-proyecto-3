@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.swing.ImageIcon;
 
+import app.App;
 import logica.Notificadora;
 import logica.Suscriptor;
 import logica.entidades.Movible;
@@ -16,7 +17,7 @@ public abstract class Enemigo extends Movible {
 	protected EstadoEnemigo estado;
 
 	protected Enemigo() {
-		velocidad = 1;
+		velocidad = Integer.parseInt(App.configuration.getProperty("VelocidadEnemigo"));
 	}
 
 	public int getVelocidad() {

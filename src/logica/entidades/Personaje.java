@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 
+import app.App;
 import logica.Escenario;
 import logica.Posicion;
 import logica.estados.personaje.EstadoPersonaje;
@@ -21,7 +22,7 @@ public class Personaje extends Movible {
 	private int direccionSiguiente;
 	
 	private Personaje() {
-		vidas = 3;
+		vidas = Integer.parseInt(App.configuration.getProperty("CantVidas"));
 		direccionActual = Movible.DIRECCION_DERECHA;
 		direccionSiguiente = direccionActual;
 		estado = new EstadoPersonajeNormal();

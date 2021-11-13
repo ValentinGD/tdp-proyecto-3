@@ -2,6 +2,7 @@ package logica.niveles;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import java.util.Scanner;
 
 import Mapas.Mapa;
@@ -26,24 +27,24 @@ public abstract class Nivel {
 		return mapa;
 	}
 	
-	public Movible getMovibles() {
-		return (Movible) mapa.getMovibles();
+	public List<Movible> getMovibles() {
+		return (List<Movible>) mapa.getMovibles();
 	}
 	
-	public PuntosNormal getPuntosNormales() {
-		return (PuntosNormal) mapa.getPuntosNormales();
+	public List<PuntosNormal> getPuntosNormales() {
+		return (List<PuntosNormal>) mapa.getPuntosNormales();
 	}
 	
-	public PuntosEspecial getPuntosEspeciales() {
-		return (PuntosEspecial) mapa.getPuntosEspeciales();
+	public List<PuntosEspecial> getPuntosEspeciales() {
+		return (List<PuntosEspecial>) mapa.getPuntosEspeciales();
 	}
 	
-	public PickUpEspecial getPickUpEspeciales() {
-		return (PickUpEspecial) mapa.getPoderes();
+	public List<PickUpEspecial> getPickUpEspeciales() {
+		return (List<PickUpEspecial>) mapa.getPoderes();
 	}
 	
-	public Pared getParedes() {
-		return (Pared) mapa.getParedes();
+	public List<Pared> getParedes() {
+		return (List<Pared>) mapa.getParedes();
 	}
 	
 	public int getVelocidadEnemigo() {
@@ -52,5 +53,13 @@ public abstract class Nivel {
 	
 	public int getVelocidadPersonaje() {
 		return velocidadPersonaje;
+	}
+	
+	public int getAncho() {
+		return mapa.getAncho();
+	}
+	
+	public int getAlto() {
+		return mapa.getAlto();
 	}
 }
