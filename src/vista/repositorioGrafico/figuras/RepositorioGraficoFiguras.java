@@ -1,46 +1,47 @@
 package vista.repositorioGrafico.figuras;
 
 import vista.repositorioGrafico.RepositorioGraficoAbstracto;
-import vista.repositorioGrafico.RepositorioGraficoEnemigoAbstracto;
-import vista.repositorioGrafico.RepositorioGraficoPersonajeAbstracto;
+import vista.repositorioGrafico.RepositorioGraficoEnemigo;
+import vista.repositorioGrafico.RepositorioGraficoEscenario;
+import vista.repositorioGrafico.RepositorioGraficoPersonaje;
 import vista.repositorioGrafico.RepositorioGraficoPickUpAbstracto;
 
 public class RepositorioGraficoFiguras extends RepositorioGraficoAbstracto {
-
+	
+	private static final String path = "/img/figuras/";
+	
 	@Override
-	public RepositorioGraficoEnemigoAbstracto getRepositorioGraficoEnemigo1() {
-		// TODO Auto-generated method stub
-		return null;
+	public RepositorioGraficoEnemigo getRepositorioGraficoEnemigo1() {
+		return new RepositorioGraficoEnemigo(path, "1");
 	}
 
 	@Override
-	public RepositorioGraficoEnemigoAbstracto getRepositorioGraficoEnemigo2() {
-		// TODO Auto-generated method stub
-		return null;
+	public RepositorioGraficoEnemigo getRepositorioGraficoEnemigo2() {
+		return new RepositorioGraficoEnemigo(path, "2");
 	}
 
 	@Override
-	public RepositorioGraficoEnemigoAbstracto getRepositorioGraficoEnemigo3() {
-		// TODO Auto-generated method stub
-		return null;
+	public RepositorioGraficoEnemigo getRepositorioGraficoEnemigo3() {
+		return new RepositorioGraficoEnemigo(path, "3");
 	}
 
 	@Override
-	public RepositorioGraficoEnemigoAbstracto getRepositorioGraficoEnemigo4() {
-		// TODO Auto-generated method stub
-		return null;
+	public RepositorioGraficoEnemigo getRepositorioGraficoEnemigo4() {
+		return new RepositorioGraficoEnemigo(path, "4");
 	}
 
 	@Override
-	public RepositorioGraficoPersonajeAbstracto getRepositorioGraficoPersonaje() {
-		// TODO Auto-generated method stub
-		return null;
+	public RepositorioGraficoPersonaje getRepositorioGraficoPersonaje() {
+		return new RepositorioGraficoPersonaje(path);
 	}
 
 	@Override
 	public RepositorioGraficoPickUpAbstracto getRepositorioGraficoPickUp() {
-		// TODO Auto-generated method stub
-		return null;
+		return new RepositorioGraficoPickUpFiguras(path);
 	}
 
+	@Override
+	public RepositorioGraficoEscenario getRepositorioGraficoEscenario() {
+		return new RepositorioGraficoEscenario(path);
+	}
 }

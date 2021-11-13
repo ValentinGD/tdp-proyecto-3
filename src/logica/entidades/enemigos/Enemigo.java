@@ -1,5 +1,7 @@
 package logica.entidades.enemigos;
 
+import java.util.List;
+
 import javax.swing.ImageIcon;
 
 import logica.Notificadora;

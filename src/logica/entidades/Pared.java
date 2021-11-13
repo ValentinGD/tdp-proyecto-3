@@ -2,9 +2,7 @@ package logica.entidades;
 
 import javax.swing.ImageIcon;
 
-import logica.Entidad;
-
-public class Pared extends Entidad{
+public class Pared extends Entidad {
 
 	public Pared() {
 		
