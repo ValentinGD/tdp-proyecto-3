@@ -1,19 +1,51 @@
 package logica.entidades;
 
-import java.util.ArrayList;
+import logica.Visitor;
+import logica.entidades.enemigos.Enemigo;
+import logica.entidades.pickups.poderes.PickUpPoder;
+import logica.entidades.pickups.puntos.PickUpPuntos;
+import logica.estados.EstadoMovible;
 
-import logica.Escenario;
-import logica.Posicion;
-
-
-public abstract class Movible extends Entidad {
+public abstract class Movible extends Entidad implements Visitor {
 	
 	public static final int DIRECCION_DERECHA = 1;
 	public static final int DIRECCION_IZQUIERDA = -1;
 	public static final int DIRECCION_ARRIBA = -2;
 	public static final int DIRECCION_ABAJO = 2;
 	
-	public abstract ArrayList<Posicion> mover();
+	protected boolean chocaste;
+	
+	protected int xOrigen;
+	protected int yOrigen;
+
+	protected int direccionActual;
+	
+	protected int velocidadEnTics;
+	protected int ticCount;
+	
+	protected Movible(int x, int y) {
+		super(x, y);
+		chocaste = false;
+		ticCount = 0;
+		direccionActual = DIRECCION_ARRIBA;
+	}
+	
+	public abstract void mover();
+	
+	public abstract void morir();
+	
+	protected void chocar() {
+		chocaste = true;
+	}
+	
+	public boolean chocaste() {
+		return chocaste;
+	}
+	
+	public void setOrigen() {
+		xOrigen = x;
+		yOrigen = y;
+	}
 	
 	public static boolean esDireccionValida(int direccion) {
 		return 	(direccion == DIRECCION_DERECHA) ||
@@ -22,48 +54,23 @@ public abstract class Movible extends Entidad {
 				(direccion == DIRECCION_ABAJO);
 	}
 	
-	/*
-	public void mover(int direccion) {
-		Posicion aux=pos.clone();
-		switch(direccion){
-			case 0:
-				
-				aux.setY(pos.getY()-1);
-				if(Escenario.puedeMover(aux)) {
-					pos.setY(pos.getY()-1);
-					Escenario.eliminarPickUp(pos);}
-				
-			break;
-			
-			case 1:
-				
-				aux.setX(pos.getX()-1);
-				if(Escenario.puedeMover(aux)) {
-					pos.setX(pos.getX()-1);
-					Escenario.eliminarPickUp(pos);}
-				
-			break;
-			
-			case 2:
-				
-				aux.setY(pos.getY()+1);
-				if(Escenario.puedeMover(aux)) {
-					pos.setY(pos.getY()+1);
-					Escenario.eliminarPickUp(pos);}
 
-			break;
-			
-			case 3:
-				
-				aux.setX(pos.getX()+1);
-				if(Escenario.puedeMover(aux)) {
-					pos.setX(pos.getX()+1);
-					Escenario.eliminarPickUp(pos);}
-				
-			break;
-		}
+	@Override
+	public void visitarEnemigo(Enemigo e) {}
+
+	@Override
+	public void visitarPersonaje(Personaje p) {}
+
+	@Override
+	public void visitarPickUpPuntos(PickUpPuntos p) {}
+
+	@Override
+	public void visitarPickUpPoder(PickUpPoder p) {}
+
+	@Override
+	public void visitarPared(Pared p) {}
+	
+	public String toString() {
+		return "x: " + x + ", y: " + y + ", direccion: " + direccionActual; 
 	}
-	*/
-	
-	
 }

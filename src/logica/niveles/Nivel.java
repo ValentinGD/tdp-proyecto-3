@@ -1,20 +1,14 @@
 package logica.niveles;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.List;
-import java.util.Scanner;
 
+import Mapas.MapLoader;
 import Mapas.Mapa;
-import logica.Escenario;
-import logica.Posicion;
 import logica.entidades.Movible;
 import logica.entidades.Pared;
-import logica.entidades.PickUp;
-import logica.entidades.pickups.PickUpEspecial;
-import logica.entidades.pickups.PuntosEspecial;
-import logica.entidades.pickups.PuntosNormal;
-import logica.fabricas.PickUpFactory;
+import logica.entidades.pickups.poderes.PickUpPoder;
+import logica.entidades.pickups.puntos.PuntosEspecial;
+import logica.entidades.pickups.puntos.PuntosNormal;
 
 
 public abstract class Nivel {
@@ -23,24 +17,24 @@ public abstract class Nivel {
 	protected int velocidadEnemigo;
 	protected int velocidadPersonaje;
 	
-	public Mapa getMapa() {
-		return mapa;
+	protected Nivel(int numeroMapa) {
+		mapa = MapLoader.getMapa(numeroMapa);
 	}
 	
 	public List<Movible> getMovibles() {
-		return (List<Movible>) mapa.getMovibles();
+		return mapa.getMovibles();
 	}
 	
-	public List<PuntosNormal> getPuntosNormales() {
-		return (List<PuntosNormal>) mapa.getPuntosNormales();
+	public List<PuntosNormal> getPickUpsNormales() {
+		return (List<PuntosNormal>) mapa.getPickUpsNormales();
 	}
 	
 	public List<PuntosEspecial> getPuntosEspeciales() {
 		return (List<PuntosEspecial>) mapa.getPuntosEspeciales();
 	}
 	
-	public List<PickUpEspecial> getPickUpEspeciales() {
-		return (List<PickUpEspecial>) mapa.getPoderes();
+	public List<PickUpPoder> getPoderesEspeciales() {
+		return (List<PickUpPoder>) mapa.getPoderesEspeciales();
 	}
 	
 	public List<Pared> getParedes() {
@@ -55,11 +49,21 @@ public abstract class Nivel {
 		return velocidadPersonaje;
 	}
 	
+	public int getAlto() {
+		return mapa.getAlto();
+	}
+	
 	public int getAncho() {
 		return mapa.getAncho();
 	}
 	
-	public int getAlto() {
-		return mapa.getAlto();
+	public int getCantFilas() {
+		return mapa.getCantFilas();
 	}
+	
+	public int getCantColumnas() {
+		return mapa.getCantColumnas();
+	}
+
+	public abstract Nivel getSiguienteNivel();
 }

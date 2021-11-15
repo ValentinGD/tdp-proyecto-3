@@ -4,57 +4,32 @@ import java.awt.EventQueue;
 import java.io.FileNotFoundException;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
+import java.util.List;
 
 import Mapas.MapLoader;
 import app.App;
+import logica.entidades.Entidad;
+import vista.EntidadGrafica;
 import vista.GUI;
 import vista.GameOverPanel;
-import vista.PosicionGrafica;
 
-public class Juego implements Runnable {
-	
-	private static Juego instancia;
+public class Juego implements Runnable, Suscriptor  {
 	
 	private static final int TICS_POR_SEGUNDO = Integer.parseInt(App.configuration.getProperty("TicsJuego"));
 	
 	private GUI gui;
 	private Escenario escenario;
-	private static int puntaje;
+	private int puntaje;
 	private Reloj reloj;
 	
-	private Juego() {
+	public Juego() {
 		gui = new GUI(this);
 		escenario = Escenario.getInstancia();
+		escenario.setJuego(this);
+		
 		reloj = new Reloj(1000/TICS_POR_SEGUNDO);
-		reloj.suscribirse(escenario);
+		reloj.suscribirse(this);
 		puntaje=0;
-	}
-	
-	public static void actualizarPuntaje(int p) {
-		puntaje=puntaje+p;
-	}
-	
-	public static String getPuntajeString() {
-		return ""+puntaje;
-	}
-	
-	public void gameOver() {
-		reloj.stop();
-		EventQueue.invokeLater(new Runnable() {
-			@Override
-			public void run() {
-				gui.showGameOver();
-			}
-		});
-    }
-	
-
-	
-	public static Juego getInstancia() {
-		if (instancia == null) {
-			instancia = new Juego();
-		}
-		return instancia;
 	}
 
 	@Override
@@ -63,58 +38,36 @@ public class Juego implements Runnable {
 	}
 	
 	public void start() {
-		
-		
-		
-		EventQueue.invokeLater(new Runnable() {
-			@Override
-			public void run() {
-				escenario.start();
-			}
-		});
-		
-		EventQueue.invokeLater(new Runnable() {
-			@Override
-			public void run() {
-				gui.showJuego(escenario.getPosicionesGraficas());
-			}
-		});
-		
-		EventQueue.invokeLater(new Runnable() {
-			@Override
-			public void run() {
-				reloj.start();
-			}
-		});
-		
-		
+		escenario.start();
+		//gui.showJuego();
 	}
 	
+	public void agregarEntidades(List<Entidad> entidades) {
+		gui.agregarEntidades(new ArrayList<EntidadGrafica>(entidades));
+	}
+	
+	public void actualizarEntidades(List<EntidadGrafica> entidades) {
+		gui.actualizarEntidades(entidades);
+	}
+
 	public void actualizarVidas(int cantVidas) {
 		gui.actualizarVidas(cantVidas);
 		System.out.println("Entro en actualizarVidas");
 	}
 	
-	public void actualizarMapa(PosicionGrafica[][] posiciones) {
-		reloj.stop();
-		EventQueue.invokeLater(new Runnable() {
-			@Override
-			public void run() {
-				gui.actualizarMapa(posiciones);
-				reloj.start();
-			}
-		});
-		
+	public void actualizarPuntaje(int p) {
+		puntaje += p;
+		gui.actualizarPuntaje(puntaje);
 	}
 	
-	public void actualizarGraficos(ArrayList<PosicionGrafica> posiciones) {
-		EventQueue.invokeLater(new Runnable() {
-			@Override
-			public void run() {
-				gui.actualizarJuego(posiciones);
-			}
-		});
+	public String getPuntajeString() {
+		return String.valueOf(puntaje);
 	}
+	
+	public void gameOver() {
+		reloj.stop();
+		gui.showGameOver();
+    }
 	
 	/**
 	 * 0-> Mover arriba
@@ -125,11 +78,25 @@ public class Juego implements Runnable {
 	 * @param tecla
 	 */
 	public synchronized void teclaPresionada(int tecla) {
-		EventQueue.invokeLater(new Runnable() {
-			@Override
-			public void run() {
-				escenario.setDireccionPersonaje(tecla);
-			}
-		});
+		escenario.setDireccionPersonaje(tecla);
+	}
+
+	@Override
+	public void actualizar() {
+		escenario.tick();
+		gui.actualizarEntidades(escenario.getEntidadesParaActualizar());
+	}
+
+	public void terminarNivel() {
+		reloj.stop();
+		gui.limpiarJuego();
+	}
+
+	public void cargarNuevoNivel() {
+		gui.setDimensionEscenario(escenario.getAlto(), escenario.getAncho());
+		gui.agregarEntidades(escenario.getEntidadesParaActualizar());
+		System.out.println("se agregaron " + escenario.getEntidadesParaActualizar().size() + " entidades.");
+		gui.showJuego();
+		reloj.start();
 	}
 }

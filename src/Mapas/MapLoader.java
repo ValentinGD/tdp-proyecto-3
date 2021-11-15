@@ -6,23 +6,20 @@ import java.net.URISyntaxException;
 import java.util.Scanner;
 
 import app.App;
-import logica.Entidad;
-import logica.Escenario;
-import logica.Posicion;
+import logica.entidades.Entidad;
 import logica.entidades.Movible;
 import logica.entidades.Pared;
 import logica.entidades.Personaje;
-import logica.entidades.PickUp;
 import logica.entidades.enemigos.Enemigo1;
 import logica.entidades.enemigos.Enemigo2;
 import logica.entidades.enemigos.Enemigo3;
 import logica.entidades.enemigos.Enemigo4;
-import logica.entidades.pickups.PickUpEspecial;
-import logica.entidades.pickups.PoderEspecial;
-import logica.entidades.pickups.PoderNormal;
-import logica.entidades.pickups.PuntosEspecial;
-import logica.entidades.pickups.PuntosNormal;
-import logica.fabricas.PickUpFactory;
+import logica.entidades.pickups.poderes.PickUpPoder;
+import logica.entidades.pickups.poderes.PoderInmortal;
+import logica.entidades.pickups.poderes.PoderNormal;
+import logica.entidades.pickups.poderes.PoderVelocidad;
+import logica.entidades.pickups.puntos.PuntosEspecial;
+import logica.entidades.pickups.puntos.PuntosNormal;
 
 public class MapLoader {
 
@@ -35,46 +32,42 @@ public class MapLoader {
 	}
 
 	private static Mapa getMapa(String path) {
-		Mapa mapa;
+		System.out.println("leyendo mapa desde: " + path);
+		
+		Mapa mapa = null;
 		String linea;
 		int fila = 0;
-		int alto;
-		int ancho;
+		int ancho = 0;
 		
-		try (Scanner scanner = new Scanner(new File(MapLoader.class.getResource(path).toURI()))) {
+		
+		try (Scanner scanner = new Scanner(new File(path))) {
 			if (scanner.hasNextLine()) {
+				mapa = new Mapa();
+
 				linea = scanner.nextLine();
 				
-				ancho=linea.length();
-				while (scanner.hasNextLine()) {
-					linea = scanner.nextLine();
-					alto++;
-				}
-				mapa = new Mapa(ancho, alto);
-				
-				
-				
-				//System.out.println("cargando linea: " + linea);
+				System.out.println("cargando linea " + fila +": " + linea);
 				cargarLinea(mapa, linea, fila);
-				fila++;
 
 				while (scanner.hasNextLine()) {
 					linea = scanner.nextLine();
-					//System.out.println("cargando linea: " + linea);
-					cargarLinea(mapa, linea, fila);
 					fila++;
+					System.out.println("cargando linea " + fila +": " + linea);
+					
+					cargarLinea(mapa, linea, fila);
 				}
-				
+			}
 			
-		} catch (FileNotFoundException | URISyntaxException e) {
-			mapa = Mapa.MAPA_VACIO;
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+			//mapa = Mapa.MAPA_VACIO;
 		}
 		
 
 		
 
 		//System.out.println("Se cargo el mapa: " + numeroMapa);
-		//System.out.println("Cantidad de filas: " + fila);
+		System.out.println("Cantidad de filas: " + fila);
 		//System.out.println("mapa creado: " + mapa);
 		return mapa;
 	}
@@ -87,30 +80,31 @@ public class MapLoader {
 	}
 
 	/**
-	 * Punto chico -> '*'
-	 * Punto grande -> '#'
-	 * Poder -> 'P'
-	 * Pocion -> 'V'
-	 * Pared -> 'X'
-	 * Pared que atraviesan los enemigos -> '-'
-	 * Enemigo -> '1', '2', '3', '4'
-	 * Personaje -> 'A'
+	 * Punto normal 	-> '*'
+	 * Punto especial 	-> '#'
+	 * Poder normal 	-> 'P'
+	 * Poder especial 	-> 'V': Velocidad
+	 * 					-> 'I': Inmortal
+	 * Pared 			-> 'X'
+	 * Pared enemigos 	-> '-'
+	 * Enemigo 			-> '1', '2', '3', '4'
+	 * Personaje 		-> 'A'
 	 * 
 	 * @param c
 	 * @return
 	 */
 	private static void caracterAEntidad(char c, Mapa m, int x, int y) {
-		logica.entidades.Entidad entidad;
+		Entidad entidad;
 		switch (c) {
 
 		case '*':
 			entidad = new PuntosNormal(x,y);
-			m.addPuntosNormales((PuntosNormal) entidad);
+			m.addPickUpNormal((PuntosNormal) entidad);
 			break;
 
 		case '#':
 			entidad = new PuntosEspecial(x,y);
-			m.addPuntosEspeciales((PuntosEspecial) entidad);
+			m.addPuntosEspecial((PuntosEspecial) entidad);
 			break;
 
 		case 'X':
@@ -120,19 +114,23 @@ public class MapLoader {
 
 		case 'P':
 			entidad = new PoderNormal(x,y);
-			m.addPoderes((PickUpEspecial) entidad);
+			m.addPoderEspecial((PickUpPoder) entidad);
 			break;
 
 		case 'V':
-			entidad = new PoderEspecial(x,y);
-			m.addPoderes((PickUpEspecial) entidad);
+			entidad = new PoderVelocidad(x,y);
+			m.addPoderEspecial((PickUpPoder) entidad);
+			break;
+		case 'I':
+			entidad = new PoderInmortal(x,y);
+			m.addPoderEspecial((PickUpPoder) entidad);
 			break;
 
 		case 'A':
 			entidad= Personaje.getInstancia();
 			entidad.setX(x);
 			entidad.setY(y);
-			m.addMovibles((Movible) entidad);
+			m.addMovible((Movible) entidad);
 			break;
 
 		case '-':
@@ -144,28 +142,28 @@ public class MapLoader {
 			entidad= Enemigo1.getInstancia();
 			entidad.setX(x);
 			entidad.setY(y);
-			m.addMovibles((Movible) entidad);
+			m.addMovible((Movible) entidad);
 			break;
 
 		case '2':
 			entidad= Enemigo2.getInstancia();
 			entidad.setX(x);
 			entidad.setY(y);
-			m.addMovibles((Movible) entidad);
+			m.addMovible((Movible) entidad);
 			break;
 
 		case '3':
 			entidad= Enemigo3.getInstancia();
 			entidad.setX(x);
 			entidad.setY(y);
-			m.addMovibles((Movible) entidad);
+			m.addMovible((Movible) entidad);
 			break;
 
 		case '4':
 			entidad= Enemigo4.getInstancia();
 			entidad.setX(x);
 			entidad.setY(y);
-			m.addMovibles((Movible) entidad);
+			m.addMovible((Movible) entidad);
 			break;
 
 		case ' ':

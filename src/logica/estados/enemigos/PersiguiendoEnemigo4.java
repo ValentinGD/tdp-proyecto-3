@@ -1,5 +1,27 @@
 package logica.estados.enemigos;
 
-public class PersiguiendoEnemigo4 implements EstadoEnemigo {
+import javax.swing.ImageIcon;
+
+import logica.entidades.enemigos.Enemigo;
+import vista.repositorioGrafico.RepositorioGraficoEnemigo;
+
+public class PersiguiendoEnemigo4 extends PersiguiendoEnemigoAbstracto {
+	
+	public PersiguiendoEnemigo4() {
+		super();
+	}
+
+	@Override
+	public void mover() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public boolean puedeMover() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 
 }

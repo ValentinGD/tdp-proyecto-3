@@ -10,7 +10,7 @@ public class MapaFactory {
 		getMapa(nroMapa);
 	}
 	private Mapa getMapa(int nroMapa) {
-		MapLoader.getMapa(nroMapa)
+		MapLoader.getMapa(nroMapa);
 		return mapa;
 	}
 }

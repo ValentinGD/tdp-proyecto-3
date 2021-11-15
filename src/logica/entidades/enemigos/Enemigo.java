@@ -1,22 +1,19 @@
 package logica.entidades.enemigos;
 
-import java.util.List;
-
-import javax.swing.ImageIcon;
 
 import app.App;
-import logica.Notificadora;
-import logica.Suscriptor;
 import logica.entidades.Movible;
 import logica.estados.enemigos.EstadoEnemigo;
-import vista.RepositorioGrafico;
 
 public abstract class Enemigo extends Movible {
 	protected int velocidad;
 	protected int tiempoDescanso;
+	
 	protected EstadoEnemigo estado;
 
-	protected Enemigo() {
+	protected Enemigo(EstadoEnemigo estadoInicial) {
+		super(0, 0);
+		estado = estadoInicial;
 		velocidad = Integer.parseInt(App.configuration.getProperty("VelocidadEnemigo"));
 	}
 
@@ -36,10 +33,6 @@ public abstract class Enemigo extends Movible {
 		this.tiempoDescanso = tiempoDescanso;
 	}
 	
-	public ImageIcon getRepresentacionGrafica() {
-		return RepositorioGrafico.getEnemigoVivo();
-	}
-
 	public abstract void perseguir();
 
 	public abstract void descansar();

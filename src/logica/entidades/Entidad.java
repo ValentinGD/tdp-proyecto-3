@@ -1,15 +1,25 @@
 package logica.entidades;
 
-import javax.swing.ImageIcon;
-
+import logica.Visitor;
 import logica.Zona;
+import vista.EntidadGrafica;
+import vista.RepresentacionGrafica;
 
-public abstract class Entidad {
+public abstract class Entidad implements EntidadGrafica {
+	
+	public static final int TAMANIO = 30;
+	
 	protected int x;
 	protected int y;
 	protected Zona miZona;
-	protected int ancho;
-	protected int alto;
+	
+	protected RepresentacionGrafica miRepresentacion;
+	
+	protected Entidad(int x, int y) {
+		miRepresentacion = new RepresentacionGrafica(TAMANIO, this);
+		this.x = x;
+		this.y = y;
+	}
 
 	public int getX() {
 		return x;
@@ -21,14 +31,6 @@ public abstract class Entidad {
 	
 	public Zona getZona() {
 		return miZona;
-	}
-	
-	public int getAncho() {
-		return ancho;
-	}
-	
-	public int getAlto() {
-		return ancho;
 	}
 	
 	public void setX(int x) {
@@ -43,14 +45,9 @@ public abstract class Entidad {
 		miZona=z;
 	}
 	
-	public void setAncho(int a) {
-		ancho=a;
+	public abstract void aceptar(Visitor v);
+	
+	public String toString() {
+		return super.toString() + ", x: " + x + ", y: " + y;
 	}
-	
-	public void setAlto(int a) {
-		alto=a;
-	}
-	
-	
-	public abstract ImageIcon getRepresentacionGrafica();
 }

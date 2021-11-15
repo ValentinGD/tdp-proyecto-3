@@ -3,13 +3,19 @@ package logica.entidades.enemigos;
 import java.util.ArrayList;
 
 import app.App;
-import logica.Posicion;
+import logica.Visitor;
+import logica.estados.enemigos.PersiguiendoEnemigo2;
+import logica.estados.enemigos.PersiguiendoEnemigo3;
+import vista.RepresentacionGrafica;
+import vista.repositorioGrafico.RepositorioGraficoAbstracto;
 
 public class Enemigo3 extends Enemigo {
 
 	private static Enemigo3 instancia = null;
 	
 	private Enemigo3() {
+		super(new PersiguiendoEnemigo3());
+		estado.setEnemigo(this);
 		velocidad = Integer.parseInt(App.configuration.getProperty("VelocidadEnemigo3"));;
 	}
 
@@ -45,8 +51,21 @@ public class Enemigo3 extends Enemigo {
 	}
 
 	@Override
-	public ArrayList<Posicion> mover() {
-		return new ArrayList<Posicion>();
+	public RepresentacionGrafica getRepresentacionGrafica(RepositorioGraficoAbstracto repositorioGrafico) {
+		miRepresentacion.setImageIcon(estado.getRepresentacionGrafica(repositorioGrafico.getRepositorioGraficoEnemigo4()));
+		return miRepresentacion;
+	}
+
+	@Override
+	public void mover() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void aceptar(Visitor v) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

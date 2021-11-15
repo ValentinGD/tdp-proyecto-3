@@ -1,5 +1,23 @@
 package logica.estados.enemigos;
 
-public class DescansandoEnemigo1 implements EstadoEnemigo {
+import logica.entidades.enemigos.Enemigo;
+
+public class DescansandoEnemigo1 extends DescansandoEnemigoAbstracto {
+
+	public DescansandoEnemigo1(Enemigo enemigo, int direccionActual) {
+		super(enemigo, direccionActual);
+	}
+
+	@Override
+	public void mover() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public boolean puedeMover() {
+		// TODO Auto-generated method stub
+		return false;
+	}
 
 }

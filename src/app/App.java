@@ -1,14 +1,11 @@
 package app;
 
-import java.awt.EventQueue;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
 import logica.Juego;
-import vista.repositorioGrafico.RepositorioGraficoPickUpAbstracto;
-import vista.repositorioGrafico.figuras.RepositorioGraficoPickUpFiguras;
 
 public class App {
 	
@@ -17,12 +14,14 @@ public class App {
 	public static void main(String[] args) {
 		loadConfiguration();
 		
-		EventQueue.invokeLater(Juego.getInstancia());
+		Thread t = new Thread(new Juego());
+		t.start();
+		
 	}
 
 	private static void loadConfiguration() {
 		try {
-			InputStream input = new FileInputStream("./configuration.properties");
+			InputStream input = new FileInputStream("src/resources/configuration.properties");
 			App.configuration = new Properties();
 			App.configuration.load(input);
 		}catch(IOException e){

@@ -1,5 +1,6 @@
 package logica;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import logica.entidades.Entidad;
@@ -15,6 +16,17 @@ public class Zona {
 	public Zona(int x, int y, int alto, int ancho) {
 		this.x=x;
 		this.y=y;
+		this.alto = alto;
+		this.ancho = ancho;
+		entidades = new ArrayList<Entidad>();
+	}
+	
+	public boolean contiene(int x, int y) {
+		return (this.x <= x) && (x < this.x + ancho) && (this.y <= y) && (y < this.y + alto);
+	}
+	
+	public boolean contiene(Entidad e) {
+		return contiene(e.getX(), e.getY());
 	}
 
 	public int getAlto() {
@@ -61,4 +73,7 @@ public class Zona {
 		this.y = y;
 	}
 	
+	public String toString() {
+		return "x: " + x + ", y: " + y + ", ancho: " + ancho + ", alto: " + alto;
+	}
 }

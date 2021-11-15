@@ -1,40 +1,45 @@
 package logica;
 
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
-import Mapas.MapLoader;
-import Mapas.Mapa;
 import logica.entidades.Entidad;
 import logica.entidades.Movible;
 import logica.entidades.Personaje;
+import logica.entidades.PickUp;
 import logica.entidades.enemigos.*;
 import logica.niveles.*;
-import vista.PosicionGrafica;
+import vista.EntidadGrafica;
 
-public class Escenario implements Suscriptor {
+public class Escenario {
 	
 	private static Escenario instancia;
+
+	private static final int TAMANIO_ZONA = 4 * Entidad.TAMANIO;
 	
+	private List<EntidadGrafica> entidadesParaActualizar;
+	private List<Movible> movibles;
 	private List<Zona> zonas;
 	
-	private static final int cantZona=0;
-	private static final int ladoZona=4;
+	private Zona[][] matrizZonas;
+	
 	private static Nivel nivel;
+	//private Mapa nivel;
 	
-	private static Personaje pj;
-	
-	//-------------------------------
-	private Juego juego;
-	private Mapa mapa;
 	private Personaje personaje;
 	private Enemigo e1,e2,e3,e4;
+
+	private Juego juego;
 	private int cantPickUps;
-	private List<Movible> movibles;
+	
 	
 	private Escenario() {
+		zonas = new ArrayList<Zona>();
+		movibles = new ArrayList<Movible>();
+		entidadesParaActualizar = new ArrayList<EntidadGrafica>();
+		personaje = Personaje.getInstancia();
 	}
 	
 	public static Escenario getInstancia() {
@@ -45,135 +50,222 @@ public class Escenario implements Suscriptor {
 		return instancia;
 	}
 	
-	public Escenario(Zona z[], int cpu, Nivel n) {
-		zona=new Zona[cantZona];
-		for(int i=0;i<z.length;i++) {
-			zona[i]=z[i];
-			pj.getInstancia();
-			//e1.getInstancia();
-		}
-		nivel=n;
-		setCantPickUps(cpu);
-	}
-	
 	public boolean start() {
 		System.out.println("cargando escenario inicial");
-		this.juego = Juego.getInstancia();
 
 		nivel = new Nivel1();
 		
-		cargarEscenario();
+		cargarEscenarioConMatriz();
+		
+		juego.cargarNuevoNivel();
 		
 		System.out.println("escenario inicial cargado");
 		return true;
 	}
 	
 	public void cargarEscenario() {
+		//mapa = nivel.getMapa();
 		
 		crearZonas();
-		ArrayList<Entidad> entidades= new ArrayList<Entidad>(); 
+		List<Entidad> entidades= new ArrayList<Entidad>(); 
 		Entidad entidad=null;
 		Zona zona=null;
-		int indexEntidades=0;
 		int indexZona=0;
+		
 		entidades.addAll(nivel.getMovibles());
 		entidades.addAll(nivel.getParedes());
-		entidades.addAll(nivel.getPickUpEspeciales());
+		entidades.addAll(nivel.getPoderesEspeciales());
 		entidades.addAll(nivel.getPuntosEspeciales());
-		entidades.addAll(nivel.getPuntosNormales());
+		entidades.addAll(nivel.getPickUpsNormales());
+		
+		crearMatrizZonas();
+		
+		entidadesParaActualizar.addAll(entidades);
 		
 		Iterator<Entidad> itEntidades=entidades.iterator();
 		while(itEntidades.hasNext()) {
-			entidad=entidades.get(indexEntidades);
-			indexEntidades++;
+			entidad=itEntidades.next();
+			entidad.setX(entidad.getX() * Entidad.TAMANIO);
+			entidad.setY(entidad.getY() * Entidad.TAMANIO);
+			
 			indexZona=localizarZona(entidad);
 			zona=zonas.get(indexZona);
+			
 			entidad.setZona(zona);
 			zona.setEntidad(entidad);
 		}
 	}
 	
+	public void cargarEscenarioConMatriz() {
+		
+		List<Entidad> entidades = new ArrayList<Entidad>();
+		Zona zona;
+		
+		movibles.clear();
+		movibles.addAll(nivel.getMovibles());
+		
+		System.out.println("movibles: " + movibles);
+		
+		entidades.addAll(nivel.getMovibles());
+		entidades.addAll(nivel.getParedes());
+		entidades.addAll(nivel.getPickUpsNormales());
+		
+		crearMatrizZonas();
+		
+		System.out.println("zonas:");
+		for (Zona[] arrZonas : matrizZonas) {
+			System.out.println("\t" + Arrays.toString(arrZonas));
+		}
+		
+		entidadesParaActualizar.clear();
+		
+		for(Entidad entidad : entidades) {
+			zona = localizarZonaMatriz(entidad);
+			if (zona == null) {
+				System.out.println("zona no encontrada para entidad: " + entidad);
+			} else {
+				//System.out.println("zonaEncontrada para entidad: " + entidad);
+				entidad.setZona(zona);
+				zona.setEntidad(entidad);
+				entidadesParaActualizar.add(entidad);
+			}
+		}
+	}
+	
 	private int localizarZona(Entidad e) {
-		int numZona=0;
+		int numZona;
 		int posX=e.getX();
 		int posY=e.getY();
-		int cantZonasHorizaontal=mapa.getAncho() / ladoZona;
-		numZona=posY/ladoZona*cantZonasHorizaontal+posX/ladoZona;
+		int cantZonasHorizaontal=nivel.getAncho() / TAMANIO_ZONA;
+		numZona=posY/TAMANIO_ZONA*cantZonasHorizaontal+posX/TAMANIO_ZONA;
 		
 		return numZona;
 	}
+	
+	private Zona localizarZonaMatriz(Entidad e) {
+		/*int numZona;
+		int posX=e.getX();
+		int posY=e.getY();
+		int cantZonasHorizaontal=mapa.getAncho() / anchoZona;
+		numZona=posY/anchoZona*cantZonasHorizaontal+posX/anchoZona;
+		
+		return numZona;*/
+		
+		for (int fila = 0; fila < matrizZonas.length; ++fila) {
+			for (int columna = 0; columna < matrizZonas[fila].length; ++columna) {
+				if (matrizZonas[fila][columna].contiene(e)) {
+					return matrizZonas[fila][columna];
+				}
+			}
+		}
+		return null;
+	}
+	
 	private void crearZonas() {
+		zonas.clear();
 		
-		boolean irregularHorizontal=false;
-		boolean irregularVertical=false;
-		int cantZonasHorizaontal=mapa.getAncho() / ladoZona;
-		int cantZonasVertical=mapa.getAlto() / ladoZona;
+		boolean irregularHorizontal = false;
+		boolean irregularVertical = false;
+		int cantZonasHorizaontal = nivel.getAncho() / TAMANIO_ZONA;
+		int cantZonasVertical = nivel.getAlto() / TAMANIO_ZONA;
 		
-		if(mapa.getAncho() % ladoZona !=0) {
+		if(nivel.getAncho() % TAMANIO_ZONA !=0) {
 			cantZonasHorizaontal++;
 			irregularHorizontal=true;
 		}
 		
-		if(mapa.getAlto() % ladoZona !=0) {
+		if(nivel.getAlto() % TAMANIO_ZONA !=0) {
 			cantZonasVertical++;
 			irregularVertical=true;
 		}
 		
-		Zona zonaAux;
+		Zona zonaAux = null;
 		for(int y=0;y<cantZonasVertical;y++) {
 			for(int x=0;x<cantZonasHorizaontal;x++) {
 				
 				if(irregularHorizontal && !irregularVertical) {
 					if(x==cantZonasHorizaontal-1) {
-						zonaAux= new Zona(x*ladoZona,y*ladoZona,ladoZona,mapa.getAncho() %ladoZona);
-						zonas.add(zonaAux);
+						zonaAux= new Zona(x*TAMANIO_ZONA,y*TAMANIO_ZONA,TAMANIO_ZONA,nivel.getAncho() % TAMANIO_ZONA);
 					}else {
-						zonaAux= new Zona(x*ladoZona,y*ladoZona,ladoZona,ladoZona);
-						zonas.add(zonaAux);
+						zonaAux= new Zona(x*TAMANIO_ZONA,y*TAMANIO_ZONA,TAMANIO_ZONA,TAMANIO_ZONA);
 					}
 				}
 				
 				if(!irregularHorizontal && irregularVertical) {
 					if(x==cantZonasVertical-1) {
-						zonaAux= new Zona(x*ladoZona,y*ladoZona,mapa.getAlto() %ladoZona,ladoZona);
-						zonas.add(zonaAux);
+						zonaAux= new Zona(x*TAMANIO_ZONA,y*TAMANIO_ZONA,nivel.getAlto() %TAMANIO_ZONA,TAMANIO_ZONA);
 					}else {
-						zonaAux= new Zona(x*ladoZona,y*ladoZona,ladoZona,ladoZona);
-						zonas.add(zonaAux);
+						zonaAux= new Zona(x*TAMANIO_ZONA,y*TAMANIO_ZONA,TAMANIO_ZONA,TAMANIO_ZONA);
 					}
 				}
 				
 				if(irregularHorizontal && irregularVertical) {
 					if(x==cantZonasHorizaontal-1) {
-						zonaAux= new Zona(x*ladoZona,y*ladoZona,mapa.getAlto() % ladoZona,mapa.getAncho() %ladoZona);
-						zonas.add(zonaAux);
+						zonaAux= new Zona(x*TAMANIO_ZONA,y*TAMANIO_ZONA,nivel.getAlto() % TAMANIO_ZONA,nivel.getAncho() %TAMANIO_ZONA);
 					}else {
-						zonaAux= new Zona(x*ladoZona,y*ladoZona,ladoZona,ladoZona);
-						zonas.add(zonaAux);
+						zonaAux= new Zona(x*TAMANIO_ZONA,y*TAMANIO_ZONA,TAMANIO_ZONA,TAMANIO_ZONA);
 					}
 				}
 				
 				if(!irregularHorizontal && !irregularVertical) {
-					zonaAux= new Zona(x*ladoZona,y*ladoZona,ladoZona,ladoZona);
-					zonas.add(zonaAux);
+					zonaAux= new Zona(x*TAMANIO_ZONA,y*TAMANIO_ZONA,TAMANIO_ZONA,TAMANIO_ZONA);
 				}
-				
+
+				zonas.add(zonaAux);
 			}
 		}
 		
 	}
 	
-	@Override
-	public void actualizar() {
-		//System.out.println("actualizando escenario");
-		ArrayList<PosicionGrafica> posicionesModificadas = new ArrayList<PosicionGrafica>();
-		for (Movible m : movibles) {
-			posicionesModificadas.addAll(m.mover());
-			juego.actualizarVidas(personaje.getVidas());
+	private void crearMatrizZonas() {
+		System.out.println("ancho: " + nivel.getAncho());
+		System.out.println("alto: " + nivel.getAlto());
+		System.out.println("columnas: " + nivel.getCantColumnas());
+		System.out.println("filas: " + nivel.getCantFilas());
+		
+		int anchoNivel = nivel.getAncho();
+		int altoNivel = nivel.getAlto();
+		int cantZonasHorizontal = anchoNivel / TAMANIO_ZONA;
+		int cantZonasVertical = altoNivel / TAMANIO_ZONA;
+		
+		if(anchoNivel % TAMANIO_ZONA != 0) {
+			cantZonasHorizontal++;
 		}
-		//System.out.println("posicionesModificadas: " + posicionesModificadas);
-		if (!posicionesModificadas.isEmpty()) {
-			juego.actualizarGraficos(posicionesModificadas);
+		
+		if(altoNivel % TAMANIO_ZONA != 0) {
+			cantZonasVertical++;
+		}
+		
+		matrizZonas = new Zona[cantZonasVertical][cantZonasHorizontal];
+		
+		for(int fila = 0; fila < cantZonasVertical; fila++) {
+			for(int columna = 0; columna < cantZonasHorizontal; columna++) {
+				
+				int xZona = columna * TAMANIO_ZONA;
+				int yZona = fila * TAMANIO_ZONA;
+				
+				int anchoZona = Math.min(anchoNivel - xZona, TAMANIO_ZONA);
+				int altoZona = Math.min(altoNivel - yZona, TAMANIO_ZONA);
+				
+				matrizZonas[fila][columna] = new Zona(xZona, yZona, altoZona, anchoZona);
+			}
+		}
+		
+	}
+	
+	public void tick() {
+		System.out.println("actualizando escenario");
+		entidadesParaActualizar.clear();
+		
+		for (Movible m : movibles) {
+			m.mover();
+			//juego.actualizarVidas(personaje.getVidas());
+		}
+	}
+	
+	public void agregarEntidadParaActualizar(EntidadGrafica entidad) {
+		if (!entidadesParaActualizar.contains(entidad)) {
+			entidadesParaActualizar.add(entidad);
 		}
 	}
 	
@@ -186,37 +278,64 @@ public class Escenario implements Suscriptor {
 		this.cantPickUps = cantPickUps;
 	}
 	
-	public void eliminarPickUp(Posicion p) {
-		if(p.hayPickUp()) {
-			Juego.actualizarPuntaje(p.getPickUp().getPuntos());
-			p.setPickUp(null);
-			--cantPickUps;
-			if(cantPickUps==0) {
-				terminarNivel();
-			}
+	public void setCantVidas(int cantVidas) {
+		juego.actualizarVidas(cantVidas);
+	}
+
+	public List<EntidadGrafica> getEntidadesParaActualizar() {
+		return entidadesParaActualizar;
+	}
+	
+	public void setJuego(Juego juego) {
+		this.juego = juego;
+	}
+	
+	
+	public void eliminarPickUp(PickUp p) {
+		juego.actualizarPuntaje(p.getPuntos());
+		--cantPickUps;
+		if(cantPickUps==0) {
+			terminarNivel();
 		}
 	}
+	
 	private void terminarNivel() {
-		System.out.println("se termino el nivel. puntaje: " + Juego.getPuntajeString());
-		System.out.println("Personaje: " + personaje.getPosicion());
-		if(nivel.getSiguienteNivel()!=null) {
+		System.out.println("se termino el nivel. puntaje: " + juego.getPuntajeString());
+		System.out.println("Personaje: " + personaje);
+		if(nivel.getSiguienteNivel() != null) {
+			
 			nivel=nivel.getSiguienteNivel();
-			cargarEscenario();
-			juego.actualizarMapa(nivel.getMapa().getPosiciones());
+			
+			juego.terminarNivel();
+			
+			cargarEscenarioConMatriz();
+			
+			juego.cargarNuevoNivel();
+			
 		}else {
 			juego.gameOver();
 		}
-		System.out.println("Personaje: " + personaje.getPosicion());
+		System.out.println("Personaje: " + personaje);
+	}
+
+	public int getAncho() {
+		return nivel.getAncho();
 	}
 	
-	public Posicion getPosicion(Posicion p) {
-		if (0 <= p.getX() && p.getX() < nivel.getMapa().getAncho() && 0 <= p.getY() && p.getY() < nivel.getMapa().getAlto()) {
-			return  posiciones[p.getY()][p.getX()];
-		}
-		return new Posicion(p.getX(), p.getY());
+	public int getAlto() {
+		return nivel.getAlto();
 	}
 	
-	public PosicionGrafica[][] getPosicionesGraficas() {
-		return posiciones;
-	}
+//	public Posicion getPosicion(Posicion p) {
+//		if (0 <= p.getX() && p.getX() < nivel.getMapa().getAncho() && 0 <= p.getY() && p.getY() < nivel.getMapa().getAlto()) {
+//			return  posiciones[p.getY()][p.getX()];
+//		}
+//		return new Posicion(p.getX(), p.getY());
+//	}
+	
+//	public PosicionGrafica[][] getPosicionesGraficas() {
+//		return posiciones;
+//	}
+
+
 }

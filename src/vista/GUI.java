@@ -5,13 +5,14 @@ import javax.swing.JPanel;
 
 import logica.Juego;
 import logica.entidades.Movible;
+import vista.repositorioGrafico.figuras.RepositorioGraficoFiguras;
 
-import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+import java.util.List;
 
 public class GUI extends JFrame implements ActionListener {
 	
@@ -26,6 +27,12 @@ public class GUI extends JFrame implements ActionListener {
 		this.juego = juego;
 		
 		menuPanel = new MenuPanel(this);
+		
+		juegoPanel = new JuegoPanel(new RepositorioGraficoFiguras());
+		juegoPanel.setFocusable(true);
+		juegoPanel.addKeyListener(new GUIKeyListener());
+		System.out.println("se creo el panel de juego");
+		
 		setPanel(menuPanel);
 		setFocusable(true);
 	}
@@ -36,6 +43,7 @@ public class GUI extends JFrame implements ActionListener {
 		setVisible(true);
 		setResizable(false);
 		setLocationRelativeTo(null);
+		setFocusable(true);
 	}
 	
 	public void showMenu() {
@@ -43,37 +51,38 @@ public class GUI extends JFrame implements ActionListener {
 	}
 	
 	public void showGameOver() {
-		setPanel(new GameOverPanel(Juego.getPuntajeString()));
+		setPanel(new GameOverPanel(juego.getPuntajeString()));
 	}
-	public void showJuego(PosicionGrafica[][] posiciones) {
-		
-		juegoPanel = new JuegoPanel(posiciones);
-		juegoPanel.setFocusable(true);
-		juegoPanel.addKeyListener(new GUIKeyListener());
-		System.out.println("se creo el panel de juego");
-		
+	
+	public void showJuego() {
 		setPanel(juegoPanel);
-		juegoPanel.setFocusable(true);
 		juegoPanel.requestFocus();
 	}
-	
-	public void actualizarJuego(ArrayList<PosicionGrafica> posiciones) {
-		
-		if (juegoPanel != null) {
-			juegoPanel.actualizarGraficos(posiciones);
-			
-		}
-	}
-	
-	public void actualizarMapa(PosicionGrafica[][] posiciones) {
-		showJuego(posiciones);
+
+	public void setDimensionEscenario(int alto, int ancho) {
+		juegoPanel.setDimensiones(alto, ancho);
+	}	
+
+	public void agregarEntidades(List<EntidadGrafica> entidades) {
+		juegoPanel.agregarEntidades(entidades);
 	}
 	
 	public void actualizarVidas(int cantVidas) {
-		if(juegoPanel!=null)
-			juegoPanel.actualizarVidas(cantVidas);
+		juegoPanel.actualizarVidas(cantVidas);
 	}
 
+	public void actualizarEntidades(List<EntidadGrafica> entidades) {
+		juegoPanel.actualizarEntidades(entidades);
+	}
+	
+	public void actualizarPuntaje(int puntaje) {
+		juegoPanel.actualizarPuntaje(puntaje);
+	}
+
+	public void limpiarJuego() {
+		juegoPanel.limpiar();
+	}
+	
 	public void actionPerformed(ActionEvent e) {
 		String command = e.getActionCommand();
 		
@@ -125,7 +134,4 @@ public class GUI extends JFrame implements ActionListener {
 			}
 		}
 	}
-
-	
-	
 }

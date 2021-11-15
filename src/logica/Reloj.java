@@ -52,15 +52,17 @@ public class Reloj implements Notificadora {
 	}
 
 	protected void notificar() {
-		for (Suscriptor s : suscriptores) {
-			EventQueue.invokeLater(new Runnable() {
-				@Override
-				public void run() {
-					s.actualizar();
-				}
-			});
+		if (running) {
+			for (Suscriptor s : suscriptores) {
+				EventQueue.invokeLater(new Runnable() {
+					@Override
+					public void run() {
+						s.actualizar();
+					}
+				});
+			}
+			start();
 		}
-		start();
 	}
 	
 	private class HiloDormilon extends Thread {

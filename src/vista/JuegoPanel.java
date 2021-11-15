@@ -1,31 +1,30 @@
 package vista;
 
-import javax.swing.JPanel;
-
-import logica.Juego;
-import logica.Posicion;
-
 import java.awt.BorderLayout;
-import java.awt.GridBagLayout;
-import javax.swing.JLabel;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
-import java.util.ArrayList;
+import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.ColumnSpec;
-import com.jgoodies.forms.layout.RowSpec;
-import com.jgoodies.forms.layout.FormSpecs;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.util.List;
+
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.border.LineBorder;
+
+import vista.repositorioGrafico.RepositorioGraficoAbstracto;
 
 @SuppressWarnings("serial")
 public class JuegoPanel extends JPanel {
+	
+	private RepositorioGraficoAbstracto repositorioGrafico;
 	
 	private JLabel [][] labels;
 	
 	private JLabel lblPuntos;
 	private JPanel panelGrilla;
+	
 	private JLabel lblCorazon_1;
 	private JLabel lblCorazon_2;
 	private JLabel lblCorazon_3;
@@ -36,19 +35,19 @@ public class JuegoPanel extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public JuegoPanel(PosicionGrafica[][] posiciones) {
+	public JuegoPanel(RepositorioGraficoAbstracto repositorioGrafico) {
+		this.repositorioGrafico = repositorioGrafico;
 		System.out.println("creando panel de juego");
-		
-		
 		
 		setLayout(new BorderLayout(0, 0));
 		
 		panelGrilla = new JPanel();
+		panelGrilla.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 		add(panelGrilla, BorderLayout.CENTER);
-		GridBagLayout gbl_panelGrilla = new GridBagLayout();
-		panelGrilla.setLayout(gbl_panelGrilla);
+		panelGrilla.setLayout(null);
 		
-		cargarPosiciones(posiciones);
+		
+		//cargarPosiciones(posiciones);
 		
 		JPanel panel_1 = new JPanel();
 		add(panel_1, BorderLayout.EAST);
@@ -108,6 +107,22 @@ public class JuegoPanel extends JPanel {
 		
 	}
 
+	public void agregarEntidades(List<EntidadGrafica> entidades) {
+		limpiar();
+		for (EntidadGrafica e : entidades) {
+			//System.out.println("agregando entidad al panel grafico:");
+			//System.out.println("panelGrilla: " + panelGrilla);
+			//System.out.println("\te: " + e);
+			//System.out.println("\trep: " + e.getRepresentacionGrafica(repositorioGrafico));
+			panelGrilla.add(e.getRepresentacionGrafica(repositorioGrafico).getLabel());
+		}
+	}
+	
+	public void setDimensiones(int alto, int ancho) {
+		panelGrilla.setPreferredSize(new Dimension(ancho + 4,  alto + 4));
+		repaint();
+	}
+
 	public void actualizarVidas(int cantVidas) {
 		switch(cantVidas){
 		case 1:
@@ -118,7 +133,7 @@ public class JuegoPanel extends JPanel {
 		case 2:
 			System.out.println("entro en vidas2");
 			lblCorazon_1.setVisible(true);
-			lblCorazon_2.setVisible(true-);
+			lblCorazon_2.setVisible(true);
 			lblCorazon_1.repaint();
 			lblCorazon_2.repaint();
 		break;
@@ -173,44 +188,22 @@ public class JuegoPanel extends JPanel {
 		}
 	}
 	
-	public void actualizarGraficos(ArrayList<PosicionGrafica> posiciones) {
-		for (PosicionGrafica p : posiciones) {
-			JLabel label = labels[p.getY()][p.getX()];
-			label.setIcon(p.getRepresentacionGrafica());
-			label.repaint();
-			lblPuntos.setText(Juego.getPuntajeString());
-			lblPuntos.repaint();
+	public void actualizarEntidades(List<EntidadGrafica> entidades) {
+		for (EntidadGrafica e : entidades) {
+			e.getRepresentacionGrafica(repositorioGrafico).getLabel().repaint();
 		}
 	}
+	
+	public void actualizarPuntaje(int puntaje) {
+		lblPuntos.setText(String.valueOf(puntaje));
+		lblPuntos.repaint();
+	}
 
+	public void limpiar() {
+		panelGrilla.removeAll();
+	}
 	
 	public JLabel getLblPuntos() {
 		return lblPuntos;
-	}
-
-	public void actualizarMapa(PosicionGrafica[][] posiciones) {
-		removeAll();
-		cargarPosiciones(posiciones);
-		panelGrilla.repaint();
-	}
-	
-	private void cargarPosiciones(PosicionGrafica[][] posiciones) {
-		int alto = posiciones.length;
-		int ancho = posiciones[0].length;
-		labels = new JLabel[alto][ancho];
-		
-		for (int y = 0; y < alto; ++y) {
-			for (int x = 0; x < ancho; ++x) {
-				//System.out.println(posiciones[y][x]);
-				JLabel lblNewLabel = new JLabel(posiciones[y][x].getRepresentacionGrafica());
-				GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
-				gbc_lblNewLabel.gridx = x;
-				gbc_lblNewLabel.gridy = y;
-				panelGrilla.add(lblNewLabel, gbc_lblNewLabel);
-
-				labels[y][x] = lblNewLabel;
-				labels[y][x].repaint();
-			}
-		}
 	}
 }

@@ -11,8 +11,8 @@ public abstract class RepositorioGraficoPickUpAbstracto {
 	public static final int PUNTOS_2 = 2;
 	public static final int PUNTOS_3 = 3;
 	
-	public static final int PODER_1 = 1;
-	public static final int PODER_2 = 2;
+	public static final int PODER_VELOCIDAD = 1;
+	public static final int PODER_INMORTAL = 2;
 	public static final int PODER_3 = 3;
 	
 	protected String [] puntos;

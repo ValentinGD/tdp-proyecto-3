@@ -1,46 +1,30 @@
 package logica.entidades;
 
-import java.util.ArrayList;
-
 import javax.swing.ImageIcon;
 
 import app.App;
-import logica.Escenario;
-import logica.Posicion;
+import logica.Visitor;
 import logica.estados.personaje.EstadoPersonaje;
 import logica.estados.personaje.EstadoPersonajeNormal;
 import vista.RepositorioGrafico;
+import vista.RepresentacionGrafica;
+import vista.repositorioGrafico.RepositorioGraficoAbstracto;
 
 public class Personaje extends Movible {
 	
 	private static Personaje instancia;
 	
-	private EstadoPersonaje estado;
+	protected EstadoPersonaje estado;
 	
 	private int vidas;
-	private int direccionActual;
 	private int direccionSiguiente;
 	
 	private Personaje() {
+		super(0, 0);
 		vidas = Integer.parseInt(App.configuration.getProperty("CantVidas"));
 		direccionActual = Movible.DIRECCION_DERECHA;
 		direccionSiguiente = direccionActual;
-		estado = new EstadoPersonajeNormal();
-	}
-
-	public int getVidas() {
-		return vidas;
-	}
-
-	public void setVidas(int vidas) {
-		this.vidas = vidas;
-	}
-	
-	public void setDireccion(int direccion) {
-		if (Movible.esDireccionValida(direccion)) {
-			direccionSiguiente = direccion;
-			System.out.println("Personaje::Se cambio la direccion: " + direccionSiguiente);
-		}
+		estado = new EstadoPersonajeNormal(this, direccionActual);
 	}
 
 	public static Personaje getInstancia() {
@@ -50,22 +34,56 @@ public class Personaje extends Movible {
 		
 		return instancia;
 	}
-	
-	public ArrayList<Posicion> mover() {
-		//System.out.println("moviendo personaje");
-		Posicion posiblePosicionEnNuevaDireccion = Escenario.getInstancia().getPosicion(EstadoPersonaje.calcularSiguientePosicion(getInstancia(), direccionSiguiente));
-		if (posiblePosicionEnNuevaDireccion.esHabitable()) {
-			direccionActual = direccionSiguiente;
+
+	public void setDireccion(int direccion) {
+		if (Movible.esDireccionValida(direccion)) {
+			direccionSiguiente = direccion;
+			System.out.println("Personaje::Se cambio la direccion: " + direccionSiguiente);
 		}
-		return estado.mover(this, direccionActual);
+	}
+	
+	public void mover() {
+		//System.out.println("Personaje::mover()");
+		estado.mover();
+		//System.out.println("moviendo personaje");
+		//Posicion posiblePosicionEnNuevaDireccion = null;//Escenario.getInstancia().getPosicion(EstadoPersonaje.calcularSiguientePosicion(getInstancia(), direccionSiguiente));
+		//if (posiblePosicionEnNuevaDireccion.esHabitable()) {
+		//	direccionActual = direccionSiguiente;
+		//}
+		//return estado.mover(this, direccionActual);
 	}
 	
 	public ImageIcon getRepresentacionGrafica() {
 		return RepositorioGrafico.getPersonaje();
 	}
-	
-	public String toString() {
-		return "x: " + x + ", y: " + y + ", direccion: " + direccionActual + ", estado: " + estado; 
+
+	@Override
+	public void morir() {
+		// TODO Auto-generated method stub
 	}
 
+	@Override
+	public void aceptar(Visitor v) {
+		// TODO Auto-generated method stub
+	}
+	
+	@Override
+	public RepresentacionGrafica getRepresentacionGrafica(RepositorioGraficoAbstracto repositorioGrafico) {
+		miRepresentacion.setImageIcon(estado.getRepresentacionGrafica(repositorioGrafico.getRepositorioGraficoPersonaje()));
+		//System.out.println("representacion personaje: " + miRepresentacion);
+		return miRepresentacion;
+	}
+	
+	public int getVidas() {
+		return vidas;
+	}
+
+	public void setVidas(int vidas) {
+		this.vidas = vidas;
+	}
+	
+	@Override
+	public String toString() {
+		return "toString::Personaje: " + super.toString() + ", estado: <" + estado + ">";
+	}
 }
