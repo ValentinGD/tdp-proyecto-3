@@ -21,7 +21,6 @@ public class Pared extends Entidad{
 
 	@Override
 	public void aceptar(Visitor v) {
-		// TODO Auto-generated method stub
-		
+		v.visitarPared(this);
 	}
 }
