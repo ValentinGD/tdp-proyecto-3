@@ -259,7 +259,6 @@ public class Escenario {
 		
 		for (Movible m : movibles) {
 			m.mover();
-			//juego.actualizarVidas(personaje.getVidas());
 		}
 	}
 	

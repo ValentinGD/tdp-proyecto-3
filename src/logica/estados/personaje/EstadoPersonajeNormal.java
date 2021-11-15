@@ -14,13 +14,39 @@ public class EstadoPersonajeNormal extends EstadoPersonaje {
 
 	@Override
 	public void mover() {
-		System.out.println("EstadoPersonajeNormal::mover()");
+		if(puedeMover()){
+			switch(direccionActual) {
+			case Movible.DIRECCION_ABAJO:
+				
+				personaje.setY(personaje.getY()+1);
+				System.out.println("Intenta mover abajo");
+				
+			break;
+			case Movible.DIRECCION_ARRIBA:
+				
+				personaje.setY(personaje.getY()-1);
+				System.out.println("Intenta mover arriba");
+				
+			break;
+			case Movible.DIRECCION_DERECHA:
+				
+				personaje.setX(personaje.getX()+1);
+				System.out.println("Intenta mover derecha");
+				
+			break;
+			case Movible.DIRECCION_IZQUIERDA:
+	
+				personaje.setX(personaje.getX()-1);
+	
+			break;
+			}
+		}
 	}
 
 	@Override
 	public boolean puedeMover() {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 	@Override

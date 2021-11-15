@@ -43,18 +43,7 @@ public class Personaje extends Movible {
 	}
 	
 	public void mover() {
-		//System.out.println("Personaje::mover()");
 		estado.mover();
-		//System.out.println("moviendo personaje");
-		//Posicion posiblePosicionEnNuevaDireccion = null;//Escenario.getInstancia().getPosicion(EstadoPersonaje.calcularSiguientePosicion(getInstancia(), direccionSiguiente));
-		//if (posiblePosicionEnNuevaDireccion.esHabitable()) {
-		//	direccionActual = direccionSiguiente;
-		//}
-		//return estado.mover(this, direccionActual);
-	}
-	
-	public ImageIcon getRepresentacionGrafica() {
-		return RepositorioGrafico.getPersonaje();
 	}
 
 	@Override
