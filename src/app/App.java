@@ -21,7 +21,7 @@ public class App {
 
 	private static void loadConfiguration() {
 		try {
-			InputStream input = new FileInputStream("src/resources/configuration.properties");
+			InputStream input = new FileInputStream("configuration.properties");
 			App.configuration = new Properties();
 			App.configuration.load(input);
 		}catch(IOException e){
