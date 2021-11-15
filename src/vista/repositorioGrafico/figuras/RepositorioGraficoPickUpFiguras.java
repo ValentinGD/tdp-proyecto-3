@@ -21,4 +21,5 @@ public class RepositorioGraficoPickUpFiguras extends RepositorioGraficoPickUpAbs
 	public RepositorioGraficoPickUpFiguras(String path) {
 		super(path, puntos, poderes);
 	}
+
 }

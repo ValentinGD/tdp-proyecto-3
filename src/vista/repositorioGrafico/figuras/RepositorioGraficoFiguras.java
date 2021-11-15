@@ -44,4 +44,5 @@ public class RepositorioGraficoFiguras extends RepositorioGraficoAbstracto {
 	public RepositorioGraficoEscenario getRepositorioGraficoEscenario() {
 		return new RepositorioGraficoEscenario(path);
 	}
+	
 }
