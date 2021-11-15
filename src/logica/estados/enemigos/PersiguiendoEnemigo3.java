@@ -1,5 +1,6 @@
 package logica.estados.enemigos;
 
+import logica.entidades.Pared;
 import logica.entidades.enemigos.Enemigo;
 
 public class PersiguiendoEnemigo3 extends PersiguiendoEnemigoAbstracto {
@@ -13,11 +14,4 @@ public class PersiguiendoEnemigo3 extends PersiguiendoEnemigoAbstracto {
 		// TODO Auto-generated method stub
 		
 	}
-
-	@Override
-	public boolean puedeMover() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
 }

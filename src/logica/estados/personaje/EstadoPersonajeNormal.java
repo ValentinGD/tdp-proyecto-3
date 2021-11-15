@@ -1,52 +1,30 @@
 package logica.estados.personaje;
 
+import java.util.List;
+import java.util.Vector;
+
 import javax.swing.ImageIcon;
 
+import logica.Escenario;
+import logica.Zona;
+import logica.entidades.Entidad;
 import logica.entidades.Movible;
+import logica.entidades.Pared;
 import logica.entidades.Personaje;
 import vista.repositorioGrafico.RepositorioGraficoPersonaje;
 
 public class EstadoPersonajeNormal extends EstadoPersonaje {
-
+	
 	public EstadoPersonajeNormal(Personaje personaje, int direccionActual) {
 		super(personaje, direccionActual);
 	}
 
 	@Override
 	public void mover() {
-		if(puedeMover()){
-			switch(direccionActual) {
-			case Movible.DIRECCION_ABAJO:
-				
-				personaje.setY(personaje.getY()+1);
-				System.out.println("Intenta mover abajo");
-				
-			break;
-			case Movible.DIRECCION_ARRIBA:
-				
-				personaje.setY(personaje.getY()-1);
-				System.out.println("Intenta mover arriba");
-				
-			break;
-			case Movible.DIRECCION_DERECHA:
-				
-				personaje.setX(personaje.getX()+1);
-				System.out.println("Intenta mover derecha");
-				
-			break;
-			case Movible.DIRECCION_IZQUIERDA:
-	
-				personaje.setX(personaje.getX()-1);
-	
-			break;
-			}
+		calcularPosicionDestino(personaje.getX(), personaje.getY());
+		if(puedeMover(personaje)){
+			
 		}
-	}
-
-	@Override
-	public boolean puedeMover() {
-		// TODO Auto-generated method stub
-		return true;
 	}
 
 	@Override

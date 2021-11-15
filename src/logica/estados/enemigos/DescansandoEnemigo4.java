@@ -16,11 +16,4 @@ public class DescansandoEnemigo4 extends DescansandoEnemigoAbstracto {
 		// TODO Auto-generated method stub
 		
 	}
-
-	@Override
-	public boolean puedeMover() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
 }

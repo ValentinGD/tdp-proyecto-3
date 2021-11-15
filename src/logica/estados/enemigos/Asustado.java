@@ -2,6 +2,7 @@ package logica.estados.enemigos;
 
 import javax.swing.ImageIcon;
 
+import logica.entidades.Pared;
 import logica.entidades.enemigos.Enemigo;
 import vista.repositorioGrafico.RepositorioGraficoEnemigo;
 
@@ -18,15 +19,7 @@ public class Asustado extends EstadoEnemigo {
 	}
 
 	@Override
-	public boolean puedeMover() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
 	public ImageIcon getRepresentacionGrafica(RepositorioGraficoEnemigo repositorio) {
 		return repositorio.getEnemigoAsustadoGrafico();
 	}
-
-
 }

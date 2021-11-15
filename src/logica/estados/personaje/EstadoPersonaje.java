@@ -1,23 +1,18 @@
 package logica.estados.personaje;
 
-import java.util.ArrayList;
-
 import javax.swing.ImageIcon;
 
-import logica.entidades.Movible;
 import logica.entidades.Personaje;
 import logica.estados.EstadoMovible;
 import vista.repositorioGrafico.RepositorioGraficoPersonaje;
 
-public abstract class EstadoPersonaje implements EstadoMovible {
+public abstract class EstadoPersonaje extends EstadoMovible {
 	
 	protected Personaje personaje;
 	
-	protected int direccionActual;
-	
 	protected EstadoPersonaje(Personaje personaje, int direccionActual) {
+		super(direccionActual);
 		this.personaje = personaje;
-		this.direccionActual = direccionActual;
 	}
 	
 	public abstract void mover();

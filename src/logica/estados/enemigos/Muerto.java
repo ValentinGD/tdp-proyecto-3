@@ -16,13 +16,7 @@ public class Muerto extends EstadoEnemigo {
 		// TODO Auto-generated method stub
 		
 	}
-
-	@Override
-	public boolean puedeMover() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
+	
 	@Override
 	public ImageIcon getRepresentacionGrafica(RepositorioGraficoEnemigo repositorio) {
 		return repositorio.getMovibleMuertoGrafico();

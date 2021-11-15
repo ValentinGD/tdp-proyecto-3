@@ -16,12 +16,4 @@ public class PersiguiendoEnemigo4 extends PersiguiendoEnemigoAbstracto {
 		// TODO Auto-generated method stub
 		
 	}
-
-	@Override
-	public boolean puedeMover() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-
 }
