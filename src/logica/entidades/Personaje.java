@@ -3,6 +3,7 @@ package logica.entidades;
 import javax.swing.ImageIcon;
 
 import app.App;
+import logica.Escenario;
 import logica.Visitor;
 import logica.estados.personaje.EstadoPersonaje;
 import logica.estados.personaje.EstadoPersonajeNormal;
@@ -44,6 +45,7 @@ public class Personaje extends Movible {
 	
 	public void mover() {
 		estado.mover();
+		Escenario.getInstancia().agregarEntidadParaActualizar(this);
 	}
 
 	@Override
