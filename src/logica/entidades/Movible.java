@@ -30,7 +30,7 @@ public abstract class Movible extends Entidad implements Visitor {
 		super(x, y);
 		chocaste = false;
 		ticCount = 0;
-		direccionActual = DIRECCION_ARRIBA;
+		direccionActual = DIRECCION_ABAJO;
 	}
 	
 	public abstract void mover();
@@ -76,6 +76,10 @@ public abstract class Movible extends Entidad implements Visitor {
 
 	public int getDireccionActual() {
 		return direccionActual;
+	}
+	
+	public void setDireccionActual(int direccionActual) {
+		this.direccionActual=direccionActual;
 	}
 	
 	public boolean puedeGirar() {

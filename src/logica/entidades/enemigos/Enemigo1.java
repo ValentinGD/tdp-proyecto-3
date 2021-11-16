@@ -67,7 +67,7 @@ public class Enemigo1 extends Enemigo {
 
 	@Override
 	public void mover() {
-		// TODO Auto-generated method stub
+		estado.mover();
 		
 	}
 
