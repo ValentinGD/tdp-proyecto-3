@@ -12,7 +12,11 @@ public class PoderVelocidad extends PoderEspecial {
 
 	@Override
 	public RepresentacionGrafica getRepresentacionGrafica(RepositorioGraficoAbstracto repositorioGrafico) {
-		miRepresentacion.setImageIcon(repositorioGrafico.getRepositorioGraficoPickUp().getPickUpPoderEspecialGrafico(RepositorioGraficoPickUpAbstracto.PODER_VELOCIDAD));
+		if (comido) {
+			miRepresentacion.setImageIcon(null);
+		} else {
+			miRepresentacion.setImageIcon(repositorioGrafico.getRepositorioGraficoPickUp().getPickUpPoderEspecialGrafico(RepositorioGraficoPickUpAbstracto.PODER_VELOCIDAD));
+		}
 		return miRepresentacion;
 	}
 

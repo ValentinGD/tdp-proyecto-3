@@ -16,19 +16,15 @@ public class PuntosNormal extends PickUpPuntos {
 	
 	public ImageIcon getRepresentacionGrafica() {
 		return RepositorioGrafico.getPuntoChico();
-
 	}
 
 	@Override
 	public RepresentacionGrafica getRepresentacionGrafica(RepositorioGraficoAbstracto repositorioGrafico) {
-		miRepresentacion.setImageIcon(repositorioGrafico.getRepositorioGraficoPickUp().getPickUpPuntoNormalGrafico());
+		if (comido) {
+			miRepresentacion.setImageIcon(null);
+		} else {
+			miRepresentacion.setImageIcon(repositorioGrafico.getRepositorioGraficoPickUp().getPickUpPuntoNormalGrafico());
+		}
 		return miRepresentacion;
 	}
-
-	@Override
-	public void aceptar(Visitor v) {
-		// TODO Auto-generated method stub
-		
-	}
-	
 }

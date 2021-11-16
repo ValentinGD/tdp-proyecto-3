@@ -349,7 +349,7 @@ public class Escenario {
 	
 	public void eliminarPickUp(PickUp p) {
 		juego.actualizarPuntaje(p.getPuntos());
-		p.getZona().getEntidades().remove(p);
+		p.comer();
 	}
 
 	public int getAncho() {

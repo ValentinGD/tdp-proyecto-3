@@ -29,7 +29,11 @@ public class RepresentacionGrafica {
 	}
 	
 	public void setImageIcon(ImageIcon icon) {
-		label.setIcon(resize(icon));
+		if (icon != null) {
+			label.setIcon(resize(icon));
+		} else {
+			label.setIcon(null);
+		}
 	}
 	
 	private ImageIcon resize(ImageIcon icono) {

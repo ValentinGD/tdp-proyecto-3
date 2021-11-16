@@ -21,7 +21,11 @@ public class PuntosEspecial extends PickUpPuntos {
 
 	@Override
 	public RepresentacionGrafica getRepresentacionGrafica(RepositorioGraficoAbstracto repositorioGrafico) {
-		miRepresentacion.setImageIcon(repositorioGrafico.getRepositorioGraficoPickUp().getPickUpPuntoEspecialGrafico(RepositorioGraficoPickUpAbstracto.PUNTOS_1));
+		if (comido) {
+			miRepresentacion.setImageIcon(null);
+		} else {
+			miRepresentacion.setImageIcon(repositorioGrafico.getRepositorioGraficoPickUp().getPickUpPuntoEspecialGrafico(RepositorioGraficoPickUpAbstracto.PUNTOS_1));
+		}
 		return miRepresentacion;
 	}
 

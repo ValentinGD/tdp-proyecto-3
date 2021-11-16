@@ -1,9 +1,6 @@
 package logica.entidades.pickups.poderes;
 
 import logica.Visitor;
-import vista.RepresentacionGrafica;
-import vista.repositorioGrafico.RepositorioGraficoAbstracto;
-import vista.repositorioGrafico.RepositorioGraficoPickUpAbstracto;
 
 public abstract class PoderEspecial extends PickUpPoder {
 	

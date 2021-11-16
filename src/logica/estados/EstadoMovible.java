@@ -39,7 +39,7 @@ public abstract class EstadoMovible {
 			}
 		}
 		
-		System.out.println("visitando " + entidades.size() + " entidades.");
+		//System.out.println("visitando " + entidades.size() + " entidades.");
 		
 		//System.out.println("Entidades a comparar:");
 		//for (Entidad e : entidades) {

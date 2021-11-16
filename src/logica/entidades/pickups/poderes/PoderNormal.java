@@ -16,7 +16,11 @@ public class PoderNormal extends PickUpPoder {
 
 	@Override
 	public RepresentacionGrafica getRepresentacionGrafica(RepositorioGraficoAbstracto repositorioGrafico) {
-		miRepresentacion.setImageIcon(repositorioGrafico.getRepositorioGraficoPickUp().getPickUpPoderNormalGrafico());
+		if (comido) {
+			miRepresentacion.setImageIcon(null);
+		} else {
+			miRepresentacion.setImageIcon(repositorioGrafico.getRepositorioGraficoPickUp().getPickUpPoderNormalGrafico());
+		}
 		return miRepresentacion;
 	}
 	
