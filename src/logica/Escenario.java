@@ -260,6 +260,7 @@ public class Escenario {
 		entidadesParaActualizar.clear();
 		
 		for (Movible m : movibles) {
+			//personaje.mover();
 			m.mover();
 		}
 	}
@@ -361,6 +362,8 @@ public class Escenario {
 
 	public void reubicar(Movible m) {
 		if (!m.getZona().contieneCoordenadas(m)) {
+			System.out.println("Hay que reubicar movible");
+			
 			Zona nuevaZona = getZonaAdyacente(m.getZona(), m.getDireccionActual());
 			m.getZona().eliminar(m);
 			

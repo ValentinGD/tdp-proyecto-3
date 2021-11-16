@@ -81,7 +81,9 @@ public class Zona {
 	}
 	
 	public void addEntidad(Entidad entidad) {
-		entidades.add(entidad);
+		if (!entidades.contains(entidad)) {
+			entidades.add(entidad);
+		}
 	}
 
 	public int getX() {
