@@ -25,10 +25,4 @@ public class PuntosEspecial extends PickUpPuntos {
 		return miRepresentacion;
 	}
 
-	@Override
-	public void aceptar(Visitor v) {
-		// TODO Auto-generated method stub
-		
-	}
-
 }
