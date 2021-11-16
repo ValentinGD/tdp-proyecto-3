@@ -25,7 +25,7 @@ public abstract class EstadoPersonaje extends EstadoMovible {
 			if (giroPermitido && puedeMover(personaje, personaje.getDireccionSiguiente())) {
 				//System.out.println("se puede cambiar de direccion");
 				direccionActual = personaje.getDireccionSiguiente();
-				personaje.setDireccionActual(direccionActual);
+				personaje.actualizarDireccion();
 				if (personaje.getDireccionActual() != personaje.getDireccionSiguiente()) {
 //					System.out.println("Error en seteo de direcciones de personaje.-----------------------------------------------");
 //					System.out.println("\tpersonaje.getDireccionActual(): " + personaje.getDireccionActual());

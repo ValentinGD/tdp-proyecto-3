@@ -1,5 +1,6 @@
 package logica.estados;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import logica.Escenario;
@@ -28,7 +29,7 @@ public abstract class EstadoMovible {
 
 	public boolean puedeMover(Movible m, int direccion) {
 		Zona zona = m.getZona();
-		List<Entidad> entidades = zona.getEntidades();
+		List<Entidad> entidades = new ArrayList<Entidad>(zona.getEntidades());
 		
 		if (zona.estaEnElBorde(m, direccion)) {
 			//System.out.println("el movible <" + m + "> esta al borde de la zona: " + zona);
@@ -37,6 +38,8 @@ public abstract class EstadoMovible {
 				entidades.addAll(zonaAdyacente.getEntidades());
 			}
 		}
+		
+		System.out.println("visitando " + entidades.size() + " entidades.");
 		
 		//System.out.println("Entidades a comparar:");
 		//for (Entidad e : entidades) {
