@@ -2,9 +2,7 @@ package Mapas;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.net.URISyntaxException;
 import java.util.Scanner;
-
 import app.App;
 import logica.entidades.Entidad;
 import logica.entidades.Movible;
@@ -37,8 +35,7 @@ public class MapLoader {
 		Mapa mapa = null;
 		String linea;
 		int fila = 0;
-		int ancho = 0;
-		
+		int ancho = 0;		
 		
 		try (Scanner scanner = new Scanner(new File(path))) {
 			if (scanner.hasNextLine()) {
@@ -62,13 +59,11 @@ public class MapLoader {
 			e.printStackTrace();
 			//mapa = Mapa.MAPA_VACIO;
 		}
-		
-
-		
 
 		//System.out.println("Se cargo el mapa: " + numeroMapa);
 		System.out.println("Cantidad de filas: " + fila);
 		//System.out.println("mapa creado: " + mapa);
+
 		return mapa;
 	}
 
@@ -95,6 +90,7 @@ public class MapLoader {
 	 */
 	private static void caracterAEntidad(char c, Mapa m, int x, int y) {
 		Entidad entidad;
+		
 		switch (c) {
 
 		case '*':
@@ -121,6 +117,7 @@ public class MapLoader {
 			entidad = new PoderVelocidad(x,y);
 			m.addPoderEspecial((PickUpPoder) entidad);
 			break;
+			
 		case 'I':
 			entidad = new PoderInmortal(x,y);
 			m.addPoderEspecial((PickUpPoder) entidad);
@@ -167,7 +164,6 @@ public class MapLoader {
 			break;
 
 		case ' ':
-			
 			break;
 
 		default:

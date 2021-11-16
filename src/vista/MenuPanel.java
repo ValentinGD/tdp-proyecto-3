@@ -1,57 +1,43 @@
 package vista;
 
 import javax.swing.JPanel;
-import javax.swing.border.TitledBorder;
-
 import app.App;
-
-import java.awt.BorderLayout;
-import java.awt.GridBagLayout;
 import javax.swing.JLabel;
-import java.awt.GridBagConstraints;
-
-import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.Insets;
 import java.awt.Font;
 import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import javax.swing.border.EmptyBorder;
+import java.awt.Dimension;
+import javax.swing.border.BevelBorder;
 
+@SuppressWarnings("serial")
 public class MenuPanel extends JPanel {
 	
-	/**
-	 * Create the panel.
-	 */
 	public MenuPanel(ActionListener gui) {
-		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[]{0, 0};
-		gridBagLayout.rowHeights = new int[]{0, 0, 0};
-		gridBagLayout.columnWeights = new double[]{1.0, Double.MIN_VALUE};
-		gridBagLayout.rowWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
-		setLayout(gridBagLayout);
-		
+		setBorder(new EmptyBorder(10, 10, 10, 10));
+		setLayout(new BorderLayout(7, 7));
+
 		JLabel lblTitulo = new JLabel(App.configuration.getProperty("Bienvenida"));
-		lblTitulo.setFont(new Font("Tahoma", Font.PLAIN, 24));
-		GridBagConstraints gbc_lblTitulo = new GridBagConstraints();
-		gbc_lblTitulo.insets = new Insets(50, 0, 5, 0);
-		gbc_lblTitulo.anchor = GridBagConstraints.ABOVE_BASELINE;
-		gbc_lblTitulo.gridx = 0;
-		gbc_lblTitulo.gridy = 0;
-		add(lblTitulo, gbc_lblTitulo);
+		lblTitulo.setFocusable(false);
+		lblTitulo.setFont(new Font("Tahoma", Font.BOLD, 20));
+		add(lblTitulo, BorderLayout.WEST);
 		
 		JLabel lblLogo = new JLabel(new ImageIcon(MenuPanel.class.getResource(App.configuration.getProperty("Logo"))));
-		add(lblLogo);
+		lblLogo.setFocusable(false);
+		add(lblLogo, BorderLayout.EAST);
 		
 		JButton btnComenzar = new JButton("Comenzar");
+		btnComenzar.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, Color.DARK_GRAY, Color.DARK_GRAY));
+		btnComenzar.setMargin(new Insets(2, 10, 2, 10));
+		btnComenzar.setMnemonic('C');
 		btnComenzar.setActionCommand("comenzar");
 		btnComenzar.addActionListener(gui);
-		GridBagConstraints gbc_btnComenzar = new GridBagConstraints();
-		gbc_btnComenzar.fill = GridBagConstraints.BOTH;
-		gbc_btnComenzar.gridx = 0;
-		gbc_btnComenzar.gridy = 1;
-		add(btnComenzar, gbc_btnComenzar);
-
+		btnComenzar.setPreferredSize(new Dimension(40, 40));
+		add(btnComenzar, BorderLayout.SOUTH);
 	}
 
 }
