@@ -17,16 +17,16 @@ public abstract class PersiguiendoEnemigoAbstracto extends EstadoEnemigo {
 		ImageIcon img;
 		switch(direccionActual) {
 		case Movible.DIRECCION_ABAJO:
-			img = repositorio.getMovibleAbajoGraifco();
+			img = repositorio.getMovibleAbajoGrafico();
 			break;
 		case Movible.DIRECCION_ARRIBA:
-			img = repositorio.getMovibleArribaGraifco();
+			img = repositorio.getMovibleArribaGrafico();
 			break;
 		case Movible.DIRECCION_DERECHA:
-			img = repositorio.getMovibleDerechaGraifco();
+			img = repositorio.getMovibleDerechaGrafico();
 			break;
 		case Movible.DIRECCION_IZQUIERDA:
-			img = repositorio.getMovibleIzquierdaGraifco();
+			img = repositorio.getMovibleIzquierdaGrafico();
 			break;
 		default:
 			img = new ImageIcon();

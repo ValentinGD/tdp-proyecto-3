@@ -322,14 +322,6 @@ public class Escenario {
 		return zona;
 	}
 	
-	public void eliminarPickUp(PickUp p) {
-		juego.actualizarPuntaje(p.getPuntos());
-		--cantPickUps;
-		if(cantPickUps==0) {
-			terminarNivel();
-		}
-	}
-	
 	private void terminarNivel() {
 		System.out.println("se termino el nivel. puntaje: " + juego.getPuntajeString());
 		System.out.println("Personaje: " + personaje);
@@ -347,6 +339,11 @@ public class Escenario {
 			juego.gameOver();
 		}
 		System.out.println("Personaje: " + personaje);
+	}
+	
+	public void eliminarPickUp(PickUp p) {
+		juego.actualizarPuntaje(p.getPuntos());
+		p.getZona().getEntidades().remove(p);
 	}
 
 	public int getAncho() {

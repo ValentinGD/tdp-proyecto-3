@@ -1,15 +1,20 @@
 package logica.entidades;
 
+import java.util.List;
+
 import javax.swing.ImageIcon;
 
 import app.App;
 import logica.Escenario;
 import logica.Visitor;
+import logica.Zona;
 import logica.estados.personaje.EstadoPersonaje;
 import logica.estados.personaje.EstadoPersonajeNormal;
 import vista.RepositorioGrafico;
 import vista.RepresentacionGrafica;
 import vista.repositorioGrafico.RepositorioGraficoAbstracto;
+import logica.entidades.pickups.poderes.PickUpPoder;
+import logica.entidades.pickups.puntos.*;
 
 public class Personaje extends Movible {
 	
@@ -87,5 +92,25 @@ public class Personaje extends Movible {
 
 	public int getDireccionSiguiente() {
 		return direccionSiguiente;
+	}
+	
+	public void comerPickUp() {
+		Zona zona = getZona();
+		List<Entidad> entidades = zona.getEntidades();
+		for (Entidad e : entidades) {
+			e.aceptar(this);
+		}
+	}
+	
+	public void visitarPickUpPuntos(PickUpPuntos p) {
+		if(this.getX()==p.getX() && this.getY()==p.getY()) {
+			Escenario.getInstancia().eliminarPickUp(p);
+		}
+	}
+	public void visitarPickUpPoder(PickUpPoder p) {
+		p.aplicarPoder(this);
+		if(this.getX()==p.getX() && this.getY()==p.getY()) {
+			Escenario.getInstancia().eliminarPickUp(p);
+		}
 	}
 }

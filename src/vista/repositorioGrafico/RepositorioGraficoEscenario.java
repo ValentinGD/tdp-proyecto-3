@@ -61,4 +61,5 @@ public class RepositorioGraficoEscenario {
 	public ImageIcon getParedVertical() {
 		return IconReader.readIcon(path + "pared_vertical.png");
 	}
+	
 }

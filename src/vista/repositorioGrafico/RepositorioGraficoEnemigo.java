@@ -13,26 +13,26 @@ public class RepositorioGraficoEnemigo extends RepositorioGraficoMovibleAbstract
 	}
 
 	public ImageIcon getEnemigoAsustadoGrafico() {
-		return IconReader.readIcon(path + "enemigo_austado.png");
+		return IconReader.readIcon(path + "enemigo_asustado.png");
 	}
 
 	@Override
-	public ImageIcon getMovibleIzquierdaGraifco() {
+	public ImageIcon getMovibleIzquierdaGrafico() {
 		return IconReader.readIcon(path + "enemigo_" + numero +"_izquierda.png");
 	}
 
 	@Override
-	public ImageIcon getMovibleDerechaGraifco() {
+	public ImageIcon getMovibleDerechaGrafico() {
 		return IconReader.readIcon(path + "enemigo_" + numero +"_derecha.png");
 	}
 
 	@Override
-	public ImageIcon getMovibleArribaGraifco() {
+	public ImageIcon getMovibleArribaGrafico() {
 		return IconReader.readIcon(path + "enemigo_" + numero +"_arriba.png");
 	}
 
 	@Override
-	public ImageIcon getMovibleAbajoGraifco() {
+	public ImageIcon getMovibleAbajoGrafico() {
 		return IconReader.readIcon(path + "enemigo_" + numero +"_abajo.png");
 	}
 
@@ -40,4 +40,5 @@ public class RepositorioGraficoEnemigo extends RepositorioGraficoMovibleAbstract
 	public ImageIcon getMovibleMuertoGrafico() {
 		return IconReader.readIcon(path + "enemigo_muerto.png");
 	}
+
 }

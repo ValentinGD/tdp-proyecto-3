@@ -14,22 +14,22 @@ public class RepositorioGraficoPersonaje extends RepositorioGraficoMovibleAbstra
 	}
 
 	@Override
-	public ImageIcon getMovibleIzquierdaGraifco() {
+	public ImageIcon getMovibleIzquierdaGrafico() {
 		return IconReader.readIcon(path + "personaje_normal_izquierda.png");
 	}
 
 	@Override
-	public ImageIcon getMovibleDerechaGraifco() {
+	public ImageIcon getMovibleDerechaGrafico() {
 		return IconReader.readIcon(path + "personaje_normal_derecha.png");
 	}
 
 	@Override
-	public ImageIcon getMovibleArribaGraifco() {
+	public ImageIcon getMovibleArribaGrafico() {
 		return IconReader.readIcon(path + "personaje_normal_arriba.png");
 	}
 
 	@Override
-	public ImageIcon getMovibleAbajoGraifco() {
+	public ImageIcon getMovibleAbajoGrafico() {
 		return IconReader.readIcon(path + "personaje_normal_abajo.png");
 	}
 
@@ -37,4 +37,5 @@ public class RepositorioGraficoPersonaje extends RepositorioGraficoMovibleAbstra
 	public ImageIcon getMovibleMuertoGrafico() {
 		return IconReader.readIcon(path + "personaje_muerto.png");
 	}
+
 }
