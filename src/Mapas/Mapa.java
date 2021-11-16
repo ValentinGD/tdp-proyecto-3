@@ -2,7 +2,6 @@ package Mapas;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import logica.entidades.Entidad;
 import logica.entidades.Movible;
 import logica.entidades.Pared;
@@ -11,7 +10,6 @@ import logica.entidades.pickups.puntos.PuntosEspecial;
 import logica.entidades.pickups.puntos.PuntosNormal;
 
 public class Mapa {
-	
 	
 	private List<Movible> movibles;
 	private List<PuntosNormal> puntosNormales;

@@ -8,11 +8,9 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.util.List;
-
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
-
 import vista.repositorioGrafico.RepositorioGraficoAbstracto;
 
 @SuppressWarnings("serial")
@@ -45,7 +43,6 @@ public class JuegoPanel extends JPanel {
 		panelGrilla.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 		add(panelGrilla, BorderLayout.CENTER);
 		panelGrilla.setLayout(null);
-		
 		
 		//cargarPosiciones(posiciones);
 		
@@ -104,7 +101,6 @@ public class JuegoPanel extends JPanel {
 		lblCorazon_1 = new JLabel(RepositorioGrafico.getPocion());
 		panelVidas.add(lblCorazon_1, "6, 6");
 		lblCorazon_1.setVisible(true);
-		
 	}
 
 	public void agregarEntidades(List<EntidadGrafica> entidades) {
@@ -206,4 +202,5 @@ public class JuegoPanel extends JPanel {
 	public JLabel getLblPuntos() {
 		return lblPuntos;
 	}
+
 }

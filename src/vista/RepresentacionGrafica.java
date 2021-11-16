@@ -2,10 +2,8 @@ package vista;
 
 import java.awt.Color;
 import java.awt.Image;
-
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
-
 import logica.entidades.Entidad;
 
 public class RepresentacionGrafica {
@@ -32,7 +30,6 @@ public class RepresentacionGrafica {
 	
 	public void setImageIcon(ImageIcon icon) {
 		label.setIcon(resize(icon));
-		//System.out.println("icono colocado");
 	}
 	
 	private ImageIcon resize(ImageIcon icono) {
@@ -41,4 +38,5 @@ public class RepresentacionGrafica {
 		icono.setImage(img);
 		return icono;
 	}
+
 }

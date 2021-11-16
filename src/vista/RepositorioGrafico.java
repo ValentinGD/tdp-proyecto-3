@@ -1,13 +1,8 @@
 package vista;
 
-import java.awt.Dimension;
 import java.awt.Image;
-import java.awt.Toolkit;
-
 import javax.swing.ImageIcon;
-
 import app.App;
-import logica.Juego;
 
 public class RepositorioGrafico {
 	

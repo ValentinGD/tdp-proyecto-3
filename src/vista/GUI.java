@@ -2,18 +2,16 @@ package vista;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-
 import logica.Juego;
 import logica.entidades.Movible;
 import vista.repositorioGrafico.figuras.RepositorioGraficoFiguras;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.util.ArrayList;
 import java.util.List;
 
+@SuppressWarnings("serial")
 public class GUI extends JFrame implements ActionListener {
 	
 	private MenuPanel menuPanel;
@@ -93,7 +91,6 @@ public class GUI extends JFrame implements ActionListener {
 		default:
 			break;
 		}
-		
 	}
 	
 	private class GUIKeyListener extends KeyAdapter {
@@ -114,6 +111,7 @@ public class GUI extends JFrame implements ActionListener {
 			super.keyReleased(e);
 			//System.out.println("keyReleased");
 		}
+		
 		public void keyPressed(KeyEvent e) {
 			System.out.println("se apreto una tecla");
 			switch (e.getKeyCode()) {
@@ -134,4 +132,5 @@ public class GUI extends JFrame implements ActionListener {
 			}
 		}
 	}
+
 }
