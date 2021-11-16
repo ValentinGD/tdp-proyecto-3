@@ -50,4 +50,5 @@ public abstract class RepositorioGraficoPickUpAbstracto {
 		tipo = Math.min(tipo, poderes.length - 1);
 		return IconReader.readIcon(path + poderes[tipo]);
 	}
+	
 }

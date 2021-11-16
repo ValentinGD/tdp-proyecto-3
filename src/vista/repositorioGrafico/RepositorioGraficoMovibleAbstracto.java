@@ -10,13 +10,13 @@ public abstract class RepositorioGraficoMovibleAbstracto {
 		this.path = path + "movibles/";
 	}
 	
-	public abstract ImageIcon getMovibleIzquierdaGraifco();
+	public abstract ImageIcon getMovibleIzquierdaGrafico();
 	
-	public abstract ImageIcon getMovibleDerechaGraifco();
+	public abstract ImageIcon getMovibleDerechaGrafico();
 	
-	public abstract ImageIcon getMovibleArribaGraifco();
+	public abstract ImageIcon getMovibleArribaGrafico();
 	
-	public abstract ImageIcon getMovibleAbajoGraifco();
+	public abstract ImageIcon getMovibleAbajoGrafico();
 	
 	public abstract ImageIcon getMovibleMuertoGrafico();
 	
