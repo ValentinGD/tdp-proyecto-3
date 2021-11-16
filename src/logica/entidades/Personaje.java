@@ -121,6 +121,7 @@ public class Personaje extends Movible {
 	public void visitarPickUpPoder(PickUpPoder p) {
 		p.aplicarPoder(this);
 		if(this.getX()==p.getX() && this.getY()==p.getY()) {
+			System.out.println("sobre poder");
 			Escenario.getInstancia().eliminarPickUp(p);
 		}
 	}

@@ -28,10 +28,4 @@ public class PoderNormal extends PickUpPoder {
 		return RepositorioGrafico.getPoder();
 	}
 
-	@Override
-	public void aceptar(Visitor v) {
-		// TODO Auto-generated method stub
-		
-	}
-
 }

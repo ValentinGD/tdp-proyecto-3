@@ -109,6 +109,8 @@ public class Escenario {
 		entidades.addAll(nivel.getMovibles());
 		entidades.addAll(nivel.getParedes());
 		entidades.addAll(nivel.getPickUpsNormales());
+		entidades.addAll(nivel.getPoderesEspeciales());
+		entidades.addAll(nivel.getPuntosEspeciales());
 		
 		crearMatrizZonas();
 		
