@@ -12,7 +12,7 @@ public class PersiguiendoEnemigo1 extends PersiguiendoEnemigoAbstracto {
 
 	@Override
 	public void mover() {
-		if(puedeMover(enemigo)) {
+		if(puedeMover(enemigo, enemigo.getDireccionActual())) {
 			switch(direccionActual) {
 			case Movible.DIRECCION_ABAJO:
 				
@@ -44,8 +44,7 @@ public class PersiguiendoEnemigo1 extends PersiguiendoEnemigoAbstracto {
 	private void calcularNuevaDireccion() {
 		int direccionEjeX=0;
 		int direccionEjeY = 0;
-		Personaje personaje=null;
-		personaje.getInstancia();
+		Personaje personaje = Personaje.getInstancia();
 		
 		if(enemigo.getX()-personaje.getX()<0) {
 			direccionEjeX=Movible.DIRECCION_IZQUIERDA;
@@ -62,10 +61,10 @@ public class PersiguiendoEnemigo1 extends PersiguiendoEnemigoAbstracto {
 		if(Math.abs(enemigo.getX()-personaje.getX())<Math.abs(enemigo.getX()-personaje.getX())) {
 			if(direccionEjeX!=direccionActual*(-1)){
 				setDireccion(direccionEjeX);
-				if(!puedeMover(enemigo)) {
+				if(!puedeMover(enemigo, enemigo.getDireccionActual())) {
 					if(direccionEjeY!=direccionActual*(-1)) {
 						setDireccion(direccionEjeY);
-							if(!puedeMover(enemigo)) {
+							if(!puedeMover(enemigo, enemigo.getDireccionActual())) {
 								setDireccion(direccionEjeY*(-1));
 							}
 					}else {
@@ -74,17 +73,17 @@ public class PersiguiendoEnemigo1 extends PersiguiendoEnemigoAbstracto {
 				}
 			}else {
 				setDireccion(direccionEjeY);
-				if(!puedeMover(enemigo)) {
+				if(!puedeMover(enemigo, enemigo.getDireccionActual())) {
 					setDireccion(direccionEjeY*(-1));
 				}
 			}
 		}else {
 			if(direccionEjeY!=direccionActual*(-1)){
 				setDireccion(direccionEjeY);
-				if(!puedeMover(enemigo)) {
+				if(!puedeMover(enemigo, enemigo.getDireccionActual())) {
 					if(direccionEjeX!=direccionActual*(-1)) {
 						setDireccion(direccionEjeX);
-						if(!puedeMover(enemigo)) {
+						if(!puedeMover(enemigo, enemigo.getDireccionActual())) {
 							setDireccion(direccionEjeX*(-1));
 						}
 					}else {
@@ -93,7 +92,7 @@ public class PersiguiendoEnemigo1 extends PersiguiendoEnemigoAbstracto {
 				}
 			}else {
 					setDireccion(direccionEjeX);
-					if(!puedeMover(enemigo)) {
+					if(!puedeMover(enemigo, enemigo.getDireccionActual())) {
 					setDireccion(direccionEjeX*(-1));
 				}
 			}

@@ -356,7 +356,7 @@ public class Escenario {
 
 	public void reubicar(Movible m) {
 		if (!m.getZona().contieneCoordenadas(m)) {
-			Zona nuevaZona = getZonaAdyacente(m.getZona(), m.getDireccion());
+			Zona nuevaZona = getZonaAdyacente(m.getZona(), m.getDireccionActual());
 			m.getZona().eliminar(m);
 			m.setZona(nuevaZona);
 			nuevaZona.addEntidad(m);

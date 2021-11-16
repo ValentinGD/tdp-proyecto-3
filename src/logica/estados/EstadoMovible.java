@@ -24,7 +24,7 @@ public abstract class EstadoMovible {
 	public abstract void mover();
 
 	public boolean puedeMover(Movible m, int direccion) {
-		calcularPosicionDestino(m.getX(), m.getY(), direccion);
+		calcularPosicionDestino(null);
 		Zona zona = m.getZona();
 		List<Entidad> entidades = zona.getEntidades();
 		if (zona.distanciaABorde(m) <= Entidad.TAMANIO) {
@@ -70,11 +70,11 @@ public abstract class EstadoMovible {
 		return (m.getX() % Entidad.TAMANIO == 0) && (m.getY() % Entidad.TAMANIO == 0);
 	}
 	
-	protected void calcularPosicionDestino(int x, int y, int direccion) {
-		xDestino = x;
-		yDestino = y;
+	protected void calcularPosicionDestino(Movible m) {
+		xDestino = m.getX();
+		yDestino = m.getY();
 		
-		switch(direccion) {
+		switch(m.getDireccionActual()) {
 		case Movible.DIRECCION_ABAJO:
 			++yDestino;
 			break;

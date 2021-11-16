@@ -19,14 +19,13 @@ public class EstadoPersonajeNormal extends EstadoPersonaje {
 	@Override
 	public void mover() {
 		verificarCambioDireccion();
-		if(puedeMover(personaje, direccionActual)) {
+		if(puedeMover(personaje, personaje.getDireccionActual())) {
 			//System.out.println("moviendo personaje");
-			calcularPosicionDestino(personaje.getX(), personaje.getY(), direccionActual);
-			personaje.setX(xDestino);
-			personaje.setY(yDestino);
-			if (!personaje.getZona().contieneCoordenadas(personaje)) {
-				Escenario.getInstancia().reubicar(personaje);
-			}
+			calcularPosicionDestino(null);
+			
+			personaje.setPosicion(xDestino, yDestino);
+			Escenario.getInstancia().agregarEntidadParaActualizar(personaje);
+			Escenario.getInstancia().reubicar(personaje);
 		} else {
 			System.out.println("No se puede mover personaje");
 		}
@@ -35,7 +34,7 @@ public class EstadoPersonajeNormal extends EstadoPersonaje {
 	@Override
 	public ImageIcon getRepresentacionGrafica(RepositorioGraficoPersonaje repositorio) {
 		ImageIcon img;
-		switch(direccionActual) {
+		switch(personaje.getDireccionActual()) {
 		case Movible.DIRECCION_ABAJO:
 			img = repositorio.getMovibleAbajoGrafico();
 			break;

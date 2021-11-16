@@ -71,7 +71,7 @@ public abstract class Movible extends Entidad implements Visitor {
 		return "x: " + x + ", y: " + y + ", direccion: " + direccionActual + ", zona: " + miZona; 
 	}
 
-	public int getDireccion() {
+	public int getDireccionActual() {
 		return direccionActual;
 	}
 }

@@ -51,8 +51,6 @@ public class Personaje extends Movible {
 	
 	public void mover() {
 		estado.mover();
-		Escenario.getInstancia().agregarEntidadParaActualizar(this);
-		Escenario.getInstancia().reubicar(this);
 	}
 
 	@Override
@@ -112,5 +110,10 @@ public class Personaje extends Movible {
 		if(this.getX()==p.getX() && this.getY()==p.getY()) {
 			Escenario.getInstancia().eliminarPickUp(p);
 		}
+	}
+
+	public void setPosicion(int xDestino, int yDestino) {
+		x = xDestino;
+		y = yDestino;
 	}
 }
