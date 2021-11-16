@@ -82,7 +82,7 @@ public class Juego implements Runnable, Suscriptor  {
 	}
 
 	@Override
-	public void actualizar() {
+	public synchronized void actualizar() {
 		escenario.tick();
 		gui.actualizarEntidades(escenario.getEntidadesParaActualizar());
 	}

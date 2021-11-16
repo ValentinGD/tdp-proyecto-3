@@ -13,7 +13,7 @@ public abstract class EstadoEnemigo extends EstadoMovible {
 	protected Enemigo enemigo;
 	
 	protected EstadoEnemigo(Enemigo enemigo, int direccionInicial) {
-		super(direccionInicial);
+		super(enemigo, direccionInicial);
 		this.enemigo = enemigo;
 	}
 	

@@ -1,5 +1,6 @@
 package logica.entidades;
 
+import app.App;
 import logica.Visitor;
 import logica.Zona;
 import vista.EntidadGrafica;
@@ -7,7 +8,7 @@ import vista.RepresentacionGrafica;
 
 public abstract class Entidad implements EntidadGrafica {
 	
-	public static final int TAMANIO = 30;
+	public static final int TAMANIO = Integer.parseInt(App.configuration.getProperty("TamanioEntidad"));
 	
 	protected int x;
 	protected int y;
@@ -43,6 +44,20 @@ public abstract class Entidad implements EntidadGrafica {
 	
 	public void setZona(Zona z) {
 		miZona=z;
+	}
+	
+	public boolean colisionaConEntidadEnPosicion(int xEntidad, int yEntidad) {
+		boolean contiene = false;
+		
+		boolean dentroLimitesIzquierda 	= (x - TAMANIO) < xEntidad;
+		boolean dentroLimitesDerecha 	= 				   xEntidad < (x + TAMANIO);
+		
+		boolean dentroLimitesArriba 	= (y - TAMANIO) < yEntidad;
+		boolean dentroLimitesAbajo		= 				  yEntidad < (y + TAMANIO);
+		
+		contiene = dentroLimitesIzquierda && dentroLimitesDerecha && dentroLimitesArriba && dentroLimitesAbajo;
+		
+		return contiene;
 	}
 	
 	public abstract void aceptar(Visitor v);

@@ -292,32 +292,37 @@ public class Escenario {
 	}
 	
 	public Zona getZonaAdyacente(Zona zona, int direccion) {
-		for (int y = 0; y < matrizZonas.length; ++y) {
-			for (int x = 0; x < matrizZonas[y].length; ++x) {
-				if (matrizZonas[y][x] == zona) {
-					int xAdyacente = x;
-					int yAdyacente = y;
-					
-					switch(direccion) {
-					case Movible.DIRECCION_ABAJO:
-						yAdyacente = Math.min(yAdyacente + 1, matrizZonas.length - 1);
-						break;
-					case Movible.DIRECCION_ARRIBA:
-						yAdyacente = Math.max(yAdyacente - 1, 0);
-						break;
-					case Movible.DIRECCION_DERECHA:
-						xAdyacente = Math.min(xAdyacente + 1, matrizZonas[y].length - 1);
-						break;
-					case Movible.DIRECCION_IZQUIERDA:
-						xAdyacente = Math.max(xAdyacente - 1, 0);
-						break;
-					}
-					
-					System.out.println("zona adyacente a " + zona + ": " + matrizZonas[yAdyacente][xAdyacente]);
-					return matrizZonas[yAdyacente][xAdyacente];
-					
-				}
+		
+		int xZona = zona.getX() / TAMANIO_ZONA;
+		int yZona = zona.getY() / TAMANIO_ZONA;
+		
+		
+		
+		if (matrizZonas[yZona][xZona] == zona) {
+			
+			//System.out.println("calculando zona adyacente");
+			
+			int xAdyacente = xZona;
+			int yAdyacente = yZona;
+			
+			switch(direccion) {
+			case Movible.DIRECCION_ABAJO:
+				yAdyacente = Math.min(yAdyacente + 1, matrizZonas.length - 1);
+				break;
+			case Movible.DIRECCION_ARRIBA:
+				yAdyacente = Math.max(yAdyacente - 1, 0);
+				break;
+			case Movible.DIRECCION_DERECHA:
+				xAdyacente = Math.min(xAdyacente + 1, matrizZonas[yZona].length - 1);
+				break;
+			case Movible.DIRECCION_IZQUIERDA:
+				xAdyacente = Math.max(xAdyacente - 1, 0);
+				break;
 			}
+			
+			//System.out.println("zona adyacente a " + zona + ": " + matrizZonas[yAdyacente][xAdyacente]);
+			return matrizZonas[yAdyacente][xAdyacente];
+			
 		}
 		return zona;
 	}
@@ -358,9 +363,20 @@ public class Escenario {
 		if (!m.getZona().contieneCoordenadas(m)) {
 			Zona nuevaZona = getZonaAdyacente(m.getZona(), m.getDireccionActual());
 			m.getZona().eliminar(m);
+			
+			//System.out.println("la zona " + m.getZona() + " contiene las coordenadas del movible: " + m.getZona().contieneCoordenadas(m));
+			
 			m.setZona(nuevaZona);
 			nuevaZona.addEntidad(m);
-			System.out.println("\tSe reubico Movible: " + m);
+			//System.out.println("\tSe reubico Movible: " + m);
+			
+//			if (!m.getZona().contieneCoordenadas(m)) {
+//			//	System.out.println("Error: El movible no esta contenido en las coordenadas de la nueva zona");
+//				if (!m.getZona().getEntidades().contains(m)) {
+//				//	System.out.println("Error: El movible no fue agregado correctamente a su nueva zona");
+//				}
+//			}
+			
 		} else {
 			//System.out.println("No se reubico. Distancia a borde: " + m.getZona().distanciaABorde(m));
 		}

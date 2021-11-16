@@ -30,12 +30,30 @@ public class Zona {
 		return contiene(e.getX(), e.getY());
 	}
 	
-	public int distanciaABorde(Entidad e) {
-		int distanciaIzquierda = e.getX() - x;
-		int distanciaDerecha = (x + ancho) - (e.getX() + Entidad.TAMANIO);
-		int distanciaArriba = e.getY() - y;
-		int distanciaAbajo = (y + alto) - (e.getY() + Entidad.TAMANIO);
-		return Math.min(Math.min(Math.abs(e.getX() - x), Math.abs(e.getY() - y)), Math.min(Math.abs(e.getX() + ancho - x), Math.abs(e.getY() + alto - y)));
+//	public int distanciaABorde(Entidad e) {
+//		
+//		int distanciaIzquierda = e.getX() - x;
+//		int distanciaDerecha = (x + ancho) - (e.getX() + Entidad.TAMANIO);
+//		int distanciaArriba = e.getY() - y;
+//		int distanciaAbajo = (y + alto) - (e.getY() + Entidad.TAMANIO);
+//		
+//		
+//		
+//		return Math.min(Math.min(Math.abs(e.getX() - x), Math.abs(e.getY() - y)), Math.min(Math.abs(e.getX() + ancho - x), Math.abs(e.getY() + alto - y)));
+//	}
+	
+	public boolean estaEnElBorde(Movible m) {
+		return estaEnElBorde(m, m.getDireccionActual());
+	}
+	
+	public boolean estaEnElBorde(Movible m, int direccion) {
+		boolean estaEnBordeIzquierdo 	= (m.getX() <= x) && direccion == Movible.DIRECCION_IZQUIERDA;
+		boolean estaEnBordeDerecho		= (m.getX() + Entidad.TAMANIO >= x + ancho) && direccion == Movible.DIRECCION_DERECHA;
+		boolean estaEnBordeArriba	 	= (m.getY() <= y) && direccion == Movible.DIRECCION_ARRIBA;
+		boolean estaEnBordeAbajo		= (m.getY() + Entidad.TAMANIO >= y + alto) && direccion == Movible.DIRECCION_ABAJO;
+		
+		boolean estaEnBorde = estaEnBordeIzquierdo || estaEnBordeDerecho || estaEnBordeArriba || estaEnBordeAbajo;
+		return contieneCoordenadas(m) && (estaEnBorde);
 	}
 
 	public int getAlto() {

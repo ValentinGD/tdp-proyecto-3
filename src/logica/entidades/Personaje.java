@@ -2,15 +2,12 @@ package logica.entidades;
 
 import java.util.List;
 
-import javax.swing.ImageIcon;
-
 import app.App;
 import logica.Escenario;
 import logica.Visitor;
 import logica.Zona;
 import logica.estados.personaje.EstadoPersonaje;
 import logica.estados.personaje.EstadoPersonajeNormal;
-import vista.RepositorioGrafico;
 import vista.RepresentacionGrafica;
 import vista.repositorioGrafico.RepositorioGraficoAbstracto;
 import logica.entidades.pickups.poderes.PickUpPoder;
@@ -44,8 +41,7 @@ public class Personaje extends Movible {
 	public void setDireccion(int direccion) {
 		if (Movible.esDireccionValida(direccion)) {
 			direccionSiguiente = direccion;
-			estado.setDireccionSiguiente(direccionSiguiente);
-			//System.out.println("Personaje::Se cambio la direccion: " + direccionSiguiente);
+			System.out.println("Personaje::Se cambio la direccion: " + direccionSiguiente);
 		}
 	}
 	
@@ -90,6 +86,12 @@ public class Personaje extends Movible {
 
 	public int getDireccionSiguiente() {
 		return direccionSiguiente;
+	}
+	
+	public void setDireccionActual(int direccion) {
+		if (Movible.esDireccionValida(direccion)) {
+			direccionActual = direccion;
+		}
 	}
 	
 	public void comerPickUp() {

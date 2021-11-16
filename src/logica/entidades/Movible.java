@@ -1,5 +1,6 @@
 package logica.entidades;
 
+import app.App;
 import logica.Visitor;
 import logica.entidades.enemigos.Enemigo;
 import logica.entidades.pickups.poderes.PickUpPoder;
@@ -12,6 +13,8 @@ public abstract class Movible extends Entidad implements Visitor {
 	public static final int DIRECCION_IZQUIERDA = -1;
 	public static final int DIRECCION_ARRIBA = -2;
 	public static final int DIRECCION_ABAJO = 2;
+	
+	public static final int VELOCIDAD = Integer.parseInt(App.configuration.getProperty("VelocidadMovible"));
 	
 	protected boolean chocaste;
 	
@@ -73,5 +76,13 @@ public abstract class Movible extends Entidad implements Visitor {
 
 	public int getDireccionActual() {
 		return direccionActual;
+	}
+	
+	public boolean puedeGirar() {
+		return (x % Entidad.TAMANIO == 0) && (y % Entidad.TAMANIO == 0);
+	}
+	
+	public static boolean sonDireccionesOpuestas(int direccion1, int direccion2) {
+		return direccion1 + direccion2 == 0;
 	}
 }

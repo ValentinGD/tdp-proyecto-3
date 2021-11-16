@@ -2,6 +2,7 @@ package logica.estados.personaje;
 
 import javax.swing.ImageIcon;
 
+import logica.entidades.Movible;
 import logica.entidades.Personaje;
 import logica.estados.EstadoMovible;
 import vista.repositorioGrafico.RepositorioGraficoPersonaje;
@@ -10,28 +11,30 @@ public abstract class EstadoPersonaje extends EstadoMovible {
 	
 	protected Personaje personaje;
 	
-	protected int direccionSiguiente;
-	
-	protected EstadoPersonaje(Personaje personaje, int direccionActual) {
-		super(direccionActual);
-		direccionSiguiente = direccionActual;
+	protected EstadoPersonaje(Personaje personaje) {
+		super(personaje, personaje.getDireccionActual());
 		this.personaje = personaje;
-	}
-	
-	public void setDireccionSiguiente(int direccionSiguiente) {
-		this.direccionSiguiente = direccionSiguiente;
 	}
 
 	protected void verificarCambioDireccion() {
-		if (direccionActual != direccionSiguiente) {
-			boolean giroPermitido = false;
-			giroPermitido = estaEnUnaPosibleInterseccion(personaje) || (direccionActual + direccionSiguiente == 0);
-			if (giroPermitido && puedeMover(personaje, direccionSiguiente)) {
-				System.out.println("se puede cambiar de direccion");
-				direccionActual = direccionSiguiente;
-				personaje.setDireccion(direccionActual);
+		if (personaje.getDireccionActual() != personaje.getDireccionSiguiente()) {
+			//System.out.println("Chequeando cambio de direccion");
+			boolean sonDireccionesOpuestas = Movible.sonDireccionesOpuestas(personaje.getDireccionActual(), personaje.getDireccionSiguiente());
+			boolean giroPermitido = personaje.puedeGirar() || sonDireccionesOpuestas;
+			
+			if (giroPermitido && puedeMover(personaje, personaje.getDireccionSiguiente())) {
+				//System.out.println("se puede cambiar de direccion");
+				direccionActual = personaje.getDireccionSiguiente();
+				personaje.setDireccionActual(direccionActual);
+				if (personaje.getDireccionActual() != personaje.getDireccionSiguiente()) {
+//					System.out.println("Error en seteo de direcciones de personaje.-----------------------------------------------");
+//					System.out.println("\tpersonaje.getDireccionActual(): " + personaje.getDireccionActual());
+//					System.out.println("personaje.getDireccionSiguiente(): " + personaje.getDireccionSiguiente());
+				}
 			} else {
-				System.out.println("no se puede cambiar de direccion.");
+//				System.out.println("no se puede cambiar de direccion.");
+//				System.out.println("\tdirecciones opuestas: " + sonDireccionesOpuestas);
+//				System.out.println("\tgiro permitido: " + giroPermitido);
 			}
 		}
 	}
