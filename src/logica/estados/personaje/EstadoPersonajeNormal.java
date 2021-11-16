@@ -6,10 +6,7 @@ import java.util.Vector;
 import javax.swing.ImageIcon;
 
 import logica.Escenario;
-import logica.Zona;
-import logica.entidades.Entidad;
 import logica.entidades.Movible;
-import logica.entidades.Pared;
 import logica.entidades.Personaje;
 import vista.repositorioGrafico.RepositorioGraficoPersonaje;
 
@@ -21,9 +18,17 @@ public class EstadoPersonajeNormal extends EstadoPersonaje {
 
 	@Override
 	public void mover() {
-		calcularPosicionDestino(personaje.getX(), personaje.getY());
-		if(puedeMover(personaje)){
-			
+		verificarCambioDireccion();
+		if(puedeMover(personaje, direccionActual)) {
+			//System.out.println("moviendo personaje");
+			calcularPosicionDestino(personaje.getX(), personaje.getY(), direccionActual);
+			personaje.setX(xDestino);
+			personaje.setY(yDestino);
+			if (!personaje.getZona().contieneCoordenadas(personaje)) {
+				Escenario.getInstancia().reubicar(personaje);
+			}
+		} else {
+			System.out.println("No se puede mover personaje");
 		}
 	}
 

@@ -92,7 +92,7 @@ public class Escenario {
 			zona=zonas.get(indexZona);
 			
 			entidad.setZona(zona);
-			zona.setEntidad(entidad);
+			zona.addEntidad(entidad);
 		}
 	}
 	
@@ -112,10 +112,7 @@ public class Escenario {
 		
 		crearMatrizZonas();
 		
-		System.out.println("zonas:");
-		for (Zona[] arrZonas : matrizZonas) {
-			System.out.println("\t" + Arrays.toString(arrZonas));
-		}
+		
 		
 		entidadesParaActualizar.clear();
 		
@@ -126,9 +123,14 @@ public class Escenario {
 			} else {
 				//System.out.println("zonaEncontrada para entidad: " + entidad);
 				entidad.setZona(zona);
-				zona.setEntidad(entidad);
+				zona.addEntidad(entidad);
 				entidadesParaActualizar.add(entidad);
 			}
+		}
+		
+		System.out.println("zonas:");
+		for (Zona[] arrZonas : matrizZonas) {
+			System.out.println("\t" + Arrays.toString(arrZonas));
 		}
 	}
 	
@@ -153,7 +155,7 @@ public class Escenario {
 		
 		for (int fila = 0; fila < matrizZonas.length; ++fila) {
 			for (int columna = 0; columna < matrizZonas[fila].length; ++columna) {
-				if (matrizZonas[fila][columna].contiene(e)) {
+				if (matrizZonas[fila][columna].contieneCoordenadas(e)) {
 					return matrizZonas[fila][columna];
 				}
 			}
@@ -254,7 +256,7 @@ public class Escenario {
 	}
 	
 	public void tick() {
-		System.out.println("actualizando escenario");
+		//System.out.println("actualizando escenario");
 		entidadesParaActualizar.clear();
 		
 		for (Movible m : movibles) {
@@ -289,6 +291,36 @@ public class Escenario {
 		this.juego = juego;
 	}
 	
+	public Zona getZonaAdyacente(Zona zona, int direccion) {
+		for (int y = 0; y < matrizZonas.length; ++y) {
+			for (int x = 0; x < matrizZonas[y].length; ++x) {
+				if (matrizZonas[y][x] == zona) {
+					int xAdyacente = x;
+					int yAdyacente = y;
+					
+					switch(direccion) {
+					case Movible.DIRECCION_ABAJO:
+						yAdyacente = Math.min(yAdyacente + 1, matrizZonas.length - 1);
+						break;
+					case Movible.DIRECCION_ARRIBA:
+						yAdyacente = Math.max(yAdyacente - 1, 0);
+						break;
+					case Movible.DIRECCION_DERECHA:
+						xAdyacente = Math.min(xAdyacente + 1, matrizZonas[y].length - 1);
+						break;
+					case Movible.DIRECCION_IZQUIERDA:
+						xAdyacente = Math.max(xAdyacente - 1, 0);
+						break;
+					}
+					
+					System.out.println("zona adyacente a " + zona + ": " + matrizZonas[yAdyacente][xAdyacente]);
+					return matrizZonas[yAdyacente][xAdyacente];
+					
+				}
+			}
+		}
+		return zona;
+	}
 	
 	public void eliminarPickUp(PickUp p) {
 		juego.actualizarPuntaje(p.getPuntos());
@@ -323,6 +355,18 @@ public class Escenario {
 	
 	public int getAlto() {
 		return nivel.getAlto();
+	}
+
+	public void reubicar(Movible m) {
+		if (!m.getZona().contieneCoordenadas(m)) {
+			Zona nuevaZona = getZonaAdyacente(m.getZona(), m.getDireccion());
+			m.getZona().eliminar(m);
+			m.setZona(nuevaZona);
+			nuevaZona.addEntidad(m);
+			System.out.println("\tSe reubico Movible: " + m);
+		} else {
+			//System.out.println("No se reubico. Distancia a borde: " + m.getZona().distanciaABorde(m));
+		}
 	}
 	
 //	public Posicion getPosicion(Posicion p) {

@@ -24,8 +24,8 @@ public class RepresentacionGrafica {
 	}
 	
 	public JLabel getLabel() {
-		int x = entidad.getX() - tam / 2 + 2;
-		int y = entidad.getY() - tam / 2 + 2;
+		int x = entidad.getX() + 2;
+		int y = entidad.getY() + 2;
 		label.setBounds(x, y, tam, tam);
 		return label;
 	}

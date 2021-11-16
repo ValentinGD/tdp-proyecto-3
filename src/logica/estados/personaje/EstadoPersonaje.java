@@ -10,9 +10,30 @@ public abstract class EstadoPersonaje extends EstadoMovible {
 	
 	protected Personaje personaje;
 	
+	protected int direccionSiguiente;
+	
 	protected EstadoPersonaje(Personaje personaje, int direccionActual) {
 		super(direccionActual);
+		direccionSiguiente = direccionActual;
 		this.personaje = personaje;
+	}
+	
+	public void setDireccionSiguiente(int direccionSiguiente) {
+		this.direccionSiguiente = direccionSiguiente;
+	}
+
+	protected void verificarCambioDireccion() {
+		if (direccionActual != direccionSiguiente) {
+			boolean giroPermitido = false;
+			giroPermitido = estaEnUnaPosibleInterseccion(personaje) || (direccionActual + direccionSiguiente == 0);
+			if (giroPermitido && puedeMover(personaje, direccionSiguiente)) {
+				System.out.println("se puede cambiar de direccion");
+				direccionActual = direccionSiguiente;
+				personaje.setDireccion(direccionActual);
+			} else {
+				System.out.println("no se puede cambiar de direccion.");
+			}
+		}
 	}
 	
 	public abstract void mover();

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import logica.entidades.Entidad;
+import logica.entidades.Movible;
 
 public class Zona {
 	
@@ -25,8 +26,16 @@ public class Zona {
 		return (this.x <= x) && (x < this.x + ancho) && (this.y <= y) && (y < this.y + alto);
 	}
 	
-	public boolean contiene(Entidad e) {
+	public boolean contieneCoordenadas(Entidad e) {
 		return contiene(e.getX(), e.getY());
+	}
+	
+	public int distanciaABorde(Entidad e) {
+		int distanciaIzquierda = e.getX() - x;
+		int distanciaDerecha = (x + ancho) - (e.getX() + Entidad.TAMANIO);
+		int distanciaArriba = e.getY() - y;
+		int distanciaAbajo = (y + alto) - (e.getY() + Entidad.TAMANIO);
+		return Math.min(Math.min(Math.abs(e.getX() - x), Math.abs(e.getY() - y)), Math.min(Math.abs(e.getX() + ancho - x), Math.abs(e.getY() + alto - y)));
 	}
 
 	public int getAlto() {
@@ -53,7 +62,7 @@ public class Zona {
 		this.entidades = entidades;
 	}
 	
-	public void setEntidad(Entidad entidad) {
+	public void addEntidad(Entidad entidad) {
 		entidades.add(entidad);
 	}
 
@@ -75,5 +84,9 @@ public class Zona {
 	
 	public String toString() {
 		return "x: " + x + ", y: " + y + ", ancho: " + ancho + ", alto: " + alto;
+	}
+
+	public void eliminar(Entidad e) {
+		entidades.remove(e);
 	}
 }

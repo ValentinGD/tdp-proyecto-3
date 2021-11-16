@@ -110,7 +110,7 @@ public class Mapa {
 	private void ajustarTamanioYPosicion(Entidad e) {
 		cantFilas = Math.max(cantFilas, e.getY());
 		cantColumnas = Math.max(cantColumnas, e.getX());
-		e.setX(e.getX() * Entidad.TAMANIO + Entidad.TAMANIO / 2);
-		e.setY(e.getY() * Entidad.TAMANIO + Entidad.TAMANIO / 2);
+		e.setX(e.getX() * Entidad.TAMANIO);
+		e.setY(e.getY() * Entidad.TAMANIO);
 	}
 }

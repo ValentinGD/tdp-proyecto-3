@@ -66,11 +66,12 @@ public abstract class Movible extends Entidad implements Visitor {
 
 	@Override
 	public void visitarPickUpPoder(PickUpPoder p) {}
-
-	@Override
-	public void visitarPared(Pared p) {}
 	
 	public String toString() {
-		return "x: " + x + ", y: " + y + ", direccion: " + direccionActual; 
+		return "x: " + x + ", y: " + y + ", direccion: " + direccionActual + ", zona: " + miZona; 
+	}
+
+	public int getDireccion() {
+		return direccionActual;
 	}
 }

@@ -39,13 +39,15 @@ public class Personaje extends Movible {
 	public void setDireccion(int direccion) {
 		if (Movible.esDireccionValida(direccion)) {
 			direccionSiguiente = direccion;
-			System.out.println("Personaje::Se cambio la direccion: " + direccionSiguiente);
+			estado.setDireccionSiguiente(direccionSiguiente);
+			//System.out.println("Personaje::Se cambio la direccion: " + direccionSiguiente);
 		}
 	}
 	
 	public void mover() {
 		estado.mover();
 		Escenario.getInstancia().agregarEntidadParaActualizar(this);
+		Escenario.getInstancia().reubicar(this);
 	}
 
 	@Override
@@ -56,6 +58,11 @@ public class Personaje extends Movible {
 	@Override
 	public void aceptar(Visitor v) {
 		// TODO Auto-generated method stub
+	}
+	
+	@Override
+	public void visitarPared(Pared p) {
+		estado.visitarPared(p);
 	}
 	
 	@Override
@@ -73,8 +80,12 @@ public class Personaje extends Movible {
 		this.vidas = vidas;
 	}
 	
-	@Override
-	public String toString() {
-		return "toString::Personaje: " + super.toString() + ", estado: <" + estado + ">";
+//	@Override
+//	public String toString() {
+//		return "Personaje::toString: " + super.toString() + ", estado: <" + estado + ">";
+//	}
+
+	public int getDireccionSiguiente() {
+		return direccionSiguiente;
 	}
 }
