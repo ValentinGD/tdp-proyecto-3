@@ -18,8 +18,7 @@ public class GUI extends JFrame implements ActionListener {
 	private MenuPanel menuPanel;
 	private JuegoPanel juegoPanel;
 	
-	private Juego juego;
-	
+	private Juego juego;	
 	private Musica musica;
 	
 	public GUI(Juego juego) {
@@ -34,7 +33,7 @@ public class GUI extends JFrame implements ActionListener {
 		juegoPanel.addKeyListener(new GUIKeyListener());
 		System.out.println("se creo el panel de juego");
 		
-		musica = new Musica();
+//		musica = new Musica();
 		
 		setPanel(menuPanel);
 		setFocusable(true);
@@ -92,12 +91,12 @@ public class GUI extends JFrame implements ActionListener {
 		switch (command) {
 		case "comenzar":
 			juego.start();
+			musica = new Musica();
 			break;
 		case "stop":
-//			System.out.println("STOP");
+			musica.stop();
 			break;
 		case "play_pause":
-//			System.out.println("APRETE PLAY");
 			musica.play_pause();
 			break;
 		default:
