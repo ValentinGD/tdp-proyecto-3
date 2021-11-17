@@ -3,6 +3,7 @@ package vista;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import logica.Juego;
+import logica.Musica;
 import logica.entidades.Movible;
 import vista.repositorioGrafico.figuras.RepositorioGraficoFiguras;
 import java.awt.event.ActionEvent;
@@ -19,6 +20,8 @@ public class GUI extends JFrame implements ActionListener {
 	
 	private Juego juego;
 	
+	private Musica musica;
+	
 	public GUI(Juego juego) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("TdP-man");
@@ -26,10 +29,12 @@ public class GUI extends JFrame implements ActionListener {
 		
 		menuPanel = new MenuPanel(this);
 		
-		juegoPanel = new JuegoPanel(new RepositorioGraficoFiguras());
+		juegoPanel = new JuegoPanel(new RepositorioGraficoFiguras(), this);
 		juegoPanel.setFocusable(true);
 		juegoPanel.addKeyListener(new GUIKeyListener());
 		System.out.println("se creo el panel de juego");
+		
+		musica = new Musica();
 		
 		setPanel(menuPanel);
 		setFocusable(true);
@@ -87,6 +92,13 @@ public class GUI extends JFrame implements ActionListener {
 		switch (command) {
 		case "comenzar":
 			juego.start();
+			break;
+		case "stop":
+//			System.out.println("STOP");
+			break;
+		case "play_pause":
+//			System.out.println("APRETE PLAY");
+			musica.play_pause();
 			break;
 		default:
 			break;
