@@ -1,5 +1,12 @@
 package vista;
 
+/*
+ BOTON RECORDS
+ Debería almacenar las 10 mejores scores.
+ Al terminar cada partida, si hay menos de 10 récords guardados o si entra dentro de los 10 mejores,
+ debería permitirle al jugador ingresar su nombre (con un JOptionPane.showInputDialog ?). 
+*/
+
 import java.awt.event.ActionListener;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -65,9 +72,9 @@ public class JuegoPanel extends JPanel {
 		add(info_y_botones, BorderLayout.EAST);
 		GridBagLayout gbl_info_y_botones = new GridBagLayout();
 		gbl_info_y_botones.columnWidths = new int[]{0, 0};
-		gbl_info_y_botones.rowHeights = new int[]{0, 0, 0, 0, 0};
+		gbl_info_y_botones.rowHeights = new int[]{0, 0, 0, 0, 0, 0};
 		gbl_info_y_botones.columnWeights = new double[]{1.0, Double.MIN_VALUE};
-		gbl_info_y_botones.rowWeights = new double[]{0.0, 0.0, 1.0, 1.0, Double.MIN_VALUE};
+		gbl_info_y_botones.rowWeights = new double[]{0.0, 0.0, 1.0, 0.0, 1.0, Double.MIN_VALUE};
 		info_y_botones.setLayout(gbl_info_y_botones);
 		
 		panelPuntaje = new JPanel();
@@ -150,20 +157,30 @@ public class JuegoPanel extends JPanel {
 		panelAudio.add(panelBotonesAudio, BorderLayout.CENTER);
 
 		btnStop = new JButton("");
+		btnStop.setMnemonic('s');
 		btnStop.setToolTipText("Detener m\u00FAsica");
 		btnStop.setIcon(new ImageIcon(JuegoPanel.class.getResource(App.configuration.getProperty("ImagenStop"))));
 		btnStop.setMargin(new Insets(2, 2, 2, 2));
 		btnStop.addActionListener(gui);
-		btnStop.setActionCommand("stop");
+		btnStop.setActionCommand("stop_audio");
 		panelBotonesAudio.add(btnStop);
 		
 		btnPlayPause = new JButton("");
+		btnPlayPause.setMnemonic('p');
 		btnPlayPause.setToolTipText("Reproducir/pausar m\u00FAsica");
 		btnPlayPause.setIcon(new ImageIcon(JuegoPanel.class.getResource(App.configuration.getProperty("ImagenPlayPause"))));
 		btnPlayPause.setMargin(new Insets(2, 2, 2, 2));
 		btnPlayPause.addActionListener(gui);
-		btnPlayPause.setActionCommand("play_pause");
+		btnPlayPause.setActionCommand("play_pause_audio");
 		panelBotonesAudio.add(btnPlayPause);
+		
+		JButton btnRecords = new JButton("<html><center>Ver mejores<br>puntuaciones</center></html>");
+		btnRecords.setMnemonic('v');
+		GridBagConstraints gbc_btnRecords = new GridBagConstraints();
+		gbc_btnRecords.insets = new Insets(0, 0, 5, 0);
+		gbc_btnRecords.gridx = 0;
+		gbc_btnRecords.gridy = 4;
+		info_y_botones.add(btnRecords, gbc_btnRecords);
 	}
 
 	public void agregarEntidades(List<EntidadGrafica> entidades) {
@@ -265,5 +282,4 @@ public class JuegoPanel extends JPanel {
 	public JLabel getLblPuntos() {
 		return lblPuntos;
 	}
-
 }

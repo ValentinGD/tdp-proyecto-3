@@ -18,15 +18,17 @@ import javax.swing.border.BevelBorder;
 public class MenuPanel extends JPanel {
 	
 	public MenuPanel(ActionListener gui) {
-		setBorder(new EmptyBorder(10, 10, 10, 10));
+		setBorder(new EmptyBorder(20, 20, 20, 20));
 		setLayout(new BorderLayout(7, 7));
 
 		JLabel lblTitulo = new JLabel(App.configuration.getProperty("Bienvenida"));
+		lblTitulo.setBorder(new EmptyBorder(0, 15, 10, 10));
 		lblTitulo.setFocusable(false);
 		lblTitulo.setFont(new Font("Tahoma", Font.BOLD, 20));
 		add(lblTitulo, BorderLayout.WEST);
 		
 		JLabel lblLogo = new JLabel(new ImageIcon(MenuPanel.class.getResource(App.configuration.getProperty("Logo"))));
+		lblLogo.setBorder(new EmptyBorder(0, 10, 10, 15));
 		lblLogo.setFocusable(false);
 		add(lblLogo, BorderLayout.EAST);
 		

@@ -11,7 +11,7 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import app.App;
 
-public class Musica {
+public class Musica extends Thread {
 
 	private String path_pista = App.configuration.getProperty("RutaMusica");
 	private AudioInputStream audio_stream;
@@ -22,6 +22,7 @@ public class Musica {
 	private static final int AUDIO_PAUSADO = 2;
 	private int status;
 	
+	/*
 	public Musica() {
 		//COMENTAR ESTO PARA COMENZAR CON MUSICA ATR.
 		status = AUDIO_DETENIDO;
@@ -30,8 +31,22 @@ public class Musica {
 //		preparar_audio();
 //		play();
 	}
+	*/
 	
-	public void stop() {
+	public Musica() {
+		start(); //Inicia el hilo, no la reproducción de la pista.
+	}
+	
+	public void run() {
+		//COMENTAR ESTO PARA COMENZAR CON MUSICA ATR.
+		status = AUDIO_DETENIDO;
+		
+		//COMENTAR ESTO PARA COMENZAR EN SILENCIO.
+//		preparar_audio();
+//		play_audio();
+	}
+	
+	public void stop_audio() {
 		if (status == AUDIO_EN_REPRODUCCION || status == AUDIO_PAUSADO) {
 			audio_clip.stop();
 			status = AUDIO_DETENIDO;
@@ -39,7 +54,7 @@ public class Musica {
 		}
 	}
 	
-	public void play_pause() {
+	public void play_pause_audio() {
 		switch (status) {
 			case AUDIO_EN_REPRODUCCION: { //Procedo a pausar la música.
 				audio_clip.stop();
@@ -47,18 +62,18 @@ public class Musica {
 				break;
 			}
 			case AUDIO_PAUSADO: { //Continúo la reproducción desde donde estaba.
-				play();
+				play_audio();
 				break;
 			}
 			case AUDIO_DETENIDO: { //Inicio reproducción desde el principio.
 				preparar_audio();
-				play();
+				play_audio();
 				break;
 			}
 		}
 	}
 	
-	private void play() {
+	private void play_audio() {
 		audio_clip.start();
 		status = AUDIO_EN_REPRODUCCION;
 		audio_clip.loop(Clip.LOOP_CONTINUOUSLY);

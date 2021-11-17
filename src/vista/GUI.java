@@ -93,11 +93,11 @@ public class GUI extends JFrame implements ActionListener {
 			juego.start();
 			musica = new Musica();
 			break;
-		case "stop":
-			musica.stop();
+		case "stop_audio":
+			musica.stop_audio();
 			break;
-		case "play_pause":
-			musica.play_pause();
+		case "play_pause_audio":
+			musica.play_pause_audio();
 			break;
 		default:
 			break;
