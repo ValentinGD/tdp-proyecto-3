@@ -12,6 +12,8 @@ import java.util.List;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
+
+import app.App;
 import vista.repositorioGrafico.RepositorioGraficoAbstracto;
 import java.awt.FlowLayout;
 import javax.swing.SwingConstants;
@@ -146,12 +148,10 @@ public class JuegoPanel extends JPanel {
 		FlowLayout flowLayout = (FlowLayout) panelBotonesAudio.getLayout();
 		flowLayout.setHgap(10);
 		panelAudio.add(panelBotonesAudio, BorderLayout.CENTER);
-		
-		//CAMBIAR RUTAS PARA USAR EL ARCHIVO CONFIGURATION
-		
+
 		btnStop = new JButton("");
 		btnStop.setToolTipText("Detener m\u00FAsica");
-		btnStop.setIcon(new ImageIcon(JuegoPanel.class.getResource("/img/player/stop_ch.png")));
+		btnStop.setIcon(new ImageIcon(JuegoPanel.class.getResource(App.configuration.getProperty("ImagenStop"))));
 		btnStop.setMargin(new Insets(2, 2, 2, 2));
 		btnStop.addActionListener(gui);
 		btnStop.setActionCommand("stop");
@@ -159,7 +159,7 @@ public class JuegoPanel extends JPanel {
 		
 		btnPlayPause = new JButton("");
 		btnPlayPause.setToolTipText("Reproducir/pausar m\u00FAsica");
-		btnPlayPause.setIcon(new ImageIcon(JuegoPanel.class.getResource("/img/player/play-pause_ch.png")));
+		btnPlayPause.setIcon(new ImageIcon(JuegoPanel.class.getResource(App.configuration.getProperty("ImagenPlayPause"))));
 		btnPlayPause.setMargin(new Insets(2, 2, 2, 2));
 		btnPlayPause.addActionListener(gui);
 		btnPlayPause.setActionCommand("play_pause");

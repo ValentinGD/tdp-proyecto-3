@@ -9,10 +9,11 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
+import app.App;
 
 public class Musica {
 
-	private String path_pista = "src/sonidos/battle-march-action-loop.wav";
+	private String path_pista = App.configuration.getProperty("RutaMusica");
 	private AudioInputStream audio_stream;
 	private Clip audio_clip;
 
