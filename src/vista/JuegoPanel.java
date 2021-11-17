@@ -157,6 +157,7 @@ public class JuegoPanel extends JPanel {
 		panelAudio.add(panelBotonesAudio, BorderLayout.CENTER);
 
 		btnStop = new JButton("");
+		btnStop.setFocusable(false);
 		btnStop.setMnemonic('s');
 		btnStop.setToolTipText("Detener m\u00FAsica");
 		btnStop.setIcon(new ImageIcon(JuegoPanel.class.getResource(App.configuration.getProperty("ImagenStop"))));
@@ -166,6 +167,7 @@ public class JuegoPanel extends JPanel {
 		panelBotonesAudio.add(btnStop);
 		
 		btnPlayPause = new JButton("");
+		btnPlayPause.setFocusable(false);
 		btnPlayPause.setMnemonic('p');
 		btnPlayPause.setToolTipText("Reproducir/pausar m\u00FAsica");
 		btnPlayPause.setIcon(new ImageIcon(JuegoPanel.class.getResource(App.configuration.getProperty("ImagenPlayPause"))));
@@ -175,6 +177,7 @@ public class JuegoPanel extends JPanel {
 		panelBotonesAudio.add(btnPlayPause);
 		
 		JButton btnRecords = new JButton("<html><center>Ver mejores<br>puntuaciones</center></html>");
+		btnRecords.setFocusable(false);
 		btnRecords.setMnemonic('v');
 		GridBagConstraints gbc_btnRecords = new GridBagConstraints();
 		gbc_btnRecords.insets = new Insets(0, 0, 5, 0);
