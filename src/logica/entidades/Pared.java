@@ -23,4 +23,8 @@ public class Pared extends Entidad{
 	public void aceptar(Visitor v) {
 		v.visitarPared(this);
 	}
+	
+	public String toString() {
+		return "Pared: <x: " + x + ", y: " + y + ">";
+	}
 }

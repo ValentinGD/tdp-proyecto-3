@@ -13,42 +13,50 @@ public class PersiguiendoEnemigo1 extends PersiguiendoEnemigoAbstracto {
 
 	@Override
 	public void mover() {
+		if (enemigo.getDireccionActual() != direccionActual) {
+			System.out.println("ERROR EN DIRECCION ACTUAL DE ENEMIGO 1 -----------------------------------------------------------");
+		}
 		if(puedeMover(enemigo, direccionActual)) {
+			//System.out.println("\tEl enemigo se puede mover hacia " + Movible.direccionToString(direccionActual));
+			
 			switch(direccionActual) {
-			case Movible.DIRECCION_ABAJO:
-				
-				enemigo.setY(enemigo.getY()+Movible.VELOCIDAD);
-				Escenario.getInstancia().agregarEntidadParaActualizar(enemigo);
-				Escenario.getInstancia().reubicar(enemigo);
-				
-			break;
-			case Movible.DIRECCION_ARRIBA:
-				
-				enemigo.setY(enemigo.getY()-Movible.VELOCIDAD);
-				Escenario.getInstancia().agregarEntidadParaActualizar(enemigo);
-				Escenario.getInstancia().reubicar(enemigo);
-				
-			break;
-			case Movible.DIRECCION_DERECHA:
-				
-				enemigo.setX(enemigo.getX()+Movible.VELOCIDAD);
-				Escenario.getInstancia().agregarEntidadParaActualizar(enemigo);
-				Escenario.getInstancia().reubicar(enemigo);
-				
-			break;
-			case Movible.DIRECCION_IZQUIERDA:
-	
-				enemigo.setX(enemigo.getX()-Movible.VELOCIDAD);
-				Escenario.getInstancia().agregarEntidadParaActualizar(enemigo);
-				Escenario.getInstancia().reubicar(enemigo);
-	
-			break;
+			
+				case Movible.DIRECCION_ABAJO:
+					
+					enemigo.setY(enemigo.getY()+Movible.VELOCIDAD);
+					Escenario.getInstancia().agregarEntidadParaActualizar(enemigo);
+					Escenario.getInstancia().reubicar(enemigo);
+					
+				break;
+				case Movible.DIRECCION_ARRIBA:
+					
+					enemigo.setY(enemigo.getY()-Movible.VELOCIDAD);
+					Escenario.getInstancia().agregarEntidadParaActualizar(enemigo);
+					Escenario.getInstancia().reubicar(enemigo);
+					
+				break;
+				case Movible.DIRECCION_DERECHA:
+					
+					enemigo.setX(enemigo.getX()+Movible.VELOCIDAD);
+					Escenario.getInstancia().agregarEntidadParaActualizar(enemigo);
+					Escenario.getInstancia().reubicar(enemigo);
+					
+				break;
+				case Movible.DIRECCION_IZQUIERDA:
+		
+					enemigo.setX(enemigo.getX()-Movible.VELOCIDAD);
+					Escenario.getInstancia().agregarEntidadParaActualizar(enemigo);
+					Escenario.getInstancia().reubicar(enemigo);
+		
+				break;
 			}
 
 		}else {
+			//System.out.println("El enemigo NO se puede mover hacia " + Movible.direccionToString(direccionActual));
 		}
 		if(enemigo.puedeGirar()) {
-		calcularNuevaDireccion();}
+			calcularNuevaDireccion();
+		}
 	}
 	
 	private void calcularNuevaDireccion() {
@@ -64,34 +72,39 @@ public class PersiguiendoEnemigo1 extends PersiguiendoEnemigoAbstracto {
 		
 		if(diferenciaEnX<0) {
 			direccionEjeX=Movible.DIRECCION_DERECHA;
-		}else {
+		} else {
 			direccionEjeX=Movible.DIRECCION_IZQUIERDA;
 		}
 		
 		if(diferenciaEnY<0) {
 			direccionEjeY=Movible.DIRECCION_ABAJO;
-		}else {
+		} else {
 			direccionEjeY=Movible.DIRECCION_ARRIBA;
 		}
-		if(Math.min(diferenciaEnX, diferenciaEnY)== diferenciaEnX ){
+		
+		if(Math.min(diferenciaEnX, diferenciaEnY) == diferenciaEnX ){
+			
 			if(diferenciaEnX!=0) {
 				mejorDireccion=direccionEjeX;
 				direccionAux=direccionEjeY;
-			}else {
+			} else {
 				mejorDireccion=direccionEjeY;
 				direccionAux=direccionEjeX;
 			}
+			
 		}else {
+			
 			if(diferenciaEnY!=0) {
 				mejorDireccion=direccionEjeY;
 				direccionAux=direccionEjeX;
-			}else {
+			} else {
 				mejorDireccion=direccionEjeX;
 				direccionAux=direccionEjeY;
-				}
+			}
+			
 		}
 		direccionActual=calcularDireccion(mejorDireccion,direccionAux);
-		enemigo.setDireccionActual(calcularDireccion(mejorDireccion,direccionAux));
+		enemigo.setDireccionActual(direccionActual);
 	}
 	
 	private int calcularDireccion(int direccion,int direccionAux) {
@@ -147,16 +160,15 @@ public class PersiguiendoEnemigo1 extends PersiguiendoEnemigoAbstracto {
 		int nuevaDireccion=0;
 		if(puedeMover(enemigo,d1)){
 			nuevaDireccion=d1;
-			System.out.println("Puede mover d1");
-		}else{
-			if(puedeMover(enemigo,d2)) {
+			//System.out.println("Puede mover d1");
+		}else if(puedeMover(enemigo,d2)) {
 				nuevaDireccion=d2;
-				System.out.println("Puede mover d2");
-			}else {
-				nuevaDireccion=d3;
-				System.out.println("Puede mover d3");
-			}
+				//System.out.println("Puede mover d2");
+		}else {
+			nuevaDireccion=d3;
+			//System.out.println("Puede mover d3");
 		}
+		
 		return nuevaDireccion;
 	}
 }

@@ -8,6 +8,7 @@ import logica.Zona;
 import logica.entidades.Entidad;
 import logica.entidades.Movible;
 import logica.entidades.Pared;
+import logica.entidades.enemigos.Enemigo;
 
 public abstract class EstadoMovible {
 	
@@ -39,12 +40,15 @@ public abstract class EstadoMovible {
 			}
 		}
 		
-		//System.out.println("visitando " + entidades.size() + " entidades.");
-		
-		//System.out.println("Entidades a comparar:");
-		//for (Entidad e : entidades) {
-			//System.out.println("\t" + e);
-		//}
+		if (m instanceof Enemigo) {
+			//System.out.println("\tvisitando " + entidades.size() + " entidades.");
+			//System.out.println("\tEntidades a comparar:");
+			for (Entidad e : entidades) {
+				if (e instanceof Pared) {
+					//System.out.println("\t\t" + e);
+				}
+			}
+		}
 
 		colisionPared = false;
 		calcularPosicionDestino(m, direccion);
@@ -52,20 +56,24 @@ public abstract class EstadoMovible {
 			e.aceptar(m);
 		}
 		//System.out.println("colsion pared: " + colisionPared);
-		//if (colisionPared) {
-			//System.out.println("NO mover--------------------------------------------------------------------------");
-		//} else {
-			//System.out.println("SI mover");
-		//}
+//		if (m instanceof Movible) {
+//			if (colisionPared) {
+//				System.out.println("NO mover--------------------------------------------------------------------------");
+//			} else {
+//				System.out.println("SI mover");
+//			}
+//		}
 		return !colisionPared;
 	}
 	
 	public void visitarPared(Pared pared) {
 		colisionPared = colisionPared || pared.colisionaConEntidadEnPosicion(xDestino, yDestino);
-		//if (colisionPared) {
-			//System.out.println("\tColision con pared: " + pared);
-			//System.out.println("No deberia moverse");
-		//}
+//		if (movible instanceof Enemigo) {
+//			if (colisionPared) {
+//				//System.out.println("\t\t\tColision con pared: " + pared + ": " + pared.colisionaConEntidadEnPosicion(xDestino, yDestino));
+//				//System.out.println("No deberia moverse");
+//			}
+//		}
 		//System.out.println("Distancia pared: " + Math.hypot(pared.getX() - xDestino, pared.getY() - yDestino));
 //		int distanciaX = Math.abs(pared.getX() - xDestino);
 //		int distanciaY = Math.abs(pared.getY() - yDestino);
@@ -98,7 +106,7 @@ public abstract class EstadoMovible {
 	}
 	
 	protected void calcularPosicionDestino(Movible m, int direccion) {
-		//System.out.println("\tposicionOrigen: <x: " + m.getX() + ", y: " + m.getY() + ">");
+		if (m instanceof Enemigo) System.out.println("\tposicionOrigen: <x: " + m.getX() + ", y: " + m.getY() + ">");
 		xDestino = m.getX();
 		yDestino = m.getY();
 		
@@ -118,6 +126,6 @@ public abstract class EstadoMovible {
 		default:
 			break;
 		}
-		//System.out.println("\tposicionDestino: <x: " + xDestino + ", y: " + yDestino + ">");
+		if (m instanceof Enemigo) System.out.println("\tposicionDestino: <x: " + xDestino + ", y: " + yDestino + ">");
 	}
 }

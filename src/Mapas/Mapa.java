@@ -84,9 +84,9 @@ public class Mapa {
 	}
 	
 	public void addParedes(Pared p){
-		//System.out.println("agregando pared");
 		ajustarTamanioYPosicion(p);
 		paredes.add(p);
+		//System.out.println("agregando pared: " + p);
 	}
 	
 	public int getAncho() {

@@ -53,7 +53,7 @@ public class Escenario {
 	public boolean start() {
 		System.out.println("cargando escenario inicial");
 
-		nivel = new Nivel1();
+		nivel = new Nivel2();
 		
 		cargarEscenarioConMatriz();
 		
@@ -364,7 +364,7 @@ public class Escenario {
 
 	public void reubicar(Movible m) {
 		if (!m.getZona().contieneCoordenadas(m)) {
-			System.out.println("Hay que reubicar movible");
+			//System.out.println("Hay que reubicar movible");
 			
 			Zona nuevaZona = getZonaAdyacente(m.getZona(), m.getDireccionActual());
 			m.getZona().eliminar(m);

@@ -25,7 +25,7 @@ public class MapLoader {
 	private static final String extensionArchivos = App.configuration.getProperty("ExtensionMapas");
 	
 	public static Mapa getMapa(int nroMapa) {
-		String ruta = rutaMapas + 2 + extensionArchivos;
+		String ruta = rutaMapas + nroMapa + extensionArchivos;
 		return getMapa(ruta);
 	}
 

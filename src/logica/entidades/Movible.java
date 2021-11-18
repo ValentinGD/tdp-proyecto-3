@@ -71,7 +71,7 @@ public abstract class Movible extends Entidad implements Visitor {
 	public void visitarPickUpPoder(PickUpPoder p) {}
 	
 	public String toString() {
-		return "x: " + x + ", y: " + y + ", direccion: " + direccionActual + ", zona: " + miZona; 
+		return "x: " + x + ", y: " + y + ", direccion: " + direccionToString(direccionActual) + ", zona: " + miZona; 
 	}
 
 	public int getDireccionActual() {
@@ -88,5 +88,20 @@ public abstract class Movible extends Entidad implements Visitor {
 	
 	public static boolean sonDireccionesOpuestas(int direccion1, int direccion2) {
 		return direccion1 + direccion2 == 0;
+	}
+	
+	public static String direccionToString(int direccion) {
+		switch(direccion) {
+		case DIRECCION_ARRIBA:
+			return "ARRIBA";
+		case DIRECCION_ABAJO:
+			return "ABAJO";
+		case DIRECCION_IZQUIERDA:
+			return "IZQUIERDA";
+		case DIRECCION_DERECHA:
+			return "DERECHA";
+		default:
+			return "<DIRECCION INVALIDA>";
+		}
 	}
 }
