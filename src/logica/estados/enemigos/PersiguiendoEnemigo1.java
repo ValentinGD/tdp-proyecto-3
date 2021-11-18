@@ -17,28 +17,28 @@ public class PersiguiendoEnemigo1 extends PersiguiendoEnemigoAbstracto {
 			switch(direccionActual) {
 			case Movible.DIRECCION_ABAJO:
 				
-				enemigo.setY(enemigo.getY()+1);
+				enemigo.setY(enemigo.getY()+Movible.VELOCIDAD);
 				Escenario.getInstancia().agregarEntidadParaActualizar(enemigo);
 				Escenario.getInstancia().reubicar(enemigo);
 				
 			break;
 			case Movible.DIRECCION_ARRIBA:
 				
-				enemigo.setY(enemigo.getY()-1);
+				enemigo.setY(enemigo.getY()-Movible.VELOCIDAD);
 				Escenario.getInstancia().agregarEntidadParaActualizar(enemigo);
 				Escenario.getInstancia().reubicar(enemigo);
 				
 			break;
 			case Movible.DIRECCION_DERECHA:
 				
-				enemigo.setX(enemigo.getX()+1);
+				enemigo.setX(enemigo.getX()+Movible.VELOCIDAD);
 				Escenario.getInstancia().agregarEntidadParaActualizar(enemigo);
 				Escenario.getInstancia().reubicar(enemigo);
 				
 			break;
 			case Movible.DIRECCION_IZQUIERDA:
 	
-				enemigo.setX(enemigo.getX()-1);
+				enemigo.setX(enemigo.getX()-Movible.VELOCIDAD);
 				Escenario.getInstancia().agregarEntidadParaActualizar(enemigo);
 				Escenario.getInstancia().reubicar(enemigo);
 	
@@ -158,13 +158,5 @@ public class PersiguiendoEnemigo1 extends PersiguiendoEnemigoAbstracto {
 			}
 		}
 		return nuevaDireccion;
-	}
-	private boolean unicaDireccion() {
-		boolean d1,d2,d3,d4;
-		d1=puedeMover(enemigo,Movible.DIRECCION_ARRIBA) && Movible.DIRECCION_ARRIBA!= direccionActual*(-1);
-		d2=puedeMover(enemigo,Movible.DIRECCION_ABAJO) && Movible.DIRECCION_ABAJO!= direccionActual*(-1);
-		d3=puedeMover(enemigo,Movible.DIRECCION_DERECHA) && Movible.DIRECCION_DERECHA!= direccionActual*(-1);
-		d4=puedeMover(enemigo,Movible.DIRECCION_IZQUIERDA) && Movible.DIRECCION_IZQUIERDA!= direccionActual*(-1);
-		return d1 || d2 || d3 || d4;
 	}
 }
