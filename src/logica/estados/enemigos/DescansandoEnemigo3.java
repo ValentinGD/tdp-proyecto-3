@@ -4,8 +4,8 @@ import logica.entidades.enemigos.Enemigo;
 
 public class DescansandoEnemigo3 extends DescansandoEnemigoAbstracto {
 
-	public DescansandoEnemigo3(Enemigo enemigo, int direccionActual) {
-		super(enemigo, direccionActual);
+	public DescansandoEnemigo3(Enemigo enemigo) {
+		super(enemigo);
 	}
 
 	@Override

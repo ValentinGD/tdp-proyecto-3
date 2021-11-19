@@ -13,16 +13,13 @@ import logica.entidades.enemigos.Enemigo;
 public abstract class EstadoMovible {
 	
 	protected boolean colisionPared;
-	
-	protected int direccionActual;
 
 	protected int xDestino, yDestino;
 	
 	protected Movible movible;
 	
-	protected EstadoMovible(Movible movible, int direccionActual) {
+	protected EstadoMovible(Movible movible) {
 		this.movible = movible;
-		this.direccionActual = direccionActual;
 		colisionPared = false;
 	}
 	
@@ -106,7 +103,7 @@ public abstract class EstadoMovible {
 	}
 	
 	protected void calcularPosicionDestino(Movible m, int direccion) {
-		if (m instanceof Enemigo) System.out.println("\tposicionOrigen: <x: " + m.getX() + ", y: " + m.getY() + ">");
+		//if (m instanceof Enemigo) System.out.println("\tposicionOrigen: <x: " + m.getX() + ", y: " + m.getY() + ">");
 		xDestino = m.getX();
 		yDestino = m.getY();
 		
@@ -126,6 +123,6 @@ public abstract class EstadoMovible {
 		default:
 			break;
 		}
-		if (m instanceof Enemigo) System.out.println("\tposicionDestino: <x: " + xDestino + ", y: " + yDestino + ">");
+		//if (m instanceof Enemigo) System.out.println("\tposicionDestino: <x: " + xDestino + ", y: " + yDestino + ">");
 	}
 }

@@ -12,7 +12,7 @@ public abstract class EstadoPersonaje extends EstadoMovible {
 	protected Personaje personaje;
 	
 	protected EstadoPersonaje(Personaje personaje) {
-		super(personaje, personaje.getDireccionActual());
+		super(personaje);
 		this.personaje = personaje;
 	}
 
@@ -23,16 +23,15 @@ public abstract class EstadoPersonaje extends EstadoMovible {
 			boolean giroPermitido = personaje.puedeGirar() || sonDireccionesOpuestas;
 			
 			if (giroPermitido && puedeMover(personaje, personaje.getDireccionSiguiente())) {
-				//System.out.println("se puede cambiar de direccion");
-				direccionActual = personaje.getDireccionSiguiente();
+				System.out.println("se puede cambiar de direccion");
 				personaje.actualizarDireccion();
 				if (personaje.getDireccionActual() != personaje.getDireccionSiguiente()) {
-//					System.out.println("Error en seteo de direcciones de personaje.-----------------------------------------------");
+					//System.out.println("Error en seteo de direcciones de personaje.-----------------------------------------------");
 //					System.out.println("\tpersonaje.getDireccionActual(): " + personaje.getDireccionActual());
 //					System.out.println("personaje.getDireccionSiguiente(): " + personaje.getDireccionSiguiente());
 				}
 			} else {
-//				System.out.println("no se puede cambiar de direccion.");
+				//System.out.println("no se puede cambiar de direccion.");
 //				System.out.println("\tdirecciones opuestas: " + sonDireccionesOpuestas);
 //				System.out.println("\tgiro permitido: " + giroPermitido);
 			}

@@ -49,6 +49,11 @@ public abstract class Movible extends Entidad implements Visitor {
 		xOrigen = x;
 		yOrigen = y;
 	}
+
+	public void setPosicion(int xDestino, int yDestino) {
+		x = xDestino;
+		y = yDestino;
+	}
 	
 	public static boolean esDireccionValida(int direccion) {
 		return 	(direccion == DIRECCION_DERECHA) ||

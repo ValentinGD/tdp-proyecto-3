@@ -53,7 +53,7 @@ public class Escenario {
 	public boolean start() {
 		System.out.println("cargando escenario inicial");
 
-		nivel = new Nivel2();
+		nivel = new Nivel1();
 		
 		cargarEscenarioConMatriz();
 		

@@ -13,43 +13,13 @@ public class PersiguiendoEnemigo1 extends PersiguiendoEnemigoAbstracto {
 
 	@Override
 	public void mover() {
-		if (enemigo.getDireccionActual() != direccionActual) {
-			System.out.println("ERROR EN DIRECCION ACTUAL DE ENEMIGO 1 -----------------------------------------------------------");
-		}
-		if(puedeMover(enemigo, direccionActual)) {
+		if(puedeMover(enemigo, enemigo.getDireccionActual())) {
 			//System.out.println("\tEl enemigo se puede mover hacia " + Movible.direccionToString(direccionActual));
 			
-			switch(direccionActual) {
-			
-				case Movible.DIRECCION_ABAJO:
-					
-					enemigo.setY(enemigo.getY()+Movible.VELOCIDAD);
-					Escenario.getInstancia().agregarEntidadParaActualizar(enemigo);
-					Escenario.getInstancia().reubicar(enemigo);
-					
-				break;
-				case Movible.DIRECCION_ARRIBA:
-					
-					enemigo.setY(enemigo.getY()-Movible.VELOCIDAD);
-					Escenario.getInstancia().agregarEntidadParaActualizar(enemigo);
-					Escenario.getInstancia().reubicar(enemigo);
-					
-				break;
-				case Movible.DIRECCION_DERECHA:
-					
-					enemigo.setX(enemigo.getX()+Movible.VELOCIDAD);
-					Escenario.getInstancia().agregarEntidadParaActualizar(enemigo);
-					Escenario.getInstancia().reubicar(enemigo);
-					
-				break;
-				case Movible.DIRECCION_IZQUIERDA:
-		
-					enemigo.setX(enemigo.getX()-Movible.VELOCIDAD);
-					Escenario.getInstancia().agregarEntidadParaActualizar(enemigo);
-					Escenario.getInstancia().reubicar(enemigo);
-		
-				break;
-			}
+			calcularPosicionDestino(enemigo);
+			enemigo.setPosicion(xDestino, yDestino);
+			Escenario.getInstancia().agregarEntidadParaActualizar(enemigo);
+			Escenario.getInstancia().reubicar(enemigo);
 
 		}else {
 			//System.out.println("El enemigo NO se puede mover hacia " + Movible.direccionToString(direccionActual));
@@ -70,31 +40,33 @@ public class PersiguiendoEnemigo1 extends PersiguiendoEnemigoAbstracto {
 		int diferenciaEnX=enemigo.getX()-personaje.getX();
 		int diferenciaEnY=enemigo.getY()-personaje.getY();
 		
-		if(diferenciaEnX<0) {
+		
+		if(diferenciaEnX < 0) {//si el personaje esta a la derecha
 			direccionEjeX=Movible.DIRECCION_DERECHA;
 		} else {
 			direccionEjeX=Movible.DIRECCION_IZQUIERDA;
 		}
 		
-		if(diferenciaEnY<0) {
+		if(diferenciaEnY < 0) {//si el personaje esta abajo
 			direccionEjeY=Movible.DIRECCION_ABAJO;
 		} else {
 			direccionEjeY=Movible.DIRECCION_ARRIBA;
 		}
 		
-		if(Math.min(diferenciaEnX, diferenciaEnY) == diferenciaEnX ){
+		//Este if se asegura que nos movamos en la direccion que nos acerque mas lento al personaje
+		if(Math.abs(diferenciaEnX) <= Math.abs(diferenciaEnY)){//si la distancia en el eje X al personaje es menor que la distancia en el eje Y
 			
-			if(diferenciaEnX!=0) {
-				mejorDireccion=direccionEjeX;
-				direccionAux=direccionEjeY;
+			if(diferenciaEnX != 0) {//si el personaje no esta en la misma columna
+				mejorDireccion = direccionEjeX;
+				direccionAux = direccionEjeY;
 			} else {
-				mejorDireccion=direccionEjeY;
-				direccionAux=direccionEjeX;
+				mejorDireccion = direccionEjeY;
+				direccionAux = direccionEjeX;
 			}
 			
 		}else {
 			
-			if(diferenciaEnY!=0) {
+			if(diferenciaEnY != 0) {//si el personaje no esta en la misma fila
 				mejorDireccion=direccionEjeY;
 				direccionAux=direccionEjeX;
 			} else {
@@ -103,8 +75,11 @@ public class PersiguiendoEnemigo1 extends PersiguiendoEnemigoAbstracto {
 			}
 			
 		}
-		direccionActual=calcularDireccion(mejorDireccion,direccionAux);
-		enemigo.setDireccionActual(direccionActual);
+		nuevaDireccion = calcularDireccion(mejorDireccion,direccionAux);
+		if (!Movible.sonDireccionesOpuestas(nuevaDireccion, enemigo.getDireccionActual())) {
+			enemigo.setDireccionActual(nuevaDireccion);
+			System.out.println("Se cambio la direccion del enemigo: " + Movible.direccionToString(nuevaDireccion));
+		}
 	}
 	
 	private int calcularDireccion(int direccion,int direccionAux) {
@@ -113,13 +88,13 @@ public class PersiguiendoEnemigo1 extends PersiguiendoEnemigoAbstracto {
 		int direccion2da=0;
 		int direccion3ra=0;
 		int marcador=0;
-		if(Movible.sonDireccionesOpuestas(direccion, direccionActual)) {
+		if(Movible.sonDireccionesOpuestas(direccion, enemigo.getDireccionActual())) {
 			marcador=+1;
 		}
-		if(Movible.sonDireccionesOpuestas(direccionAux, direccionActual)) {
+		if(Movible.sonDireccionesOpuestas(direccionAux, enemigo.getDireccionActual())) {
 			marcador=+2;
 		}
-		if(Movible.sonDireccionesOpuestas(direccion*(-1), direccionActual)) {
+		if(Movible.sonDireccionesOpuestas(direccion*(-1), enemigo.getDireccionActual())) {
 			marcador=+3;
 		}
 		switch(marcador) {
@@ -157,14 +132,14 @@ public class PersiguiendoEnemigo1 extends PersiguiendoEnemigoAbstracto {
 	}
 	
 	private int verificarDireccion(int d1, int d2, int d3) {
-		int nuevaDireccion=0;
+		int nuevaDireccion=enemigo.getDireccionActual();
 		if(puedeMover(enemigo,d1)){
 			nuevaDireccion=d1;
 			//System.out.println("Puede mover d1");
 		}else if(puedeMover(enemigo,d2)) {
 				nuevaDireccion=d2;
 				//System.out.println("Puede mover d2");
-		}else {
+		}else if (puedeMover(enemigo,d3)) {
 			nuevaDireccion=d3;
 			//System.out.println("Puede mover d3");
 		}

@@ -67,7 +67,7 @@ public class Enemigo1 extends Enemigo {
 
 	@Override
 	public void mover() {
-		System.out.println("Mover enemigo 1: " + toString());
+		//System.out.println("Mover enemigo 1: " + toString());
 		estado.mover();
 		
 	}

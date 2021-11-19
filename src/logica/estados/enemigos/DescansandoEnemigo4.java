@@ -7,8 +7,8 @@ import vista.repositorioGrafico.RepositorioGraficoEnemigo;
 
 public class DescansandoEnemigo4 extends DescansandoEnemigoAbstracto {
 
-	public DescansandoEnemigo4(Enemigo enemigo, int direccionActual) {
-		super(enemigo, direccionActual);
+	public DescansandoEnemigo4(Enemigo enemigo) {
+		super(enemigo);
 	}
 
 	@Override

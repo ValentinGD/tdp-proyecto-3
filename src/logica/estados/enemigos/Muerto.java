@@ -7,8 +7,8 @@ import vista.repositorioGrafico.RepositorioGraficoEnemigo;
 
 public class Muerto extends EstadoEnemigo {
 
-	protected Muerto(Enemigo enemigo, int direccionActual) {
-		super(enemigo, direccionActual);
+	protected Muerto(Enemigo enemigo) {
+		super(enemigo);
 	}
 
 	@Override

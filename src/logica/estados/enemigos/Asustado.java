@@ -8,8 +8,8 @@ import vista.repositorioGrafico.RepositorioGraficoEnemigo;
 
 public class Asustado extends EstadoEnemigo {
 
-	public Asustado(Enemigo enemigo, int direccionActual) {
-		super(enemigo, direccionActual);
+	public Asustado(Enemigo enemigo) {
+		super(enemigo);
 	}
 
 	@Override

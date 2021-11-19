@@ -1,6 +1,9 @@
 package logica.entidades;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
 import app.App;
 import logica.Escenario;
@@ -20,17 +23,18 @@ public class Personaje extends Movible {
 	protected EstadoPersonaje estado;
 	
 	private int vidas;
+	
 	private int direccionSiguiente;
 	
-	private boolean direccionActualizada;
+	private boolean puedeCambiarDireccion;
 	
 	private Personaje() {
 		super(0, 0);
 		vidas = Integer.parseInt(App.configuration.getProperty("CantVidas"));
 		direccionActual = Movible.DIRECCION_DERECHA;
 		direccionSiguiente = direccionActual;
-		direccionActualizada = true;
 		estado = new EstadoPersonajeNormal(this, direccionActual);
+		puedeCambiarDireccion = true;
 	}
 
 	public static Personaje getInstancia() {
@@ -42,17 +46,18 @@ public class Personaje extends Movible {
 	}
 
 	public void setDireccion(int direccion) {
-		if (Movible.esDireccionValida(direccion) && direccionActualizada && (direccion != direccionActual)) {
+		boolean esDireccionValida = Movible.esDireccionValida(direccion);
+		if (esDireccionValida) {
 			direccionSiguiente = direccion;
-			direccionActualizada = false;
-			//System.out.println("Personaje::Se cambio la direccion: " + direccionSiguiente);
+			System.out.println("Personaje::Se cambio la direccion: " + direccionToString(direccionSiguiente));
 		} else {
 			//System.out.println("Personaje::No se puede cambiar de direccion");
 		}
 	}
 	
-	public void mover() {
+	public synchronized void mover() {
 		estado.mover();
+		System.out.println("movido");
 	}
 
 	@Override
@@ -94,15 +99,8 @@ public class Personaje extends Movible {
 		return direccionSiguiente;
 	}
 	
-	public void setDireccionActual(int direccion) {
-		if (Movible.esDireccionValida(direccion)) {
-			direccionActual = direccion;
-		}
-	}
-	
 	public void actualizarDireccion() {
 		direccionActual = direccionSiguiente;
-		direccionActualizada = true;
 	}
 	
 	public void comerPickUp() {
@@ -124,10 +122,5 @@ public class Personaje extends Movible {
 			System.out.println("sobre poder");
 			Escenario.getInstancia().eliminarPickUp(p);
 		}
-	}
-
-	public void setPosicion(int xDestino, int yDestino) {
-		x = xDestino;
-		y = yDestino;
 	}
 }

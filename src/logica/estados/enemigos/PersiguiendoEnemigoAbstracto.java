@@ -15,7 +15,7 @@ public abstract class PersiguiendoEnemigoAbstracto extends EstadoEnemigo {
 	@Override
 	public ImageIcon getRepresentacionGrafica(RepositorioGraficoEnemigo repositorio) {
 		ImageIcon img;
-		switch(direccionActual) {
+		switch(enemigo.getDireccionActual()) {
 		case Movible.DIRECCION_ABAJO:
 			img = repositorio.getMovibleAbajoGrafico();
 			break;
