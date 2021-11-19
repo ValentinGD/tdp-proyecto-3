@@ -2,6 +2,7 @@ package logica.entidades.enemigos;
 
 
 import app.App;
+import logica.Visitor;
 import logica.entidades.Movible;
 import logica.entidades.Pared;
 import logica.estados.enemigos.EstadoEnemigo;
@@ -34,6 +35,9 @@ public abstract class Enemigo extends Movible {
 		this.tiempoDescanso = tiempoDescanso;
 	}
 	
+	public void aceptar(Visitor v) {
+		v.visitarEnemigo(this);
+	}
 	@Override
 	public void visitarPared(Pared p) {
 		estado.visitarPared(p);

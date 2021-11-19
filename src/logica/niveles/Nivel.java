@@ -66,4 +66,8 @@ public abstract class Nivel {
 	}
 
 	public abstract Nivel getSiguienteNivel();
+	
+	public int getCantPickUps() {
+		return mapa.getcantPickup();
+	}
 }

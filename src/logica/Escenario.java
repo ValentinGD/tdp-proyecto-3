@@ -46,7 +46,6 @@ public class Escenario {
 		if (instancia == null) {
 			instancia = new Escenario();
 		}
-		
 		return instancia;
 	}
 	
@@ -59,7 +58,7 @@ public class Escenario {
 		
 		juego.cargarNuevoNivel();
 		
-		System.out.println("escenario inicial cargado");
+		cantPickUps=nivel.getCantPickUps();
 		return true;
 	}
 	
@@ -258,6 +257,8 @@ public class Escenario {
 	}
 	
 	public void tick() {
+		if(cantPickUps==0) 
+			terminarNivel();
 		//System.out.println("actualizando escenario");
 		entidadesParaActualizar.clear();
 		
@@ -336,6 +337,8 @@ public class Escenario {
 		if(nivel.getSiguienteNivel() != null) {
 			
 			nivel=nivel.getSiguienteNivel();
+		
+			cantPickUps=nivel.getCantPickUps();
 			
 			juego.terminarNivel();
 			
@@ -352,6 +355,7 @@ public class Escenario {
 	public void eliminarPickUp(PickUp p) {
 		juego.actualizarPuntaje(p.getPuntos());
 		p.comer();
+		cantPickUps-=1;
 	}
 
 	public int getAncho() {
