@@ -13,6 +13,7 @@ import logica.estados.personaje.EstadoPersonaje;
 import logica.estados.personaje.EstadoPersonajeNormal;
 import vista.RepresentacionGrafica;
 import vista.repositorioGrafico.RepositorioGraficoAbstracto;
+import logica.entidades.enemigos.Enemigo;
 import logica.entidades.pickups.poderes.PickUpPoder;
 import logica.entidades.pickups.puntos.*;
 
@@ -111,6 +112,14 @@ public class Personaje extends Movible {
 		}
 	}
 	
+	public void chocarConEnemigo() {
+		Zona zona = getZona();
+		List<Entidad> entidades = zona.getEntidades();
+		for (Entidad e : entidades) {
+			e.aceptar(this);
+		}
+	}
+	
 	public void visitarPickUpPuntos(PickUpPuntos p) {
 		if(this.getX()==p.getX() && this.getY()==p.getY()) {
 			Escenario.getInstancia().eliminarPickUp(p);
@@ -121,6 +130,12 @@ public class Personaje extends Movible {
 		if(this.getX()==p.getX() && this.getY()==p.getY()) {
 			System.out.println("sobre poder");
 			Escenario.getInstancia().eliminarPickUp(p);
+		}
+	}
+	
+	public void visitarEnemigo(Enemigo e) {
+		if(this.getX()==e.getX() && this.getY()==e.getY()) {
+			vidas-=1;
 		}
 	}
 }
