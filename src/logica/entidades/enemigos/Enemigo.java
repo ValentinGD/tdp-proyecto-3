@@ -39,6 +39,17 @@ public abstract class Enemigo extends Movible {
 		estado.visitarPared(p);
 	}
 	
+	public boolean esCambioDeDireccionValido(int direccion) {
+		if (!esDireccionValida(direccion)) {
+			return false;
+		}
+		
+//		if (!Movible.sonDireccionesOpuestas(direccion, direccionActual)) {
+//			System.out.println("Cambiar de " + direccionToString(direccionActual) + " a " + direccionToString(direccionActual) + " ES posible");
+//		}
+		return !Movible.sonDireccionesOpuestas(direccion, direccionActual);
+	}
+	
 	public abstract void perseguir();
 
 	public abstract void descansar();

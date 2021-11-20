@@ -57,7 +57,7 @@ public class Personaje extends Movible {
 	
 	public synchronized void mover() {
 		estado.mover();
-		System.out.println("movido");
+//		System.out.println("movido");
 	}
 
 	@Override

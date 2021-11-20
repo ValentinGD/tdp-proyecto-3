@@ -78,7 +78,7 @@ public class PersiguiendoEnemigo1 extends PersiguiendoEnemigoAbstracto {
 		nuevaDireccion = calcularDireccion(mejorDireccion,direccionAux);
 		if (!Movible.sonDireccionesOpuestas(nuevaDireccion, enemigo.getDireccionActual())) {
 			enemigo.setDireccionActual(nuevaDireccion);
-			System.out.println("Se cambio la direccion del enemigo: " + Movible.direccionToString(nuevaDireccion));
+			//System.out.println("Se cambio la direccion del enemigo 1: " + Movible.direccionToString(nuevaDireccion));
 		}
 	}
 	

@@ -21,9 +21,9 @@ public class EstadoPersonajeNormal extends EstadoPersonaje {
 	public void mover() {
 		verificarCambioDireccion();
 		if(puedeMover(personaje, personaje.getDireccionActual())) {
-			System.out.println("moviendo personaje");
-			calcularPosicionDestino(personaje);
+			//System.out.println("moviendo personaje");
 			
+			calcularPosicionDestino(personaje);
 			personaje.setPosicion(xDestino, yDestino);
 			Escenario.getInstancia().agregarEntidadParaActualizar(personaje);
 			Escenario.getInstancia().reubicar(personaje);
