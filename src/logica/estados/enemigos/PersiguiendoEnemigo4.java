@@ -17,13 +17,8 @@ public class PersiguiendoEnemigo4 extends PersiguiendoEnemigoAbstracto {
 		int diferenciaEnY=enemigo.getY()-personaje.getY();
 		
 		if(Math.abs(diferenciaEnX)< 8*Entidad.TAMANIO & Math.abs(diferenciaEnY)< 8*Entidad.TAMANIO) {
-			if(enemigo.getY()>9*Entidad.TAMANIO) {
-				diferenciaEnY=enemigo.getY()-720;
-			}else {
-				diferenciaEnY=enemigo.getY()-36;
-				
-			}
-			diferenciaEnX=enemigo.getX()-36;
+			diferenciaEnY=enemigo.getY()-Entidad.TAMANIO*Escenario.getInstancia().getAlto();
+			diferenciaEnX=enemigo.getX()-Entidad.TAMANIO;
 		}
 		
 		
