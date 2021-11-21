@@ -11,7 +11,10 @@ public class PersiguiendoEnemigo4 extends PersiguiendoEnemigoAbstracto {
 		super();
 	}
 
-
+	/**
+	 * Calcula la direccion mas optima hacia el objetivo, estos son el personaje, 
+	 * si enemigo4 esta a mas de 8 cuadrados, sino la esquina inferior izquierda
+	 */
 	protected void calcularCoordenadasObjetivo() {
 		int diferenciaEnX=enemigo.getX()-personaje.getX();
 		int diferenciaEnY=enemigo.getY()-personaje.getY();
