@@ -11,28 +11,19 @@ public class PersiguiendoEnemigo4 extends PersiguiendoEnemigoAbstracto {
 		super();
 	}
 
-
+	/**
+	 * Calcula la direccion mas optima hacia el objetivo, estos son el personaje, 
+	 * si enemigo4 esta a mas de 8 cuadrados, sino la esquina inferior izquierda
+	 */
 	protected void calcularCoordenadasObjetivo() {
-		int diferenciaEnX=enemigo.getX()-personaje.getX();
-		int diferenciaEnY=enemigo.getY()-personaje.getY();
+		double distancia=distancia(enemigo.getX(),enemigo.getY(),personaje.getX(),personaje.getY());
 		
-		if(Math.abs(diferenciaEnX)< 8*Entidad.TAMANIO & Math.abs(diferenciaEnY)< 8*Entidad.TAMANIO) {
-			diferenciaEnY=enemigo.getY()-Entidad.TAMANIO*Escenario.getInstancia().getAlto();
-			diferenciaEnX=enemigo.getX()-Entidad.TAMANIO;
+		if(distancia<8*Entidad.TAMANIO) {
+			xObjetivo=Entidad.TAMANIO;
+			yObjetivo=Escenario.getInstancia().getAlto()-Entidad.TAMANIO;
+		}else {
+			xObjetivo=personaje.getX();
+			yObjetivo=personaje.getY();
 		}
-		
-		
-		if(diferenciaEnX < 0) {//si el personaje esta a la derecha
-			xObjetivo=Movible.DIRECCION_DERECHA;
-		} else {
-			xObjetivo=Movible.DIRECCION_IZQUIERDA;
-		}
-		
-		if(diferenciaEnY < 0) {//si el personaje esta abajo
-			yObjetivo=Movible.DIRECCION_ABAJO;
-		} else {
-			yObjetivo=Movible.DIRECCION_ARRIBA;
-		}
-		
 	}
 }
