@@ -5,7 +5,6 @@ X*X******************X
 X*X*XXXXXXXXXXXXXX*X*X
 X*X*X************X*X*X
 X*X*X*XXXXXXXXXX*X*X*X
-<<<<<<< HEAD
 X*X*X****1234****X*X*X
 X*X*X*XXX----XXX*X*X*X
 X*X*X*XXX    XXX*X*X*X

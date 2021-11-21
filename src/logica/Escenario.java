@@ -52,13 +52,13 @@ public class Escenario {
 	public boolean start() {
 		System.out.println("cargando escenario inicial");
 
-		nivel = new Nivel1();
+		nivel = new Nivel2();
 		
 		cargarEscenarioConMatriz();
 		
 		juego.cargarNuevoNivel();
 		
-		cantPickUps=nivel.getCantPickUps();
+		cantPickUps = nivel.getCantPickUps();
 		return true;
 	}
 	

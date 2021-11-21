@@ -19,7 +19,6 @@ public class RepresentacionGrafica {
 	
 	public RepresentacionGrafica(int tam, Entidad entidad) {
 		label = new JLabel();
-		label.setBackground(Color.GREEN);
 		this.tam = tam;
 		this.entidad = entidad;
 	}

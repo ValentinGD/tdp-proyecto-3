@@ -1,12 +1,8 @@
 package logica.estados.enemigos;
 
-import javax.swing.ImageIcon;
-
 import logica.Escenario;
 import logica.entidades.Movible;
 import logica.entidades.Personaje;
-import logica.entidades.enemigos.Enemigo;
-import vista.repositorioGrafico.RepositorioGraficoEnemigo;
 
 public class PersiguiendoEnemigo4 extends PersiguiendoEnemigoAbstracto {
 	
@@ -22,6 +18,8 @@ public class PersiguiendoEnemigo4 extends PersiguiendoEnemigoAbstracto {
 			enemigo.setPosicion(xDestino, yDestino);
 			Escenario.getInstancia().agregarEntidadParaActualizar(enemigo);
 			Escenario.getInstancia().reubicar(enemigo);
+			
+			System.out.println("Objetivo Enemigo 4: <x: " + xObjetivo + ", y: " + yObjetivo + ">");
 
 		}else {
 			//System.out.println("El enemigo NO se puede mover hacia " + Movible.direccionToString(direccionActual));
@@ -90,7 +88,7 @@ public class PersiguiendoEnemigo4 extends PersiguiendoEnemigoAbstracto {
 		nuevaDireccion = calcularDireccion(mejorDireccion,direccionAux);
 		if (!Movible.sonDireccionesOpuestas(nuevaDireccion, enemigo.getDireccionActual())) {
 			enemigo.setDireccionActual(nuevaDireccion);
-			System.out.println("Se cambio la direccion del enemigo: " + Movible.direccionToString(nuevaDireccion));
+			//System.out.println("Se cambio la direccion del enemigo: " + Movible.direccionToString(nuevaDireccion));
 		}
 	}
 	
@@ -157,5 +155,11 @@ public class PersiguiendoEnemigo4 extends PersiguiendoEnemigoAbstracto {
 		}
 		
 		return nuevaDireccion;
+	}
+
+	@Override
+	protected void calcularCoordenadasObjetivo() {
+		// TODO Auto-generated method stub
+		
 	}
 }

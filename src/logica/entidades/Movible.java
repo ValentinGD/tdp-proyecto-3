@@ -14,6 +14,13 @@ public abstract class Movible extends Entidad implements Visitor {
 	public static final int DIRECCION_ARRIBA = -2;
 	public static final int DIRECCION_ABAJO = 2;
 	
+	public static final int [] DIRECCIONES_POSIBLES = new int[] {
+		DIRECCION_IZQUIERDA,
+		DIRECCION_DERECHA,
+		DIRECCION_ARRIBA,
+		DIRECCION_ABAJO
+	};
+	
 	public static final int VELOCIDAD = Integer.parseInt(App.configuration.getProperty("VelocidadMovible"));
 	
 	protected boolean chocaste;
