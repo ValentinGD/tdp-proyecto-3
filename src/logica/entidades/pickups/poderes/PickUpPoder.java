@@ -7,7 +7,7 @@ import logica.entidades.PickUp;
 
 public abstract class PickUpPoder extends PickUp {
 
-	protected PickUpPoder(int x, int y) {
+	protected PickUpPoder(int x, int y, int puntos, int vidasExtras, int aumentoVelocidad, boolean inmortalidad, boolean matarEnemigo, int tiempoDuracion) {
 		super(x, y);
 	}
 	
@@ -15,7 +15,5 @@ public abstract class PickUpPoder extends PickUp {
 		v.visitarPickUpPoder(this);
 	}
 	
-	public void aplicarPoder(Personaje personaje) {
-		
-	}
+	public abstract void aplicarPoder(Personaje personaje);
 }
