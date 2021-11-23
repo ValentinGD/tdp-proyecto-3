@@ -65,7 +65,7 @@ public class Juego implements Runnable, Suscriptor  {
 	}
 	
 	public void gameOver() {
-		reloj.stop();
+		pararTiempo();
 		gui.showGameOver();
     }
 	
@@ -88,7 +88,7 @@ public class Juego implements Runnable, Suscriptor  {
 	}
 
 	public void terminarNivel() {
-		reloj.stop();
+		pararTiempo();
 		gui.limpiarJuego();
 	}
 
@@ -97,6 +97,18 @@ public class Juego implements Runnable, Suscriptor  {
 		gui.agregarEntidades(escenario.getEntidadesParaActualizar());
 		System.out.println("se agregaron " + escenario.getEntidadesParaActualizar().size() + " entidades.");
 		gui.showJuego();
+		reloj.start();
+	}
+
+	public void pararTiempo() {
+		try {
+			reloj.stop();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void reanudarTiempo() {
 		reloj.start();
 	}
 }

@@ -7,6 +7,7 @@ import logica.entidades.Movible;
 import logica.entidades.Pared;
 import logica.entidades.Personaje;
 import logica.estados.enemigos.EstadoEnemigo;
+import logica.estados.personaje.EstadoPersonajeNormal;
 
 public abstract class Enemigo extends Movible {
 	
@@ -18,6 +19,12 @@ public abstract class Enemigo extends Movible {
 		super(0, 0);
 		estado = estadoInicial;
 		this.velocidadEnTics = Integer.parseInt(App.configuration.getProperty("VelocidadTicsPersonaje"));
+	}
+	
+	@Override
+	public void reset() {
+		super.reset();
+		direccionActual = Movible.DIRECCION_ARRIBA;
 	}
 
 	public int getVelocidad() {

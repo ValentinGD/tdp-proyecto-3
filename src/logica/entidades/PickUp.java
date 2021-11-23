@@ -24,7 +24,7 @@ public abstract class PickUp extends Entidad {
 	}
 	
 	public void comer() {
-		System.out.println("pickup comido");
+		//System.out.println("pickup comido");
 		comido = true;
 		miZona.eliminar(this);
 		miZona = null;

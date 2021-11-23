@@ -35,6 +35,8 @@ public abstract class Movible extends Entidad implements Visitor {
 	
 	protected Movible(int x, int y) {
 		super(x, y);
+		xOrigen = x;
+		yOrigen = y;
 		chocaste = false;
 		ticCount = 0;
 		direccionActual = DIRECCION_DERECHA;
@@ -53,6 +55,7 @@ public abstract class Movible extends Entidad implements Visitor {
 	}
 	
 	public void setOrigen() {
+		//System.out.println("Estableciendo origen: " + toString());
 		xOrigen = x;
 		yOrigen = y;
 	}
@@ -82,9 +85,6 @@ public abstract class Movible extends Entidad implements Visitor {
 	@Override
 	public void visitarPickUpPoder(PickUpPoder p) {}
 	
-	public String toString() {
-		return "x: " + x + ", y: " + y + ", direccion: " + direccionToString(direccionActual) + ", zona: " + miZona; 
-	}
 
 	public int getDireccionActual() {
 		return direccionActual;
@@ -119,5 +119,22 @@ public abstract class Movible extends Entidad implements Visitor {
 
 	public static int getDireccionOpuesta(int direccion) {
 		return direccion * (-1);
+	}
+
+	public void reset() {
+//		System.out.println("\tMovible::Reseteando");
+//		System.out.println("\t\tANTES");
+//		System.out.println("\t\tx: " + x + ", y: " + y);
+		x = xOrigen;
+		y = yOrigen;
+//		System.out.println("\t\tDESPUES");
+//		System.out.println("\t\tx: " + x + ", y: " + y);
+		
+		ticCount = 0;
+	}
+	
+	@Override
+	public String toString() {
+		return "x: " + x + ", y: " + y + ", direccion: " + direccionToString(direccionActual) + ", zona: " + miZona; 
 	}
 }

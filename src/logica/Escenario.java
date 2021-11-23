@@ -2,9 +2,9 @@ package logica;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Iterator;
 import java.util.List;
 
+import app.App;
 import logica.entidades.Entidad;
 import logica.entidades.Movible;
 import logica.entidades.Personaje;
@@ -18,6 +18,8 @@ public class Escenario {
 	private static Escenario instancia;
 
 	private static final int TAMANIO_ZONA = 4 * Entidad.TAMANIO;
+
+	public static final int CANTIDAD_INICIAL_DE_VIDAS = Integer.parseInt(App.configuration.getProperty("CantVidas"));
 	
 	private List<EntidadGrafica> entidadesParaActualizar;
 	private List<Movible> movibles;
@@ -34,6 +36,7 @@ public class Escenario {
 	private Juego juego;
 	private int cantPickUps;
 	
+	private boolean murioPersonaje;
 	
 	private Escenario() {
 		zonas = new ArrayList<Zona>();
@@ -52,7 +55,7 @@ public class Escenario {
 	public boolean start() {
 		System.out.println("cargando escenario inicial");
 
-		nivel = new Nivel2();
+		nivel = new Nivel1();
 		
 		cargarEscenarioConMatriz();
 		
@@ -62,40 +65,12 @@ public class Escenario {
 		return true;
 	}
 	
-	public void cargarEscenario() {
-		//mapa = nivel.getMapa();
-		
-		crearZonas();
-		List<Entidad> entidades= new ArrayList<Entidad>(); 
-		Entidad entidad=null;
-		Zona zona=null;
-		int indexZona=0;
-		
-		entidades.addAll(nivel.getMovibles());
-		entidades.addAll(nivel.getParedes());
-		entidades.addAll(nivel.getPoderesEspeciales());
-		entidades.addAll(nivel.getPuntosEspeciales());
-		entidades.addAll(nivel.getPickUpsNormales());
-		
-		crearMatrizZonas();
-		
-		entidadesParaActualizar.addAll(entidades);
-		
-		Iterator<Entidad> itEntidades=entidades.iterator();
-		while(itEntidades.hasNext()) {
-			entidad=itEntidades.next();
-			entidad.setX(entidad.getX() * Entidad.TAMANIO);
-			entidad.setY(entidad.getY() * Entidad.TAMANIO);
-			
-			indexZona=localizarZona(entidad);
-			zona=zonas.get(indexZona);
-			
-			entidad.setZona(zona);
-			zona.addEntidad(entidad);
-		}
-	}
 	
 	public void cargarEscenarioConMatriz() {
+		
+		System.out.println("Cargando nivel: " + nivel);
+		
+		murioPersonaje = false;
 		
 		List<Entidad> entidades = new ArrayList<Entidad>();
 		Zona zona;
@@ -113,7 +88,7 @@ public class Escenario {
 		
 		crearMatrizZonas();
 		
-		
+		personaje.resetVidas();
 		
 		entidadesParaActualizar.clear();
 		
@@ -135,89 +110,11 @@ public class Escenario {
 		}
 	}
 	
-	private int localizarZona(Entidad e) {
-		int numZona;
-		int posX=e.getX();
-		int posY=e.getY();
-		int cantZonasHorizaontal=nivel.getAncho() / TAMANIO_ZONA;
-		numZona=posY/TAMANIO_ZONA*cantZonasHorizaontal+posX/TAMANIO_ZONA;
-		
-		return numZona;
-	}
-	
 	private Zona localizarZonaMatriz(Entidad e) {
-		/*int numZona;
-		int posX=e.getX();
-		int posY=e.getY();
-		int cantZonasHorizaontal=mapa.getAncho() / anchoZona;
-		numZona=posY/anchoZona*cantZonasHorizaontal+posX/anchoZona;
+		int xZona = e.getX() / TAMANIO_ZONA;
+		int yZona = e.getY() / TAMANIO_ZONA;
 		
-		return numZona;*/
-		
-		for (int fila = 0; fila < matrizZonas.length; ++fila) {
-			for (int columna = 0; columna < matrizZonas[fila].length; ++columna) {
-				if (matrizZonas[fila][columna].contieneCoordenadas(e)) {
-					return matrizZonas[fila][columna];
-				}
-			}
-		}
-		return null;
-	}
-	
-	private void crearZonas() {
-		zonas.clear();
-		
-		boolean irregularHorizontal = false;
-		boolean irregularVertical = false;
-		int cantZonasHorizaontal = nivel.getAncho() / TAMANIO_ZONA;
-		int cantZonasVertical = nivel.getAlto() / TAMANIO_ZONA;
-		
-		if(nivel.getAncho() % TAMANIO_ZONA !=0) {
-			cantZonasHorizaontal++;
-			irregularHorizontal=true;
-		}
-		
-		if(nivel.getAlto() % TAMANIO_ZONA !=0) {
-			cantZonasVertical++;
-			irregularVertical=true;
-		}
-		
-		Zona zonaAux = null;
-		for(int y=0;y<cantZonasVertical;y++) {
-			for(int x=0;x<cantZonasHorizaontal;x++) {
-				
-				if(irregularHorizontal && !irregularVertical) {
-					if(x==cantZonasHorizaontal-1) {
-						zonaAux= new Zona(x*TAMANIO_ZONA,y*TAMANIO_ZONA,TAMANIO_ZONA,nivel.getAncho() % TAMANIO_ZONA);
-					}else {
-						zonaAux= new Zona(x*TAMANIO_ZONA,y*TAMANIO_ZONA,TAMANIO_ZONA,TAMANIO_ZONA);
-					}
-				}
-				
-				if(!irregularHorizontal && irregularVertical) {
-					if(x==cantZonasVertical-1) {
-						zonaAux= new Zona(x*TAMANIO_ZONA,y*TAMANIO_ZONA,nivel.getAlto() %TAMANIO_ZONA,TAMANIO_ZONA);
-					}else {
-						zonaAux= new Zona(x*TAMANIO_ZONA,y*TAMANIO_ZONA,TAMANIO_ZONA,TAMANIO_ZONA);
-					}
-				}
-				
-				if(irregularHorizontal && irregularVertical) {
-					if(x==cantZonasHorizaontal-1) {
-						zonaAux= new Zona(x*TAMANIO_ZONA,y*TAMANIO_ZONA,nivel.getAlto() % TAMANIO_ZONA,nivel.getAncho() %TAMANIO_ZONA);
-					}else {
-						zonaAux= new Zona(x*TAMANIO_ZONA,y*TAMANIO_ZONA,TAMANIO_ZONA,TAMANIO_ZONA);
-					}
-				}
-				
-				if(!irregularHorizontal && !irregularVertical) {
-					zonaAux= new Zona(x*TAMANIO_ZONA,y*TAMANIO_ZONA,TAMANIO_ZONA,TAMANIO_ZONA);
-				}
-
-				zonas.add(zonaAux);
-			}
-		}
-		
+		return matrizZonas[yZona][xZona];
 	}
 	
 	private void crearMatrizZonas() {
@@ -257,14 +154,20 @@ public class Escenario {
 	}
 	
 	public void tick() {
-		if(cantPickUps==0) 
+		if(cantPickUps==0) {
 			terminarNivel();
-		//System.out.println("actualizando escenario");
-		entidadesParaActualizar.clear();
+		}
 		
-		for (Movible m : movibles) {
-			//personaje.mover();
-			m.mover();
+		//System.out.println("actualizando escenario");
+		if (!murioPersonaje) {
+			entidadesParaActualizar.clear();
+			
+			for (Movible m : movibles) {
+				//personaje.mover();
+				m.mover();
+			}
+		} else {
+			procesarMuertePersonaje();
 		}
 	}
 	
@@ -333,10 +236,11 @@ public class Escenario {
 	
 	private void terminarNivel() {
 		System.out.println("se termino el nivel. puntaje: " + juego.getPuntajeString());
-		System.out.println("Personaje: " + personaje);
-		if(nivel.getSiguienteNivel() != null) {
+//		System.out.println("Personaje: " + personaje);
+		Nivel siguienteNivel = nivel.getSiguienteNivel();
+		if((cantPickUps == 0) && (siguienteNivel != null)) {
 			
-			nivel=nivel.getSiguienteNivel();
+			nivel = siguienteNivel;
 		
 			cantPickUps=nivel.getCantPickUps();
 			
@@ -349,7 +253,7 @@ public class Escenario {
 		}else {
 			juego.gameOver();
 		}
-		System.out.println("Personaje: " + personaje);
+//		System.out.println("Personaje: " + personaje);
 	}
 	
 	public void eliminarPickUp(PickUp p) {
@@ -389,6 +293,29 @@ public class Escenario {
 		} else {
 			//System.out.println("No se reubico. Distancia a borde: " + m.getZona().distanciaABorde(m));
 		}
+	}
+
+	public void murioPersonaje() {
+		murioPersonaje = true;
+	}
+	
+	private void procesarMuertePersonaje() {
+		if (personaje.getVidas() == 0) {
+			terminarNivel();
+		} else {
+			juego.pararTiempo();
+			for (Movible m : movibles) {
+				//System.out.println("RESETEANDO MOVIBLE: " + m);
+				m.reset();
+				Zona nuevaZona = localizarZonaMatriz(m);
+				m.getZona().eliminar(m);
+				nuevaZona.addEntidad(m);
+				m.setZona(nuevaZona);
+				//System.out.println("\tMOVIBLE RESETEADO: " + m);
+			}
+			juego.reanudarTiempo();
+		}
+		murioPersonaje = false;
 	}
 	
 //	public Posicion getPosicion(Posicion p) {

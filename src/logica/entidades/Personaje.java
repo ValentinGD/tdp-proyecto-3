@@ -18,8 +18,10 @@ import logica.entidades.pickups.poderes.PickUpPoder;
 import logica.entidades.pickups.puntos.*;
 
 public class Personaje extends Movible {
-	
+
 	private static Personaje instancia;
+	
+	private static final int VELOCIDAD_INICIAL = Integer.parseInt(App.configuration.getProperty("VelocidadTicsPersonaje"));
 	
 	protected EstadoPersonaje estado;
 	
@@ -34,24 +36,14 @@ public class Personaje extends Movible {
 	private int ticsRestantesPoder;
 	private int velocidadExtra;
 	
+	private boolean estaVivo;
+	
 	private Personaje() {
 		super(0, 0);
-		vidas = Integer.parseInt(App.configuration.getProperty("CantVidas"));
+
+		vidas = Escenario.CANTIDAD_INICIAL_DE_VIDAS;
 		
-		velocidadEnTics = Integer.parseInt(App.configuration.getProperty("VelocidadTicsPersonaje"));
-		
-		direccionActual = Movible.DIRECCION_DERECHA;
-		direccionSiguiente = direccionActual;
-		
-		estado = new EstadoPersonajeNormal(this, direccionActual);
-		
-		esInvencible = false;
-		puedeMatarEnemigo = false;
-		tieneVelocidadExtra = false;
-		
-		ticsRestantesPoder = 0;
-		velocidadExtra = 0;
-		
+		reset();
 	}
 
 	public static Personaje getInstancia() {
@@ -61,12 +53,32 @@ public class Personaje extends Movible {
 		
 		return instancia;
 	}
+	
+	@Override
+	public void reset() {
+		super.reset();
+		
+		direccionActual = Movible.DIRECCION_DERECHA;
+		direccionSiguiente = direccionActual;
+		
+		velocidadEnTics = VELOCIDAD_INICIAL;
+		estado = new EstadoPersonajeNormal(this, direccionActual);
+		
+		esInvencible = false;
+		puedeMatarEnemigo = false;
+		tieneVelocidadExtra = false;
+		
+		ticsRestantesPoder = 0;
+		velocidadExtra = 0;
+		
+		estaVivo = true;
+	}
 
 	public void setDireccion(int direccion) {
 		boolean esDireccionValida = Movible.esDireccionValida(direccion);
 		if (esDireccionValida) {
 			direccionSiguiente = direccion;
-			System.out.println("Personaje::Se cambio la direccion: " + direccionToString(direccionSiguiente));
+			//System.out.println("Personaje::Se cambio la direccion: " + direccionToString(direccionSiguiente));
 		} else {
 			//System.out.println("Personaje::No se puede cambiar de direccion");
 		}
@@ -84,7 +96,12 @@ public class Personaje extends Movible {
 
 	@Override
 	public void morir() {
-		System.out.println("Murio el personaje");
+		if (estaVivo) {
+			estaVivo = false;
+			vidas--;
+			System.out.println("Murio el personaje. Vidas: " + vidas);
+			Escenario.getInstancia().murioPersonaje();
+		}
 	}
 
 	@Override
@@ -132,14 +149,14 @@ public class Personaje extends Movible {
 			e.aceptar(this);
 		}
 	}
-	
-	public void chocarConEnemigo() {
-		Zona zona = getZona();
-		List<Entidad> entidades = zona.getEntidades();
-		for (Entidad e : entidades) {
-			e.aceptar(this);
-		}
-	}
+
+//	public void chocarConEnemigo() {
+//		Zona zona = getZona();
+//		List<Entidad> entidades = zona.getEntidades();
+//		for (Entidad e : entidades) {
+//			e.aceptar(this);
+//		}
+//	}
 	
 	public void visitarPickUpPuntos(PickUpPuntos p) {
 		if(this.getX()==p.getX() && this.getY()==p.getY()) {
@@ -156,11 +173,24 @@ public class Personaje extends Movible {
 	
 	public void visitarEnemigo(Enemigo e) {
 		if (e.colisionaConEntidadEnPosicion(x, y)) {
+			System.out.println("El personaje colisiono con: " + e);
+			System.out.println("Personaje: " + toString());
 			if (puedeMatarEnemigo) {
 				e.morir();
-			} else {
+			} else if (!esInvencible) {
 				morir();
 			}
 		}
+	}
+	
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return "Personaje: <" + super.toString() + ">";
+	}
+
+	public void resetVidas() {
+		vidas = Escenario.CANTIDAD_INICIAL_DE_VIDAS;
+		estaVivo = true;
 	}
 }

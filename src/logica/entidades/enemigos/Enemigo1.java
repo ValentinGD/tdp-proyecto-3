@@ -5,7 +5,9 @@ import java.util.ArrayList;
 import javax.swing.ImageIcon;
 
 import app.App;
+import logica.Escenario;
 import logica.Visitor;
+import logica.Zona;
 import logica.entidades.Movible;
 import logica.estados.enemigos.PersiguiendoEnemigo1;
 import vista.RepresentacionGrafica;
@@ -16,10 +18,13 @@ public class Enemigo1 extends Enemigo {
 	
 	private static Enemigo1 instancia = null;
 	
+	private static final int VELOCIDAD_INICIAL = Integer.parseInt(App.configuration.getProperty("VelocidadTicsEnemigo1"));
+	
 	private Enemigo1() {
 		super(new PersiguiendoEnemigo1());
 		estado.setEnemigo(this);
-		velocidadEnTics = Integer.parseInt(App.configuration.getProperty("VelocidadTicsEnemigo1"));;
+		velocidadEnTics = VELOCIDAD_INICIAL;
+		
 	}
 
 	public static Enemigo1 getInstancia() {
@@ -27,6 +32,14 @@ public class Enemigo1 extends Enemigo {
 			instancia = new Enemigo1();
 		}
 		return instancia;
+	}
+	
+	@Override
+	public void reset() {
+		super.reset();
+		estado = new PersiguiendoEnemigo1();
+		estado.setEnemigo(this);
+		velocidadEnTics = VELOCIDAD_INICIAL;
 	}
 
 	@Override

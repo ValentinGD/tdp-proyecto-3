@@ -70,4 +70,6 @@ public abstract class Nivel {
 	public int getCantPickUps() {
 		return mapa.getcantPickup();
 	}
+	
+	public abstract String toString();
 }

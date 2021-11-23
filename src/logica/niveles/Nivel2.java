@@ -9,4 +9,9 @@ public class Nivel2 extends Nivel {
 	public Nivel getSiguienteNivel() {
 		return new Nivel3();
 	}
+
+	@Override
+	public String toString() {
+		return "Nivel 2";
+	}
 }

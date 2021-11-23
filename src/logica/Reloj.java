@@ -11,6 +11,8 @@ public class Reloj implements Notificadora {
 	private List<Suscriptor> suscriptores;
 	private int cantSuscriptores;
 	
+	private HiloDormilon t;
+	
 	//private long tiempoDeInicio;
 	
 	public Reloj(int tiempo) {
@@ -21,7 +23,7 @@ public class Reloj implements Notificadora {
 	
 	public void start() {
 		running = true;
-		Thread t = new HiloDormilon(tiempoEntreTics, this);
+		t = new HiloDormilon(tiempoEntreTics, this);
 		//System.out.println("tick");
 		t.start();
 	}
@@ -34,8 +36,10 @@ public class Reloj implements Notificadora {
 		this.tiempoEntreTics = tiempoEntreTics;
 	}
 	
-	public void stop() {
+	public void stop() throws InterruptedException {
+		t.abortar();
 		running = false;
+		t.join();
 	}
 	
 	@Override
@@ -70,19 +74,28 @@ public class Reloj implements Notificadora {
 		private int tiempoParaDormir;
 		private Reloj reloj;
 		
+		private boolean abortado;
+		
 		public HiloDormilon(int tiempoParaDormir, Reloj reloj) {
 			this.tiempoParaDormir = tiempoParaDormir;
 			this.reloj = reloj;
+			abortado = false;
 		}
 		
 		@Override
 		public void run() {
 			try {
 				sleep(tiempoParaDormir);
-				reloj.notificar();
+				if (!abortado) {
+					reloj.notificar();
+				}
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
+		}
+		
+		public void abortar() {
+			abortado = true;
 		}
 	}
 
