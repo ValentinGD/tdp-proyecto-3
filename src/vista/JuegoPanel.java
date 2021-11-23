@@ -127,15 +127,15 @@ public class JuegoPanel extends JPanel {
 		
 		lblCorazon_3 = new JLabel(RepositorioGrafico.getPocion());
 		panelLabelsVidas.add(lblCorazon_3);
-		lblCorazon_3.setVisible(true);
+		lblCorazon_3.setVisible(false);
 		
 		lblCorazon_2 = new JLabel(RepositorioGrafico.getPocion());
 		panelLabelsVidas.add(lblCorazon_2);
-		lblCorazon_2.setVisible(true);
+		lblCorazon_2.setVisible(false);
 		
 		lblCorazon_1 = new JLabel(RepositorioGrafico.getPocion());
 		panelLabelsVidas.add(lblCorazon_1);
-		lblCorazon_1.setVisible(true);
+		lblCorazon_1.setVisible(false);
 		
 		panelAudio = new JPanel();
 		GridBagConstraints gbc_panelAudio = new GridBagConstraints();
