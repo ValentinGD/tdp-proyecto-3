@@ -19,7 +19,7 @@ public class Enemigo1 extends Enemigo {
 	private Enemigo1() {
 		super(new PersiguiendoEnemigo1());
 		estado.setEnemigo(this);
-		velocidad = Integer.parseInt(App.configuration.getProperty("VelocidadEnemigo1"));;
+		velocidadEnTics = Integer.parseInt(App.configuration.getProperty("VelocidadTicsEnemigo1"));;
 	}
 
 	public static Enemigo1 getInstancia() {
@@ -31,12 +31,6 @@ public class Enemigo1 extends Enemigo {
 
 	@Override
 	public void perseguir() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void descansar() {
 		// TODO Auto-generated method stub
 		
 	}
@@ -62,13 +56,6 @@ public class Enemigo1 extends Enemigo {
 	@Override
 	public void aceptar(Visitor v) {
 		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mover() {
-		//System.out.println("Mover enemigo 1: " + toString());
-		estado.mover();
 		
 	}
 	

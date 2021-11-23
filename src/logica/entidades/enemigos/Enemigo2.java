@@ -14,7 +14,7 @@ public class Enemigo2 extends Enemigo {
 	private Enemigo2() {
 		super(new PersiguiendoEnemigo2());
 		estado.setEnemigo(this);
-		velocidad = Integer.parseInt(App.configuration.getProperty("VelocidadEnemigo2"));
+		velocidadEnTics = Integer.parseInt(App.configuration.getProperty("VelocidadTicsEnemigo2"));
 	}
 
 	public static Enemigo2 getInstancia() {
@@ -26,12 +26,6 @@ public class Enemigo2 extends Enemigo {
 
 	@Override
 	public void perseguir() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void descansar() {
 		// TODO Auto-generated method stub
 
 	}
@@ -53,12 +47,7 @@ public class Enemigo2 extends Enemigo {
 		miRepresentacion.setImageIcon(estado.getRepresentacionGrafica(repositorioGrafico.getRepositorioGraficoEnemigo2()));
 		return miRepresentacion;
 	}
-
-	@Override
-	public void mover() {
-		estado.mover();
-	}
-
+	
 	@Override
 	public void aceptar(Visitor v) {
 		// TODO Auto-generated method stub

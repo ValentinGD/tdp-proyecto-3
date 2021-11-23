@@ -27,15 +27,31 @@ public class Personaje extends Movible {
 	
 	private int direccionSiguiente;
 	
-	private boolean puedeCambiarDireccion;
+	private boolean esInvencible;
+	private boolean puedeMatarEnemigo;
+	private boolean tieneVelocidadExtra;
+	
+	private int ticsRestantesPoder;
+	private int velocidadExtra;
 	
 	private Personaje() {
 		super(0, 0);
 		vidas = Integer.parseInt(App.configuration.getProperty("CantVidas"));
+		
+		velocidadEnTics = Integer.parseInt(App.configuration.getProperty("VelocidadTicsPersonaje"));
+		
 		direccionActual = Movible.DIRECCION_DERECHA;
 		direccionSiguiente = direccionActual;
+		
 		estado = new EstadoPersonajeNormal(this, direccionActual);
-		puedeCambiarDireccion = true;
+		
+		esInvencible = false;
+		puedeMatarEnemigo = false;
+		tieneVelocidadExtra = false;
+		
+		ticsRestantesPoder = 0;
+		velocidadExtra = 0;
+		
 	}
 
 	public static Personaje getInstancia() {
@@ -57,18 +73,23 @@ public class Personaje extends Movible {
 	}
 	
 	public synchronized void mover() {
-		estado.mover();
+		ticCount++;
+		
+		if (ticCount >= velocidadEnTics - velocidadExtra) {
+			estado.mover();
+			ticCount = 0;
+		}
 //		System.out.println("movido");
 	}
 
 	@Override
 	public void morir() {
-		// TODO Auto-generated method stub
+		System.out.println("Murio el personaje");
 	}
 
 	@Override
 	public void aceptar(Visitor v) {
-		// TODO Auto-generated method stub
+		v.visitarPersonaje(this);
 	}
 	
 	@Override
@@ -127,15 +148,19 @@ public class Personaje extends Movible {
 	}
 	public void visitarPickUpPoder(PickUpPoder p) {
 		p.aplicarPoder(this);
-		if(this.getX()==p.getX() && this.getY()==p.getY()) {
+		if(p.colisionaConEntidadEnPosicion(x, y)) {
 			System.out.println("sobre poder");
 			Escenario.getInstancia().eliminarPickUp(p);
 		}
 	}
 	
 	public void visitarEnemigo(Enemigo e) {
-		if(this.getX()==e.getX() && this.getY()==e.getY()) {
-			vidas-=1;
+		if (e.colisionaConEntidadEnPosicion(x, y)) {
+			if (puedeMatarEnemigo) {
+				e.morir();
+			} else {
+				morir();
+			}
 		}
 	}
 }

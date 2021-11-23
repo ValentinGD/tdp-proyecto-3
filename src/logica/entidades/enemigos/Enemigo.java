@@ -5,10 +5,11 @@ import app.App;
 import logica.Visitor;
 import logica.entidades.Movible;
 import logica.entidades.Pared;
+import logica.entidades.Personaje;
 import logica.estados.enemigos.EstadoEnemigo;
 
 public abstract class Enemigo extends Movible {
-	protected int velocidad;
+	
 	protected int tiempoDescanso;
 	
 	protected EstadoEnemigo estado;
@@ -16,15 +17,15 @@ public abstract class Enemigo extends Movible {
 	protected Enemigo(EstadoEnemigo estadoInicial) {
 		super(0, 0);
 		estado = estadoInicial;
-		velocidad = Integer.parseInt(App.configuration.getProperty("VelocidadEnemigo"));
+		this.velocidadEnTics = Integer.parseInt(App.configuration.getProperty("VelocidadTicsPersonaje"));
 	}
 
 	public int getVelocidad() {
-		return velocidad;
+		return velocidadEnTics;
 	}
 
 	public void setVelocidad(int velociadad) {
-		this.velocidad = velociadad;
+		this.velocidadEnTics = velociadad;
 	}
 
 	public int getTiempoDescanso() {
@@ -38,6 +39,7 @@ public abstract class Enemigo extends Movible {
 	public void aceptar(Visitor v) {
 		v.visitarEnemigo(this);
 	}
+	
 	@Override
 	public void visitarPared(Pared p) {
 		estado.visitarPared(p);
@@ -56,9 +58,24 @@ public abstract class Enemigo extends Movible {
 	
 	public abstract void perseguir();
 
-	public abstract void descansar();
-
-	public abstract void morir();
+	public void morir() {
+		//TODO
+	}
+	
+	@Override
+	public void mover() {
+		ticCount++;
+		
+		if (ticCount == velocidadEnTics) {
+			estado.mover();
+			ticCount = 0;
+		}
+	}
+	
+	@Override
+	public void visitarPersonaje(Personaje p) {
+		p.visitarEnemigo(this);
+	}
 
 	public abstract void asustarse();
 
