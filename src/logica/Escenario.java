@@ -62,6 +62,8 @@ public class Escenario {
 		juego.cargarNuevoNivel();
 		
 		cantPickUps = nivel.getCantPickUps();
+		
+		juego.actualizarVidas(CANTIDAD_INICIAL_DE_VIDAS);
 		return true;
 	}
 	
@@ -313,6 +315,7 @@ public class Escenario {
 			juego.reanudarTiempo();
 		}
 		murioPersonaje = false;
+		juego.actualizarVidas(personaje.getVidas());
 	}
 	
 	public void ubicarEnZona(Movible m) {

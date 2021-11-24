@@ -1,12 +1,5 @@
 package vista;
 
-/*
- BOTON RECORDS
- Debería almacenar las 10 mejores scores.
- Al terminar cada partida, si hay menos de 10 récords guardados o si entra dentro de los 10 mejores,
- debería permitirle al jugador ingresar su nombre (con un JOptionPane.showInputDialog ?). 
-*/
-
 import java.awt.event.ActionListener;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -19,7 +12,6 @@ import java.util.List;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
-
 import app.App;
 import vista.repositorioGrafico.RepositorioGraficoAbstracto;
 import java.awt.FlowLayout;
@@ -27,17 +19,16 @@ import javax.swing.SwingConstants;
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
 import javax.swing.border.EmptyBorder;
+import javax.swing.UIManager;
 
 @SuppressWarnings("serial")
 public class JuegoPanel extends JPanel {
 	
 	private RepositorioGraficoAbstracto repositorioGrafico;
 	
-	private JLabel [][] labels;
-	
 	private JPanel panelGrilla;
 	private JPanel info_y_botones; //Contiene info para el jugador (puntaje, vidas) y botones para musica y ver scores.
-	private JPanel panelPuntaje, panelVidas, panelAudio, panelLabelsVidas, panelBotonesAudio; 
+	private JPanel panelPuntaje, panelVidas, panelAudio, panelLabelsVidas, panelBotonesAudio, panelControles; 
 
 	private JLabel lblPuntaje;
 	private JLabel lblPuntos;
@@ -53,6 +44,9 @@ public class JuegoPanel extends JPanel {
 
 	private JButton btnStop;
 	private JButton btnPlayPause;
+
+	private JLabel lblTituloControles;
+	private JLabel lblControles;
 	
 	public JuegoPanel(RepositorioGraficoAbstracto repositorioGrafico, ActionListener gui) {
 		this.repositorioGrafico = repositorioGrafico;
@@ -64,17 +58,15 @@ public class JuegoPanel extends JPanel {
 		panelGrilla.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 		add(panelGrilla, BorderLayout.CENTER);
 		panelGrilla.setLayout(null);
-		
-		//cargarPosiciones(posiciones);
-		
+
 		info_y_botones = new JPanel();
 		info_y_botones.setBorder(new EmptyBorder(10, 15, 10, 15));
 		add(info_y_botones, BorderLayout.EAST);
 		GridBagLayout gbl_info_y_botones = new GridBagLayout();
 		gbl_info_y_botones.columnWidths = new int[]{0, 0};
-		gbl_info_y_botones.rowHeights = new int[]{0, 0, 0, 0, 0, 0};
+		gbl_info_y_botones.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0};
 		gbl_info_y_botones.columnWeights = new double[]{1.0, Double.MIN_VALUE};
-		gbl_info_y_botones.rowWeights = new double[]{0.0, 0.0, 1.0, 0.0, 1.0, Double.MIN_VALUE};
+		gbl_info_y_botones.rowWeights = new double[]{0.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, Double.MIN_VALUE};
 		info_y_botones.setLayout(gbl_info_y_botones);
 		
 		panelPuntaje = new JPanel();
@@ -127,15 +119,15 @@ public class JuegoPanel extends JPanel {
 		
 		lblCorazon_3 = new JLabel(RepositorioGrafico.getPocion());
 		panelLabelsVidas.add(lblCorazon_3);
-		lblCorazon_3.setVisible(true);
+		lblCorazon_3.setVisible(false);
 		
 		lblCorazon_2 = new JLabel(RepositorioGrafico.getPocion());
 		panelLabelsVidas.add(lblCorazon_2);
-		lblCorazon_2.setVisible(true);
+		lblCorazon_2.setVisible(false);
 		
 		lblCorazon_1 = new JLabel(RepositorioGrafico.getPocion());
 		panelLabelsVidas.add(lblCorazon_1);
-		lblCorazon_1.setVisible(true);
+		lblCorazon_1.setVisible(false);
 		
 		panelAudio = new JPanel();
 		GridBagConstraints gbc_panelAudio = new GridBagConstraints();
@@ -184,6 +176,29 @@ public class JuegoPanel extends JPanel {
 		gbc_btnRecords.gridx = 0;
 		gbc_btnRecords.gridy = 4;
 		info_y_botones.add(btnRecords, gbc_btnRecords);
+		
+		panelControles = new JPanel();
+		panelControles.setBorder(UIManager.getBorder("TitledBorder.border"));
+		panelControles.setBackground(new Color(255, 239, 213));
+		GridBagConstraints gbc_panelControles = new GridBagConstraints();
+		gbc_panelControles.insets = new Insets(0, 15, 25, 15);
+		gbc_panelControles.fill = GridBagConstraints.BOTH;
+		gbc_panelControles.gridx = 0;
+		gbc_panelControles.gridy = 3;
+		info_y_botones.add(panelControles, gbc_panelControles);
+		panelControles.setLayout(new BorderLayout(0, 0));
+		
+		lblTituloControles = new JLabel("Controles:");
+		lblTituloControles.setBorder(new EmptyBorder(5, 0, 5, 0));
+		lblTituloControles.setHorizontalAlignment(SwingConstants.CENTER);
+		lblTituloControles.setFont(new Font("Tahoma", Font.BOLD, 17));
+		panelControles.add(lblTituloControles, BorderLayout.NORTH);
+		
+		lblControles = new JLabel("<html>\u2191 Arriba<br>\u2190 Izquierda<br>\u2193 Abajo<br>\u2192 Derecha</html>");
+		lblControles.setHorizontalAlignment(SwingConstants.CENTER);
+		lblControles.setBorder(new EmptyBorder(5, 0, 5, 0));
+		lblControles.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		panelControles.add(lblControles, BorderLayout.SOUTH);
 	}
 
 	public void agregarEntidades(List<EntidadGrafica> entidades) {
