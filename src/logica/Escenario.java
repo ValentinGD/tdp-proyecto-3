@@ -240,7 +240,7 @@ public class Escenario {
 		System.out.println("se termino el nivel. puntaje: " + juego.getPuntajeString());
 //		System.out.println("Personaje: " + personaje);
 		Nivel siguienteNivel = nivel.getSiguienteNivel();
-		if((cantPickUps != 0) && (siguienteNivel != null)) {
+		if((cantPickUps == 0) && (siguienteNivel != null)) {
 			
 			nivel = siguienteNivel;
 		
