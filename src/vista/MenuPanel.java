@@ -13,6 +13,7 @@ import java.awt.Color;
 import javax.swing.border.EmptyBorder;
 import java.awt.Dimension;
 import javax.swing.border.BevelBorder;
+import javax.swing.JCheckBox;
 
 @SuppressWarnings("serial")
 public class MenuPanel extends JPanel {
@@ -32,14 +33,25 @@ public class MenuPanel extends JPanel {
 		lblLogo.setFocusable(false);
 		add(lblLogo, BorderLayout.EAST);
 		
+		JPanel panelBotonYSonido = new JPanel();
+		panelBotonYSonido.setBorder(new EmptyBorder(0, 15, 0, 15));
+		add(panelBotonYSonido, BorderLayout.SOUTH);
+		panelBotonYSonido.setLayout(new BorderLayout(40, 0));
+		
 		JButton btnComenzar = new JButton("Comenzar");
-		btnComenzar.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, Color.DARK_GRAY, Color.DARK_GRAY));
+		btnComenzar.setFont(new Font("Monospaced", Font.BOLD, 18));
+		btnComenzar.setPreferredSize(new Dimension(120, 40));
+		btnComenzar.setMnemonic('c');
 		btnComenzar.setMargin(new Insets(2, 10, 2, 10));
-		btnComenzar.setMnemonic('C');
+		btnComenzar.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, Color.DARK_GRAY, Color.DARK_GRAY));
 		btnComenzar.setActionCommand("comenzar");
 		btnComenzar.addActionListener(gui);
-		btnComenzar.setPreferredSize(new Dimension(40, 40));
-		add(btnComenzar, BorderLayout.SOUTH);
+		panelBotonYSonido.add(btnComenzar, BorderLayout.CENTER);
+		
+		JCheckBox cbSonido = new JCheckBox("M\u00FAsica");
+		cbSonido.setVisible(false);
+		cbSonido.setMnemonic('m');
+		panelBotonYSonido.add(cbSonido, BorderLayout.EAST);
 	}
 
 }

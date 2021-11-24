@@ -1,6 +1,5 @@
 package vista;
 
-import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -8,17 +7,11 @@ import logica.Juego;
 import logica.Musica;
 import logica.entidades.Movible;
 import vista.repositorioGrafico.figuras.RepositorioGraficoFiguras;
-
-import java.awt.Component;
 import java.awt.TextArea;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
 import java.util.List;
 
 @SuppressWarnings("serial")
@@ -40,9 +33,9 @@ public class GUI extends JFrame implements ActionListener {
 		juegoPanel = new JuegoPanel(new RepositorioGraficoFiguras(), this);
 		juegoPanel.setFocusable(true);
 		juegoPanel.addKeyListener(new GUIKeyListener());
-		System.out.println("se creo el panel de juego");
+		//System.out.println("se creo el panel de juego");
 		
-//		musica = new Musica();
+		//musica = new Musica();
 		
 		setPanel(menuPanel);
 		setFocusable(true);
@@ -173,4 +166,5 @@ public class GUI extends JFrame implements ActionListener {
 		
 		juego.reanudarTiempo();
 	}
+
 }
