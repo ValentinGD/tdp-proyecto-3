@@ -49,6 +49,7 @@ public class GUI extends JFrame implements ActionListener {
 	}
 	
 	private void setPanel(JPanel panel) {
+		setResizable(true);
 		setContentPane(panel);
 		pack();
 		setVisible(true);

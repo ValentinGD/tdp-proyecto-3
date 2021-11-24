@@ -70,7 +70,7 @@ public class Escenario {
 	
 	public void cargarEscenarioConMatriz() {
 		
-		System.out.println("Cargando nivel: " + nivel);
+		System.out.println("--------------------------------------Cargando nivel: " + nivel);
 		
 		murioPersonaje = false;
 		
@@ -89,6 +89,10 @@ public class Escenario {
 		entidades.addAll(nivel.getPuntosEspeciales());
 		
 		crearMatrizZonas();
+		
+		for(Movible m : movibles) {
+			m.reset();
+		}
 		
 		personaje.resetVidas();
 		
@@ -252,7 +256,7 @@ public class Escenario {
 			
 			juego.cargarNuevoNivel();
 			
-		}else {
+		} else {
 			juego.gameOver();
 		}
 //		System.out.println("Personaje: " + personaje);

@@ -235,23 +235,29 @@ public class JuegoPanel extends JPanel {
 		case 1:
 			System.out.println("entro en vidas1");
 			lblCorazon_1.setVisible(true);
+			lblCorazon_2.setVisible(false);
 			lblCorazon_1.repaint();
+			lblCorazon_2.repaint();
 		break;
 		case 2:
 			System.out.println("entro en vidas2");
 			lblCorazon_1.setVisible(true);
 			lblCorazon_2.setVisible(true);
+			lblCorazon_3.setVisible(false);
 			lblCorazon_1.repaint();
 			lblCorazon_2.repaint();
+			lblCorazon_3.repaint();
 		break;
 		case 3:
 			System.out.println("entro en vidas3");
 			lblCorazon_1.setVisible(true);
 			lblCorazon_2.setVisible(true);
 			lblCorazon_3.setVisible(true);
+			lblCorazon_4.setVisible(false);
 			lblCorazon_1.repaint();
 			lblCorazon_2.repaint();
 			lblCorazon_3.repaint();
+			lblCorazon_4.repaint();
 		break;
 		case 4:
 			System.out.println("entro en vidas4");
@@ -259,10 +265,12 @@ public class JuegoPanel extends JPanel {
 			lblCorazon_2.setVisible(true);
 			lblCorazon_3.setVisible(true);
 			lblCorazon_4.setVisible(true);
+			lblCorazon_5.setVisible(false);
 			lblCorazon_1.repaint();
 			lblCorazon_2.repaint();
 			lblCorazon_3.repaint();
 			lblCorazon_4.repaint();
+			lblCorazon_5.repaint();
 		break;
 		case 5:
 			System.out.println("entro en vidas5");
@@ -271,11 +279,13 @@ public class JuegoPanel extends JPanel {
 			lblCorazon_3.setVisible(true);
 			lblCorazon_4.setVisible(true);
 			lblCorazon_5.setVisible(true);
+			lblCorazon_6.setVisible(false);
 			lblCorazon_1.repaint();
 			lblCorazon_2.repaint();
 			lblCorazon_3.repaint();
 			lblCorazon_4.repaint();
 			lblCorazon_5.repaint();
+			lblCorazon_6.repaint();	
 		break;
 		case 6:
 			System.out.println("entro en vidas6");
