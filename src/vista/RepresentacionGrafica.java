@@ -1,13 +1,9 @@
 package vista;
 
-import java.awt.Color;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
-
-import logica.Escenario;
 import logica.entidades.Entidad;
-import logica.entidades.Movible;
 
 public class RepresentacionGrafica {
 	

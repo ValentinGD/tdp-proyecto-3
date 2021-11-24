@@ -30,12 +30,12 @@ public class MapLoader {
 	}
 
 	private static Mapa getMapa(String path) {
-		System.out.println("leyendo mapa desde: " + path);
+		//System.out.println("leyendo mapa desde: " + path);
 		
 		Mapa mapa = null;
 		String linea;
 		int fila = 0;
-		int ancho = 0;		
+		//int ancho = 0;		
 		
 		try (Scanner scanner = new Scanner(new File(path))) {
 			if (scanner.hasNextLine()) {
@@ -43,13 +43,13 @@ public class MapLoader {
 
 				linea = scanner.nextLine();
 				
-				System.out.println("cargando linea " + fila +": " + linea);
+				//System.out.println("cargando linea " + fila +": " + linea);
 				cargarLinea(mapa, linea, fila);
 
 				while (scanner.hasNextLine()) {
 					linea = scanner.nextLine();
 					fila++;
-					System.out.println("cargando linea " + fila +": " + linea);
+					//System.out.println("cargando linea " + fila +": " + linea);
 					
 					cargarLinea(mapa, linea, fila);
 				}
@@ -61,7 +61,7 @@ public class MapLoader {
 		}
 
 		//System.out.println("Se cargo el mapa: " + numeroMapa);
-		System.out.println("Cantidad de filas: " + fila);
+		//System.out.println("Cantidad de filas: " + fila);
 		//System.out.println("mapa creado: " + mapa);
 
 		return mapa;
@@ -172,4 +172,5 @@ public class MapLoader {
 			break;
 		}
 	}
+
 }

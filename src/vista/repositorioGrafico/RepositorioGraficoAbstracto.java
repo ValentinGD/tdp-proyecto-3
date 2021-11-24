@@ -15,4 +15,5 @@ public abstract class RepositorioGraficoAbstracto {
 	public abstract RepositorioGraficoPickUpAbstracto getRepositorioGraficoPickUp();
 	
 	public abstract RepositorioGraficoEscenario getRepositorioGraficoEscenario();
+
 }

@@ -3,16 +3,13 @@ package vista;
 import java.awt.event.ActionListener;
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.awt.TextArea;
 import java.util.List;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 import app.App;
@@ -20,7 +17,6 @@ import vista.repositorioGrafico.RepositorioGraficoAbstracto;
 import java.awt.FlowLayout;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.ImageIcon;
 import javax.swing.border.EmptyBorder;
 import java.awt.event.ActionEvent;
@@ -58,7 +54,7 @@ public class JuegoPanel extends JPanel {
 	public JuegoPanel(RepositorioGraficoAbstracto repositorioGrafico, GUI gui) {
 		this.repositorioGrafico = repositorioGrafico;
 		miGui = gui;
-		System.out.println("creando panel de juego");
+		//System.out.println("creando panel de juego");
 		
 		setLayout(new BorderLayout(0, 0));
 		
@@ -233,14 +229,14 @@ public class JuegoPanel extends JPanel {
 	public void actualizarVidas(int cantVidas) {
 		switch(cantVidas){
 		case 1:
-			System.out.println("entro en vidas1");
+			//System.out.println("entro en vidas1");
 			lblCorazon_1.setVisible(true);
 			lblCorazon_2.setVisible(false);
 			lblCorazon_1.repaint();
 			lblCorazon_2.repaint();
 		break;
 		case 2:
-			System.out.println("entro en vidas2");
+			//System.out.println("entro en vidas2");
 			lblCorazon_1.setVisible(true);
 			lblCorazon_2.setVisible(true);
 			lblCorazon_3.setVisible(false);
@@ -249,7 +245,7 @@ public class JuegoPanel extends JPanel {
 			lblCorazon_3.repaint();
 		break;
 		case 3:
-			System.out.println("entro en vidas3");
+			//System.out.println("entro en vidas3");
 			lblCorazon_1.setVisible(true);
 			lblCorazon_2.setVisible(true);
 			lblCorazon_3.setVisible(true);
@@ -260,7 +256,7 @@ public class JuegoPanel extends JPanel {
 			lblCorazon_4.repaint();
 		break;
 		case 4:
-			System.out.println("entro en vidas4");
+			//System.out.println("entro en vidas4");
 			lblCorazon_1.setVisible(true);
 			lblCorazon_2.setVisible(true);
 			lblCorazon_3.setVisible(true);
@@ -273,7 +269,7 @@ public class JuegoPanel extends JPanel {
 			lblCorazon_5.repaint();
 		break;
 		case 5:
-			System.out.println("entro en vidas5");
+			//System.out.println("entro en vidas5");
 			lblCorazon_1.setVisible(true);
 			lblCorazon_2.setVisible(true);
 			lblCorazon_3.setVisible(true);
@@ -288,7 +284,7 @@ public class JuegoPanel extends JPanel {
 			lblCorazon_6.repaint();	
 		break;
 		case 6:
-			System.out.println("entro en vidas6");
+			//System.out.println("entro en vidas6");
 			lblCorazon_1.setVisible(true);
 			lblCorazon_2.setVisible(true);
 			lblCorazon_3.setVisible(true);
@@ -327,4 +323,5 @@ public class JuegoPanel extends JPanel {
 	public void MejoresJugadores() {
 		miGui.mostrarPuntajes();
 	}
+
 }
