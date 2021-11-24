@@ -30,10 +30,14 @@ public abstract class PickUpPoder extends PickUp {
 	}
 	
 	public void aplicarPoder(Personaje personaje) {
-		personaje.setVidas(personaje.getVidas() + vidasExtras);
-		personaje.agregarVelocidad(aumentoVelocidad);
-		if (inmortalidad) personaje.hacerInmortal();
-		if (matarEnemigo) personaje.hacerAsesinoDeEnemigos();
-		personaje.addTiempoPoder(TIEMPO_DURACION_PODER);
+		if (!comido) {
+			System.out.println("Aplicando poder de " + this);
+			personaje.addTiempoPoder(TIEMPO_DURACION_PODER);
+			personaje.setVidas(personaje.getVidas() + vidasExtras);
+			personaje.agregarVelocidad(aumentoVelocidad);
+			if (inmortalidad) personaje.hacerInmortal();
+			if (matarEnemigo) personaje.hacerAsesinoDeEnemigos();
+			comido = true;
+		}
 	}
 }

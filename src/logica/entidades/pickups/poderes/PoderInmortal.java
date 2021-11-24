@@ -1,7 +1,5 @@
 package logica.entidades.pickups.poderes;
 
-import app.App;
-import logica.entidades.Personaje;
 import vista.RepresentacionGrafica;
 import vista.repositorioGrafico.RepositorioGraficoAbstracto;
 import vista.repositorioGrafico.RepositorioGraficoPickUpAbstracto;
@@ -20,5 +18,9 @@ public class PoderInmortal extends PoderEspecial {
 			miRepresentacion.setImageIcon(repositorioGrafico.getRepositorioGraficoPickUp().getPickUpPoderEspecialGrafico(RepositorioGraficoPickUpAbstracto.PODER_INMORTAL));
 		}
 		return miRepresentacion;
+	}
+	
+	public String toString() {
+		return "Poder inmortal";
 	}
 }

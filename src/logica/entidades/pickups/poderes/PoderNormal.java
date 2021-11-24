@@ -21,4 +21,8 @@ public class PoderNormal extends PickUpPoder {
 		}
 		return miRepresentacion;
 	}
+	
+	public String toString() {
+		return "Poder normal";
+	}
 }

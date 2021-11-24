@@ -15,15 +15,15 @@ public class Muerto extends EstadoEnemigo {
 
 	@Override
 	public void mover() {
-		System.out.println("Enemigo muerto moviendose");
+		//System.out.println("Enemigo muerto moviendose");
 		
 		int movimientoX, movimientoY;
 		
 		movimientoX = enemigo.getOrigenX() - enemigo.getX();
 		movimientoY = enemigo.getOrigenY() - enemigo.getY();
 		
-		System.out.println("\tmovX: " + movimientoX);
-		System.out.println("\tmovY: " + movimientoY);
+		//System.out.println("\tmovX: " + movimientoX);
+		//System.out.println("\tmovY: " + movimientoY);
 		
 		if ((Math.abs(movimientoX) <= 1) && (Math.abs(movimientoY) <= 1)) {
 			enemigo.reset();

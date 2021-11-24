@@ -87,11 +87,11 @@ public class Personaje extends Movible {
 		}
 		
 		if (ticsRestantesPoder <= 0) {
-			System.out.println("Se terminaron los poderes");
+			//System.out.println("Se terminaron los poderes");
 			resetPoderes();
 		} else {
 			ticsRestantesPoder--;
-			System.out.println("tics de poder restantes: " + ticsRestantesPoder);
+			//System.out.println("tics de poder restantes: " + ticsRestantesPoder);
 		}
 //		System.out.println("movido");
 	}
@@ -142,6 +142,8 @@ public class Personaje extends Movible {
 	public void agregarVelocidad(int cantTicsAcelerados) {
 		velocidadExtra += cantTicsAcelerados;
 		velocidadExtra = Math.min(velocidadExtra, VELOCIDAD_INICIAL);
+		System.out.println("\tvelocidad agregada.");
+		System.out.println("\t\tvelocidad extra: " + velocidadExtra);
 	}
 	
 	public void hacerInmortal() {
@@ -150,6 +152,7 @@ public class Personaje extends Movible {
 	
 	public void addTiempoPoder(int cantTics) {
 		ticsRestantesPoder += cantTics;
+		System.out.println("\tTics restantes de poder: " + ticsRestantesPoder);
 	}
 	
 	public void hacerAsesinoDeEnemigos() {
@@ -186,13 +189,13 @@ public class Personaje extends Movible {
 //	}
 	
 	public void visitarPickUpPuntos(PickUpPuntos p) {
-		if(this.getX()==p.getX() && this.getY()==p.getY()) {
+		if(p.colisionaConEntidadEnPosicion(x, y)) {
 			Escenario.getInstancia().eliminarPickUp(p);
 		}
 	}
 	public void visitarPickUpPoder(PickUpPoder p) {
-		p.aplicarPoder(this);
 		if(p.colisionaConEntidadEnPosicion(x, y)) {
+			p.aplicarPoder(this);
 			System.out.println("sobre poder");
 			Escenario.getInstancia().eliminarPickUp(p);
 		}

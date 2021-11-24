@@ -22,4 +22,8 @@ public class PoderVelocidad extends PoderEspecial {
 		}
 		return miRepresentacion;
 	}
+	
+	public String toString() {
+		return "Poder velocidad";
+	}
 }
