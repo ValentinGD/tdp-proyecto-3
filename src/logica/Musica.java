@@ -1,7 +1,5 @@
 package logica;
 
-//no olvidar cerrar el audio al terminar el juego (para liberar recursos).
-
 import java.io.File;
 import java.io.IOException;
 import javax.sound.sampled.AudioInputStream;
@@ -22,28 +20,17 @@ public class Musica extends Thread {
 	private static final int AUDIO_PAUSADO = 2;
 	private int status;
 	
-	/*
-	public Musica() {
-		//COMENTAR ESTO PARA COMENZAR CON MUSICA ATR.
-		status = AUDIO_DETENIDO;
-		
-		//COMENTAR ESTO PARA COMENZAR EN SILENCIO.
-//		preparar_audio();
-//		play();
-	}
-	*/
-	
 	public Musica() {
 		start(); //Inicia el hilo, no la reproducción de la pista.
 	}
 	
 	public void run() {
 		//COMENTAR ESTO PARA COMENZAR CON MUSICA ATR.
-		status = AUDIO_DETENIDO;
+		//status = AUDIO_DETENIDO;
 		
 		//COMENTAR ESTO PARA COMENZAR EN SILENCIO.
-//		preparar_audio();
-//		play_audio();
+		preparar_audio();
+		play_audio();
 	}
 	
 	public void stop_audio() {

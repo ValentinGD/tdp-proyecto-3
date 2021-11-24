@@ -1,7 +1,6 @@
 package logica.estados.enemigos;
 
 import javax.swing.ImageIcon;
-
 import logica.entidades.enemigos.Enemigo;
 import logica.estados.EstadoMovible;
 import vista.repositorioGrafico.RepositorioGraficoEnemigo;

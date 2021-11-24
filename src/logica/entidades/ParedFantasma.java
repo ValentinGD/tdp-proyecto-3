@@ -1,7 +1,6 @@
 package logica.entidades;
 
 import javax.swing.ImageIcon;
-
 import logica.Visitor;
 import vista.RepresentacionGrafica;
 import vista.repositorioGrafico.RepositorioGraficoAbstracto;

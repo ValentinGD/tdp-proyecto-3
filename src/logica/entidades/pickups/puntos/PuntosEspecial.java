@@ -1,9 +1,7 @@
 package logica.entidades.pickups.puntos;
 
 import javax.swing.ImageIcon;
-
 import app.App;
-import logica.Visitor;
 import vista.RepositorioGrafico;
 import vista.RepresentacionGrafica;
 import vista.repositorioGrafico.RepositorioGraficoAbstracto;

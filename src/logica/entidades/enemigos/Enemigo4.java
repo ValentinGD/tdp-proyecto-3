@@ -1,12 +1,6 @@
 package logica.entidades.enemigos;
 
-import java.util.ArrayList;
-
 import app.App;
-import logica.Escenario;
-import logica.Visitor;
-import logica.estados.enemigos.PersiguiendoEnemigo1;
-import logica.estados.enemigos.PersiguiendoEnemigo2;
 import logica.estados.enemigos.PersiguiendoEnemigo4;
 import vista.RepresentacionGrafica;
 import vista.repositorioGrafico.RepositorioGraficoAbstracto;

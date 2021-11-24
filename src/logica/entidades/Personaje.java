@@ -1,10 +1,6 @@
 package logica.entidades;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Queue;
-
 import app.App;
 import logica.Escenario;
 import logica.Visitor;
@@ -109,7 +105,7 @@ public class Personaje extends Movible {
 		if (estaVivo) {
 			estaVivo = false;
 			vidas--;
-			System.out.println("Murio el personaje. Vidas: " + vidas);
+			//System.out.println("Murio el personaje. Vidas: " + vidas);
 			Escenario.getInstancia().murioPersonaje();
 		}
 	}
@@ -142,8 +138,8 @@ public class Personaje extends Movible {
 	public void agregarVelocidad(int cantTicsAcelerados) {
 		velocidadExtra += cantTicsAcelerados;
 		velocidadExtra = Math.min(velocidadExtra, VELOCIDAD_INICIAL);
-		System.out.println("\tvelocidad agregada.");
-		System.out.println("\t\tvelocidad extra: " + velocidadExtra);
+		//System.out.println("\tvelocidad agregada.");
+		//System.out.println("\t\tvelocidad extra: " + velocidadExtra);
 	}
 	
 	public void hacerInmortal() {
@@ -152,7 +148,7 @@ public class Personaje extends Movible {
 	
 	public void addTiempoPoder(int cantTics) {
 		ticsRestantesPoder += cantTics;
-		System.out.println("\tTics restantes de poder: " + ticsRestantesPoder);
+		//System.out.println("\tTics restantes de poder: " + ticsRestantesPoder);
 	}
 	
 	public void hacerAsesinoDeEnemigos() {
@@ -196,7 +192,7 @@ public class Personaje extends Movible {
 	public void visitarPickUpPoder(PickUpPoder p) {
 		if(p.colisionaConEntidadEnPosicion(x, y)) {
 			p.aplicarPoder(this);
-			System.out.println("sobre poder");
+			//System.out.println("sobre poder");
 			Escenario.getInstancia().eliminarPickUp(p);
 		}
 	}

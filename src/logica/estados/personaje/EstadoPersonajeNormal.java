@@ -1,12 +1,7 @@
 package logica.estados.personaje;
 
-import java.util.List;
-import java.util.Vector;
-
 import javax.swing.ImageIcon;
-
 import logica.Escenario;
-import logica.entidades.Entidad;
 import logica.entidades.Movible;
 import logica.entidades.Personaje;
 import vista.repositorioGrafico.RepositorioGraficoPersonaje;

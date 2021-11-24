@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+@SuppressWarnings("serial")
 public class TopScores implements Serializable{
 
 	private List<Integer> ranking;
@@ -18,7 +19,7 @@ public class TopScores implements Serializable{
 			int puntajes;
 			for(int i = 0; i < ranking.size() && !enconteMenor; i++) {
 				puntajes = ranking.get(i);
-				System.out.println("i: " + i + ", puntajes: " + puntajes);
+				//System.out.println("i: " + i + ", puntajes: " + puntajes);
 				if(puntajes < puntaje) {
 					ranking.add(i,puntaje);
 					enconteMenor = true;

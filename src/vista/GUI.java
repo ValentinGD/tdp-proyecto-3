@@ -120,17 +120,14 @@ public class GUI extends JFrame implements ActionListener {
 		@Override
 		public void keyTyped(KeyEvent e) {
 			super.keyTyped(e);
-			//System.out.println("keyTyped");
 		}
 
 		@Override
 		public void keyReleased(KeyEvent e) {
 			super.keyReleased(e);
-			//System.out.println("keyReleased");
 		}
 		
 		public void keyPressed(KeyEvent e) {
-			//System.out.println("se apreto una tecla");
 			switch (e.getKeyCode()) {
 			case ARRIBA:
 				juego.teclaPresionada(Movible.DIRECCION_ARRIBA);

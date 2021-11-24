@@ -1,9 +1,7 @@
 package logica;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-
 import app.App;
 import logica.entidades.Entidad;
 import logica.entidades.Movible;
@@ -31,7 +29,7 @@ public class Escenario {
 	//private Mapa nivel;
 	
 	private Personaje personaje;
-	private Enemigo e1,e2,e3,e4;
+//	private Enemigo e1,e2,e3,e4;
 
 	private Juego juego;
 	private int cantPickUps;
@@ -53,7 +51,7 @@ public class Escenario {
 	}
 	
 	public boolean start() {
-		System.out.println("cargando escenario inicial");
+		//System.out.println("cargando escenario inicial");
 
 		nivel = new Nivel1();
 		
@@ -70,7 +68,7 @@ public class Escenario {
 	
 	public void cargarEscenarioConMatriz() {
 		
-		System.out.println("--------------------------------------Cargando nivel: " + nivel);
+		//System.out.println("--------------------------------------Cargando nivel: " + nivel);
 		
 		murioPersonaje = false;
 		
@@ -80,7 +78,7 @@ public class Escenario {
 		movibles.clear();
 		movibles.addAll(nivel.getMovibles());
 		
-		System.out.println("movibles: " + movibles);
+		//System.out.println("movibles: " + movibles);
 		
 		entidades.addAll(nivel.getMovibles());
 		entidades.addAll(nivel.getParedes());
@@ -110,10 +108,10 @@ public class Escenario {
 			}
 		}
 		
-		System.out.println("zonas:");
-		for (Zona[] arrZonas : matrizZonas) {
-			System.out.println("\t" + Arrays.toString(arrZonas));
-		}
+//		System.out.println("zonas:");
+//		for (Zona[] arrZonas : matrizZonas) {
+//			System.out.println("\t" + Arrays.toString(arrZonas));
+//		}
 	}
 	
 	private Zona localizarZonaMatriz(Entidad e) {
@@ -124,10 +122,10 @@ public class Escenario {
 	}
 	
 	private void crearMatrizZonas() {
-		System.out.println("ancho: " + nivel.getAncho());
-		System.out.println("alto: " + nivel.getAlto());
-		System.out.println("columnas: " + nivel.getCantColumnas());
-		System.out.println("filas: " + nivel.getCantFilas());
+//		System.out.println("ancho: " + nivel.getAncho());
+//		System.out.println("alto: " + nivel.getAlto());
+//		System.out.println("columnas: " + nivel.getCantColumnas());
+//		System.out.println("filas: " + nivel.getCantFilas());
 		
 		int anchoNivel = nivel.getAncho();
 		int altoNivel = nivel.getAlto();
@@ -241,7 +239,7 @@ public class Escenario {
 	}
 	
 	private void terminarNivel() {
-		System.out.println("se termino el nivel. puntaje: " + juego.getPuntajeString());
+		//System.out.println("se termino el nivel. puntaje: " + juego.getPuntajeString());
 //		System.out.println("Personaje: " + personaje);
 		Nivel siguienteNivel = nivel.getSiguienteNivel();
 		if((cantPickUps == 0) && (siguienteNivel != null)) {
