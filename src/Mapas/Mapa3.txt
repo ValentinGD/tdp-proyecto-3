@@ -1,10 +1,10 @@
 XXXXXXXXXXXXXXXXXXXXXX
 X*********XX*********X
 X#XX*XXXX*XX*XXXX*XX#X
-X********************X
+X**P**************P**X
 X*XX*X*XXXXXXXX*X*XX*X
 X****X****XX****X****X
-XXXX*XXXX XX XXXX*XXXX
+XXXXVXXXX XX XXXX*XXXX
 XXXX*X   1234   X*XXXX
 XXXX*X XX----XX X*XXXX
 XXXX*  XX    XX  *XXXX
@@ -12,11 +12,11 @@ XXXX*X XXXXXXXX X*XXXX
 XXXX*X XXXXXXXX X*XXXX
 XXXX*X          X*XXXX
 XXXX*X XXXXXXXX X*XXXX
-X*********XX*********X
+X*********XX**I******X
 X#XX*XXXX*XX*XXXX*XX#X
 X**X*******A******X**X
 XX*X*X*XXXXXXXX*X*X*XX
-X****X****XX****X****X
+X*P**X****XX****X****X
 X*XXXXXXX*XX*XXXXXXX*X
-X********************X
+X*****************P**X
 XXXXXXXXXXXXXXXXXXXXXX
