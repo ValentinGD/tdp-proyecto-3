@@ -29,9 +29,8 @@ public class Personaje extends Movible {
 	
 	private int direccionSiguiente;
 	
-	private boolean esInvencible;
-	private boolean puedeMatarEnemigo;
-	private boolean tieneVelocidadExtra;
+	private boolean esInmortal;
+	private boolean puedeMatarEnemigos;
 	
 	private int ticsRestantesPoder;
 	private int velocidadExtra;
@@ -64,12 +63,7 @@ public class Personaje extends Movible {
 		velocidadEnTics = VELOCIDAD_INICIAL;
 		estado = new EstadoPersonajeNormal(this, direccionActual);
 		
-		esInvencible = false;
-		puedeMatarEnemigo = false;
-		tieneVelocidadExtra = false;
-		
-		ticsRestantesPoder = 0;
-		velocidadExtra = 0;
+		resetPoderes();
 		
 		estaVivo = true;
 	}
@@ -91,7 +85,23 @@ public class Personaje extends Movible {
 			estado.mover();
 			ticCount = 0;
 		}
+		
+		if (ticsRestantesPoder <= 0) {
+			System.out.println("Se terminaron los poderes");
+			resetPoderes();
+		} else {
+			ticsRestantesPoder--;
+			System.out.println("tics de poder restantes: " + ticsRestantesPoder);
+		}
 //		System.out.println("movido");
+	}
+
+	private void resetPoderes() {
+		esInmortal = false;
+		puedeMatarEnemigos = false;
+		
+		ticsRestantesPoder = 0;
+		velocidadExtra = 0;
 	}
 
 	@Override
@@ -127,6 +137,23 @@ public class Personaje extends Movible {
 
 	public void setVidas(int vidas) {
 		this.vidas = vidas;
+	}
+	
+	public void agregarVelocidad(int cantTicsAcelerados) {
+		velocidadExtra += cantTicsAcelerados;
+		velocidadExtra = Math.min(velocidadExtra, VELOCIDAD_INICIAL);
+	}
+	
+	public void hacerInmortal() {
+		esInmortal = true;
+	}
+	
+	public void addTiempoPoder(int cantTics) {
+		ticsRestantesPoder += cantTics;
+	}
+	
+	public void hacerAsesinoDeEnemigos() {
+		puedeMatarEnemigos = true;
 	}
 	
 //	@Override
@@ -173,11 +200,12 @@ public class Personaje extends Movible {
 	
 	public void visitarEnemigo(Enemigo e) {
 		if (e.colisionaConEntidadEnPosicion(x, y)) {
-			System.out.println("El personaje colisiono con: " + e);
-			System.out.println("Personaje: " + toString());
-			if (puedeMatarEnemigo) {
+			//System.out.println("El personaje colisiono con: " + e);
+			//System.out.println("Personaje: " + toString());
+			if (puedeMatarEnemigos) {
+				//System.out.println("\tEl personaje puede matar enemigos");
 				e.morir();
-			} else if (!esInvencible) {
+			} else if (!esInmortal) {
 				morir();
 			}
 		}

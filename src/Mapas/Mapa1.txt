@@ -12,11 +12,11 @@ X*X*X*XXXXXXXXXX*X*X*X
 X*X*X*XXXXXXXXXX*X*X*X
 X*X*X************X*X*X
 X*X*X*XXXXXXXXXX*X*X*X
-X*X*X************X*X*X
+X*X*X*#**********X*X*X
 X*X*X*XXXXXXXXXX*X*X*X
-X*X********A*****X*X*X
+X*X***V****A****PX*X*X
 X*X*XXXXXXXXXXXXXX*X*X
-X*X****************X*X
+X*X***I************X*X
 X*XXXXXXXXXXXXXXXXXX*X
 X*******************#X
 XXXXXXXXXXXXXXXXXXXXXX

@@ -1,21 +1,15 @@
 package logica.entidades.pickups.poderes;
 
-import javax.swing.ImageIcon;
-
 import app.App;
-import logica.Visitor;
-import logica.entidades.Personaje;
-import vista.RepositorioGrafico;
 import vista.RepresentacionGrafica;
 import vista.repositorioGrafico.RepositorioGraficoAbstracto;
-import vista.repositorioGrafico.RepositorioGraficoPickUpAbstracto;
 
 public class PoderNormal extends PickUpPoder {
 	
+	private static final int PUNTOS_PODER_NORMAL = Integer.parseInt(App.configuration.getProperty("PuntosPoderNormal"));
+	
 	public PoderNormal(int x, int y) {
-		 super(x, y,Integer.parseInt(App.configuration.getProperty("PuntosPoderNormal"))
-                 ,0,Integer.parseInt(App.configuration.getProperty("VelocidadTicsPoder"))
-                 ,true,true,Integer.parseInt(App.configuration.getProperty("tiempoDuracionPoderes")));
+		super(x, y, PUNTOS_PODER_NORMAL, 0, 0, true, true);
 	}
 
 	@Override
@@ -27,14 +21,4 @@ public class PoderNormal extends PickUpPoder {
 		}
 		return miRepresentacion;
 	}
-	
-	public ImageIcon getRepresentacionGrafica() {
-		return RepositorioGrafico.getPoder();
-	}
-
-	@Override
-	public void aplicarPoder(Personaje personaje) {
-		personaje.hacerAsesinoDeEnemigos(true);		
-	}
-
 }

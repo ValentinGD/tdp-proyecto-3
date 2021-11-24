@@ -91,6 +91,8 @@ public class MapLoader {
 	private static void caracterAEntidad(char c, Mapa m, int x, int y) {
 		Entidad entidad;
 		
+//		System.out.println("caracter: " + c + ". x: " + x + ", y: " + y);
+		
 		switch (c) {
 
 		case '*':
