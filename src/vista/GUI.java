@@ -2,15 +2,23 @@ package vista;
 
 import javax.swing.JDialog;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import logica.Juego;
 import logica.Musica;
 import logica.entidades.Movible;
 import vista.repositorioGrafico.figuras.RepositorioGraficoFiguras;
+
+import java.awt.Component;
+import java.awt.TextArea;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.List;
 
 @SuppressWarnings("serial")
@@ -54,7 +62,7 @@ public class GUI extends JFrame implements ActionListener {
 	}
 	
 	public void showGameOver() {
-		setPanel(new GameOverPanel(juego.getPuntajeString()));
+		setPanel(new GameOverPanel(juego.getPuntajeString(), this));
 	}
 	
 	public void showJuego() {
@@ -100,6 +108,9 @@ public class GUI extends JFrame implements ActionListener {
 		case "play_pause_audio":
 			musica.play_pause_audio();
 			break;
+		case "Volver Menu":
+			juego.reiniciar();
+			break;
 		default:
 			break;
 		}
@@ -144,5 +155,22 @@ public class GUI extends JFrame implements ActionListener {
 			}
 		}
 	}
-
+	
+	public void mostrarPuntajes() {
+		TextArea scores = new TextArea();
+		scores.setEditable(false);
+		this.getContentPane().add(scores);
+		
+		int i = 1;
+		for(int punt: juego.getTopScores()) {
+			scores.append(i + ")  " + punt + "\n");
+			i++;
+		}
+		
+		juego.pararTiempo();
+		
+		JOptionPane.showMessageDialog(null,scores,"Mejores Puntuaciones",JOptionPane.PLAIN_MESSAGE);
+		
+		juego.reanudarTiempo();
+	}
 }

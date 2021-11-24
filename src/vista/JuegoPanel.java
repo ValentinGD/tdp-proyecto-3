@@ -3,13 +3,16 @@ package vista;
 import java.awt.event.ActionListener;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.TextArea;
 import java.util.List;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 import app.App;
@@ -17,8 +20,10 @@ import vista.repositorioGrafico.RepositorioGraficoAbstracto;
 import java.awt.FlowLayout;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.ImageIcon;
 import javax.swing.border.EmptyBorder;
+import java.awt.event.ActionEvent;
 import javax.swing.UIManager;
 
 @SuppressWarnings("serial")
@@ -48,8 +53,11 @@ public class JuegoPanel extends JPanel {
 	private JLabel lblTituloControles;
 	private JLabel lblControles;
 	
-	public JuegoPanel(RepositorioGraficoAbstracto repositorioGrafico, ActionListener gui) {
+	private GUI miGui;
+	
+	public JuegoPanel(RepositorioGraficoAbstracto repositorioGrafico, GUI gui) {
 		this.repositorioGrafico = repositorioGrafico;
+		miGui = gui;
 		System.out.println("creando panel de juego");
 		
 		setLayout(new BorderLayout(0, 0));
@@ -169,6 +177,11 @@ public class JuegoPanel extends JPanel {
 		panelBotonesAudio.add(btnPlayPause);
 		
 		JButton btnRecords = new JButton("<html><center>Ver mejores<br>puntuaciones</center></html>");
+		btnRecords.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MejoresJugadores();
+			}
+		});
 		btnRecords.setFocusable(false);
 		btnRecords.setMnemonic('v');
 		GridBagConstraints gbc_btnRecords = new GridBagConstraints();
@@ -299,5 +312,9 @@ public class JuegoPanel extends JPanel {
 	
 	public JLabel getLblPuntos() {
 		return lblPuntos;
+	}
+	
+	public void MejoresJugadores() {
+		miGui.mostrarPuntajes();
 	}
 }
