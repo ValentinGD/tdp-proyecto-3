@@ -1,5 +1,6 @@
 package vista;
 
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import logica.Juego;

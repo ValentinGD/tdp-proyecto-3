@@ -238,7 +238,7 @@ public class Escenario {
 		System.out.println("se termino el nivel. puntaje: " + juego.getPuntajeString());
 //		System.out.println("Personaje: " + personaje);
 		Nivel siguienteNivel = nivel.getSiguienteNivel();
-		if((cantPickUps == 0) && (siguienteNivel != null)) {
+		if((cantPickUps != 0) && (siguienteNivel != null)) {
 			
 			nivel = siguienteNivel;
 		
@@ -307,15 +307,19 @@ public class Escenario {
 			for (Movible m : movibles) {
 				//System.out.println("RESETEANDO MOVIBLE: " + m);
 				m.reset();
-				Zona nuevaZona = localizarZonaMatriz(m);
-				m.getZona().eliminar(m);
-				nuevaZona.addEntidad(m);
-				m.setZona(nuevaZona);
+				ubicarEnZona(m);
 				//System.out.println("\tMOVIBLE RESETEADO: " + m);
 			}
 			juego.reanudarTiempo();
 		}
 		murioPersonaje = false;
+	}
+	
+	public void ubicarEnZona(Movible m) {
+		Zona nuevaZona = localizarZonaMatriz(m);
+		m.getZona().eliminar(m);
+		nuevaZona.addEntidad(m);
+		m.setZona(nuevaZona);
 	}
 	
 //	public Posicion getPosicion(Posicion p) {

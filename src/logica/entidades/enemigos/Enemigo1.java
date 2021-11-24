@@ -49,27 +49,9 @@ public class Enemigo1 extends Enemigo {
 	}
 
 	@Override
-	public void morir() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void asustarse() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public RepresentacionGrafica getRepresentacionGrafica(RepositorioGraficoAbstracto repositorioGrafico) {
 		miRepresentacion.setImageIcon(estado.getRepresentacionGrafica(repositorioGrafico.getRepositorioGraficoEnemigo1()));
 		return miRepresentacion;
-	}
-
-	@Override
-	public void aceptar(Visitor v) {
-		// TODO Auto-generated method stub
-		
 	}
 	
 	@Override

@@ -15,7 +15,7 @@ import vista.GameOverPanel;
 
 public class Juego implements Runnable, Suscriptor  {
 	
-	private static final int TICS_POR_SEGUNDO = Integer.parseInt(App.configuration.getProperty("TicsJuego"));
+	public static final int TICS_POR_SEGUNDO = Integer.parseInt(App.configuration.getProperty("TicsJuego"));
 	
 	private GUI gui;
 	private Escenario escenario;
