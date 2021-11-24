@@ -1,6 +1,5 @@
 package logica.entidades.enemigos;
 
-
 import app.App;
 import logica.Visitor;
 import logica.entidades.Movible;
@@ -8,7 +7,6 @@ import logica.entidades.Pared;
 import logica.entidades.Personaje;
 import logica.estados.enemigos.EstadoEnemigo;
 import logica.estados.enemigos.Muerto;
-import logica.estados.personaje.EstadoPersonajeNormal;
 
 public abstract class Enemigo extends Movible {
 	

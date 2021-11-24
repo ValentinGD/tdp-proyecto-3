@@ -1,18 +1,9 @@
 package logica.entidades.enemigos;
 
-import java.util.ArrayList;
-
-import javax.swing.ImageIcon;
-
 import app.App;
-import logica.Escenario;
-import logica.Visitor;
-import logica.Zona;
-import logica.entidades.Movible;
 import logica.estados.enemigos.PersiguiendoEnemigo1;
 import vista.RepresentacionGrafica;
 import vista.repositorioGrafico.RepositorioGraficoAbstracto;
-import vista.repositorioGrafico.RepositorioGraficoEnemigo;
 
 public class Enemigo1 extends Enemigo {
 	

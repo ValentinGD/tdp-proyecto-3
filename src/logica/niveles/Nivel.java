@@ -1,7 +1,6 @@
 package logica.niveles;
 
 import java.util.List;
-
 import Mapas.MapLoader;
 import Mapas.Mapa;
 import logica.entidades.Movible;
@@ -9,7 +8,6 @@ import logica.entidades.Pared;
 import logica.entidades.pickups.poderes.PickUpPoder;
 import logica.entidades.pickups.puntos.PuntosEspecial;
 import logica.entidades.pickups.puntos.PuntosNormal;
-
 
 public abstract class Nivel {
 	
@@ -72,4 +70,5 @@ public abstract class Nivel {
 	}
 	
 	public abstract String toString();
+
 }

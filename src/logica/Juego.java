@@ -1,22 +1,17 @@
 package logica;
 
-import java.awt.EventQueue;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
-
-import Mapas.MapLoader;
 import app.App;
 import logica.entidades.Entidad;
 import vista.EntidadGrafica;
 import vista.GUI;
-import vista.GameOverPanel;
 
 public class Juego implements Runnable, Suscriptor  {
 	
@@ -72,7 +67,7 @@ public class Juego implements Runnable, Suscriptor  {
 
 	public void actualizarVidas(int cantVidas) {
 		gui.actualizarVidas(cantVidas);
-		System.out.println("Entro en actualizarVidas");
+		//System.out.println("Entro en actualizarVidas");
 	}
 	
 	public void actualizarPuntaje(int p) {
@@ -127,7 +122,7 @@ public class Juego implements Runnable, Suscriptor  {
 	public void cargarNuevoNivel() {
 		gui.setDimensionEscenario(escenario.getAlto(), escenario.getAncho());
 		gui.agregarEntidades(escenario.getEntidadesParaActualizar());
-		System.out.println("se agregaron " + escenario.getEntidadesParaActualizar().size() + " entidades.");
+		//System.out.println("se agregaron " + escenario.getEntidadesParaActualizar().size() + " entidades.");
 		gui.showJuego();
 		reloj.start();
 	}

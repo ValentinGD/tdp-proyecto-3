@@ -2,9 +2,7 @@ package logica.estados.enemigos;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.swing.ImageIcon;
-
 import logica.Escenario;
 import logica.entidades.Movible;
 import logica.entidades.Personaje;
@@ -30,7 +28,6 @@ public abstract class PersiguiendoEnemigoAbstracto extends EstadoEnemigo {
 			enemigo.setPosicion(xDestino, yDestino);
 			Escenario.getInstancia().agregarEntidadParaActualizar(enemigo);
 			Escenario.getInstancia().reubicar(enemigo);
-			
 		}
 	}
 	

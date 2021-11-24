@@ -1,6 +1,5 @@
 package logica.entidades;
 
-import app.App;
 import logica.Escenario;
 
 public abstract class PickUp extends Entidad {

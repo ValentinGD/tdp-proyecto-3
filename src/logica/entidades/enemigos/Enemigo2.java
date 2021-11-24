@@ -1,9 +1,6 @@
 package logica.entidades.enemigos;
 
 import app.App;
-import logica.Escenario;
-import logica.Visitor;
-import logica.estados.enemigos.PersiguiendoEnemigo1;
 import logica.estados.enemigos.PersiguiendoEnemigo2;
 import vista.RepresentacionGrafica;
 import vista.repositorioGrafico.RepositorioGraficoAbstracto;

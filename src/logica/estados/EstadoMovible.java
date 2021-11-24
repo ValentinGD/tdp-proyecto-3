@@ -2,13 +2,11 @@ package logica.estados;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import logica.Escenario;
 import logica.Zona;
 import logica.entidades.Entidad;
 import logica.entidades.Movible;
 import logica.entidades.Pared;
-import logica.entidades.enemigos.Enemigo;
 
 public abstract class EstadoMovible {
 	
@@ -37,15 +35,15 @@ public abstract class EstadoMovible {
 			}
 		}
 		
-		if (m instanceof Enemigo) {
-			//System.out.println("\tvisitando " + entidades.size() + " entidades.");
-			//System.out.println("\tEntidades a comparar:");
-			for (Entidad e : entidades) {
-				if (e instanceof Pared) {
-					//System.out.println("\t\t" + e);
-				}
-			}
-		}
+//		if (m instanceof Enemigo) {
+//			//System.out.println("\tvisitando " + entidades.size() + " entidades.");
+//			//System.out.println("\tEntidades a comparar:");
+//			for (Entidad e : entidades) {
+//				if (e instanceof Pared) {
+//					//System.out.println("\t\t" + e);
+//				}
+//			}
+//		}
 
 		colisionPared = false;
 		calcularPosicionDestino(m, direccion);

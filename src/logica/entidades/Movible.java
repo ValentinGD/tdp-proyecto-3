@@ -5,7 +5,6 @@ import logica.Visitor;
 import logica.entidades.enemigos.Enemigo;
 import logica.entidades.pickups.poderes.PickUpPoder;
 import logica.entidades.pickups.puntos.PickUpPuntos;
-import logica.estados.EstadoMovible;
 
 public abstract class Movible extends Entidad implements Visitor {
 	

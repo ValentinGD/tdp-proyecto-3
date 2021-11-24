@@ -2,8 +2,6 @@ package logica.estados.enemigos;
 
 import logica.Escenario;
 import logica.entidades.Entidad;
-import logica.entidades.Movible;
-import logica.entidades.Personaje;
 
 public class PersiguiendoEnemigo4 extends PersiguiendoEnemigoAbstracto {
 	
