@@ -105,22 +105,26 @@ public abstract class PersiguiendoEnemigoAbstracto extends EstadoEnemigo {
 	@Override
 	public ImageIcon getRepresentacionGrafica(RepositorioGraficoEnemigo repositorio) {
 		ImageIcon img;
-		switch(enemigo.getDireccionActual()) {
-		case Movible.DIRECCION_ABAJO:
-			img = repositorio.getMovibleAbajoGrafico();
-			break;
-		case Movible.DIRECCION_ARRIBA:
-			img = repositorio.getMovibleArribaGrafico();
-			break;
-		case Movible.DIRECCION_DERECHA:
-			img = repositorio.getMovibleDerechaGrafico();
-			break;
-		case Movible.DIRECCION_IZQUIERDA:
-			img = repositorio.getMovibleIzquierdaGrafico();
-			break;
-		default:
-			img = new ImageIcon();
-			break;
+		if (!Personaje.getInstancia().puedeComerEnemigos()) {
+			switch(enemigo.getDireccionActual()) {
+			case Movible.DIRECCION_ABAJO:
+				img = repositorio.getMovibleAbajoGrafico();
+				break;
+			case Movible.DIRECCION_ARRIBA:
+				img = repositorio.getMovibleArribaGrafico();
+				break;
+			case Movible.DIRECCION_DERECHA:
+				img = repositorio.getMovibleDerechaGrafico();
+				break;
+			case Movible.DIRECCION_IZQUIERDA:
+				img = repositorio.getMovibleIzquierdaGrafico();
+				break;
+			default:
+				img = new ImageIcon();
+				break;
+			}
+		} else {
+			img = repositorio.getEnemigoAsustadoGrafico();
 		}
 		return img;
 	}

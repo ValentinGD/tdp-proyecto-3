@@ -224,4 +224,12 @@ public class Personaje extends Movible {
 		vidas = Escenario.CANTIDAD_INICIAL_DE_VIDAS;
 		estaVivo = true;
 	}
+	
+	public boolean puedeComerEnemigos() {
+		return puedeMatarEnemigos;
+	}
+	
+	public boolean esPoderoso() {
+		return ticsRestantesPoder > 0;
+	}
 }

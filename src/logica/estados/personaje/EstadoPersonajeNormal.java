@@ -40,22 +40,26 @@ public class EstadoPersonajeNormal extends EstadoPersonaje {
 	@Override
 	public ImageIcon getRepresentacionGrafica(RepositorioGraficoPersonaje repositorio) {
 		ImageIcon img;
-		switch(personaje.getDireccionActual()) {
-		case Movible.DIRECCION_ABAJO:
-			img = repositorio.getMovibleAbajoGrafico();
-			break;
-		case Movible.DIRECCION_ARRIBA:
-			img = repositorio.getMovibleArribaGrafico();
-			break;
-		case Movible.DIRECCION_DERECHA:
-			img = repositorio.getMovibleDerechaGrafico();
-			break;
-		case Movible.DIRECCION_IZQUIERDA:
-			img = repositorio.getMovibleIzquierdaGrafico();
-			break;
-		default:
-			img = new ImageIcon();
-			break;
+		if (!personaje.esPoderoso()) {
+			switch(personaje.getDireccionActual()) {
+			case Movible.DIRECCION_ABAJO:
+				img = repositorio.getMovibleAbajoGrafico();
+				break;
+			case Movible.DIRECCION_ARRIBA:
+				img = repositorio.getMovibleArribaGrafico();
+				break;
+			case Movible.DIRECCION_DERECHA:
+				img = repositorio.getMovibleDerechaGrafico();
+				break;
+			case Movible.DIRECCION_IZQUIERDA:
+				img = repositorio.getMovibleIzquierdaGrafico();
+				break;
+			default:
+				img = new ImageIcon();
+				break;
+			}
+		} else {
+			img = repositorio.getPersonajePoderosoGrafico();
 		}
 		return img;
 	}
