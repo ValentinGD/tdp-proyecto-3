@@ -9,8 +9,7 @@ public class Reloj implements Notificadora {
 	private int tiempoEntreTics;
 	private boolean running = false;
 	private List<Suscriptor> suscriptores;
-	private int cantSuscriptores;
-	
+
 	private HiloDormilon t;
 	
 	//private long tiempoDeInicio;
@@ -18,7 +17,6 @@ public class Reloj implements Notificadora {
 	public Reloj(int tiempo) {
 		tiempoEntreTics = tiempo;
 		suscriptores=new ArrayList<Suscriptor>();
-		cantSuscriptores=0;
 	}
 	
 	public void start() {
