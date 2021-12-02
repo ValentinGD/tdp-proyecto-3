@@ -26,11 +26,11 @@ public class Musica extends Thread {
 	
 	public void run() {
 		//COMENTAR ESTO PARA COMENZAR CON MUSICA ATR.
-		//status = AUDIO_DETENIDO;
+		status = AUDIO_DETENIDO;
 		
 		//COMENTAR ESTO PARA COMENZAR EN SILENCIO.
-		preparar_audio();
-		play_audio();
+//		preparar_audio();
+//		play_audio();
 	}
 	
 	public void stop_audio() {
