@@ -7,7 +7,6 @@ import logica.entidades.Entidad;
 import logica.entidades.Movible;
 import logica.entidades.Personaje;
 import logica.entidades.PickUp;
-import logica.entidades.enemigos.*;
 import logica.niveles.*;
 import vista.EntidadGrafica;
 
@@ -21,6 +20,7 @@ public class Escenario {
 	
 	private List<EntidadGrafica> entidadesParaActualizar;
 	private List<Movible> movibles;
+	@SuppressWarnings("unused")
 	private List<Zona> zonas;
 	
 	private Zona[][] matrizZonas;
@@ -35,7 +35,6 @@ public class Escenario {
 	private int cantPickUps;
 	
 	private boolean murioPersonaje;
-	
 	private Escenario() {
 		zonas = new ArrayList<Zona>();
 		movibles = new ArrayList<Movible>();

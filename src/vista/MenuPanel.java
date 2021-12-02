@@ -14,6 +14,8 @@ import javax.swing.border.EmptyBorder;
 import java.awt.Dimension;
 import javax.swing.border.BevelBorder;
 import javax.swing.JCheckBox;
+import javax.swing.UIManager;
+import javax.swing.SwingConstants;
 
 @SuppressWarnings("serial")
 public class MenuPanel extends JPanel {
@@ -52,6 +54,24 @@ public class MenuPanel extends JPanel {
 		cbSonido.setVisible(false);
 		cbSonido.setMnemonic('m');
 		panelBotonYSonido.add(cbSonido, BorderLayout.EAST);
+		
+		JPanel panelControles = new JPanel();
+		panelControles.setBorder(UIManager.getBorder("TitledBorder.border"));
+		panelControles.setBackground(new Color(255, 239, 213));
+		add(panelControles, BorderLayout.NORTH);
+		panelControles.setLayout(new BorderLayout(0, 0));
+		
+		JLabel lblTituloControles = new JLabel("Controles:");
+		lblTituloControles.setHorizontalAlignment(SwingConstants.CENTER);
+		lblTituloControles.setFont(new Font("Tahoma", Font.BOLD, 17));
+		lblTituloControles.setBorder(new EmptyBorder(5, 0, 5, 0));
+		panelControles.add(lblTituloControles, BorderLayout.NORTH);
+		
+		JLabel lblControles = new JLabel("<html>\u2191 Arriba<br>\u2190 Izquierda<br>\u2193 Abajo<br>\u2192 Derecha</html>");
+		lblControles.setHorizontalAlignment(SwingConstants.CENTER);
+		lblControles.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblControles.setBorder(new EmptyBorder(5, 0, 5, 0));
+		panelControles.add(lblControles, BorderLayout.SOUTH);
 	}
 
 }

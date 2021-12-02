@@ -1,22 +1,21 @@
-XXXXXXXXXXXXXXXXXXXXXX
-X********************X
-X*XXXXXXXXXXXXXXXXXXPX
-X*X******************X
-X*X*XXXXXXXXXXXXXX*X*X
-X*X*X************X*X*X
-X*X*X*XXXXXXXXXX*X*X*X
-X*XPX****1234****X*X*X
-X*X*X*XXX----XXX*X*X*X
-X*X*X*XXX    XXX*X*X*X
-X*X*X*XXXXXXXXXX*X*X*X
-X*X*X*XXXXXXXXXX*X*X*X
-X*X*X************X*X*X
-X*X*X*XXXXXXXXXX*X*X*X
-X*X*X*#**********X*X*X
-X*X*X*XXXXXXXXXX*X*X*X
-X*X***V****A****PX*X*X
-X*X*XXXXXXXXXXXXXX*X*X
-XPX***I************X*X
-X*XXXXXXXXXXXXXXXXXX*X
-X*******************#X
-XXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXX
+X**********X**********X
+XPXXX*XXXX*X*XXXX*XXXPX
+X*********************X
+X*XXX*X*XXXXXXX*X*XXX*X
+X*****X****X****X*****X
+XXXXX*XXXX X XXXX*XXXXX
+    X*X   1234  X*X    
+    X*X XXXXXXX X*X    
+XXXXX*  X     X  *XXXXX
+    X*X XXXXXXX X*X    
+    X*X         X*X    
+XXXXX*X XXXXXXX X*XXXXX
+X**********X**********X
+X*XXX*XXXX*X*XXXX*XXX*X
+XP**X******A******X**PX
+XXX*X*X*XXXXXXX*X*X*XXX
+X*****X****X****X*****X
+X*XXXXXXXX*X*XXXXXXXX*X
+X*********************X
+XXXXXXXXXXXXXXXXXXXXXXX
