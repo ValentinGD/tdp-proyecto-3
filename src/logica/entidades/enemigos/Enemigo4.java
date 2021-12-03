@@ -8,19 +8,11 @@ import vista.repositorioGrafico.RepositorioGraficoAbstracto;
 public class Enemigo4 extends Enemigo {
 
 	private static final int VELOCIDAD_INICIAL = Integer.parseInt(App.configuration.getProperty("VelocidadTicsEnemigo4"));
-	private static Enemigo4 instancia = null;
 	
-	private Enemigo4() {
+	public Enemigo4() {
 		super(new PersiguiendoEnemigo4());
 		estado.setEnemigo(this);
 		velocidadEnTics = VELOCIDAD_INICIAL;
-	}
-
-	public static Enemigo4 getInstancia() {
-		if (instancia == null) {
-			instancia = new Enemigo4();
-		}
-		return instancia;
 	}
 	
 	@Override

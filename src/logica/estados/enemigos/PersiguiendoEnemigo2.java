@@ -6,9 +6,9 @@ public class PersiguiendoEnemigo2 extends PersiguiendoEnemigoAbstracto {
 	
 	protected Enemigo1 enemigo1;
 	
-	public PersiguiendoEnemigo2() {
+	public PersiguiendoEnemigo2(Enemigo1 enemigo1) {
 		super();
-		enemigo1 = Enemigo1.getInstancia();
+		this.enemigo1 = enemigo1;
 	}
 
 	@Override

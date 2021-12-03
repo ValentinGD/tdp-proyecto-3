@@ -24,6 +24,8 @@ public class MapLoader {
 	private static final String rutaMapas = App.configuration.getProperty("RutaMapas");
 	private static final String extensionArchivos = App.configuration.getProperty("ExtensionMapas");
 	
+	private static Enemigo1 enemigo1;
+	
 	public static Mapa getMapa(int nroMapa) {
 		String ruta = rutaMapas + nroMapa + extensionArchivos;
 		return getMapa(ruta);
@@ -138,28 +140,28 @@ public class MapLoader {
 			break;
 
 		case '1':
-			entidad= Enemigo1.getInstancia();
-			entidad.setX(x);
-			entidad.setY(y);
-			m.addMovible((Movible) entidad);
+			enemigo1 = new Enemigo1();
+			enemigo1.setX(x);
+			enemigo1.setY(y);
+			m.addMovible(enemigo1);
 			break;
 
 		case '2':
-			entidad= Enemigo2.getInstancia();
+			entidad = new Enemigo2(enemigo1);
 			entidad.setX(x);
 			entidad.setY(y);
 			m.addMovible((Movible) entidad);
 			break;
 
 		case '3':
-			entidad= Enemigo3.getInstancia();
+			entidad = new Enemigo3();
 			entidad.setX(x);
 			entidad.setY(y);
 			m.addMovible((Movible) entidad);
 			break;
 
 		case '4':
-			entidad= Enemigo4.getInstancia();
+			entidad = new Enemigo4();
 			entidad.setX(x);
 			entidad.setY(y);
 			m.addMovible((Movible) entidad);

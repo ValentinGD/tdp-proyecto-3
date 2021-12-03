@@ -13,3 +13,7 @@ Personaje 		-> 'A'
 Nota:
 * Todo el mapa debe estar rodeado de paredes
 * Las paredes de enemigos todavia no estan implementadas
+
+¡¡IMPORTANTE!!
+
+EL ENEMIGO 1 (caracter '1') DEBE APARECER SI O SI ANTES (a la izquierda) QUE EL ENEMIGO 2 (caracter '2')
