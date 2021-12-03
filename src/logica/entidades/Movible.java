@@ -73,16 +73,16 @@ public abstract class Movible extends Entidad implements Visitor {
 	
 
 	@Override
-	public void visitarEnemigo(Enemigo e) {}
+	public void visit(Enemigo e) {}
 
 	@Override
-	public void visitarPersonaje(Personaje p) {}
+	public void visit(Personaje p) {}
 
 	@Override
-	public void visitarPickUpPuntos(PickUpPuntos p) {}
+	public void visit(PickUpPuntos p) {}
 
 	@Override
-	public void visitarPickUpPoder(PickUpPoder p) {}
+	public void visit(PickUpPoder p) {}
 	
 
 	public int getDireccionActual() {

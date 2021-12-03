@@ -16,7 +16,7 @@ public abstract class PickUpPoder extends PickUp {
 	}
 	
 	public void aceptar(Visitor v) {
-		v.visitarPickUpPoder(this);
+		v.visit(this);
 	}
 	
 	public void aplicarPoder(Personaje personaje) {

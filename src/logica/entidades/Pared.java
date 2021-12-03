@@ -18,7 +18,7 @@ public class Pared extends Entidad{
 
 	@Override
 	public void aceptar(Visitor v) {
-		v.visitarPared(this);
+		v.visit(this);
 	}
 	
 	public String toString() {

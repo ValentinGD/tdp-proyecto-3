@@ -10,6 +10,6 @@ public abstract class PickUpPuntos extends PickUp {
 	}
 
 	public void aceptar(Visitor v) {
-		v.visitarPickUpPuntos(this);
+		v.visit(this);
 	}
 }

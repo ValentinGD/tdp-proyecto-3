@@ -43,11 +43,11 @@ public abstract class Enemigo extends Movible {
 	}
 	
 	public void aceptar(Visitor v) {
-		v.visitarEnemigo(this);
+		v.visit(this);
 	}
 	
 	@Override
-	public void visitarPared(Pared p) {
+	public void visit(Pared p) {
 		estado.visitarPared(p);
 	}
 	
@@ -79,8 +79,8 @@ public abstract class Enemigo extends Movible {
 	}
 	
 	@Override
-	public void visitarPersonaje(Personaje p) {
-		p.visitarEnemigo(this);
+	public void visit(Personaje p) {
+		p.visit(this);
 	}
 
 	public int getOrigenX() {

@@ -112,11 +112,11 @@ public class Personaje extends Movible {
 
 	@Override
 	public void aceptar(Visitor v) {
-		v.visitarPersonaje(this);
+		v.visit(this);
 	}
 	
 	@Override
-	public void visitarPared(Pared p) {
+	public void visit(Pared p) {
 		estado.visitarPared(p);
 	}
 	
@@ -184,12 +184,12 @@ public class Personaje extends Movible {
 //		}
 //	}
 	
-	public void visitarPickUpPuntos(PickUpPuntos p) {
+	public void visit(PickUpPuntos p) {
 		if(p.colisionaConEntidadEnPosicion(x, y)) {
 			Escenario.getInstancia().eliminarPickUp(p);
 		}
 	}
-	public void visitarPickUpPoder(PickUpPoder p) {
+	public void visit(PickUpPoder p) {
 		if(p.colisionaConEntidadEnPosicion(x, y)) {
 			p.aplicarPoder(this);
 			//System.out.println("sobre poder");
@@ -197,7 +197,7 @@ public class Personaje extends Movible {
 		}
 	}
 	
-	public void visitarEnemigo(Enemigo e) {
+	public void visit(Enemigo e) {
 		if (e.colisionaConEntidadEnPosicion(x, y)) {
 			//System.out.println("El personaje colisiono con: " + e);
 			//System.out.println("Personaje: " + toString());

@@ -8,9 +8,9 @@ import logica.entidades.pickups.puntos.PickUpPuntos;
 
 public interface Visitor {
 	
-	public void visitarEnemigo(Enemigo e);
-	public void visitarPersonaje(Personaje p);
-	public void visitarPickUpPuntos(PickUpPuntos p);
-	public void visitarPickUpPoder(PickUpPoder p);
-	public void visitarPared(Pared p);
+	public void visit(Enemigo e);
+	public void visit(Personaje p);
+	public void visit(PickUpPuntos p);
+	public void visit(PickUpPoder p);
+	public void visit(Pared p);
 }
