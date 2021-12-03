@@ -1,0 +1,15 @@
+Simbolos para crear mapas
+
+Punto normal 	-> '*'
+Punto especial 	-> '#'
+Poder normal 	-> 'P'
+Poder especial 	-> 'V': Velocidad
+				-> 'I': Inmortal
+Pared 			-> 'X'
+Pared enemigos 	-> '-'
+Enemigo 			-> '1', '2', '3', '4'
+Personaje 		-> 'A'
+
+Nota:
+* Todo el mapa debe estar rodeado de paredes
+* Las paredes de enemigos todavia no estan implementadas

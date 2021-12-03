@@ -1,7 +1,7 @@
 XXXXXXXXXXXXXXXXXXXXXXX
 X**********X**********X
 XPXXX*XXXX*X*XXXX*XXXPX
-X*********************X
+X*************I*******X
 X*XXX*X*XXXXXXX*X*XXX*X
 X*****X****X****X*****X
 XXXXX*XXXX X XXXX*XXXXX
@@ -11,7 +11,7 @@ XXXXX*  X     X  *XXXXX
     X*X XXXXXXX X*X    
     X*X         X*X    
 XXXXX*X XXXXXXX X*XXXXX
-X**********X**********X
+X*******V**X*#********X
 X*XXX*XXXX*X*XXXX*XXX*X
 XP**X******A******X**PX
 XXX*X*X*XXXXXXX*X*X*XXX

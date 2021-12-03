@@ -1,6 +1,7 @@
 package logica.entidades.pickups.poderes;
 
 import app.App;
+import logica.entidades.Personaje;
 import vista.RepresentacionGrafica;
 import vista.repositorioGrafico.RepositorioGraficoAbstracto;
 
@@ -9,7 +10,7 @@ public class PoderNormal extends PickUpPoder {
 	private static final int PUNTOS_PODER_NORMAL = Integer.parseInt(App.configuration.getProperty("PuntosPoderNormal"));
 	
 	public PoderNormal(int x, int y) {
-		super(x, y, PUNTOS_PODER_NORMAL, 0, 0, true, true);
+		super(x, y, PUNTOS_PODER_NORMAL);
 	}
 
 	@Override
@@ -20,6 +21,13 @@ public class PoderNormal extends PickUpPoder {
 			miRepresentacion.setImageIcon(repositorioGrafico.getRepositorioGraficoPickUp().getPickUpPoderNormalGrafico());
 		}
 		return miRepresentacion;
+	}
+	
+	@Override
+	public void aplicarPoder(Personaje personaje) {
+		super.aplicarPoder(personaje);
+		personaje.hacerInmortal();
+		personaje.hacerAsesinoDeEnemigos();
 	}
 	
 	public String toString() {

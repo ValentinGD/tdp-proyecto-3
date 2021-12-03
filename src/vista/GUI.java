@@ -57,6 +57,7 @@ public class GUI extends JFrame implements ActionListener {
 	
 	public void showGameOver() {
 		setPanel(new GameOverPanel(juego.getPuntajeString(), this));
+		musica.stop_audio();
 	}
 	
 	public void showJuego() {
