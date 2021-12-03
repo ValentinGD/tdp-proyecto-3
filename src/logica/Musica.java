@@ -43,16 +43,16 @@ public class Musica extends Thread {
 	
 	public void play_pause_audio() {
 		switch (status) {
-			case AUDIO_EN_REPRODUCCION: { //Procedo a pausar la música.
+			case AUDIO_EN_REPRODUCCION: { //Se pausa la música.
 				audio_clip.stop();
 				status = AUDIO_PAUSADO;
 				break;
 			}
-			case AUDIO_PAUSADO: { //Continúo la reproducción desde donde estaba.
+			case AUDIO_PAUSADO: { //Se continúa la reproducción desde donde estaba previamente.
 				play_audio();
 				break;
 			}
-			case AUDIO_DETENIDO: { //Inicio reproducción desde el principio.
+			case AUDIO_DETENIDO: { //Se inicia la reproducción desde el principio.
 				preparar_audio();
 				play_audio();
 				break;
