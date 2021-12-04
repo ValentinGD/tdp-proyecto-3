@@ -5,6 +5,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import logica.Juego;
 import logica.Musica;
+import logica.Player;
 import logica.entidades.Movible;
 import vista.repositorioGrafico.figuras.RepositorioGraficoFiguras;
 import java.awt.TextArea;
@@ -33,9 +34,6 @@ public class GUI extends JFrame implements ActionListener {
 		juegoPanel = new JuegoPanel(new RepositorioGraficoFiguras(), this);
 		juegoPanel.setFocusable(true);
 		juegoPanel.addKeyListener(new GUIKeyListener());
-		//System.out.println("se creo el panel de juego");
-		
-		//musica = new Musica();
 		
 		setPanel(menuPanel);
 		setFocusable(true);
@@ -154,14 +152,14 @@ public class GUI extends JFrame implements ActionListener {
 		this.getContentPane().add(scores);
 		
 		int i = 1;
-		for(int punt: juego.getTopScores()) {
-			scores.append(i + ")  " + punt + "\n");
+		for (Player p : juego.getTopScores()) {
+			scores.append(i + ")  " + p.getPuntaje() + " - " + p.getNombre() + "\n");
 			i++;
 		}
 		
 		juego.pararTiempo();
 		
-		JOptionPane.showMessageDialog(null,scores,"Mejores Puntuaciones",JOptionPane.PLAIN_MESSAGE);
+		JOptionPane.showMessageDialog(null, scores, "TdP-man - Mejores Puntuaciones", JOptionPane.PLAIN_MESSAGE);
 		
 		juego.reanudarTiempo();
 	}

@@ -1,10 +1,8 @@
 package logica;
 
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,24 +21,11 @@ public class Juego implements Runnable, Suscriptor  {
 	private Reloj reloj;
 	private TopScores misTopScores;
 	
-	public Juego() {
+	public Juego(TopScores misTopScores) {
 		gui = new GUI(this);
 		escenario = Escenario.getInstancia();
 		escenario.setJuego(this);
-		
-		misTopScores = new TopScores();
-		try {
-			FileInputStream fileInputStream = new FileInputStream("./mayoresPuntajes.tdp");
-			ObjectInputStream objectInputStram = new ObjectInputStream(fileInputStream);
-			misTopScores = (TopScores) objectInputStram.readObject();
-			objectInputStram.close();
-		}catch(FileNotFoundException e) {
-			
-		}catch(IOException e) {
-			e.printStackTrace();
-		}catch(ClassNotFoundException e) {
-			e.printStackTrace();
-		}
+		this.misTopScores = misTopScores;
 		
 		reloj = new Reloj(1000/TICS_POR_SEGUNDO);
 		reloj.suscribirse(this);
@@ -80,21 +65,30 @@ public class Juego implements Runnable, Suscriptor  {
 	}
 	
 	public void gameOver() {
-		misTopScores.setPuntaje(puntaje);
-		try {
-			FileOutputStream fileOutputStream = new FileOutputStream("mayoresPuntajes.tdp");
-			ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
-			objectOutputStream.writeObject(misTopScores);
-			objectOutputStream.flush();
-			objectOutputStream.close();
-		}catch(FileNotFoundException e) {
-			e.printStackTrace();
-		}catch(IOException e) {
-			e.printStackTrace();
-		}
 		pararTiempo();
+		procesarPuntaje();
 		gui.showGameOver();
     }
+	
+	/*
+	 * Solo si el puntaje queda dentro de los top scores, se actualiza el archivo que almacena las mejores puntuaciones.
+	 */
+	private void procesarPuntaje() {
+		boolean se_guardo_record = misTopScores.procesarPuntaje(puntaje);
+		if (se_guardo_record) {
+			try {
+				FileOutputStream fileOutputStream = new FileOutputStream(App.configuration.getProperty("RutaRecords"));
+				ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
+				objectOutputStream.writeObject(misTopScores);
+				objectOutputStream.flush();
+				objectOutputStream.close();
+			}catch(FileNotFoundException e) {
+				e.printStackTrace();
+			}catch(IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
 	
 	/**
 	 * 0-> Mover arriba
@@ -139,7 +133,7 @@ public class Juego implements Runnable, Suscriptor  {
 		reloj.start();
 	}
 	
-	public List<Integer> getTopScores() {
+	public List<Player> getTopScores() {
 		return misTopScores.getPuntajes();
 	}
 	
@@ -147,4 +141,5 @@ public class Juego implements Runnable, Suscriptor  {
 		puntaje = 0;
 		gui.showMenu();
 	}
+
 }
