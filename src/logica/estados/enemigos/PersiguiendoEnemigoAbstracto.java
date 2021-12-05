@@ -34,6 +34,10 @@ public abstract class PersiguiendoEnemigoAbstracto extends EstadoEnemigo {
 		if (enemigo.puedeGirar()) {
 			calcularCoordenadasObjetivo();
 			
+			if(personaje.puedeComerEnemigos()) {
+				xObjetivo=Escenario.getInstancia().getAncho()-personaje.getX();
+				yObjetivo=Escenario.getInstancia().getAlto()-personaje.getY();
+			}
 			xObjetivo = Math.min(Escenario.getInstancia().getAncho(), xObjetivo);
 			yObjetivo = Math.min(Escenario.getInstancia().getAlto(), yObjetivo);
 			
@@ -44,11 +48,7 @@ public abstract class PersiguiendoEnemigoAbstracto extends EstadoEnemigo {
 			
 			int direccionDefinitiva = calcularMejorDireccion(xObjetivo, yObjetivo, direccionesValidas);
 			
-			if (!enemigo.esCambioDeDireccionValido(direccionDefinitiva)) {
-				System.out.println("\tERROR EN CALCULO DE DIRECCION DE ENEMIGO 2");
-			} else {
-				enemigo.setDireccionActual(direccionDefinitiva);
-			}
+			enemigo.setDireccionActual(direccionDefinitiva);
 		}
 	}
 	
