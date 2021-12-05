@@ -14,7 +14,7 @@ import vista.GUI;
 public class Juego implements Runnable, Suscriptor  {
 	
 	public static final int TICS_POR_SEGUNDO = Integer.parseInt(App.configuration.getProperty("TicsJuego"));
-
+	
 	private GUI gui;
 	private Escenario escenario;
 	private int puntaje;
@@ -62,9 +62,11 @@ public class Juego implements Runnable, Suscriptor  {
 	}
 	
 	public void gameOver() {
-		pararTiempo();
-		procesarPuntaje();
-		gui.showGameOver();
+		if (reloj.isRunning()) {
+			pararTiempo();
+			procesarPuntaje();
+			gui.showGameOver();
+		}
     }
 	
 	/*
@@ -111,6 +113,7 @@ public class Juego implements Runnable, Suscriptor  {
 	}
 
 	public void cargarNuevoNivel() {
+		gui.resetJuego();
 		gui.setDimensionEscenario(escenario.getAlto(), escenario.getAncho());
 		gui.agregarEntidades(escenario.getEntidadesParaActualizar());
 		gui.showJuego();

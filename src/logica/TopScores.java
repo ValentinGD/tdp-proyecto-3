@@ -3,11 +3,12 @@ package logica;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+
 import vista.NuevoRecord;
 
 @SuppressWarnings("serial")
 public class TopScores implements Serializable{
-
+	
 	private List<Player> ranking;
 	//Internamente es una lista de 10 elementos, con las mejores puntuaciones ordenadas de mayor a menor (izquierda a derecha).
 	
@@ -57,12 +58,17 @@ public class TopScores implements Serializable{
 	 */
 	private void guardarEnLista(int pos, int puntaje) {
 		String nombre = solicitarNombre();
-		if (nombre != null && !nombre.isBlank()) { //Esto soluciona el hecho de que a veces guarda nulls junto a un nuevo record valido.
+		//La expresion regular detecta si la cadena contiene al menos una letra
+		if (nombre != null && nombre.matches(".*[a-zA-Z].*")) { //Esto soluciona el hecho de que a veces guarda nulls junto a un nuevo record valido.
 			if (pos == -1) {
 				ranking.add(new Player(nombre, puntaje));
 			}
 			else {
 				ranking.add(pos, new Player(nombre, puntaje));
+			}
+		} else {
+			if (nombre != null) {
+				guardarEnLista(pos, puntaje);
 			}
 		}
 	}

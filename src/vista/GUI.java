@@ -59,6 +59,12 @@ public class GUI extends JFrame implements ActionListener {
 		musica.stop_audio();
 	}
 	
+	public void resetJuego() {
+		juegoPanel = new JuegoPanel(new RepositorioGraficoFiguras(), this);
+		juegoPanel.setFocusable(true);
+		juegoPanel.addKeyListener(new GUIKeyListener());
+	}
+	
 	public void showJuego() {
 		setPanel(juegoPanel);
 		juegoPanel.requestFocus();

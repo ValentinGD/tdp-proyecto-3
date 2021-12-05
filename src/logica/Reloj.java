@@ -17,6 +17,10 @@ public class Reloj implements Notificadora {
 		suscriptores=new ArrayList<Suscriptor>();
 	}
 	
+	public boolean isRunning() {
+		return running;
+	}
+	
 	public void start() {
 		running = true;
 		t = new HiloDormilon(tiempoEntreTics, this);
@@ -32,8 +36,8 @@ public class Reloj implements Notificadora {
 	}
 	
 	public void stop() throws InterruptedException {
-		t.abortar();
 		running = false;
+		t.abortar();
 		t.join();
 	}
 	

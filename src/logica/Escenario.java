@@ -20,9 +20,6 @@ public class Escenario {
 	
 	private List<EntidadGrafica> entidadesParaActualizar;
 	private List<Movible> movibles;
-
-	@SuppressWarnings("unused")
-	private List<Zona> zonas;
 	
 	private Zona[][] matrizZonas;
 	private static Nivel nivel;
@@ -32,7 +29,6 @@ public class Escenario {
 	private boolean murioPersonaje;
 
 	private Escenario() {
-		zonas = new ArrayList<Zona>();
 		movibles = new ArrayList<Movible>();
 		entidadesParaActualizar = new ArrayList<EntidadGrafica>();
 		personaje = Personaje.getInstancia();
