@@ -12,19 +12,16 @@ public class ParedFantasma extends Entidad {
 	}
 
 	public ImageIcon getRepresentacionGrafica() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public RepresentacionGrafica getRepresentacionGrafica(RepositorioGraficoAbstracto repositorioGrafico) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public void aceptar(Visitor v) {
-		// TODO Auto-generated method stub
 		
 	}
 

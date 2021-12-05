@@ -33,4 +33,5 @@ public class PoderNormal extends PickUpPoder {
 	public String toString() {
 		return "Poder normal";
 	}
+
 }

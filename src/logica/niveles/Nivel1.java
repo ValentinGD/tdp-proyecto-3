@@ -14,4 +14,5 @@ public class Nivel1 extends Nivel {
 	public String toString() {
 		return "Nivel 1";
 	}
+
 }

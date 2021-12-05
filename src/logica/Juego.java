@@ -14,7 +14,7 @@ import vista.GUI;
 public class Juego implements Runnable, Suscriptor  {
 	
 	public static final int TICS_POR_SEGUNDO = Integer.parseInt(App.configuration.getProperty("TicsJuego"));
-	
+
 	private GUI gui;
 	private Escenario escenario;
 	private int puntaje;
@@ -26,7 +26,6 @@ public class Juego implements Runnable, Suscriptor  {
 		escenario = Escenario.getInstancia();
 		escenario.setJuego(this);
 		this.misTopScores = misTopScores;
-		
 		reloj = new Reloj(1000/TICS_POR_SEGUNDO);
 		reloj.suscribirse(this);
 		puntaje=0;
@@ -39,7 +38,6 @@ public class Juego implements Runnable, Suscriptor  {
 	
 	public void start() {
 		escenario.start();
-		//gui.showJuego();
 	}
 	
 	public void agregarEntidades(List<Entidad> entidades) {
@@ -52,7 +50,6 @@ public class Juego implements Runnable, Suscriptor  {
 
 	public void actualizarVidas(int cantVidas) {
 		gui.actualizarVidas(cantVidas);
-		//System.out.println("Entro en actualizarVidas");
 	}
 	
 	public void actualizarPuntaje(int p) {
@@ -116,7 +113,6 @@ public class Juego implements Runnable, Suscriptor  {
 	public void cargarNuevoNivel() {
 		gui.setDimensionEscenario(escenario.getAlto(), escenario.getAncho());
 		gui.agregarEntidades(escenario.getEntidadesParaActualizar());
-		//System.out.println("se agregaron " + escenario.getEntidadesParaActualizar().size() + " entidades.");
 		gui.showJuego();
 		reloj.start();
 	}

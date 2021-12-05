@@ -33,4 +33,5 @@ public class PoderVelocidad extends PoderEspecial {
 	public String toString() {
 		return "Poder velocidad";
 	}
+
 }

@@ -23,7 +23,6 @@ public abstract class PersiguiendoEnemigoAbstracto extends EstadoEnemigo {
 	public void mover() {
 		actualizarDireccion();
 		if (puedeMover(enemigo, enemigo.getDireccionActual())) {
-			
 			calcularPosicionDestino(enemigo);
 			enemigo.setPosicion(xDestino, yDestino);
 			Escenario.getInstancia().agregarEntidadParaActualizar(enemigo);
@@ -33,7 +32,6 @@ public abstract class PersiguiendoEnemigoAbstracto extends EstadoEnemigo {
 	
 	protected void actualizarDireccion() {
 		if (enemigo.puedeGirar()) {
-			
 			calcularCoordenadasObjetivo();
 			
 			xObjetivo = Math.min(Escenario.getInstancia().getAncho(), xObjetivo);
@@ -125,4 +123,5 @@ public abstract class PersiguiendoEnemigoAbstracto extends EstadoEnemigo {
 		}
 		return img;
 	}
+
 }

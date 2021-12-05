@@ -12,12 +12,12 @@ public class Asustado extends EstadoEnemigo {
 
 	@Override
 	public void mover() {
-		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public ImageIcon getRepresentacionGrafica(RepositorioGraficoEnemigo repositorio) {
 		return repositorio.getEnemigoAsustadoGrafico();
 	}
+
 }

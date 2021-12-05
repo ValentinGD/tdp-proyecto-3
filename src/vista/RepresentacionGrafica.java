@@ -8,9 +8,7 @@ import logica.entidades.Entidad;
 public class RepresentacionGrafica {
 	
 	private JLabel label;
-	
 	private Entidad entidad;
-	
 	private int tam;
 	
 	public RepresentacionGrafica(int tam, Entidad entidad) {

@@ -56,28 +56,24 @@ public class Mapa {
 	}
 	
 	public void addMovible(Movible m){
-		//System.out.println("agregando movible");
 		ajustarTamanioYPosicion(m);
 		m.setOrigen();
 		movibles.add(m);
 	}
 	
 	public void addPickUpNormal(PuntosNormal pN){
-		//System.out.println("agregando pickup normal");
 		cantPickup++;
 		ajustarTamanioYPosicion(pN);
 		puntosNormales.add(pN);
 	}
 	
 	public void addPuntosEspecial(PuntosEspecial pE){
-		//System.out.println("agregando puntos especial");
 		cantPickup++;
 		ajustarTamanioYPosicion(pE);
 		puntosEspeciales.add(pE);
 	}
 	
 	public void addPoderEspecial(PickUpPoder p){
-		//System.out.println("agregando poder especial");
 		cantPickup++;
 		ajustarTamanioYPosicion(p);
 		poderes.add(p);
@@ -86,7 +82,6 @@ public class Mapa {
 	public void addParedes(Pared p){
 		ajustarTamanioYPosicion(p);
 		paredes.add(p);
-		//System.out.println("agregando pared: " + p);
 	}
 	
 	public int getAncho() {
@@ -111,4 +106,5 @@ public class Mapa {
 		e.setX(e.getX() * Entidad.TAMANIO);
 		e.setY(e.getY() * Entidad.TAMANIO);
 	}
+
 }

@@ -13,7 +13,6 @@ public abstract class Entidad implements EntidadGrafica {
 	protected int x;
 	protected int y;
 	protected Zona miZona;
-	
 	protected RepresentacionGrafica miRepresentacion;
 	
 	protected Entidad(int x, int y) {
@@ -65,4 +64,5 @@ public abstract class Entidad implements EntidadGrafica {
 	public String toString() {
 		return super.toString() + ", x: " + x + ", y: " + y;
 	}
+
 }

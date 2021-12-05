@@ -13,7 +13,6 @@ public class Enemigo1 extends Enemigo {
 		super(new PersiguiendoEnemigo1());
 		estado.setEnemigo(this);
 		velocidadEnTics = VELOCIDAD_INICIAL;
-		
 	}
 	
 	@Override
@@ -26,8 +25,7 @@ public class Enemigo1 extends Enemigo {
 
 	@Override
 	public void perseguir() {
-		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -38,7 +36,6 @@ public class Enemigo1 extends Enemigo {
 	
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
 		return "Enemigo1: <" + super.toString() + ">";
 	}
 

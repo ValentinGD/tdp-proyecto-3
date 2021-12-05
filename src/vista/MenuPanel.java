@@ -7,6 +7,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.Insets;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -32,6 +33,8 @@ import java.awt.GradientPaint;
 
 @SuppressWarnings("serial")
 public class MenuPanel extends JPanel {
+	
+	private boolean musica_al_inicio;
 	
 	@Override
     protected void paintComponent(Graphics g) {
@@ -86,9 +89,14 @@ public class MenuPanel extends JPanel {
 		panelBotonYSonido.add(btnComenzar);
 		
 		JCheckBox cbSonido = new JCheckBox("M\u00FAsica");
-		cbSonido.setVisible(false);
 		cbSonido.setOpaque(false);
 		cbSonido.setMnemonic('m');
+		cbSonido.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				musica_al_inicio = cbSonido.isSelected();
+			}
+		});
 		panelBotonYSonido.add(cbSonido);
 		
 		JPanel panelAyudaControles = new JPanel();
@@ -160,4 +168,8 @@ public class MenuPanel extends JPanel {
 		panelAyudaControles.add(horizontalStrut_der, BorderLayout.EAST);
 	}
 
+	public boolean esta_activada_musica_al_inicio() {
+		return musica_al_inicio;
+	}
+	
 }

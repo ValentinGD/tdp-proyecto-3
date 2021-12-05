@@ -24,4 +24,5 @@ public class PersiguiendoEnemigo4 extends PersiguiendoEnemigoAbstracto {
 			yObjetivo = personaje.getY();
 		}
 	}
+
 }

@@ -10,7 +10,7 @@ public class DescansandoEnemigo1 extends DescansandoEnemigoAbstracto {
 
 	@Override
 	public void mover() {
-		// TODO Auto-generated method stub
 		
 	}
+
 }

@@ -16,19 +16,12 @@ public class EstadoPersonajeNormal extends EstadoPersonaje {
 	public void mover() {
 		verificarCambioDireccion();
 		if(puedeMover(personaje, personaje.getDireccionActual())) {
-			//System.out.println("moviendo personaje");
-			
 			calcularPosicionDestino(personaje);
 			personaje.setPosicion(xDestino, yDestino);
 			Escenario.getInstancia().agregarEntidadParaActualizar(personaje);
 			Escenario.getInstancia().reubicar(personaje);
-			
-			//System.out.println("Entidades en la zona del personaje:");
-			//for (Entidad e : personaje.getZona().getEntidades()) {
-				//System.out.println("\t" + e);
-			//}
 		} else {
-			//System.out.println("No se puede mover personaje");
+
 		}
 	}
 
@@ -62,4 +55,5 @@ public class EstadoPersonajeNormal extends EstadoPersonaje {
 	public String toString() {
 		return "estado personaje: normal";
 	}
+
 }

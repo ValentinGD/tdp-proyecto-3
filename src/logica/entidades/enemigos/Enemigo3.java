@@ -31,13 +31,12 @@ public class Enemigo3 extends Enemigo {
 	
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
 		return "Enemigo3: <" + super.toString() + ">";
 	}
 
 	@Override
 	public void perseguir() {
-		// TODO Auto-generated method stub
-		
+
 	}
+
 }

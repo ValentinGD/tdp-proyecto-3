@@ -29,18 +29,6 @@ public class Zona {
 		return contiene(e.getX(), e.getY());
 	}
 	
-//	public int distanciaABorde(Entidad e) {
-//		
-//		int distanciaIzquierda = e.getX() - x;
-//		int distanciaDerecha = (x + ancho) - (e.getX() + Entidad.TAMANIO);
-//		int distanciaArriba = e.getY() - y;
-//		int distanciaAbajo = (y + alto) - (e.getY() + Entidad.TAMANIO);
-//		
-//		
-//		
-//		return Math.min(Math.min(Math.abs(e.getX() - x), Math.abs(e.getY() - y)), Math.min(Math.abs(e.getX() + ancho - x), Math.abs(e.getY() + alto - y)));
-//	}
-	
 	public boolean estaEnElBorde(Movible m) {
 		return estaEnElBorde(m, m.getDireccionActual());
 	}
@@ -108,4 +96,5 @@ public class Zona {
 	public void eliminar(Entidad e) {
 		entidades.remove(e);
 	}
+
 }

@@ -57,7 +57,7 @@ public class TopScores implements Serializable{
 	 */
 	private void guardarEnLista(int pos, int puntaje) {
 		String nombre = solicitarNombre();
-		if (nombre != null && !nombre.isBlank()) {
+		if (nombre != null && !nombre.isBlank()) { //Esto soluciona el hecho de que a veces guarda nulls junto a un nuevo record valido.
 			if (pos == -1) {
 				ranking.add(new Player(nombre, puntaje));
 			}

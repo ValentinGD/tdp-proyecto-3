@@ -13,23 +13,15 @@ public class Muerto extends EstadoEnemigo {
 
 	@Override
 	public void mover() {
-		//System.out.println("Enemigo muerto moviendose");
-		
 		int movimientoX, movimientoY;
 		
 		movimientoX = enemigo.getOrigenX() - enemigo.getX();
 		movimientoY = enemigo.getOrigenY() - enemigo.getY();
 		
-		//System.out.println("\tmovX: " + movimientoX);
-		//System.out.println("\tmovY: " + movimientoY);
-		
 		if ((Math.abs(movimientoX) <= 1) && (Math.abs(movimientoY) <= 1)) {
 			enemigo.reset();
 			Escenario.getInstancia().ubicarEnZona(enemigo);
-			//System.out.println("Enemigo revivido");
 		} else {
-			//System.out.println(enemigo);
-			//System.out.println("Enemigo movido");
 			if (movimientoX < 0) {
 				movimientoX = Math.min(-1, movimientoX/10);
 			} else {
@@ -43,7 +35,6 @@ public class Muerto extends EstadoEnemigo {
 			}
 			
 			enemigo.setPosicion(enemigo.getX() + movimientoX, enemigo.getY() + movimientoY);
-			//System.out.println(enemigo);
 			
 			Escenario.getInstancia().agregarEntidadParaActualizar(enemigo);
 			Escenario.getInstancia().reubicar(enemigo);

@@ -25,8 +25,7 @@ public class Enemigo4 extends Enemigo {
 
 	@Override
 	public void perseguir() {
-		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -37,7 +36,6 @@ public class Enemigo4 extends Enemigo {
 	
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
 		return "Enemigo4: <" + super.toString() + ">";
 	}
 

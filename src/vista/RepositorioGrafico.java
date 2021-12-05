@@ -26,7 +26,6 @@ public class RepositorioGrafico {
 	private static final int INDEX_POCION = 9;
 	private static final int INDEX_PODER = 10;
 	
-	
 	private static final ImageIcon [] iconos = new ImageIcon[11];
 	
 	private static void cargarRepositorio() {
@@ -95,4 +94,5 @@ public class RepositorioGrafico {
 	static {
 		cargarRepositorio();
 	}
+
 }

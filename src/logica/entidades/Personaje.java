@@ -16,28 +16,19 @@ import logica.entidades.pickups.puntos.*;
 public class Personaje extends Movible {
 
 	private static Personaje instancia;
-	
 	private static final int VELOCIDAD_INICIAL = Integer.parseInt(App.configuration.getProperty("VelocidadTicsPersonaje"));
-	
 	protected EstadoPersonaje estado;
-	
 	private int vidas;
-	
 	private int direccionSiguiente;
-	
 	private boolean esInmortal;
 	private boolean puedeMatarEnemigos;
-	
 	private int ticsRestantesPoder;
 	private int velocidadExtra;
-	
 	private boolean estaVivo;
 	
 	private Personaje() {
 		super(0, 0);
-
 		vidas = Escenario.CANTIDAD_INICIAL_DE_VIDAS;
-		
 		reset();
 	}
 
@@ -45,7 +36,6 @@ public class Personaje extends Movible {
 		if (instancia == null) {
 			instancia = new Personaje();
 		}
-		
 		return instancia;
 	}
 	
@@ -68,9 +58,8 @@ public class Personaje extends Movible {
 		boolean esDireccionValida = Movible.esDireccionValida(direccion);
 		if (esDireccionValida) {
 			direccionSiguiente = direccion;
-			//System.out.println("Personaje::Se cambio la direccion: " + direccionToString(direccionSiguiente));
 		} else {
-			//System.out.println("Personaje::No se puede cambiar de direccion");
+
 		}
 	}
 	
@@ -83,19 +72,16 @@ public class Personaje extends Movible {
 		}
 		
 		if (ticsRestantesPoder <= 0) {
-			//System.out.println("Se terminaron los poderes");
 			resetPoderes();
 		} else {
 			ticsRestantesPoder--;
-			//System.out.println("tics de poder restantes: " + ticsRestantesPoder);
 		}
-//		System.out.println("movido");
 	}
 
 	private void resetPoderes() {
 		esInmortal = false;
 		puedeMatarEnemigos = false;
-		
+
 		ticsRestantesPoder = 0;
 		velocidadExtra = 0;
 	}
@@ -105,7 +91,6 @@ public class Personaje extends Movible {
 		if (estaVivo) {
 			estaVivo = false;
 			vidas--;
-			//System.out.println("Murio el personaje. Vidas: " + vidas);
 			Escenario.getInstancia().murioPersonaje();
 		}
 	}
@@ -123,7 +108,6 @@ public class Personaje extends Movible {
 	@Override
 	public RepresentacionGrafica getRepresentacionGrafica(RepositorioGraficoAbstracto repositorioGrafico) {
 		miRepresentacion.setImageIcon(estado.getRepresentacionGrafica(repositorioGrafico.getRepositorioGraficoPersonaje()));
-		//System.out.println("representacion personaje: " + miRepresentacion);
 		return miRepresentacion;
 	}
 	
@@ -138,8 +122,6 @@ public class Personaje extends Movible {
 	public void agregarVelocidad(int cantTicsAcelerados) {
 		velocidadExtra += cantTicsAcelerados;
 		velocidadExtra = Math.min(velocidadExtra, VELOCIDAD_INICIAL);
-		//System.out.println("\tvelocidad agregada.");
-		//System.out.println("\t\tvelocidad extra: " + velocidadExtra);
 	}
 	
 	public void hacerInmortal() {
@@ -148,17 +130,11 @@ public class Personaje extends Movible {
 	
 	public void addTiempoPoder(int cantTics) {
 		ticsRestantesPoder += cantTics;
-		//System.out.println("\tTics restantes de poder: " + ticsRestantesPoder);
 	}
 	
 	public void hacerAsesinoDeEnemigos() {
 		puedeMatarEnemigos = true;
 	}
-	
-//	@Override
-//	public String toString() {
-//		return "Personaje::toString: " + super.toString() + ", estado: <" + estado + ">";
-//	}
 
 	public int getDireccionSiguiente() {
 		return direccionSiguiente;
@@ -175,34 +151,23 @@ public class Personaje extends Movible {
 			e.aceptar(this);
 		}
 	}
-
-//	public void chocarConEnemigo() {
-//		Zona zona = getZona();
-//		List<Entidad> entidades = zona.getEntidades();
-//		for (Entidad e : entidades) {
-//			e.aceptar(this);
-//		}
-//	}
 	
 	public void visit(PickUpPuntos p) {
 		if(p.colisionaConEntidadEnPosicion(x, y)) {
 			Escenario.getInstancia().eliminarPickUp(p);
 		}
 	}
+	
 	public void visit(PickUpPoder p) {
 		if(p.colisionaConEntidadEnPosicion(x, y)) {
 			p.aplicarPoder(this);
-			//System.out.println("sobre poder");
 			Escenario.getInstancia().eliminarPickUp(p);
 		}
 	}
 	
 	public void visit(Enemigo e) {
 		if (e.colisionaConEntidadEnPosicion(x, y)) {
-			//System.out.println("El personaje colisiono con: " + e);
-			//System.out.println("Personaje: " + toString());
 			if (puedeMatarEnemigos) {
-				//System.out.println("\tEl personaje puede matar enemigos");
 				e.morir();
 			} else if (!esInmortal) {
 				morir();
@@ -212,7 +177,6 @@ public class Personaje extends Movible {
 	
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
 		return "Personaje: <" + super.toString() + ">";
 	}
 
@@ -228,4 +192,5 @@ public class Personaje extends Movible {
 	public boolean esPoderoso() {
 		return ticsRestantesPoder > 0;
 	}
+
 }

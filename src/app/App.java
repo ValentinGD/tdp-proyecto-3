@@ -27,7 +27,7 @@ public class App {
 			InputStream input = new FileInputStream("configuration.properties");
 			App.configuration = new Properties();
 			App.configuration.load(input);
-		}catch(IOException e){
+		} catch(IOException e) {
 			e.printStackTrace();
 		}
 	}
@@ -39,11 +39,11 @@ public class App {
 			ObjectInputStream objectInputStram = new ObjectInputStream(fileInputStream);
 			misTopScores = (TopScores) objectInputStram.readObject();
 			objectInputStram.close();
-		}catch(FileNotFoundException e) {
+		} catch(FileNotFoundException e) {
 
-		}catch(IOException e) {
+		} catch(IOException e) {
 			e.printStackTrace();
-		}catch(ClassNotFoundException e) {
+		} catch(ClassNotFoundException e) {
 			e.printStackTrace();
 		}
 	}

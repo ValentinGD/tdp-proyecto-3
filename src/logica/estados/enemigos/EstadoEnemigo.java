@@ -23,4 +23,5 @@ public abstract class EstadoEnemigo extends EstadoMovible {
 	}
 	
 	public abstract ImageIcon getRepresentacionGrafica(RepositorioGraficoEnemigo repositorio);
+
 }

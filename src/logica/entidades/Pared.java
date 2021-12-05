@@ -24,4 +24,5 @@ public class Pared extends Entidad{
 	public String toString() {
 		return "Pared: <x: " + x + ", y: " + y + ">";
 	}
+
 }

@@ -3,6 +3,7 @@ package vista;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import app.App;
 import logica.Juego;
 import logica.Musica;
 import logica.Player;
@@ -26,7 +27,7 @@ public class GUI extends JFrame implements ActionListener {
 	
 	public GUI(Juego juego) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setTitle("TdP-man");
+		setTitle(App.configuration.getProperty("Titulo"));
 		this.juego = juego;
 		
 		menuPanel = new MenuPanel(this);
@@ -93,7 +94,7 @@ public class GUI extends JFrame implements ActionListener {
 		switch (command) {
 		case "comenzar":
 			juego.start();
-			musica = new Musica();
+			musica = new Musica(menuPanel.esta_activada_musica_al_inicio());
 			break;
 		case "stop_audio":
 			musica.stop_audio();
@@ -146,6 +147,9 @@ public class GUI extends JFrame implements ActionListener {
 		}
 	}
 	
+	/*
+	 * Muestra en una ventana las mejores puntuaciones almacenadas.
+	 */
 	public void mostrarPuntajes() {
 		TextArea scores = new TextArea();
 		scores.setEditable(false);

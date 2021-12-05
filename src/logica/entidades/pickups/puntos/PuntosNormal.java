@@ -28,4 +28,5 @@ public class PuntosNormal extends PickUpPuntos {
 		}
 		return miRepresentacion;
 	}
+
 }

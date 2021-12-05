@@ -30,4 +30,5 @@ public class PoderInmortal extends PoderEspecial {
 	public String toString() {
 		return "Poder inmortal";
 	}
+
 }

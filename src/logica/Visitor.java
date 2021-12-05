@@ -13,4 +13,5 @@ public interface Visitor {
 	public void visit(PickUpPuntos p);
 	public void visit(PickUpPoder p);
 	public void visit(Pared p);
+
 }

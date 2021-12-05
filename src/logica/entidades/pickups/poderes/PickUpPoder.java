@@ -21,9 +21,9 @@ public abstract class PickUpPoder extends PickUp {
 	
 	public void aplicarPoder(Personaje personaje) {
 		if (!comido) {
-			//System.out.println("Aplicando poder de " + this);
 			personaje.addTiempoPoder(TIEMPO_DURACION_PODER);
 			comido = true;
 		}
 	}
+
 }

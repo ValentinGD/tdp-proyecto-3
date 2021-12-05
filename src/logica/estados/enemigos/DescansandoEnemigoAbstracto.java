@@ -33,4 +33,5 @@ public abstract class DescansandoEnemigoAbstracto extends EstadoEnemigo {
 		}
 		return img;
 	}
+
 }

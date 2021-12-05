@@ -54,7 +54,6 @@ public abstract class Movible extends Entidad implements Visitor {
 	}
 	
 	public void setOrigen() {
-		//System.out.println("Estableciendo origen: " + toString());
 		xOrigen = x;
 		yOrigen = y;
 	}
@@ -70,7 +69,6 @@ public abstract class Movible extends Entidad implements Visitor {
 				(direccion == DIRECCION_ARRIBA) ||
 				(direccion == DIRECCION_ABAJO);
 	}
-	
 
 	@Override
 	public void visit(Enemigo e) {}
@@ -83,7 +81,6 @@ public abstract class Movible extends Entidad implements Visitor {
 
 	@Override
 	public void visit(PickUpPoder p) {}
-	
 
 	public int getDireccionActual() {
 		return direccionActual;
@@ -121,14 +118,8 @@ public abstract class Movible extends Entidad implements Visitor {
 	}
 
 	public void reset() {
-//		System.out.println("\tMovible::Reseteando");
-//		System.out.println("\t\tANTES");
-//		System.out.println("\t\tx: " + x + ", y: " + y);
 		x = xOrigen;
 		y = yOrigen;
-//		System.out.println("\t\tDESPUES");
-//		System.out.println("\t\tx: " + x + ", y: " + y);
-		
 		ticCount = 0;
 	}
 	
@@ -136,4 +127,5 @@ public abstract class Movible extends Entidad implements Visitor {
 	public String toString() {
 		return "x: " + x + ", y: " + y + ", direccion: " + direccionToString(direccionActual) + ", zona: " + miZona; 
 	}
+
 }

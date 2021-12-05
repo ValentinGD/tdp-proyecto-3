@@ -11,9 +11,7 @@ public class Reloj implements Notificadora {
 	private List<Suscriptor> suscriptores;
 
 	private HiloDormilon t;
-	
-	//private long tiempoDeInicio;
-	
+
 	public Reloj(int tiempo) {
 		tiempoEntreTics = tiempo;
 		suscriptores=new ArrayList<Suscriptor>();
@@ -22,7 +20,6 @@ public class Reloj implements Notificadora {
 	public void start() {
 		running = true;
 		t = new HiloDormilon(tiempoEntreTics, this);
-		//System.out.println("tick");
 		t.start();
 	}
 	
@@ -50,7 +47,6 @@ public class Reloj implements Notificadora {
 	@Override
 	public void desuscribirse(Suscriptor s) {
 		suscriptores.remove(s);
-		
 	}
 
 	protected void notificar() {
@@ -71,7 +67,6 @@ public class Reloj implements Notificadora {
 		
 		private int tiempoParaDormir;
 		private Reloj reloj;
-		
 		private boolean abortado;
 		
 		public HiloDormilon(int tiempoParaDormir, Reloj reloj) {

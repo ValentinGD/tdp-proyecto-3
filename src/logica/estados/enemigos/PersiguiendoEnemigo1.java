@@ -10,4 +10,5 @@ public class PersiguiendoEnemigo1 extends PersiguiendoEnemigoAbstracto {
 		xObjetivo = personaje.getX();
 		yObjetivo = personaje.getY();
 	}
+
 }

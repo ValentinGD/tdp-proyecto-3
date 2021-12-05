@@ -9,8 +9,10 @@ public class MapaFactory {
 	public void numeroMapa(int nroMapa) {
 		getMapa(nroMapa);
 	}
+
 	private Mapa getMapa(int nroMapa) {
 		MapLoader.getMapa(nroMapa);
 		return mapa;
 	}
+
 }

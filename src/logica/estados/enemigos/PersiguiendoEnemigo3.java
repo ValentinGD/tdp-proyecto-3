@@ -38,8 +38,6 @@ public class PersiguiendoEnemigo3 extends PersiguiendoEnemigoAbstracto {
 			yObjetivo = personaje.getY();
 			break;
 		}
-
-		//System.out.println("Personaje: <x: " + personaje.getX() + ", y: " + personaje.getX() + ", dir: " + Movible.direccionToString(personaje.getDireccionActual()) + ">");
-		//System.out.println("Objetivo Enemigo 3: <x: " + xObjetivo + ", y: " + yObjetivo + ">");
 	}
+
 }

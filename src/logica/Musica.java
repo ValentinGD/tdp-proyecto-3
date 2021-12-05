@@ -19,18 +19,21 @@ public class Musica extends Thread {
 	private static final int AUDIO_EN_REPRODUCCION = 1;
 	private static final int AUDIO_PAUSADO = 2;
 	private int status;
+	private boolean status_inicial;
 	
-	public Musica() {
-		start(); //Inicia el hilo, no la reproducción de la pista.
+	public Musica(boolean status_inicial) {
+		this.status_inicial = status_inicial; 
+		start();
 	}
 	
 	public void run() {
-		//COMENTAR ESTO PARA COMENZAR CON MUSICA ATR.
-		status = AUDIO_DETENIDO;
-		
-		//COMENTAR ESTO PARA COMENZAR EN SILENCIO.
-//		preparar_audio();
-//		play_audio();
+		if (status_inicial) {
+			preparar_audio();
+			play_audio();
+		}
+		else {
+			status = AUDIO_DETENIDO;
+		}
 	}
 	
 	public void stop_audio() {

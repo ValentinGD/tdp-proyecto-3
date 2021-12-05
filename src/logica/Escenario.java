@@ -20,21 +20,17 @@ public class Escenario {
 	
 	private List<EntidadGrafica> entidadesParaActualizar;
 	private List<Movible> movibles;
+
 	@SuppressWarnings("unused")
 	private List<Zona> zonas;
 	
 	private Zona[][] matrizZonas;
-	
 	private static Nivel nivel;
-	//private Mapa nivel;
-	
 	private Personaje personaje;
-//	private Enemigo e1,e2,e3,e4;
-
 	private Juego juego;
 	private int cantPickUps;
-	
 	private boolean murioPersonaje;
+
 	private Escenario() {
 		zonas = new ArrayList<Zona>();
 		movibles = new ArrayList<Movible>();
@@ -50,25 +46,15 @@ public class Escenario {
 	}
 	
 	public boolean start() {
-		//System.out.println("cargando escenario inicial");
-
 		nivel = new Nivel1();
-		
 		cargarEscenarioConMatriz();
-		
 		juego.cargarNuevoNivel();
-		
 		cantPickUps = nivel.getCantPickUps();
-		
 		juego.actualizarVidas(CANTIDAD_INICIAL_DE_VIDAS);
 		return true;
 	}
 	
-	
 	public void cargarEscenarioConMatriz() {
-		
-		//System.out.println("--------------------------------------Cargando nivel: " + nivel);
-		
 		murioPersonaje = false;
 		
 		List<Entidad> entidades = new ArrayList<Entidad>();
@@ -76,8 +62,6 @@ public class Escenario {
 		
 		movibles.clear();
 		movibles.addAll(nivel.getMovibles());
-		
-		//System.out.println("movibles: " + movibles);
 		
 		entidades.addAll(nivel.getMovibles());
 		entidades.addAll(nivel.getParedes());
@@ -92,7 +76,6 @@ public class Escenario {
 		}
 		
 		personaje.resetVidas();
-		
 		entidadesParaActualizar.clear();
 		
 		for(Entidad entidad : entidades) {
@@ -100,17 +83,11 @@ public class Escenario {
 			if (zona == null) {
 				System.out.println("zona no encontrada para entidad: " + entidad);
 			} else {
-				//System.out.println("zonaEncontrada para entidad: " + entidad);
 				entidad.setZona(zona);
 				zona.addEntidad(entidad);
 				entidadesParaActualizar.add(entidad);
 			}
 		}
-		
-//		System.out.println("zonas:");
-//		for (Zona[] arrZonas : matrizZonas) {
-//			System.out.println("\t" + Arrays.toString(arrZonas));
-//		}
 	}
 	
 	private Zona localizarZonaMatriz(Entidad e) {
@@ -121,11 +98,6 @@ public class Escenario {
 	}
 	
 	private void crearMatrizZonas() {
-//		System.out.println("ancho: " + nivel.getAncho());
-//		System.out.println("alto: " + nivel.getAlto());
-//		System.out.println("columnas: " + nivel.getCantColumnas());
-//		System.out.println("filas: " + nivel.getCantFilas());
-		
 		int anchoNivel = nivel.getAncho();
 		int altoNivel = nivel.getAlto();
 		int cantZonasHorizontal = anchoNivel / TAMANIO_ZONA;
@@ -153,7 +125,6 @@ public class Escenario {
 				matrizZonas[fila][columna] = new Zona(xZona, yZona, altoZona, anchoZona);
 			}
 		}
-		
 	}
 	
 	public void tick() {
@@ -161,12 +132,9 @@ public class Escenario {
 			terminarNivel();
 		}
 		
-		//System.out.println("actualizando escenario");
 		if (!murioPersonaje) {
 			entidadesParaActualizar.clear();
-			
 			for (Movible m : movibles) {
-				//personaje.mover();
 				m.mover();
 			}
 		} else {
@@ -184,7 +152,6 @@ public class Escenario {
 		personaje.setDireccion(direccion);
 	}
 	
-
 	public void setCantPickUps(int cantPickUps) {
 		this.cantPickUps = cantPickUps;
 	}
@@ -202,16 +169,10 @@ public class Escenario {
 	}
 	
 	public Zona getZonaAdyacente(Zona zona, int direccion) {
-		
 		int xZona = zona.getX() / TAMANIO_ZONA;
 		int yZona = zona.getY() / TAMANIO_ZONA;
 		
-		
-		
 		if (matrizZonas[yZona][xZona] == zona) {
-			
-			//System.out.println("calculando zona adyacente");
-			
 			int xAdyacente = xZona;
 			int yAdyacente = yZona;
 			
@@ -230,7 +191,6 @@ public class Escenario {
 				break;
 			}
 			
-			//System.out.println("zona adyacente a " + zona + ": " + matrizZonas[yAdyacente][xAdyacente]);
 			return matrizZonas[yAdyacente][xAdyacente];
 			
 		}
@@ -238,31 +198,23 @@ public class Escenario {
 	}
 	
 	private void terminarNivel() {
-		//System.out.println("se termino el nivel. puntaje: " + juego.getPuntajeString());
-//		System.out.println("Personaje: " + personaje);
 		Nivel siguienteNivel = nivel.getSiguienteNivel();
-		if((cantPickUps == 0) && (siguienteNivel != null)) {
-			
-			nivel = siguienteNivel;
 		
+		if ((cantPickUps == 0) && (siguienteNivel != null)) {
+			nivel = siguienteNivel;
 			cantPickUps=nivel.getCantPickUps();
-			
 			juego.terminarNivel();
-			
 			cargarEscenarioConMatriz();
-			
 			juego.cargarNuevoNivel();
-			
 		} else {
 			juego.gameOver();
 		}
-//		System.out.println("Personaje: " + personaje);
 	}
 	
 	public void eliminarPickUp(PickUp p) {
 		juego.actualizarPuntaje(p.getPuntos());
 		p.comer();
-		cantPickUps-=1;
+		cantPickUps -= 1;
 	}
 
 	public int getAncho() {
@@ -275,26 +227,12 @@ public class Escenario {
 
 	public void reubicar(Movible m) {
 		if (!m.getZona().contieneCoordenadas(m)) {
-			//System.out.println("Hay que reubicar movible");
-			
 			Zona nuevaZona = getZonaAdyacente(m.getZona(), m.getDireccionActual());
 			m.getZona().eliminar(m);
-			
-			//System.out.println("la zona " + m.getZona() + " contiene las coordenadas del movible: " + m.getZona().contieneCoordenadas(m));
-			
 			m.setZona(nuevaZona);
 			nuevaZona.addEntidad(m);
-			//System.out.println("\tSe reubico Movible: " + m);
-			
-//			if (!m.getZona().contieneCoordenadas(m)) {
-//			//	System.out.println("Error: El movible no esta contenido en las coordenadas de la nueva zona");
-//				if (!m.getZona().getEntidades().contains(m)) {
-//				//	System.out.println("Error: El movible no fue agregado correctamente a su nueva zona");
-//				}
-//			}
-			
 		} else {
-			//System.out.println("No se reubico. Distancia a borde: " + m.getZona().distanciaABorde(m));
+
 		}
 	}
 
@@ -308,10 +246,8 @@ public class Escenario {
 		} else {
 			juego.pararTiempo();
 			for (Movible m : movibles) {
-				//System.out.println("RESETEANDO MOVIBLE: " + m);
 				m.reset();
 				ubicarEnZona(m);
-				//System.out.println("\tMOVIBLE RESETEADO: " + m);
 			}
 			juego.reanudarTiempo();
 		}
@@ -325,17 +261,5 @@ public class Escenario {
 		nuevaZona.addEntidad(m);
 		m.setZona(nuevaZona);
 	}
-	
-//	public Posicion getPosicion(Posicion p) {
-//		if (0 <= p.getX() && p.getX() < nivel.getMapa().getAncho() && 0 <= p.getY() && p.getY() < nivel.getMapa().getAlto()) {
-//			return  posiciones[p.getY()][p.getX()];
-//		}
-//		return new Posicion(p.getX(), p.getY());
-//	}
-	
-//	public PosicionGrafica[][] getPosicionesGraficas() {
-//		return posiciones;
-//	}
-
 
 }

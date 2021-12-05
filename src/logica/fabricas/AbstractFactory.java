@@ -1,6 +1,3 @@
 package logica.fabricas;
 
-public abstract interface AbstractFactory {
-
-	
-}
+public abstract interface AbstractFactory {}
