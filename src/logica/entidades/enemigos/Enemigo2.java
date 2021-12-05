@@ -26,10 +26,6 @@ public class Enemigo2 extends Enemigo {
 		velocidadEnTics = VELOCIDAD_INICIAL;
 	}
 
-	@Override
-	public void perseguir() {
-
-	}
 
 	@Override
 	public RepresentacionGrafica getRepresentacionGrafica(RepositorioGraficoAbstracto repositorioGrafico) {

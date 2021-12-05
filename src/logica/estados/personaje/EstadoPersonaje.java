@@ -22,11 +22,6 @@ public abstract class EstadoPersonaje extends EstadoMovible {
 			
 			if (giroPermitido && puedeMover(personaje, personaje.getDireccionSiguiente())) {
 				personaje.actualizarDireccion();
-				if (personaje.getDireccionActual() != personaje.getDireccionSiguiente()) {
-
-				}
-			} else {
-
 			}
 		}
 	}

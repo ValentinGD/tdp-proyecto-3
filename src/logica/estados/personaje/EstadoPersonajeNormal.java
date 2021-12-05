@@ -20,8 +20,6 @@ public class EstadoPersonajeNormal extends EstadoPersonaje {
 			personaje.setPosicion(xDestino, yDestino);
 			Escenario.getInstancia().agregarEntidadParaActualizar(personaje);
 			Escenario.getInstancia().reubicar(personaje);
-		} else {
-
 		}
 	}
 

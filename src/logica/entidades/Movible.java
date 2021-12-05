@@ -87,7 +87,7 @@ public abstract class Movible extends Entidad implements Visitor {
 	}
 	
 	public void setDireccionActual(int direccionActual) {
-		this.direccionActual=direccionActual;
+		this.direccionActual = direccionActual;
 	}
 	
 	public boolean puedeGirar() {

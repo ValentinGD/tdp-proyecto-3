@@ -33,10 +33,4 @@ public class Enemigo3 extends Enemigo {
 	public String toString() {
 		return "Enemigo3: <" + super.toString() + ">";
 	}
-
-	@Override
-	public void perseguir() {
-
-	}
-
 }

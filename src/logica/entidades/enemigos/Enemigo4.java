@@ -24,11 +24,6 @@ public class Enemigo4 extends Enemigo {
 	}
 
 	@Override
-	public void perseguir() {
-
-	}
-
-	@Override
 	public RepresentacionGrafica getRepresentacionGrafica(RepositorioGraficoAbstracto repositorioGrafico) {
 		miRepresentacion.setImageIcon(estado.getRepresentacionGrafica(repositorioGrafico.getRepositorioGraficoEnemigo4()));
 		return miRepresentacion;
