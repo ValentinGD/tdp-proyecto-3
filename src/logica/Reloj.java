@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Reloj implements Notificadora {
-	
+
 	private int tiempoEntreTics;
 	private boolean running = false;
 	private List<Suscriptor> suscriptores;
@@ -14,19 +14,19 @@ public class Reloj implements Notificadora {
 
 	public Reloj(int tiempo) {
 		tiempoEntreTics = tiempo;
-		suscriptores=new ArrayList<Suscriptor>();
+		suscriptores = new ArrayList<Suscriptor>();
 	}
-	
+
 	public boolean isRunning() {
 		return running;
 	}
-	
+
 	public void start() {
 		running = true;
 		t = new HiloDormilon(tiempoEntreTics, this);
 		t.start();
 	}
-	
+
 	public int getTiempoEntreTics() {
 		return tiempoEntreTics;
 	}
@@ -34,16 +34,16 @@ public class Reloj implements Notificadora {
 	public void setTiempoEntreTics(int tiempoEntreTics) {
 		this.tiempoEntreTics = tiempoEntreTics;
 	}
-	
+
 	public void stop() throws InterruptedException {
 		running = false;
 		t.abortar();
 		t.join();
 	}
-	
+
 	@Override
 	public void suscribirse(Suscriptor s) {
-		if (!suscriptores.contains(s)) { 
+		if (!suscriptores.contains(s)) {
 			suscriptores.add(s);
 		}
 	}
@@ -66,19 +66,19 @@ public class Reloj implements Notificadora {
 			start();
 		}
 	}
-	
+
 	private class HiloDormilon extends Thread {
-		
+
 		private int tiempoParaDormir;
 		private Reloj reloj;
 		private boolean abortado;
-		
+
 		public HiloDormilon(int tiempoParaDormir, Reloj reloj) {
 			this.tiempoParaDormir = tiempoParaDormir;
 			this.reloj = reloj;
 			abortado = false;
 		}
-		
+
 		@Override
 		public void run() {
 			try {
@@ -90,7 +90,7 @@ public class Reloj implements Notificadora {
 				e.printStackTrace();
 			}
 		}
-		
+
 		public void abortar() {
 			abortado = true;
 		}

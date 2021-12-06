@@ -1,13 +1,14 @@
 package logica.estados.personaje;
 
 import javax.swing.ImageIcon;
+
 import logica.Escenario;
 import logica.entidades.Movible;
 import logica.entidades.Personaje;
 import vista.repositorioGrafico.RepositorioGraficoPersonaje;
 
 public class EstadoPersonajeNormal extends EstadoPersonaje {
-	
+
 	public EstadoPersonajeNormal(Personaje personaje, int direccionActual) {
 		super(personaje);
 	}
@@ -15,7 +16,7 @@ public class EstadoPersonajeNormal extends EstadoPersonaje {
 	@Override
 	public void mover() {
 		verificarCambioDireccion();
-		if(puedeMover(personaje, personaje.getDireccionActual())) {
+		if (puedeMover(personaje, personaje.getDireccionActual())) {
 			calcularPosicionDestino(personaje);
 			personaje.setPosicion(xDestino, yDestino);
 			Escenario.getInstancia().agregarEntidadParaActualizar(personaje);
@@ -27,7 +28,7 @@ public class EstadoPersonajeNormal extends EstadoPersonaje {
 	public ImageIcon getRepresentacionGrafica(RepositorioGraficoPersonaje repositorio) {
 		ImageIcon img;
 		if (!personaje.esPoderoso()) {
-			switch(personaje.getDireccionActual()) {
+			switch (personaje.getDireccionActual()) {
 			case Movible.DIRECCION_ABAJO:
 				img = repositorio.getMovibleAbajoGrafico();
 				break;
@@ -49,7 +50,8 @@ public class EstadoPersonajeNormal extends EstadoPersonaje {
 		}
 		return img;
 	}
-	
+
+	@Override
 	public String toString() {
 		return "estado personaje: normal";
 	}

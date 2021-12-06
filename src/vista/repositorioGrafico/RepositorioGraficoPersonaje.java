@@ -3,12 +3,12 @@ package vista.repositorioGrafico;
 import javax.swing.ImageIcon;
 
 public class RepositorioGraficoPersonaje extends RepositorioGraficoMovibleAbstracto {
-	
+
 	public RepositorioGraficoPersonaje(String path) {
 		super(path);
 		this.path += "personaje/";
 	}
-	
+
 	public ImageIcon getPersonajePoderosoGrafico() {
 		return IconReader.readIcon(path + "personaje_poderoso.png");
 	}

@@ -6,18 +6,19 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.util.Properties;
+
 import logica.Juego;
 import logica.TopScores;
 
 public class App {
-	
+
 	public static Properties configuration;
 	private static TopScores misTopScores;
-	
+
 	public static void main(String[] args) {
 		loadConfiguration();
 		loadTopScores();
-		
+
 		Thread t = new Thread(new Juego(misTopScores));
 		t.start();
 	}
@@ -27,11 +28,11 @@ public class App {
 			InputStream input = new FileInputStream("configuration.properties");
 			App.configuration = new Properties();
 			App.configuration.load(input);
-		} catch(IOException e) {
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	private static void loadTopScores() {
 		misTopScores = new TopScores();
 		try {
@@ -39,13 +40,13 @@ public class App {
 			ObjectInputStream objectInputStram = new ObjectInputStream(fileInputStream);
 			misTopScores = (TopScores) objectInputStram.readObject();
 			objectInputStram.close();
-		} catch(FileNotFoundException e) {
+		} catch (FileNotFoundException e) {
 
-		} catch(IOException e) {
+		} catch (IOException e) {
 			e.printStackTrace();
-		} catch(ClassNotFoundException e) {
+		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 }

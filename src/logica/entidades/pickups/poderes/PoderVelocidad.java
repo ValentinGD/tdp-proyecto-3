@@ -7,11 +7,11 @@ import vista.repositorioGrafico.RepositorioGraficoAbstracto;
 import vista.repositorioGrafico.RepositorioGraficoPickUpAbstracto;
 
 public class PoderVelocidad extends PoderEspecial {
-	
+
 	private static final int VELOCIDAD_EXTRA = Integer.parseInt(App.configuration.getProperty("VelocidadTicsPoder"));
-	
+
 	public PoderVelocidad(int x, int y) {
-		 super(x, y);
+		super(x, y);
 	}
 
 	@Override
@@ -23,13 +23,14 @@ public class PoderVelocidad extends PoderEspecial {
 		}
 		return miRepresentacion;
 	}
-	
+
 	@Override
 	public void aplicarPoder(Personaje personaje) {
 		super.aplicarPoder(personaje);
 		personaje.agregarVelocidad(VELOCIDAD_EXTRA);
 	}
-	
+
+	@Override
 	public String toString() {
 		return "Poder velocidad";
 	}

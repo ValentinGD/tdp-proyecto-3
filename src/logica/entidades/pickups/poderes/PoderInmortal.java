@@ -20,13 +20,14 @@ public class PoderInmortal extends PoderEspecial {
 		}
 		return miRepresentacion;
 	}
-	
+
 	@Override
 	public void aplicarPoder(Personaje personaje) {
 		super.aplicarPoder(personaje);
 		personaje.hacerInmortal();
 	}
-	
+
+	@Override
 	public String toString() {
 		return "Poder inmortal";
 	}

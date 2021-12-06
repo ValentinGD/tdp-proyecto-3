@@ -2,24 +2,27 @@ package logica.estados.enemigos;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.swing.ImageIcon;
+
 import logica.Escenario;
 import logica.entidades.Movible;
 import logica.entidades.Personaje;
 import vista.repositorioGrafico.RepositorioGraficoEnemigo;
 
 public abstract class PersiguiendoEnemigoAbstracto extends EstadoEnemigo {
-	
+
 	protected int xObjetivo;
 	protected int yObjetivo;
-	
+
 	protected Personaje personaje;
-	
+
 	protected PersiguiendoEnemigoAbstracto() {
 		super();
 		personaje = Personaje.getInstancia();
 	}
-	
+
+	@Override
 	public void mover() {
 		actualizarDireccion();
 		if (puedeMover(enemigo, enemigo.getDireccionActual())) {
@@ -29,34 +32,35 @@ public abstract class PersiguiendoEnemigoAbstracto extends EstadoEnemigo {
 			Escenario.getInstancia().reubicar(enemigo);
 		}
 	}
-	
+
 	protected void actualizarDireccion() {
 		if (enemigo.puedeGirar()) {
 			calcularCoordenadasObjetivo();
-			
-			if(personaje.puedeComerEnemigos()) {
-				xObjetivo=Escenario.getInstancia().getAncho()-personaje.getX();
-				yObjetivo=Escenario.getInstancia().getAlto()-personaje.getY();
+
+			if (personaje.puedeComerEnemigos()) {
+				xObjetivo = Escenario.getInstancia().getAncho() - personaje.getX();
+				yObjetivo = Escenario.getInstancia().getAlto() - personaje.getY();
 			}
+
 			xObjetivo = Math.min(Escenario.getInstancia().getAncho(), xObjetivo);
 			yObjetivo = Math.min(Escenario.getInstancia().getAlto(), yObjetivo);
-			
+
 			xObjetivo = Math.max(0, xObjetivo);
 			yObjetivo = Math.max(0, yObjetivo);
 
-			int [] direccionesValidas = calcularDireccionesValidas();
-			
+			int[] direccionesValidas = calcularDireccionesValidas();
+
 			int direccionDefinitiva = calcularMejorDireccion(xObjetivo, yObjetivo, direccionesValidas);
-			
+
 			enemigo.setDireccionActual(direccionDefinitiva);
 		}
 	}
-	
+
 	protected abstract void calcularCoordenadasObjetivo();
-	
+
 	protected int[] calcularDireccionesValidas() {
 		List<Integer> direccionesValidas = new ArrayList<Integer>(Movible.DIRECCIONES_POSIBLES.length);
-		
+
 		for (int direccion : Movible.DIRECCIONES_POSIBLES) {
 			if (enemigo.esCambioDeDireccionValido(direccion)) {
 				if (puedeMover(enemigo, direccion)) {
@@ -64,17 +68,19 @@ public abstract class PersiguiendoEnemigoAbstracto extends EstadoEnemigo {
 				}
 			}
 		}
-		
-		int [] direccionesValidasArr = new int[direccionesValidas.size()];
+
+		int[] direccionesValidasArr = new int[direccionesValidas.size()];
 		for (int i = 0; i < direccionesValidas.size(); ++i) {
 			direccionesValidasArr[i] = direccionesValidas.get(i);
 		}
-		
+
 		return direccionesValidasArr;
 	}
 
 	/**
-	 * Devuelve la direccion en la que el enemigo debe moverse para que la distancia hacia su objetivo sea la minima posible.
+	 * Devuelve la direccion en la que el enemigo debe moverse para que la distancia
+	 * hacia su objetivo sea la minima posible.
+	 * 
 	 * @param direccionesValidas
 	 * @return
 	 */
@@ -101,7 +107,7 @@ public abstract class PersiguiendoEnemigoAbstracto extends EstadoEnemigo {
 	public ImageIcon getRepresentacionGrafica(RepositorioGraficoEnemigo repositorio) {
 		ImageIcon img;
 		if (!Personaje.getInstancia().puedeComerEnemigos()) {
-			switch(enemigo.getDireccionActual()) {
+			switch (enemigo.getDireccionActual()) {
 			case Movible.DIRECCION_ABAJO:
 				img = repositorio.getMovibleAbajoGrafico();
 				break;

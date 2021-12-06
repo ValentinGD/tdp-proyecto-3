@@ -7,31 +7,31 @@ import logica.entidades.pickups.poderes.PickUpPoder;
 import logica.entidades.pickups.puntos.PickUpPuntos;
 
 public abstract class Movible extends Entidad implements Visitor {
-	
+
 	public static final int DIRECCION_DERECHA = 1;
 	public static final int DIRECCION_IZQUIERDA = -1;
 	public static final int DIRECCION_ARRIBA = -2;
 	public static final int DIRECCION_ABAJO = 2;
-	
-	public static final int [] DIRECCIONES_POSIBLES = new int[] {
-		DIRECCION_IZQUIERDA,
-		DIRECCION_DERECHA,
-		DIRECCION_ARRIBA,
-		DIRECCION_ABAJO
+
+	public static final int[] DIRECCIONES_POSIBLES = new int[] {
+			DIRECCION_IZQUIERDA,
+			DIRECCION_DERECHA,
+			DIRECCION_ARRIBA,
+			DIRECCION_ABAJO
 	};
-	
+
 	public static final int VELOCIDAD = Integer.parseInt(App.configuration.getProperty("VelocidadMovible"));
-	
+
 	protected boolean chocaste;
-	
+
 	protected int xOrigen;
 	protected int yOrigen;
 
 	protected int direccionActual;
-	
+
 	protected int velocidadEnTics;
 	protected int ticCount;
-	
+
 	protected Movible(int x, int y) {
 		super(x, y);
 		xOrigen = x;
@@ -40,19 +40,19 @@ public abstract class Movible extends Entidad implements Visitor {
 		ticCount = 0;
 		direccionActual = DIRECCION_DERECHA;
 	}
-	
+
 	public abstract void mover();
-	
+
 	public abstract void morir();
-	
+
 	protected void chocar() {
 		chocaste = true;
 	}
-	
+
 	public boolean chocaste() {
 		return chocaste;
 	}
-	
+
 	public void setOrigen() {
 		xOrigen = x;
 		yOrigen = y;
@@ -62,44 +62,48 @@ public abstract class Movible extends Entidad implements Visitor {
 		x = xDestino;
 		y = yDestino;
 	}
-	
+
 	public static boolean esDireccionValida(int direccion) {
-		return 	(direccion == DIRECCION_DERECHA) ||
+		return 	(direccion == DIRECCION_DERECHA) || 
 				(direccion == DIRECCION_IZQUIERDA) ||
 				(direccion == DIRECCION_ARRIBA) ||
 				(direccion == DIRECCION_ABAJO);
 	}
 
 	@Override
-	public void visit(Enemigo e) {}
+	public void visit(Enemigo e) {
+	}
 
 	@Override
-	public void visit(Personaje p) {}
+	public void visit(Personaje p) {
+	}
 
 	@Override
-	public void visit(PickUpPuntos p) {}
+	public void visit(PickUpPuntos p) {
+	}
 
 	@Override
-	public void visit(PickUpPoder p) {}
+	public void visit(PickUpPoder p) {
+	}
 
 	public int getDireccionActual() {
 		return direccionActual;
 	}
-	
+
 	public void setDireccionActual(int direccionActual) {
 		this.direccionActual = direccionActual;
 	}
-	
+
 	public boolean puedeGirar() {
 		return (x % Entidad.TAMANIO == 0) && (y % Entidad.TAMANIO == 0);
 	}
-	
+
 	public static boolean sonDireccionesOpuestas(int direccion1, int direccion2) {
 		return direccion1 + direccion2 == 0;
 	}
-	
+
 	public static String direccionToString(int direccion) {
-		switch(direccion) {
+		switch (direccion) {
 		case DIRECCION_ARRIBA:
 			return "ARRIBA";
 		case DIRECCION_ABAJO:
@@ -122,10 +126,10 @@ public abstract class Movible extends Entidad implements Visitor {
 		y = yOrigen;
 		ticCount = 0;
 	}
-	
+
 	@Override
 	public String toString() {
-		return "x: " + x + ", y: " + y + ", direccion: " + direccionToString(direccionActual) + ", zona: " + miZona; 
+		return "x: " + x + ", y: " + y + ", direccion: " + direccionToString(direccionActual) + ", zona: " + miZona;
 	}
 
 }

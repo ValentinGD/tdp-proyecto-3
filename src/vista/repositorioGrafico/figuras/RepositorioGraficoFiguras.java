@@ -7,9 +7,9 @@ import vista.repositorioGrafico.RepositorioGraficoPersonaje;
 import vista.repositorioGrafico.RepositorioGraficoPickUpAbstracto;
 
 public class RepositorioGraficoFiguras extends RepositorioGraficoAbstracto {
-	
+
 	private static final String path = "/img/figuras/";
-	
+
 	@Override
 	public RepositorioGraficoEnemigo getRepositorioGraficoEnemigo1() {
 		return new RepositorioGraficoEnemigo(path, "1");
@@ -44,5 +44,5 @@ public class RepositorioGraficoFiguras extends RepositorioGraficoAbstracto {
 	public RepositorioGraficoEscenario getRepositorioGraficoEscenario() {
 		return new RepositorioGraficoEscenario(path);
 	}
-	
+
 }

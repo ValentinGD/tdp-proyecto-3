@@ -4,7 +4,7 @@ import logica.Visitor;
 import vista.RepresentacionGrafica;
 import vista.repositorioGrafico.RepositorioGraficoAbstracto;
 
-public class Pared extends Entidad{
+public class Pared extends Entidad {
 
 	public Pared(int x, int y) {
 		super(x, y);
@@ -20,7 +20,8 @@ public class Pared extends Entidad{
 	public void aceptar(Visitor v) {
 		v.visit(this);
 	}
-	
+
+	@Override
 	public String toString() {
 		return "Pared: <x: " + x + ", y: " + y + ">";
 	}

@@ -5,7 +5,7 @@ import Mapas.Mapa;
 
 public class MapaFactory {
 	private Mapa mapa;
-	
+
 	public void numeroMapa(int nroMapa) {
 		getMapa(nroMapa);
 	}

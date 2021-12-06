@@ -7,18 +7,20 @@ import java.util.List;
 import vista.NuevoRecord;
 
 @SuppressWarnings("serial")
-public class TopScores implements Serializable{
-	
+public class TopScores implements Serializable {
+
 	private List<Player> ranking;
-	//Internamente es una lista de 10 elementos, con las mejores puntuaciones ordenadas de mayor a menor (izquierda a derecha).
-	
+	// Internamente es una lista de 10 elementos, con las mejores puntuaciones
+	// ordenadas de mayor a menor (izquierda a derecha).
+
 	public TopScores() {
 		this.ranking = new ArrayList<Player>();
 	}
-	
+
 	/*
-	 * Si es un puntaje que entra dentro de los 10 mejores, se guardara en el listado.
-	 * El retorno indica si la lista fue efectivamente actualizada con un nuevo record.
+	 * Si es un puntaje que entra dentro de los 10 mejores, se guardara en el
+	 * listado. El retorno indica si la lista fue efectivamente actualizada con un
+	 * nuevo record.
 	 */
 	public boolean procesarPuntaje(int puntaje_nuevo) {
 		boolean se_guardo_record = false;
@@ -46,24 +48,25 @@ public class TopScores implements Serializable{
 		}
 		return se_guardo_record;
 	}
-	
+
 	private String solicitarNombre() {
 		NuevoRecord nuevo_record = new NuevoRecord();
 		return nuevo_record.cartel_solicitar_nombre();
 	}
-	
+
 	/*
-	 * Solicita el nombre del jugador y luego lo guarda en la lista junto con el puntaje.
-	 * Si pos = -1 guarda al final de la lista, caso contrario guarda en la posición pos. 
+	 * Solicita el nombre del jugador y luego lo guarda en la lista junto con el
+	 * puntaje. Si pos = -1 guarda al final de la lista, caso contrario guarda en la
+	 * posición pos.
 	 */
 	private void guardarEnLista(int pos, int puntaje) {
 		String nombre = solicitarNombre();
-		//La expresion regular detecta si la cadena contiene al menos una letra
-		if (nombre != null && nombre.matches(".*[a-zA-Z].*")) { //Esto soluciona el hecho de que a veces guarda nulls junto a un nuevo record valido.
+		// La expresion regular detecta si la cadena contiene al menos una letra
+		// Esto soluciona el hecho de que a veces guarda nulls junto a un nuevo record valido.
+		if (nombre != null && nombre.matches(".*[a-zA-Z].*")) { 
 			if (pos == -1) {
 				ranking.add(new Player(nombre, puntaje));
-			}
-			else {
+			} else {
 				ranking.add(pos, new Player(nombre, puntaje));
 			}
 		} else {
@@ -72,7 +75,7 @@ public class TopScores implements Serializable{
 			}
 		}
 	}
-	
+
 	public List<Player> getPuntajes() {
 		return this.ranking;
 	}

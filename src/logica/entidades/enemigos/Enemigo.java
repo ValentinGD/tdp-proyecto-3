@@ -9,7 +9,7 @@ import logica.estados.enemigos.EstadoEnemigo;
 import logica.estados.enemigos.Muerto;
 
 public abstract class Enemigo extends Movible {
-	
+
 	protected int tiempoDescanso;
 	protected EstadoEnemigo estado;
 
@@ -18,7 +18,7 @@ public abstract class Enemigo extends Movible {
 		estado = estadoInicial;
 		this.velocidadEnTics = Integer.parseInt(App.configuration.getProperty("VelocidadTicsPersonaje"));
 	}
-	
+
 	@Override
 	public void reset() {
 		super.reset();
@@ -40,28 +40,29 @@ public abstract class Enemigo extends Movible {
 	public void setTiempoDescanso(int tiempoDescanso) {
 		this.tiempoDescanso = tiempoDescanso;
 	}
-	
+
+	@Override
 	public void aceptar(Visitor v) {
 		v.visit(this);
 	}
-	
+
 	@Override
 	public void visit(Pared p) {
 		estado.visitarPared(p);
 	}
-	
+
 	public boolean esCambioDeDireccionValido(int direccion) {
 		if (!esDireccionValida(direccion)) {
 			return false;
 		}
 		return !Movible.sonDireccionesOpuestas(direccion, direccionActual);
 	}
-	
 
+	@Override
 	public void morir() {
 		estado = new Muerto(this);
 	}
-	
+
 	@Override
 	public void mover() {
 		ticCount++;
@@ -70,7 +71,7 @@ public abstract class Enemigo extends Movible {
 			ticCount = 0;
 		}
 	}
-	
+
 	@Override
 	public void visit(Personaje p) {
 		p.visit(this);
@@ -79,7 +80,7 @@ public abstract class Enemigo extends Movible {
 	public int getOrigenX() {
 		return xOrigen;
 	}
-	
+
 	public int getOrigenY() {
 		return yOrigen;
 	}

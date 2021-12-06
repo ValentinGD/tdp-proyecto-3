@@ -9,6 +9,7 @@ public abstract class PickUpPuntos extends PickUp {
 		super(x, y);
 	}
 
+	@Override
 	public void aceptar(Visitor v) {
 		v.visit(this);
 	}

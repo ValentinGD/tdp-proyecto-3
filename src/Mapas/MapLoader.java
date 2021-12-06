@@ -3,6 +3,7 @@ package Mapas;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
+
 import app.App;
 import logica.entidades.Entidad;
 import logica.entidades.Movible;
@@ -23,9 +24,9 @@ public class MapLoader {
 
 	private static final String rutaMapas = App.configuration.getProperty("RutaMapas");
 	private static final String extensionArchivos = App.configuration.getProperty("ExtensionMapas");
-	
+
 	private static Enemigo1 enemigo1;
-	
+
 	public static Mapa getMapa(int nroMapa) {
 		String ruta = rutaMapas + nroMapa + extensionArchivos;
 		return getMapa(ruta);
@@ -35,7 +36,7 @@ public class MapLoader {
 		Mapa mapa = null;
 		String linea;
 		int fila = 0;
-		
+
 		try (Scanner scanner = new Scanner(new File(path))) {
 			if (scanner.hasNextLine()) {
 				mapa = new Mapa();
@@ -57,7 +58,7 @@ public class MapLoader {
 	private static void cargarLinea(Mapa mapa, String linea, int fila) {
 		char[] caracteres = linea.toCharArray();
 		for (int i = 0; i < caracteres.length && i < caracteres.length; ++i) {
-			caracterAEntidad(caracteres[i], mapa,i,fila);
+			caracterAEntidad(caracteres[i], mapa, i, fila);
 		}
 	}
 
@@ -68,7 +69,6 @@ public class MapLoader {
 	 * Poder especial 	-> 'V': Velocidad
 	 * 					-> 'I': Inmortal
 	 * Pared 			-> 'X'
-	 * Pared enemigos 	-> '-'
 	 * Enemigo 			-> '1', '2', '3', '4'
 	 * Personaje 		-> 'A'
 	 * 
@@ -77,47 +77,47 @@ public class MapLoader {
 	 */
 	private static void caracterAEntidad(char c, Mapa m, int x, int y) {
 		Entidad entidad;
-		
+
 		switch (c) {
 		case '*':
-			entidad = new PuntosNormal(x,y);
+			entidad = new PuntosNormal(x, y);
 			m.addPickUpNormal((PuntosNormal) entidad);
 			break;
 
 		case '#':
-			entidad = new PuntosEspecial(x,y);
+			entidad = new PuntosEspecial(x, y);
 			m.addPuntosEspecial((PuntosEspecial) entidad);
 			break;
 
 		case 'X':
-			entidad= new Pared(x,y);
+			entidad = new Pared(x, y);
 			m.addParedes((Pared) entidad);
 			break;
 
 		case 'P':
-			entidad = new PoderNormal(x,y);
+			entidad = new PoderNormal(x, y);
 			m.addPoderEspecial((PickUpPoder) entidad);
 			break;
 
 		case 'V':
-			entidad = new PoderVelocidad(x,y);
+			entidad = new PoderVelocidad(x, y);
 			m.addPoderEspecial((PickUpPoder) entidad);
 			break;
-			
+
 		case 'I':
-			entidad = new PoderInmortal(x,y);
+			entidad = new PoderInmortal(x, y);
 			m.addPoderEspecial((PickUpPoder) entidad);
 			break;
 
 		case 'A':
-			entidad= Personaje.getInstancia();
+			entidad = Personaje.getInstancia();
 			entidad.setX(x);
 			entidad.setY(y);
 			m.addMovible((Movible) entidad);
 			break;
 
 		case '-':
-			entidad= new Pared(x,y);
+			entidad = new Pared(x, y);
 			m.addParedes((Pared) entidad);
 			break;
 

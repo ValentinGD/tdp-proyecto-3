@@ -6,6 +6,7 @@ public class Nivel1 extends Nivel {
 		super(1);
 	}
 
+	@Override
 	public Nivel getSiguienteNivel() {
 		return new Nivel2();
 	}

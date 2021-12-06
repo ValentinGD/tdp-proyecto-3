@@ -3,9 +3,9 @@ package vista.repositorioGrafico;
 import javax.swing.ImageIcon;
 
 public class RepositorioGraficoEnemigo extends RepositorioGraficoMovibleAbstracto {
-	
+
 	protected String numero;
-	
+
 	public RepositorioGraficoEnemigo(String path, String numero) {
 		super(path);
 		this.path += "enemigos/";
@@ -18,22 +18,22 @@ public class RepositorioGraficoEnemigo extends RepositorioGraficoMovibleAbstract
 
 	@Override
 	public ImageIcon getMovibleIzquierdaGrafico() {
-		return IconReader.readIcon(path + "enemigo_" + numero +"_izquierda.png");
+		return IconReader.readIcon(path + "enemigo_" + numero + "_izquierda.png");
 	}
 
 	@Override
 	public ImageIcon getMovibleDerechaGrafico() {
-		return IconReader.readIcon(path + "enemigo_" + numero +"_derecha.png");
+		return IconReader.readIcon(path + "enemigo_" + numero + "_derecha.png");
 	}
 
 	@Override
 	public ImageIcon getMovibleArribaGrafico() {
-		return IconReader.readIcon(path + "enemigo_" + numero +"_arriba.png");
+		return IconReader.readIcon(path + "enemigo_" + numero + "_arriba.png");
 	}
 
 	@Override
 	public ImageIcon getMovibleAbajoGrafico() {
-		return IconReader.readIcon(path + "enemigo_" + numero +"_abajo.png");
+		return IconReader.readIcon(path + "enemigo_" + numero + "_abajo.png");
 	}
 
 	@Override

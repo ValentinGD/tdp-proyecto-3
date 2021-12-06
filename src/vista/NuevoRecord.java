@@ -10,15 +10,16 @@ import javax.swing.JOptionPane;
 
 public class NuevoRecord {
 
-	JFrame f;  
+	JFrame f;
 
-	public NuevoRecord(){
-	    f = new JFrame();
+	public NuevoRecord() {
+		f = new JFrame();
 	}
-	
+
 	public String cartel_solicitar_nombre() {
-		String nombre = JOptionPane.showInputDialog(f, "Ingrese su nombre:", "TdP-man - NUEVO RECORD", JOptionPane.PLAIN_MESSAGE);
+		String nombre = JOptionPane.showInputDialog(f, "Ingrese su nombre:", "TdP-man - NUEVO RECORD",
+				JOptionPane.PLAIN_MESSAGE);
 		return nombre;
 	}
-	
+
 }

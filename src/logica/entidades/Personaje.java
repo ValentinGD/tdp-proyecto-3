@@ -1,17 +1,18 @@
 package logica.entidades;
 
 import java.util.List;
+
 import app.App;
 import logica.Escenario;
 import logica.Visitor;
 import logica.Zona;
+import logica.entidades.enemigos.Enemigo;
+import logica.entidades.pickups.poderes.PickUpPoder;
+import logica.entidades.pickups.puntos.PickUpPuntos;
 import logica.estados.personaje.EstadoPersonaje;
 import logica.estados.personaje.EstadoPersonajeNormal;
 import vista.RepresentacionGrafica;
 import vista.repositorioGrafico.RepositorioGraficoAbstracto;
-import logica.entidades.enemigos.Enemigo;
-import logica.entidades.pickups.poderes.PickUpPoder;
-import logica.entidades.pickups.puntos.*;
 
 public class Personaje extends Movible {
 
@@ -25,7 +26,7 @@ public class Personaje extends Movible {
 	private int ticsRestantesPoder;
 	private int velocidadExtra;
 	private boolean estaVivo;
-	
+
 	private Personaje() {
 		super(0, 0);
 		vidas = Escenario.CANTIDAD_INICIAL_DE_VIDAS;
@@ -38,19 +39,19 @@ public class Personaje extends Movible {
 		}
 		return instancia;
 	}
-	
+
 	@Override
 	public void reset() {
 		super.reset();
-		
+
 		direccionActual = Movible.DIRECCION_DERECHA;
 		direccionSiguiente = direccionActual;
-		
+
 		velocidadEnTics = VELOCIDAD_INICIAL;
 		estado = new EstadoPersonajeNormal(this, direccionActual);
-		
+
 		resetPoderes();
-		
+
 		estaVivo = true;
 	}
 
@@ -62,15 +63,16 @@ public class Personaje extends Movible {
 
 		}
 	}
-	
+
+	@Override
 	public synchronized void mover() {
 		ticCount++;
-		
+
 		if (ticCount >= velocidadEnTics - velocidadExtra) {
 			estado.mover();
 			ticCount = 0;
 		}
-		
+
 		if (ticsRestantesPoder <= 0) {
 			resetPoderes();
 		} else {
@@ -99,18 +101,18 @@ public class Personaje extends Movible {
 	public void aceptar(Visitor v) {
 		v.visit(this);
 	}
-	
+
 	@Override
 	public void visit(Pared p) {
 		estado.visitarPared(p);
 	}
-	
+
 	@Override
 	public RepresentacionGrafica getRepresentacionGrafica(RepositorioGraficoAbstracto repositorioGrafico) {
 		miRepresentacion.setImageIcon(estado.getRepresentacionGrafica(repositorioGrafico.getRepositorioGraficoPersonaje()));
 		return miRepresentacion;
 	}
-	
+
 	public int getVidas() {
 		return vidas;
 	}
@@ -118,20 +120,20 @@ public class Personaje extends Movible {
 	public void setVidas(int vidas) {
 		this.vidas = vidas;
 	}
-	
+
 	public void agregarVelocidad(int cantTicsAcelerados) {
 		velocidadExtra += cantTicsAcelerados;
 		velocidadExtra = Math.min(velocidadExtra, VELOCIDAD_INICIAL);
 	}
-	
+
 	public void hacerInmortal() {
 		esInmortal = true;
 	}
-	
+
 	public void addTiempoPoder(int cantTics) {
 		ticsRestantesPoder += cantTics;
 	}
-	
+
 	public void hacerAsesinoDeEnemigos() {
 		puedeMatarEnemigos = true;
 	}
@@ -139,11 +141,11 @@ public class Personaje extends Movible {
 	public int getDireccionSiguiente() {
 		return direccionSiguiente;
 	}
-	
+
 	public void actualizarDireccion() {
 		direccionActual = direccionSiguiente;
 	}
-	
+
 	public void comerPickUp() {
 		Zona zona = getZona();
 		List<Entidad> entidades = zona.getEntidades();
@@ -151,20 +153,23 @@ public class Personaje extends Movible {
 			e.aceptar(this);
 		}
 	}
-	
+
+	@Override
 	public void visit(PickUpPuntos p) {
-		if(p.colisionaConEntidadEnPosicion(x, y)) {
+		if (p.colisionaConEntidadEnPosicion(x, y)) {
 			Escenario.getInstancia().eliminarPickUp(p);
 		}
 	}
-	
+
+	@Override
 	public void visit(PickUpPoder p) {
-		if(p.colisionaConEntidadEnPosicion(x, y)) {
+		if (p.colisionaConEntidadEnPosicion(x, y)) {
 			p.aplicarPoder(this);
 			Escenario.getInstancia().eliminarPickUp(p);
 		}
 	}
-	
+
+	@Override
 	public void visit(Enemigo e) {
 		if (e.colisionaConEntidadEnPosicion(x, y)) {
 			if (puedeMatarEnemigos) {
@@ -174,7 +179,7 @@ public class Personaje extends Movible {
 			}
 		}
 	}
-	
+
 	@Override
 	public String toString() {
 		return "Personaje: <" + super.toString() + ">";
@@ -184,11 +189,11 @@ public class Personaje extends Movible {
 		vidas = Escenario.CANTIDAD_INICIAL_DE_VIDAS;
 		estaVivo = true;
 	}
-	
+
 	public boolean puedeComerEnemigos() {
 		return puedeMatarEnemigos;
 	}
-	
+
 	public boolean esPoderoso() {
 		return ticsRestantesPoder > 0;
 	}

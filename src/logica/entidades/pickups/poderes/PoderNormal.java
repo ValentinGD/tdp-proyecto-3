@@ -6,9 +6,9 @@ import vista.RepresentacionGrafica;
 import vista.repositorioGrafico.RepositorioGraficoAbstracto;
 
 public class PoderNormal extends PickUpPoder {
-	
+
 	private static final int PUNTOS_PODER_NORMAL = Integer.parseInt(App.configuration.getProperty("PuntosPoderNormal"));
-	
+
 	public PoderNormal(int x, int y) {
 		super(x, y, PUNTOS_PODER_NORMAL);
 	}
@@ -22,14 +22,15 @@ public class PoderNormal extends PickUpPoder {
 		}
 		return miRepresentacion;
 	}
-	
+
 	@Override
 	public void aplicarPoder(Personaje personaje) {
 		super.aplicarPoder(personaje);
 		personaje.hacerInmortal();
 		personaje.hacerAsesinoDeEnemigos();
 	}
-	
+
+	@Override
 	public String toString() {
 		return "Poder normal";
 	}

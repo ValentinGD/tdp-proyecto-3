@@ -6,6 +6,7 @@ public class PersiguiendoEnemigo1 extends PersiguiendoEnemigoAbstracto {
 		super();
 	}
 
+	@Override
 	protected void calcularCoordenadasObjetivo() {
 		xObjetivo = personaje.getX();
 		yObjetivo = personaje.getY();
