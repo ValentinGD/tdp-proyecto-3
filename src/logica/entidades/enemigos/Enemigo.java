@@ -49,7 +49,6 @@ public abstract class Enemigo extends Movible {
 		return !Movible.sonDireccionesOpuestas(direccion, direccionActual);
 	}
 	
-	public abstract void perseguir();
 
 	public void morir() {
 		estado = new Muerto(this);
