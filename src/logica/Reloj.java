@@ -22,11 +22,9 @@ public class Reloj implements Notificadora {
 	}
 
 	public void start() {
-		if (!running) {
-			running = true;
-			t = new HiloDormilon(tiempoEntreTics, this);
-			t.start();
-		}
+		running = true;
+		t = new HiloDormilon(tiempoEntreTics, this);
+		t.start();
 	}
 
 	public int getTiempoEntreTics() {
