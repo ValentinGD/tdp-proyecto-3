@@ -22,8 +22,6 @@ public abstract class Movible extends Entidad implements Visitor {
 	
 	public static final int VELOCIDAD = Integer.parseInt(App.configuration.getProperty("VelocidadMovible"));
 	
-	protected boolean chocaste;
-	
 	protected int xOrigen;
 	protected int yOrigen;
 
@@ -36,7 +34,6 @@ public abstract class Movible extends Entidad implements Visitor {
 		super(x, y);
 		xOrigen = x;
 		yOrigen = y;
-		chocaste = false;
 		ticCount = 0;
 		direccionActual = DIRECCION_DERECHA;
 	}
@@ -44,14 +41,6 @@ public abstract class Movible extends Entidad implements Visitor {
 	public abstract void mover();
 	
 	public abstract void morir();
-	
-	protected void chocar() {
-		chocaste = true;
-	}
-	
-	public boolean chocaste() {
-		return chocaste;
-	}
 	
 	public void setOrigen() {
 		xOrigen = x;
