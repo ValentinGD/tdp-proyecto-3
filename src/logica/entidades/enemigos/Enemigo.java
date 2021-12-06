@@ -10,7 +10,6 @@ import logica.estados.enemigos.Muerto;
 
 public abstract class Enemigo extends Movible {
 
-	protected int tiempoDescanso;
 	protected EstadoEnemigo estado;
 
 	protected Enemigo(EstadoEnemigo estadoInicial) {
@@ -33,15 +32,6 @@ public abstract class Enemigo extends Movible {
 		this.velocidadEnTics = velociadad;
 	}
 
-	public int getTiempoDescanso() {
-		return tiempoDescanso;
-	}
-
-	public void setTiempoDescanso(int tiempoDescanso) {
-		this.tiempoDescanso = tiempoDescanso;
-	}
-
-	@Override
 	public void aceptar(Visitor v) {
 		v.visit(this);
 	}
